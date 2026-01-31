@@ -12,7 +12,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="min-h-screen bg-gray-100 antialiased" x-data="{ sidebarOpen: false }" @keydown.escape="sidebarOpen = false">
+<body class="min-h-screen bg-[#f8f6f3] antialiased" x-data="{ sidebarOpen: false }" @keydown.escape="sidebarOpen = false">
     
     <!-- Sidebar -->
     <div class="flex h-screen overflow-hidden">
@@ -27,7 +27,7 @@
             x-transition:leave="transition-opacity ease-linear duration-300"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 lg:hidden"
+            class="fixed inset-0 bg-black/50 z-40 lg:hidden"
             style="display: none;"
         ></div>
         
@@ -55,7 +55,7 @@
             </header>
             
             <!-- Page Content -->
-            <main class="flex-1 overflow-y-auto bg-gray-100">
+            <main class="flex-1 overflow-y-auto bg-[#f8f6f3]">
                 {{ $slot }}
             </main>
             

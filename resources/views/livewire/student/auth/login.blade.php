@@ -51,7 +51,7 @@
                             wire:model="email"
                             autocomplete="username" 
                             required 
-                            class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('email') border-red-300 @enderror"
+                            class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('email') border-red-300 @enderror"
                             placeholder="Type your email or username"
                         >
                         @error('email')
@@ -72,7 +72,7 @@
                                 wire:model="password"
                                 autocomplete="current-password" 
                                 required 
-                                class="appearance-none block w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('password') border-red-300 @enderror"
+                                class="appearance-none block w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('password') border-red-300 @enderror"
                                 placeholder="Type your password"
                             >
                             <button 
@@ -100,7 +100,7 @@
                             type="submit"
                             wire:loading.attr="disabled"
                             wire:target="login"
-                            class="w-full flex justify-center py-3 px-4 border border-transparent text-base font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent text-base font-medium rounded-lg text-white bg-[#6E0C0C] hover:bg-[#8B2525] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6E0C0C] transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <span wire:loading.remove wire:target="login">
                                 Login

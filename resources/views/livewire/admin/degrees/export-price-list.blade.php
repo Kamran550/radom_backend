@@ -7,7 +7,7 @@
 
     <div class="flex gap-2">
         <button wire:click="downloadPriceList('EN')" wire:loading.attr="disabled" wire:target="downloadPriceList"
-            class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out">
+            class="inline-flex items-center px-4 py-2 bg-[#6E0C0C] hover:bg-[#8B2525] disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out">
 
             <!-- Loading Spinner -->
             <svg wire:loading wire:target="downloadPriceList" class="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
@@ -31,7 +31,7 @@
         </button>
 
         <button wire:click="downloadPriceList('TR')" wire:loading.attr="disabled" wire:target="downloadPriceList"
-            class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out">
+            class="inline-flex items-center px-4 py-2 bg-[#C49F5F] hover:bg-[#B8860B] disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out">
 
             <!-- Loading Spinner -->
             <svg wire:loading wire:target="downloadPriceList" class="animate-spin -ml-1 mr-2 h-5 w-5 text-white"

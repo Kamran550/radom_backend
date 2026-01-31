@@ -71,10 +71,10 @@
                         @foreach ($students as $student)
                             <button type="button"
                                 wire:click="selectStudent({{ $student->id }}, '{{ $student->name }} {{ $student->surname }}')"
-                                class="w-full text-left px-4 py-3 hover:bg-indigo-50 transition duration-150 ease-in-out border-b border-gray-100 last:border-b-0">
+                                class="w-full text-left px-4 py-3 hover:bg-[#fdf2f2] transition duration-150 ease-in-out border-b border-gray-100 last:border-b-0">
                                 <div class="flex items-center">
                                     <div
-                                        class="shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                                        class="shrink-0 h-10 w-10 bg-[#fdf2f2] rounded-full flex items-center justify-center">
                                         <span class="text-indigo-600 font-semibold text-sm">
                                             {{ strtoupper(substr($student->name, 0, 1)) }}{{ strtoupper(substr($student->surname ?? '', 0, 1)) }}
                                         </span>
@@ -254,7 +254,7 @@
                 Cancel
             </a>
             <button type="submit"
-                class="inline-flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                class="inline-flex items-center px-6 py-3 bg-[#6E0C0C] hover:bg-[#8B2525] text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                 wire:loading.attr="disabled">
                 <span wire:loading.remove wire:target="save">
                     Create Payment

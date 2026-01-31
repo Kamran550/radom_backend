@@ -1,16 +1,16 @@
 <aside x-cloak :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-    class="fixed lg:static inset-y-0 left-0 z-50 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 shrink-0">
+    class="fixed lg:static inset-y-0 left-0 z-50 w-64 bg-[#6E0C0C] text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 shrink-0">
 
     <div wire:poll.5s="refreshCounts" class="h-full flex flex-col">
 
         <!-- Logo -->
-        <div class="px-4 py-4 border-b border-gray-700 flex items-center justify-between">
+        <div class="px-4 py-4 border-b border-[#853535] flex items-center justify-between">
             <div class="flex items-center">
                 <img src="{{ asset('images/MUST-logo-dark.png') }}" alt="MUST Logo" class="h-17 w-auto object-contain">
             </div>
 
             <!-- Close (mobile only) -->
-            <button @click="sidebarOpen = false" class="lg:hidden text-gray-400 hover:text-white focus:outline-none">
+            <button @click="sidebarOpen = false" class="lg:hidden text-[#d4b896] hover:text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -22,28 +22,28 @@
 
             <!-- Dashboard -->
             <a href="{{ route('admin.dashboard') }}"
-                class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 Dashboard
             </a>
 
             <!-- Students -->
             <a href="{{ route('admin.students.index') }}"
-                class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 Students
             </a>
 
             <!-- Teachers -->
             <a href="{{ route('admin.teachers.index') }}"
-                class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 Teachers
             </a>
 
             <!-- Payments -->
             <a href="{{ route('admin.payments.index') }}"
-                class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 Payments
             </a>
@@ -52,7 +52,7 @@
             <div x-data="{ open: false }">
                 <!-- Dropdown Button -->
                 <button @click="open = !open"
-                    class="w-full flex items-center justify-between px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition">
+                    class="w-full flex items-center justify-between px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition">
                     <span>Akademik</span>
                     <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" fill="none"
                         stroke="currentColor">
@@ -62,18 +62,18 @@
                 <!-- Dropdown Items -->
                 <div x-show="open" x-collapse class="ml-6 mt-1 space-y-1">
                     <a href="{{ route('admin.programs.index') }}"
-                        class="block px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition"
+                        class="block px-4 py-2 text-[#d4b896] hover:text-white hover:bg-[#8B2525] rounded-lg transition"
                         @click="sidebarOpen = false">
                         Programs
                     </a>
 
                     <a href="{{ route('admin.degrees.index') }}"
-                        class="block px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition"
+                        class="block px-4 py-2 text-[#d4b896] hover:text-white hover:bg-[#8B2525] rounded-lg transition"
                         @click="sidebarOpen = false">
                         Degrees
                     </a>
                     <a href="{{ route('admin.faculties.index') }}"
-                        class="block px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition"
+                        class="block px-4 py-2 text-[#d4b896] hover:text-white hover:bg-[#8B2525] rounded-lg transition"
                         @click="sidebarOpen = false">
                         Faculties
                     </a>
@@ -86,14 +86,14 @@
 
                 <!-- Dropdown Button -->
                 <button @click="open = !open"
-                    class="w-full flex items-center justify-between px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition">
+                    class="w-full flex items-center justify-between px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition">
 
                     <div class="flex items-center space-x-2">
                         <span>Applications</span>
 
                         <!-- If you want a badge -->
                         @if ($studentCount + $agencyCount > 0)
-                            <span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
+                            <span class="bg-[#C49F5F] text-white text-xs px-2 py-0.5 rounded-full">
                                 {{ $studentCount + $agencyCount }}
                             </span>
                         @endif
@@ -110,11 +110,11 @@
 
                     <!-- Student Applications -->
                     <a href="{{ route('admin.applications.student.index') }}"
-                        class="block px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition"
+                        class="block px-4 py-2 text-[#d4b896] hover:text-white hover:bg-[#8B2525] rounded-lg transition"
                         @click="sidebarOpen = false">
                         Students
                         @if ($studentCount > 0)
-                            <span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded-full ml-2">
+                            <span class="bg-[#C49F5F] text-white text-xs px-2 py-0.5 rounded-full ml-2">
                                 {{ $studentCount }}
                             </span>
                         @endif
@@ -122,11 +122,11 @@
 
                     <!-- Agency Applications -->
                     <a href="{{ route('admin.applications.agency.index') }}"
-                        class="block px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition"
+                        class="block px-4 py-2 text-[#d4b896] hover:text-white hover:bg-[#8B2525] rounded-lg transition"
                         @click="sidebarOpen = false">
                         Agencies
                         @if ($agencyCount > 0)
-                            <span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded-full ml-2">
+                            <span class="bg-[#C49F5F] text-white text-xs px-2 py-0.5 rounded-full ml-2">
                                 {{ $agencyCount }}
                             </span>
                         @endif
@@ -139,13 +139,13 @@
 
         <!-- Profile Section -->
         @auth
-            <div class="border-t border-gray-700 p-4">
+            <div class="border-t border-[#853535] p-4">
                 <div x-data="{ profileOpen: false }" class="relative">
                     <!-- Profile Button -->
                     <button @click="profileOpen = !profileOpen" @click.away="profileOpen = false"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition">
+                        class="w-full flex items-center gap-3 px-3 py-2 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition">
                         <!-- Profile Icon -->
-                        <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center shrink-0">
+                        <div class="w-10 h-10 bg-[#C49F5F] rounded-full flex items-center justify-center shrink-0">
                             <span class="text-white font-semibold text-sm">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}{{ strtoupper(substr(Auth::user()->surname ?? '', 0, 1)) }}
                             </span>
@@ -155,7 +155,7 @@
                             <p class="text-sm font-medium truncate">
                                 {{ Auth::user()->name }} {{ Auth::user()->surname }}
                             </p>
-                            <p class="text-xs text-gray-400 truncate">
+                            <p class="text-xs text-[#d4b896] truncate">
                                 {{ Auth::user()->email }}
                             </p>
                         </div>
@@ -173,11 +173,11 @@
                         x-transition:leave="transition ease-in duration-75"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95" style="display: none;"
-                        class="absolute bottom-full left-0 right-0 mb-2 bg-gray-700 rounded-lg shadow-lg overflow-hidden z-50">
+                        class="absolute bottom-full left-0 right-0 mb-2 bg-[#8B2525] rounded-lg shadow-lg overflow-hidden z-50">
 
                         <!-- Change Password -->
                         <a href="{{ route('admin.change-password') }}" @click="profileOpen = false"
-                            class="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-600 hover:text-white transition text-left">
+                            class="w-full flex items-center gap-3 px-4 py-3 text-[#e8d5d5] hover:bg-[#6E0C0C] hover:text-white transition text-left">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
@@ -186,7 +186,7 @@
                         </a>
 
                         <!-- Divider -->
-                        <div class="border-t border-gray-600"></div>
+                        <div class="border-t border-[#853535]"></div>
 
                         <!-- Logout -->
                         @livewire('admin.auth.logout')

@@ -230,7 +230,7 @@
             @if ($application && $application->applicant_type === \App\Enums\ApplicationTypeEnum::STUDENT->value)
                 <button type="button" wire:click="sendAcceptanceLetter" wire:loading.attr="disabled"
                     wire:target="sendAcceptanceLetter"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-green-600 hover:bg-green-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#6E0C0C] hover:bg-[#8B2525] rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Send Conditional Acceptance Letter">
                     <svg wire:loading.remove wire:target="sendAcceptanceLetter" class="w-3 h-3 mr-1.5" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +315,7 @@
             @if ($application && $currentStatus === ApplicationStatusEnum::APPROVED->value)
                 <button type="button" wire:click="sendFinalAcceptanceLetter" wire:loading.attr="disabled"
                     wire:target="sendFinalAcceptanceLetter"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#C49F5F] hover:bg-[#B8860B] rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Send Certificate (English)">
                     <svg wire:loading.remove wire:target="sendFinalAcceptanceLetter" class="w-3 h-3 mr-1.5"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -335,7 +335,7 @@
                 </button>
                 <button type="button" wire:click="sendFinalAcceptanceLetterTurkish" wire:loading.attr="disabled"
                     wire:target="sendFinalAcceptanceLetterTurkish"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#C49F5F] hover:bg-[#B8860B] rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Send Certificate (Turkish)">
                     <svg wire:loading.remove wire:target="sendFinalAcceptanceLetterTurkish" class="w-3 h-3 mr-1.5"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -355,7 +355,7 @@
                 </button>
             @endif
             <a href="{{ route('admin.applications.student.index') }}"
-                class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 rounded-md transition">
+                class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-[#6E0C0C] bg-[#fdf2f2] hover:bg-[#f5e6e6] rounded-md transition">
                 ← Back
             </a>
         </div>

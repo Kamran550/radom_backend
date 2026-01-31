@@ -43,7 +43,7 @@
                         <p class="text-xs sm:text-sm font-medium text-gray-600">Programs</p>
                         <p class="text-2xl sm:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">{{ number_format($programsCount) }}</p>
                     </div>
-                    <div class="p-2 sm:p-3 bg-indigo-100 rounded-full">
+                    <div class="p-2 sm:p-3 bg-[#fdf2f2] rounded-full">
                         <svg class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>

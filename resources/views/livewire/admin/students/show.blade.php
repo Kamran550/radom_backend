@@ -77,7 +77,7 @@
                             class="h-24 w-24 rounded-full object-cover border-4 border-indigo-100">
                     @else
                         <div
-                            class="h-24 w-24 bg-indigo-100 rounded-full flex items-center justify-center border-4 border-indigo-50">
+                            class="h-24 w-24 bg-[#fdf2f2] rounded-full flex items-center justify-center border-4 border-[#f5e6e6]">
                             <span class="text-indigo-600 font-bold text-2xl">
                                 {{ strtoupper(substr($student->name, 0, 1)) }}{{ strtoupper(substr($student->surname ?? '', 0, 1)) }}
                             </span>
@@ -146,7 +146,7 @@
                         </div>
 
                         <button type="submit" wire:loading.attr="disabled" wire:target="updateGraduationDate"
-                            class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-[#6E0C0C] hover:bg-[#8B2525] rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">
                             <svg wire:loading.remove wire:target="updateGraduationDate" class="w-5 h-5 mr-2"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -440,7 +440,7 @@
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{{ route('admin.payments.show', $payment->id) }}"
-                                                class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+                                                class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-[#6E0C0C] hover:bg-[#8B2525] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6E0C0C] transition duration-150 ease-in-out">
                                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"

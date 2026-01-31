@@ -11,7 +11,7 @@
             <p class="mt-1 text-sm text-gray-600">View and manage all programs</p>
         </div>
         <button @click="showModal = true; $nextTick(() => $dispatch('reset-form'))"
-            class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out">
+            class="inline-flex items-center px-4 py-2 bg-[#6E0C0C] hover:bg-[#8B2525] text-white text-sm font-medium rounded-lg shadow-sm transition duration-150 ease-in-out">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
@@ -72,7 +72,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div
-                                        class="shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                                        class="shrink-0 h-10 w-10 bg-[#fdf2f2] rounded-full flex items-center justify-center">
                                         <svg class="h-5 w-5 text-indigo-600" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

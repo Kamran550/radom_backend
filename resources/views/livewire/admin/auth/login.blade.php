@@ -3,7 +3,7 @@
         <!-- Logo and Title -->
         <div class="text-center">
             <div class="flex justify-center mb-6">
-                <div class="bg-indigo-600 p-4 rounded-2xl shadow-lg">
+                <div class="bg-[#6E0C0C] p-4 rounded-2xl shadow-lg">
                     <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
@@ -111,7 +111,7 @@
                         type="submit"
                         wire:loading.attr="disabled"
                         wire:target="login"
-                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-[#6E0C0C] hover:bg-[#8B2525] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6E0C0C] transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                     >
                         <span wire:loading.remove wire:target="login">
                             Login

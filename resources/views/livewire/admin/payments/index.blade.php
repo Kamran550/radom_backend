@@ -8,7 +8,7 @@
         </div>
         <a 
             href="{{ route('admin.payments.create') }}"
-            class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 ease-in-out">
+            class="inline-flex items-center px-4 py-2 bg-[#6E0C0C] text-white rounded-lg hover:bg-[#8B2525] transition duration-150 ease-in-out">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -121,7 +121,7 @@
                             <!-- Student Name -->
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <div class="shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                                    <div class="shrink-0 h-10 w-10 bg-[#fdf2f2] rounded-full flex items-center justify-center">
                                         <span class="text-indigo-600 font-semibold text-sm">
                                             {{ strtoupper(substr($payment->user->name ?? '', 0, 1)) }}{{ strtoupper(substr($payment->user->surname ?? '', 0, 1)) }}
                                         </span>
@@ -179,7 +179,7 @@
                             <!-- Actions -->
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a href="{{ route('admin.payments.show', $payment) }}" 
-                                   class="inline-flex items-center px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg hover:bg-indigo-100 transition duration-150 ease-in-out">
+                                   class="inline-flex items-center px-3 py-1.5 bg-[#fdf2f2] text-[#6E0C0C] rounded-lg hover:bg-[#f5e6e6] transition duration-150 ease-in-out">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>

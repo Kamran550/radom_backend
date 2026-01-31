@@ -53,7 +53,7 @@
                                 <img src="{{ $profile_photo_preview }}" alt="Profile Photo" id="photo-preview"
                                     class="h-24 w-24 rounded-full object-cover border-4 border-gray-200">
                             @else
-                                <div class="h-24 w-24 rounded-full bg-indigo-100 flex items-center justify-center border-4 border-gray-200"
+                                <div class="h-24 w-24 rounded-full bg-[#fdf2f2] flex items-center justify-center border-4 border-gray-200"
                                     id="photo-placeholder">
                                     <span class="text-indigo-600 font-semibold text-2xl">
                                         {{ strtoupper(substr($name, 0, 1)) }}{{ strtoupper(substr($surname ?? '', 0, 1)) }}
@@ -124,7 +124,7 @@
                                 First Name <span class="text-red-500">*</span>
                             </label>
                             <input id="name" name="name" type="text" wire:model="name" required
-                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('name') border-red-300 @enderror"
+                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('name') border-red-300 @enderror"
                                 placeholder="Enter your first name">
                             @error('name')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -137,7 +137,7 @@
                                 Last Name <span class="text-red-500">*</span>
                             </label>
                             <input id="surname" name="surname" type="text" wire:model="surname" required
-                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('surname') border-red-300 @enderror"
+                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('surname') border-red-300 @enderror"
                                 placeholder="Enter your last name">
                             @error('surname')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -150,7 +150,7 @@
                                 Email <span class="text-red-500">*</span>
                             </label>
                             <input id="email" name="email" type="email" wire:model="email" required
-                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('email') border-red-300 @enderror"
+                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('email') border-red-300 @enderror"
                                 placeholder="Enter your email">
                             @error('email')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -163,7 +163,7 @@
                                 Username <span class="text-red-500">*</span>
                             </label>
                             <input id="username" name="username" type="text" wire:model="username" required
-                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('username') border-red-300 @enderror"
+                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('username') border-red-300 @enderror"
                                 placeholder="Enter your username">
                             @error('username')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -176,7 +176,7 @@
                                 Phone
                             </label>
                             <input id="phone" name="phone" type="text" wire:model="phone"
-                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('phone') border-red-300 @enderror"
+                                class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('phone') border-red-300 @enderror"
                                 placeholder="Enter your phone number">
                             @error('phone')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -204,7 +204,7 @@
                                 </div>
                                 <input id="current_password" name="current_password" type="password"
                                     wire:model="current_password"
-                                    class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('current_password') border-red-300 @enderror"
+                                    class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('current_password') border-red-300 @enderror"
                                     placeholder="Enter your current password">
                             </div>
                             @error('current_password')
@@ -227,7 +227,7 @@
                                 </div>
                                 <input id="new_password" name="new_password" type="password"
                                     wire:model="new_password"
-                                    class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('new_password') border-red-300 @enderror"
+                                    class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('new_password') border-red-300 @enderror"
                                     placeholder="Enter your new password">
                             </div>
                             @error('new_password')
@@ -252,7 +252,7 @@
                                 </div>
                                 <input id="new_password_confirmation" name="new_password_confirmation"
                                     type="password" wire:model="new_password_confirmation"
-                                    class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('new_password_confirmation') border-red-300 @enderror"
+                                    class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('new_password_confirmation') border-red-300 @enderror"
                                     placeholder="Confirm your new password">
                             </div>
                             @error('new_password_confirmation')
@@ -269,7 +269,7 @@
                         Cancel
                     </a>
                     <button type="submit" wire:loading.attr="disabled" wire:target="updateProfile"
-                        class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-[#6E0C0C] hover:bg-[#8B2525] rounded-lg transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed">
                         <span wire:loading.remove wire:target="updateProfile">
                             Save
                         </span>

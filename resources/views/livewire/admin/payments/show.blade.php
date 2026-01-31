@@ -8,7 +8,7 @@
         </div>
         <div class="flex gap-3">
             <button wire:click="downloadReceipt" wire:loading.attr="disabled"
-                class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">
+                class="inline-flex items-center px-4 py-2 bg-[#6E0C0C] text-white rounded-lg hover:bg-[#8B2525] transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" wire:loading.remove
                     wire:target="downloadReceipt">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,7 +44,7 @@
             <div class="mb-8 pb-8 border-b border-gray-200">
                 <h2 class="text-lg font-semibold text-gray-900 mb-4">Student Information</h2>
                 <div class="flex items-center">
-                    <div class="shrink-0 h-16 w-16 bg-indigo-100 rounded-full flex items-center justify-center">
+                    <div class="shrink-0 h-16 w-16 bg-[#fdf2f2] rounded-full flex items-center justify-center">
                         <span class="text-indigo-600 font-semibold text-xl">
                             {{ strtoupper(substr($payment->user->name ?? '', 0, 1)) }}{{ strtoupper(substr($payment->user->surname ?? '', 0, 1)) }}
                         </span>
