@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="UTF-8">
@@ -7,227 +7,328 @@
     <title>Öğrenci Belgesi - {{ $student->first_name }} {{ $student->last_name }}</title>
     <style>
         @page {
-            margin: 12mm;
+            margin: 10mm 12mm 10mm 12mm;
             size: A4;
         }
 
         body {
-            font-family: 'DejaVu Serif', 'Times New Roman', serif;
-            font-size: 10pt;
-            line-height: 1.1;
-            color: #000;
+            font-family: 'DejaVu Sans', 'Helvetica', Arial, sans-serif;
+            font-size: 9pt;
+            line-height: 1.45;
+            color: #1a1a1a;
             margin: 0;
             padding: 0;
-            padding-bottom: 200px;
-            background: white;
+            padding-bottom: 155px;
+            background: #fff;
             position: relative;
             min-height: 100vh;
         }
 
-        /* Background Watermark */
+        /* Watermark */
         body::before {
             content: '';
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            width: 500px;
+            height: 500px;
             background-image: url('{{ public_path('images/MUST-logo-dark.png') }}');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.08;
+            opacity: 0.05;
             z-index: -1;
             pointer-events: none;
         }
 
-        .header {
-            border-bottom: 1.5px solid #000;
-            padding: 3px 0;
-            margin-top: -5px;
-            margin-bottom: 2px;
+        /* ── Header ── */
+        .header-wrapper {
+            border-bottom: 3px solid #1a2744;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
         }
 
-        .logo-container {
-            text-align: center;
-            padding: 0;
-            position: relative;
-            margin-bottom: 3px;
-            margin-top: 0;
+        .header-top-accent {
+            height: 4px;
+            background: linear-gradient(90deg, #1a2744 0%, #c5a55a 50%, #1a2744 100%);
+            margin-bottom: 12px;
         }
 
-        .logo {
-            max-width: 25mm;
-            height: auto;
-            display: block;
-            margin: 0 auto;
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .university-name-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin-top: 2px;
+        .header-table td {
+            vertical-align: middle;
         }
 
-        .university-name {
-            font-size: 12pt;
-            font-weight: bold;
-            color: #000;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .directorate-name {
-            font-size: 7pt;
-            font-weight: normal;
-            color: #000;
-            text-align: center;
-            margin: 2px 0 0 0;
-            padding: 0;
-        }
-
-        .header-right-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            font-size: 7pt;
-            text-align: right;
-            min-width: 80mm;
-        }
-
-        .document-info {
-            font-size: 7pt;
-            margin: 8px 0 4px 0;
+        .logo-cell {
+            width: 70px;
             text-align: left;
         }
 
-        .document-title {
-            font-size: 9pt;
-            font-weight: bold;
+        .logo {
+            max-width: 22mm;
+            height: auto;
+        }
+
+        .title-cell {
             text-align: center;
-            margin: 10px 0;
-            text-transform: uppercase;
+            padding: 0 10px;
+        }
+
+        .university-name {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #1a2744;
+            letter-spacing: 0.8px;
+            margin: 0;
+        }
+
+        .department-name {
+            font-size: 7.5pt;
+            color: #555;
+            margin-top: 3px;
             letter-spacing: 0.5px;
         }
 
-        .student-info-container {
-            display: table;
-            width: 100%;
-            margin: 8px 0;
-            border-collapse: separate;
-            border-spacing: 20px 0;
+        .date-cell {
+            width: 90px;
+            text-align: right;
+            font-size: 8pt;
+            color: #444;
         }
 
-        .student-info-left {
-            display: table-cell;
-            width: auto;
-            vertical-align: top;
+        /* ── Document Title ── */
+        .document-title {
+            text-align: center;
+            margin: 16px 0 14px 0;
         }
 
-        .student-info-right {
-            display: table-cell;
-            width: 150px;
-            vertical-align: top;
+        .document-title h1 {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #1a2744;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            padding: 6px 0;
+            display: inline-block;
+            border-bottom: 2px solid #c5a55a;
         }
 
-        .info-grid {
+        /* ── Student Info ── */
+        .content-wrapper {
             display: table;
             width: 100%;
             margin: 0;
+            border-spacing: 15px 0;
+        }
+
+        .info-cell {
+            display: table-cell;
+            vertical-align: top;
+            width: auto;
+        }
+
+        .photo-cell {
+            display: table-cell;
+            vertical-align: top;
+            width: 130px;
+        }
+
+        .info-table {
+            width: 100%;
             border-collapse: collapse;
-            font-size: 7pt;
+            font-size: 7.5pt;
         }
 
-        .info-row {
-            display: table-row;
+        .info-table tr {
+            border-bottom: 1px solid #e8e8e8;
         }
 
-        .info-label {
-            display: table-cell;
-            padding: 4px 6px;
+        .info-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .info-table td {
+            padding: 4.5px 6px;
+            vertical-align: top;
+        }
+
+        .info-table .label-col {
             font-weight: bold;
-            width: 40%;
+            color: #1a2744;
+            width: 38%;
+            white-space: nowrap;
         }
 
-        .info-value {
-            display: table-cell;
-            padding: 4px 6px;
+        .info-table .value-col {
+            color: #222;
         }
 
-        .photo-container {
-            width: 150px;
-            height: 150px;
+        /* ── Photo ── */
+        .photo-frame {
+            width: 130px;
+            height: 155px;
             border: none;
-            display: block;
+            border-radius: 0;
             overflow: hidden;
-            background-color: #f9f9f9;
+            background-color: transparent;
         }
 
-        .photo-container img {
+        .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .footer {
-            margin-top: 10px;
-            padding-top: 10px;
-            font-size: 7pt;
-            line-height: 1.1;
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 9pt;
         }
 
-        .footer-note {
-            margin: 3px 0;
+        /* ── Body Text ── */
+        .body-text {
+            margin-top: 16px;
+            font-size: 8pt;
+            line-height: 1.7;
+            color: #222;
             text-align: justify;
+            padding: 0 4px;
         }
 
-        .signature-section {
-            margin-top: 8px;
+        /* ── Signature + Stamp ── */
+        .signature-stamp-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .signature-stamp-table td {
+            vertical-align: bottom;
+        }
+
+        .stamp-cell {
+            width: 100px;
+            text-align: center;
+        }
+
+        .stamp-cell img {
+            width: 85px;
+            height: 85px;
+            opacity: 0.85;
+        }
+
+        .sig-cell {
             text-align: right;
-            /* padding-right: 50px; */
+            padding-right: 20px;
         }
 
-        .signature-name {
+        .sig-cell .sig-name {
             font-weight: bold;
-            font-size: 7pt;
-            margin-top: 10px;
-            /* padding-right: 50px; */
+            font-size: 8pt;
+            color: #1a2744;
         }
 
-        .signature-title {
-            font-size: 7pt;
-            /* margin-top: 2px; */
-            padding-right: 47px;
+        .sig-cell .sig-title {
+            font-size: 7.5pt;
+            color: #555;
+            margin-top: 2px;
         }
 
+        /* ── Verification Footer ── */
         .verification-footer {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            margin-top: 10px;
             padding: 0;
-            padding-bottom: 20px;
         }
 
-        .date-line {
+        .verification-date {
             font-weight: bold;
-            font-size: 7pt;
-            margin-bottom: 8px;
+            font-size: 7.5pt;
+            color: #1a2744;
+            margin-bottom: 4px;
         }
 
-        .footer-divider {
-            height: 1px;
-            background-color: #666;
-            margin: 10px 0;
+        .verification-card {
+            width: 100%;
+            border: 1.5px solid #1a2744;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .verification-card-header {
+            background: #1a2744;
+            color: #fff;
+            font-size: 6pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            text-align: center;
+        }
+
+        .verification-card-body {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .verification-card-body td {
+            vertical-align: middle;
+        }
+
+        .verification-qr-cell {
+            width: 70px;
+            padding: 6px;
+            text-align: center;
+            background: #f4f6fa;
+            border-right: 1px solid #dde1e8;
+        }
+
+        .verification-info-cell {
+            padding: 6px 10px;
+            font-size: 6.5pt;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .verification-info-cell strong {
+            color: #1a2744;
+        }
+
+        .bottom-divider {
+            height: 2px;
+            background: linear-gradient(90deg, #1a2744 0%, #c5a55a 50%, #1a2744 100%);
+            margin: 5px 0;
+        }
+
+        .address-block {
+            font-size: 5.5pt;
+            line-height: 1.2;
+            color: #555;
+            text-align: center;
+        }
+
+        .address-block p {
+            margin: 1px 0;
+        }
+
+        .address-block .institution-line {
+            font-weight: bold;
+            color: #1a2744;
+            font-size: 6pt;
         }
 
         @media print {
@@ -244,119 +345,120 @@
 </head>
 
 <body>
-    <!-- Top Verification Line -->
+
+    <!-- Top Accent Line -->
+    <div class="header-top-accent"></div>
 
     <!-- Header -->
-    <div class="header">
-        @php
-            $logoPath = public_path('images/MUST-simvol.png');
-            $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-            $logoMime = 'image/jpeg';
-        @endphp
-        @if ($logoData)
-            <div class="logo-container">
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
-            </div>
-        @endif
-        <div class="university-name-container">
-            <div class="university-name">
-                MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
-            </div>
-            <div class="directorate-name">
-                Öğrenci İşleri Daire Başkanlığı
-            </div>
-        </div>
-        {{-- <div class="document-info">
-            Ref No : E-{{ strtoupper(\Illuminate\Support\Str::random(10)) }}-{{ now()->format('d.m.Y') }}-{{ rand(1000, 9999) }}<br>
-            Subject : Student Certificate
-        </div> --}}
+    <div class="header-wrapper">
+        <table class="header-table">
+            <tr>
+                <td class="logo-cell">
+                    @php
+                        $logoPath = public_path('images/MUST-simvol.png');
+                        $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
+                        $logoMime = 'image/jpeg';
+                    @endphp
+                    @if ($logoData)
+                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
+                    @endif
+                </td>
+                <td class="title-cell">
+                    <div class="university-name">
+                        MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
+                    </div>
+                    <div class="department-name">
+                        Öğrenci İşleri Daire Başkanlığı
+                    </div>
+                </td>
+                <td class="date-cell">
+                    {{ now()->format('d/m/Y') }}
+                </td>
+            </tr>
+        </table>
     </div>
 
     <!-- Document Title -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <div class="document-title" style="flex: 1; margin: 0;">
-            ÖĞRENCİ BELGESİ
-        </div>
-        <div style="font-size: 9pt; font-weight: normal;">
-            {{ now()->format('d/m/Y') }}
-        </div>
+    <div class="document-title">
+        <h1>{{tr_upper('Öğrenci Belgesi')}}</h1>
     </div>
 
     <!-- Student Information -->
-    <div class="student-info-container">
-        <div class="student-info-left">
-            <div class="info-grid">
-                <div class="info-row">
-                    <div class="info-label">Öğrenci No</div>
-                    <div class="info-value">{{ $student->student_number ?? $student->id }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Pasaport No</div>
-                    <div class="info-value">{{ $student->passport_number ?? 'N/A' }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Adı</div>
-                    <div class="info-value">{{ tr_upper($student->first_name) }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Soyadı</div>
-                    <div class="info-value">{{ tr_upper($student->last_name) }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Doğum Yeri & Tarihi</div>
-                    <div class="info-value">
+    <div class="content-wrapper">
+        <div class="info-cell">
+            <table class="info-table">
+                <tr>
+                    <td class="label-col">Öğrenci No</td>
+                    <td class="value-col">{{ $student->student_number ?? $student->id }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Pasaport No</td>
+                    <td class="value-col">{{ $student->passport_number ?? 'N/A' }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Adı</td>
+                    <td class="value-col">{{ tr_upper($student->first_name) }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Soyadı</td>
+                    <td class="value-col">{{ tr_upper($student->last_name) }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Doğum Yeri & Tarihi</td>
+                    <td class="value-col">
                         {{ tr_upper($student->place_of_birth ?? ($student->nationality ?? 'N/A')) }} -
-                        {{ $student->date_of_birth ? $student->date_of_birth->format('d/m/Y') : 'N/A' }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Ata Adı</div>
-                    <div class="info-value">{{ tr_upper($student->father_name ?? 'N/A') }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Uyruk</div>
-                    <div class="info-value">{{ tr_upper($student->nationality ?? 'N/A') }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Eğitim Düzeyi</div>
-                    <div class="info-value">
+                        {{ $student->date_of_birth ? $student->date_of_birth->format('d/m/Y') : 'N/A' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-col">Ata Adı</td>
+                    <td class="value-col">{{ tr_upper($student->father_name ?? 'N/A') }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Uyruk</td>
+                    <td class="value-col">{{ tr_upper($student->nationality ?? 'N/A') }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Eğitim Düzeyi</td>
+                    <td class="value-col">
                         {{ tr_upper($student->application->program?->degree?->getName('TR') ?: $student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A')) }}
-                    </div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Enstitü / Fakülte</div>
-                    <div class="info-value">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-col">Enstitü / Fakülte</td>
+                    <td class="value-col">
                         {{ tr_upper($student->application->program?->faculty?->getName('TR') ?: $student->application->program?->faculty?->name ?? 'GRADUATE SCHOOL') }}
-                    </div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Bölüm</div>
-                    <div class="info-value">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-col">Bölüm</td>
+                    <td class="value-col">
                         {{ tr_upper($student->application->program?->getName('TR') ?: $student->application->program?->name ?? 'N/A') }}
-                    </div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Eğitim Dili</div>
-                    <div class="info-value">{{ $student->study_language === 'EN' ? 'İngilizce' : 'Türkçe' }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Eğitim Tipi</div>
-                    <div class="info-value">Örğün</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Bursluluk Statüsü</div>
-                    <div class="info-value">{{ $student->scholarship_status . " Burslu" ?? '75% Burslu' }}</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Sınıf</div>
-                    <div class="info-value">DERS AŞAMASI ({{ $student->current_course ?? 1 }} SINIF)</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Kayıt Tarihi</div>
-                    <div class="info-value">{{ now()->format('d/m/Y') }}</div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-col">Eğitim Dili</td>
+                    <td class="value-col">{{ $student->study_language === 'EN' ? 'İngilizce' : 'Türkçe' }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Eğitim Tipi</td>
+                    <td class="value-col">Örğün</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Bursluluk Statüsü</td>
+                    <td class="value-col">{{ $student->scholarship_status . ' Burslu' ?? '75% Burslu' }}</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Sınıf</td>
+                    <td class="value-col">DERS AŞAMASI ({{ $student->current_course ?? 1 }} SINIF)</td>
+                </tr>
+                <tr>
+                    <td class="label-col">Kayıt Tarihi</td>
+                    <td class="value-col">{{ now()->format('d/m/Y') }}</td>
+                </tr>
+            </table>
         </div>
-        <div class="student-info-right">
+        <div class="photo-cell">
             @php
                 $photoData = null;
                 $photoMime = 'image/jpeg';
@@ -382,13 +484,12 @@
             @endphp
 
             @if ($photoData)
-                <div class="photo-container">
+                <div class="photo-frame">
                     <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="Student Photo">
                 </div>
             @else
-                <div class="photo-container">
-                    <div
-                        style="width: 100%; height: 100%; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 10pt;">
+                <div class="photo-frame">
+                    <div class="photo-placeholder">
                         No Photo
                     </div>
                 </div>
@@ -396,63 +497,65 @@
         </div>
     </div>
 
-    <!-- Footer Notes -->
-    <div class="footer">
-        <div class="footer-note">
-            * Yukarıda kimlik bilgileri verilen kişi öğrencimizdir.
-        </div>
-        <div class="footer-note">
-            * Belirtilen program için öngörülen eğitim süresi
-            {{ $student->application->program?->degree?->duration ?? 4 }} yıldır.
-        </div>
-        <div class="footer-note">
-            *
-            {{ $student->application->program?->degree?->getName('TR') ?: $student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A') }}
-            Eğitim-Öğretim Yönergesinin ilgili maddeleri uyarınca programa kayıtlı kişilerin öğrencilik haklarından
-            yararlanabilmelerini teminen dersler için gözetilen devam, katılım ve sınav koşullarını bir bütün olarak
-            eksiksiz
-            şekilde yerine getirmeleri gerekmektedir. Aksi takdirde ilgilisinin programla ilişiği kesilir.
-        </div>
-        <div class="footer-note">
-            * İlgilisinin
-            @php
-                $duration = $student->application->program?->degree?->duration ?? 4;
-                $startYear = $student->graduation_year;
-                $endYear = $student->graduation_year + 1;
-            @endphp
-            {{ $startYear }}-{{ $endYear }} akademik yılında mezuniyet aşamasına gelmesi beklenmektedir
-        </div>
-        <div class="footer-note">
-            * İşbu belge ilgilisinin talebine binaen tanzim edilmiştir.
-        </div>
+    <!-- Body Text -->
+    @php
+        $startYear = $student->graduation_year;
+        $endYear = $student->graduation_year + 1;
+        $programName = tr_upper($student->application->program?->getName('TR') ?: $student->application->program?->name ?? 'N/A');
+        $degreeName = tr_upper($student->application->program?->degree?->getName('TR') ?: $student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A'));
+    @endphp
+    <div class="body-text">
+        Yukarıda açık kimliği yazılı <strong>{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</strong>,
+        {{ $programName }} {{ $degreeName }} Programı kayıtlı öğrencisidir.
+        {{ $startYear }}-{{ $endYear }} eğitim - öğretim yılı Güz yarıyılında ders kaydı yaptırmış olup
+        öğrencilik haklarından yararlanır. Herhangi bir disiplin cezası bulunmamaktadır.
     </div>
 
-    <!-- Signature Section -->
-    <div class="signature-section">
-        <div class="signature-name">
-            Prof. Dr. Serdar KORAL
-        </div>
-        <div class="signature-title">
-            Rektör
-        </div>
-    </div>
+    <!-- Signature + Stamp -->
+    @php
+        $stampPath = public_path('images/must-möhür.png');
+        $stampData = file_exists($stampPath) ? base64_encode(file_get_contents($stampPath)) : '';
+    @endphp
+    <table class="signature-stamp-table">
+        <tr>
+            <td class="stamp-cell">
+                @if ($stampData)
+                    <img src="data:image/png;base64,{{ $stampData }}" alt="MUST Möhür">
+                @endif
+            </td>
+            <td class="sig-cell">
+                <div class="sig-name">Prof. Dr. Serdar KORAL</div>
+                <div class="sig-title">Rektör</div>
+            </td>
+        </tr>
+    </table>
 
-    <!-- Footer Section -->
+    <!-- Verification Footer -->
     <div class="verification-footer">
         <!-- Date -->
-        <div class="date-line">
+        <div class="verification-date">
             Tarih: {{ now()->format('d/m/Y') }}
         </div>
 
-        <!-- Verification Box with QR Code -->
-        <table style="width: 100%; margin-bottom: 10px;">
-            <tr>
-                <!-- QR Code -->
-
-                <!-- Text Box -->
-                <td style="padding-left: 10px; margin-top: 8x;">
-                    <div
-                        style="background: #f0f0f0; padding: 12px 15px; border-radius: 8px; font-size: 11px; line-height: 1.2;">
+        <!-- Verification Card with QR -->
+        <div class="verification-card">
+            <div class="verification-card-header">
+                Belge Doğrulama
+            </div>
+            <table class="verification-card-body">
+                <tr>
+                    <td class="verification-qr-cell">
+                        @php
+                            $verificationCodeForUrl = $verificationCode ?? null;
+                            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                                ->size(70)
+                                ->generate($student->getVerificationUrl($verificationCodeForUrl));
+                            $qrCodeBase64 = base64_encode($qrCode);
+                        @endphp
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}"
+                            style="width: 56px; height: 56px;" />
+                    </td>
+                    <td class="verification-info-cell">
                         Bu belge,
                         {{ now()->format('d/m/Y') }} tarihinde
                         <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> adına
@@ -460,55 +563,30 @@
                         belge numarasıyla elektronik olarak imzalanmıştır. Belgenin geçerliliği, QR kodunu tarayarak
                         veya belge numarasını kullanarak
                         <strong>{{ $student->getVerificationUrl() }}</strong> adresinden doğrulanabilir.
-                    </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-                </td>
-                <td style="width: 80px; vertical-align: top;">
-                    @php
-                        $verificationCodeForUrl = $verificationCode ?? null;
-                        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                            ->size(70)
-                            ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                        $qrCodeBase64 = base64_encode($qrCode);
-                    @endphp
+        <!-- Bottom Divider -->
+        <div class="bottom-divider"></div>
 
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 70px; height: 70px;" />
-                </td>
-
-            </tr>
-        </table>
-
-        <!-- Divider Line -->
-        <div class="footer-divider"></div>
-
-        <!-- Footer Bottom Section -->
-        <table style="width: 100%; margin-top: 8px;">
-            <tr>
-                <!-- LEFT SIDE -->
-                <td style="width: 100%; font-size: 6pt; line-height: 1.1;">
-                    <p style="margin: 2px 0; font-weight: bold; text-align: center;">
-                        Fully Accredited Multinational Higher Education Institution and Global Service Provider
-                    </p>
-                    <p style="margin: 2px 0; text-align: center;">
-                        ISTASYON MAH. 2325 SK. NO: 18 / 1 ETIMESGUT ANKARA / Türkiye [ MUST ]
-                    </p>
-                    <p style="margin: 2px 0; text-align: center;">
-                        Ogrodowa 5800-876 Warsaw / Poland [ MUST ]
-                    </p>
-                    <p style="margin: 2px 0; text-align: center;">
-                        32-36 Bd d'Avranches, 1160 Bonnevoie-Nord-Verlorenkost / Luxembourg [ MUST ]
-                    </p>
-                    <p style="margin: 2px 0; text-align: center;">
-                        <strong>Tel:</strong> +90 5386796595 | +48 579 369 968 | +352 661115815
-                    </p>
-                    <p style="margin: 2px 0; text-align: center;">
-                        <strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl | <strong>Web:</strong>
-                        www.must.edu.pl | www.must.edu.rs
-                    </p>
-                </td>
-            </tr>
-        </table>
-
+        <!-- Address Block -->
+        <div class="address-block">
+            <p class="institution-line">
+                Fully Accredited Multinational Higher Education Institution and Global Service Provider
+            </p>
+            <p>ISTASYON MAH. 2325 SK. NO: 18 / 1 ETIMESGUT ANKARA / Türkiye [ MUST ]</p>
+            <p>Ogrodowa 5 00-876 Warsaw / Poland [ MUST ]</p>
+            <p>32-36 Bd d'Avranches, 1160 Bonnevoie-Nord-Verlorenkost / Luxembourg [ MUST ]</p>
+            <p style="margin-top: 3px;">
+                <strong>Tel:</strong> +90 5386796595 | +48 579 369 968 | +352 661115815
+            </p>
+            <p>
+                <strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl |
+                <strong>Web:</strong> www.must.edu.pl | www.must.edu.rs
+            </p>
+        </div>
     </div>
 
 </body>

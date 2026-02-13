@@ -1,7 +1,6 @@
 <div class="p-4 sm:p-6 lg:p-8">
     <div class="max-w-7xl mx-auto">
         <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Welcome to the Admin Panel</h1>
-        <p class="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8">Bu admin idarəetmə səhifəsidir.</p>
         
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">

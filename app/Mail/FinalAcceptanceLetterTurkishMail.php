@@ -68,6 +68,8 @@ class FinalAcceptanceLetterTurkishMail extends Mailable
     public function attachments(): array
     {
         try {
+            ini_set('memory_limit', '5016M');
+            set_time_limit(0);
             // Ensure student has application relationship loaded
             if (!$this->student->relationLoaded('application')) {
                 $this->student->load('application');

@@ -79,6 +79,8 @@ class DiplomaMail extends Mailable
     public function attachments(): array
     {
         try {
+            ini_set('memory_limit', '5016M');
+            set_time_limit(0);
             Log::info('Diploma PDF generasiyası başladı', [
                 'student_id' => $this->student->id,
                 'application_id' => $this->application->id,

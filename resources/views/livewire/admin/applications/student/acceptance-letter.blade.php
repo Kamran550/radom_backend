@@ -45,7 +45,6 @@
         }
 
         .header {
-            border-bottom: 1.5px solid #000;
             padding: 5px 0;
             margin-bottom: 8px;
         }
@@ -68,7 +67,7 @@
         } */
 
         .logo {
-            max-width: 25mm;
+            max-width: 40mm;
             height: auto;
             flex-shrink: 0;
         }
@@ -155,6 +154,7 @@
         .info-grid {
             display: table;
             width: 100%;
+            border:none;
             margin: 8px 0;
             border-collapse: collapse;
             font-size: 7pt;
@@ -169,14 +169,13 @@
             padding: 4px 6px;
             font-weight: bold;
             width: 40%;
-            border: 1px solid #000;
-            /* background-color: #fff; */
+            border: none;
         }
 
         .info-value {
             display: table-cell;
             padding: 4px 6px;
-            border: 1px solid #000;
+            border: none;
         }
 
         .subsection-title {
@@ -349,11 +348,57 @@
         }
 
         .footer-divider {
-            height: 1px;
-            background-color: #666;
-            margin: 10px 0;
+            height: 2px;
+            background: linear-gradient(90deg, #1a2744 0%, #c5a55a 50%, #1a2744 100%);
+            margin: 5px 0;
         }
 
+        .verification-card {
+            width: 100%;
+            border: 1.5px solid #1a2744;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .verification-card-header {
+            background: #1a2744;
+            color: #fff;
+            font-size: 6pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            text-align: center;
+        }
+
+        .verification-card-body {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .verification-card-body td {
+            vertical-align: middle;
+        }
+
+        .verification-qr-cell {
+            width: 70px;
+            padding: 6px;
+            text-align: center;
+            background: #f4f6fa;
+            border-right: 1px solid #dde1e8;
+        }
+
+        .verification-info-cell {
+            padding: 6px 10px;
+            font-size: 6.5pt;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .verification-info-cell strong {
+            color: #1a2744;
+        }
 
         .website-row {
             display: flex;
@@ -402,8 +447,9 @@
 
         .date-line {
             font-weight: bold;
-            font-size: 7pt;
-            margin-bottom: 10px;
+            font-size: 7.5pt;
+            color: #1a2744;
+            margin-bottom: 4px;
         }
 
         @media print {
@@ -431,14 +477,14 @@
             @if ($logoData)
                 <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
             @endif
-            <div class="university-name-container">
+            {{-- <div class="university-name-container">
                 <div class="university-name">
                     MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
                 </div>
                 <div class="directorate-name">
                     Directorate of International Relations
                 </div>
-            </div>
+            </div> --}}
             <div class="header-right-info">
                 <div>Date: {{ now()->format('d.m.Y') }}</div>
             </div>
@@ -456,70 +502,36 @@
             <div class="subject-info-row">
                 Dear {{ tr_upper(text: $student->first_name . ' ' . $student->last_name) }}
             </div>
+            <div>
+                Conditional Acceptance Letter
+            </div>
 
         </div>
     </div>
 
     <!-- Document Title -->
-    <div class="document-title">
-        CONDITIONAL ACCEPTANCE LETTER
-    </div>
-
-    <!-- Greeting -->
-
     <!-- Introduction Content -->
     <div class="content">
+        <p style="font-size: 9pt; font-weight: bold; color: #1a2744; margin-bottom: 6px;">
+            Congratulations!
+        </p>
         <p>
-            We are pleased to inform you that the Admission Committee of Mazovia University of Science and Technology has
-            carefully reviewed your application for admission to
-            <strong>{{ $student->application->program?->name ?? 'Program' }}</strong>
-            ({{ $student->application->program?->degree?->name ?? 'Degree' }}) for the
-            {{ now()->format('Y') }}-{{ now()->addYear()->format('Y') }}
-            Academic Fall Semester. It is our
-            pleasure to inform you that you have been granted conditional acceptance to the program. We extend our warm
-            congratulations on this achievement.
+            Your application to Mazovia University of Science and Technology for the
+            {{ now()->format('Y') }}-{{ now()->addYear()->format('Y') }} academic year Fall semester has been
+            successfully approved. We are excited for you to be a member of the MUST Global family and to join a
+            dynamic and diverse student community in a place of endless opportunities. This letter is to confirm
+            your conditional acceptance into
+            <strong>{{ tr_upper($student->application->program?->name ?? 'N/A') }}</strong>
+            {{ $student->application->program?->degree?->name ?? 'N/A' }} degree program under the
+            <strong>{{ $student->application->program?->faculty?->name ?? 'N/A' }}</strong>.
+            The duration of the program is
+            {{ $student->application->program?->degree?->duration ?? 'N/A' }} years, and the medium of
+            instruction is {{ $student->study_language === 'EN' ? 'English' : 'Turkish' }}.
         </p>
     </div>
-
-    <!-- Applicant and Program Details -->
-    <div class="section-header">Applicant and Program Details</div>
-
-    <div class="info-grid">
-        <div class="info-row">
-            <div class="info-label">Application Number</div>
-            <div class="info-value">{{ $student->application_number ?? 'N/A' }}</div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Full Name</div>
-            <div class="info-value">{{ tr_upper($student->first_name . ' ' . $student->last_name) }}</div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Date of Birth</div>
-            <div class="info-value">{{ $student->date_of_birth ? $student->date_of_birth->format('d/m/Y') : 'N/A' }}
-            </div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Program</div>
-            <div class="info-value">{{ $student->application->program?->name ?? 'N/A' }}</div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Degree and Duration</div>
-            <div class="info-value">{{ $student->application->program?->degree?->name ?? 'N/A' }} -
-                {{ $student->application->program?->degree?->duration ?? 'N/A' }} Academic Years
-            </div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Faculty</div>
-            <div class="info-value">{{ $student->application->program?->faculty?->name ?? 'N/A' }}</div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Education Language</div>
-            <div class="info-value">{{ $student->study_language === 'EN' ? 'English' : 'Turkish' }}</div>
-        </div>
-    </div>
+    <br>
 
     <!-- Tuition Fee -->
-    <div class="section-header">Tuition Fee</div>
 
     <div class="info-grid">
         <div class="info-row">
@@ -539,9 +551,11 @@
             <div class="info-value"><strong>1000 EUR</strong></div>
         </div>
     </div>
+    <br>
+    <br>
     <!-- Section 1 -->
     {{-- <div class="section-header">1. Condition for Issuing the Acceptance Letter</div> --}}
-    <div class="subsection-title">1.1. Deposit Payment</div>
+    <div class="subsection-title">Deposit Payment</div>
     <div class="content">
         <p>
             The official Acceptance Letter will be issued upon payment of a non-refundable deposit of 1000 EUR, either
@@ -590,8 +604,12 @@
         </tbody>
     </table>
 
+    <br>
+    <br>
+    <br>
+
     <!-- English Language Proficiency Requirements -->
-    <div class="section-header">English Language Proficiency Requirements</div>
+    {{-- <div class="section-header">English Language Proficiency Requirements</div>
 
     <table class="proficiency-table">
         <thead>
@@ -632,7 +650,7 @@
                 <td>Two calendar years</td>
             </tr>
         </tbody>
-    </table>
+    </table> --}}
 
 
     <!-- English Proficiency and Preparatory Exam -->
@@ -649,23 +667,17 @@
         </p>
     </div>
 
-    <!-- Required Documents for Final Registration -->
-    <div class="section-header">Required Documents for Final Registration</div>
-
-    <ol class="required-documents-list">
-        <li>Notarized, English-Translated (Wet-Signed and Stamped) Master's Degree Diploma (if applicable)</li>
-        <li>Notarized, English-Translated (Wet-Signed and Stamped) Master's Degree Transcript (if applicable)</li>
-        <li>Notarized, English-Translated (Wet-Signed and Stamped) Bachelor's Degree Diploma (if applicable)</li>
-        <li>Notarized, English-Translated (Wet-Signed and Stamped) Bachelor's Degree Transcript (if applicable)</li>
-        <li>Notarized, English-Translated (Wet-Signed and Stamped) High School Diploma</li>
-        <li>Notarized, English-Translated (Wet-Signed and Stamped) High School Transcript</li>
-        <li>Passport</li>
-        <li>English/Turkish Language Proficiency Exam Result Certificate (if available)</li>
-        <li>Payment Receipt</li>
-        <li>1 Biometric Photograph</li>
-        <li>Final Acceptance Letter</li>
-    </ol>
-
+    <!-- Conditional Acceptance Notice -->
+    <div class="section-header">Conditional Acceptance</div>
+    <div class="content">
+        <p>
+            This letter constitutes a <strong>conditional acceptance</strong> to the program indicated above. Your final
+            enrollment is subject to the university's verification of your submitted documents and compliance with all
+            admission requirements. You will receive a <strong>Final Acceptance Letter</strong> once your file has been
+            fully reviewed and approved. Until then, please ensure that you complete any pending steps (e.g. language
+            proficiency, document submission, or payment) as communicated by the International Admissions Office.
+        </p>
+    </div>
 
     <!-- Additional Information -->
     <div class="content">
@@ -693,54 +705,51 @@
             Date: {{ now()->format('d/m/Y') }}
         </div>
 
-        <table style="width: 100%; margin-bottom: 15px;">
-            <tr>
-                <!-- QR Code -->
-
-                <!-- Text Box -->
-                <td style="padding-left: 10px;">
-                    <div
-                        style="background: #f0f0f0; padding: 12px 15px; border-radius: 8px; font-size: 11px; line-height: 1.4;">
+        <!-- Verification Card with QR -->
+        <div class="verification-card">
+            <div class="verification-card-header">
+                Document Verification
+            </div>
+            <table class="verification-card-body">
+                <tr>
+                    <td class="verification-qr-cell">
+                        @php
+                            $verificationCodeForUrl = $verificationCode ?? null;
+                            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                                ->size(70)
+                                ->generate($student->getVerificationUrl($verificationCodeForUrl));
+                            $qrCodeBase64 = base64_encode($qrCode);
+                        @endphp
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}"
+                            style="width: 56px; height: 56px;" />
+                    </td>
+                    <td class="verification-info-cell">
                         This document was e-signed for
-                        <strong>{{ tr_upper($student->first_name . ' ' . $student->last_name) }}</strong>
-                        on {{ now()->format('d/m/Y') }} with document number
-                        <strong>{{ $verificationCode ?? strtoupper(\Illuminate\Support\Str::random(12)) }}</strong>
+                        <strong>{{ tr_upper($student->first_name . ' ' . $student->last_name) }}</strong> on
+                        {{ now()->format('d/m/Y') }} with document number
+                        <strong>{{ $verificationCode ?? strtoupper(\Illuminate\Support\Str::random(12)) }}</strong>.
                         The validity of the document can be confirmed by scanning the QR code or by document number at
                         <strong>{{ $student->getVerificationUrl() }}</strong>
-                    </div>
-                </td>
-                <td style="width: 80px; vertical-align: top;">
-                    @php
-                        $verificationCodeForUrl = $verificationCode ?? null;
-                        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                            ->size(70)
-                            ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                        $qrCodeBase64 = base64_encode($qrCode);
-                    @endphp
-
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 70px; height: 70px;" />
-                </td>
-
-            </tr>
-        </table>
-
+                    </td>
+                </tr>
+            </table>
+        </div>
 
         <!-- Divider Line -->
         <div class="footer-divider"></div>
 
         <!-- Footer Bottom Section -->
-        <table style="width: 100%; margin-top: 20px;">
-            <tr>
-                <td style="text-align: center; font-size: 11px; line-height: 1.1;">
-                    <p style="margin: 5px 0;">
-                        <strong>Tel:</strong> +48 579 369 968 |
-                        <strong>Email:</strong> international@must.edu.pl |
-                        <strong>Address:</strong> Ogrodowa 5800-876 Warsaw / Poland |
-                        <strong>Website:</strong> www.must.edu.pl
-                    </p>
-                </td>
-            </tr>
-        </table>
+        <div style="font-size: 5.5pt; line-height: 1.2; color: #555; text-align: center; margin-top: 4px;">
+            <p style="margin: 1px 0; font-weight: bold; color: #1a2744; font-size: 6pt;">
+                Fully Accredited Multinational Higher Education Institution and Global Service Provider
+            </p>
+            <p style="margin: 1px 0;">
+                <strong>Tel:</strong> +48 579 369 968 |
+                <strong>Email:</strong> international@must.edu.pl |
+                <strong>Address:</strong> Ogrodowa 5 00-876 Warsaw / Poland |
+                <strong>Website:</strong> www.must.edu.pl
+            </p>
+        </div>
 
     </div>
 
