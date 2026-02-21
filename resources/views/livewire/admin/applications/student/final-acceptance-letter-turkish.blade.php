@@ -380,7 +380,7 @@
 
     <!-- Document Title -->
     <div class="document-title">
-        <h1>{{tr_upper('Öğrenci Belgesi')}}</h1>
+        <h1>{{ tr_upper('Öğrenci Belgesi') }}</h1>
     </div>
 
     <!-- Student Information -->
@@ -421,7 +421,7 @@
                 <tr>
                     <td class="label-col">Eğitim Düzeyi</td>
                     <td class="value-col">
-                        {{ tr_upper($student->application->program?->degree?->getName('TR') ?: $student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A')) }}
+                        {{ degree_type_to_word_turkish($student->application->program?->degree?->name ?? 'N/A', $student->application->program?->is_thesis ?? false) }}
                     </td>
                 </tr>
                 <tr>
@@ -501,11 +501,18 @@
     @php
         $startYear = $student->graduation_year;
         $endYear = $student->graduation_year + 1;
-        $programName = tr_upper($student->application->program?->getName('TR') ?: $student->application->program?->name ?? 'N/A');
-        $degreeName = tr_upper($student->application->program?->degree?->getName('TR') ?: $student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A'));
+        $programName = tr_upper(
+            $student->application->program?->getName('TR') ?: $student->application->program?->name ?? 'N/A',
+        );
+        $degreeName = tr_upper(
+            $student->application->program?->degree?->getName('TR') ?:
+            $student->application->program?->degree?->description ??
+                ($student->application->program?->degree?->name ?? 'N/A'),
+        );
     @endphp
     <div class="body-text">
-        Yukarıda açık kimliği yazılı <strong>{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</strong>,
+        Yukarıda açık kimliği yazılı <strong>{{ tr_upper($student->first_name) }}
+            {{ tr_upper($student->last_name) }}</strong>,
         {{ $programName }} {{ $degreeName }} Programı kayıtlı öğrencisidir.
         {{ $startYear }}-{{ $endYear }} eğitim - öğretim yılı Güz yarıyılında ders kaydı yaptırmış olup
         öğrencilik haklarından yararlanır. Herhangi bir disiplin cezası bulunmamaktadır.
@@ -552,8 +559,7 @@
                                 ->generate($student->getVerificationUrl($verificationCodeForUrl));
                             $qrCodeBase64 = base64_encode($qrCode);
                         @endphp
-                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}"
-                            style="width: 56px; height: 56px;" />
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 56px; height: 56px;" />
                     </td>
                     <td class="verification-info-cell">
                         Bu belge,

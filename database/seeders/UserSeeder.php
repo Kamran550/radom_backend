@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'surname'   => 'Administrators',
             'username'  => 'admin',          // daxil olmaq üçün
             'email'     => 'admin@must.edu.pl',
-            'password'  => Hash::make('Qe7@Nf#rA92!ptXz'), // to change the password, send an email
+            'password'  => Hash::make('K9@R!mA#7ZpX2f'), // to change the password, send an email
             'phone'     => '0000000000',
             'role_id'   => $adminRoleId,
         ]);

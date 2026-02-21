@@ -18,6 +18,6 @@ Route::domain('student.must.edu.pl')->group(function () {
 });
 
 
-Route::domain('verify.must.edu.pl')->group(function () {
+Route::domain('validate.must.edu.pl')->group(function () {
     require base_path(path: 'routes/verify.php');
 });

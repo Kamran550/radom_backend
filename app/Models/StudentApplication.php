@@ -72,7 +72,7 @@ class StudentApplication extends Model
      */
     public function getVerificationUrl(?string $verificationCode = null): string
     {
-        $domain = config('app.verify_domain', 'verify.must.edu.pl');
+        $domain = config('app.verify_domain', 'validate.must.edu.pl');
         $url = "https://{$domain}";
 
         if ($verificationCode) {

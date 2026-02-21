@@ -21,6 +21,8 @@ class Edit extends Component
     public bool $study_language_en = true;
     public bool $study_language_tr = false;
 
+    public bool $is_thesis = true;
+
     public function mount(?Program $program = null)
     {
         $this->program = $program;
@@ -51,7 +53,7 @@ class Edit extends Component
         $trTranslation = $program->translations->filter(function ($translation) {
             return strtolower($translation->language) === 'tr';
         })->first();
-        
+
         $this->name_en = $enTranslation?->name ?? $program->name ?? '';
         $this->name_tr = $trTranslation?->name ?? '';
 
@@ -65,6 +67,7 @@ class Edit extends Component
 
         $this->study_language_en = $enStudyLang?->is_available ?? true;
         $this->study_language_tr = $trStudyLang?->is_available ?? false;
+        $this->is_thesis = (bool) ($program->is_thesis ?? true);
     }
 
     public function updatedDegreeId()
@@ -83,6 +86,8 @@ class Edit extends Component
             'price_per_year' => ['required', 'integer', 'min:0'],
             'study_language_en' => ['boolean'],
             'study_language_tr' => ['boolean'],
+            'is_thesis' => ['boolean'],
+
         ];
     }
 
@@ -112,16 +117,16 @@ class Edit extends Component
         $this->validate();
 
         // Unique constraint yoxla (current program-ni istisna et, name_en-ə görə)
-        $exists = Program::where('degree_id', $this->degree_id)
-            ->where('faculty_id', $this->faculty_id)
-            ->where('name', $this->name_en)
-            ->where('id', '!=', $this->program->id)
-            ->exists();
+        // $exists = Program::where('degree_id', $this->degree_id)
+        //     ->where('faculty_id', $this->faculty_id)
+        //     ->where('name', $this->name_en)
+        //     ->where('id', '!=', $this->program->id)
+        //     ->exists();
 
-        if ($exists) {
-            $this->addError('name_en', 'Bu dərəcə və fakültə üçün bu proqram adı (EN) artıq mövcuddur.');
-            return;
-        }
+        // if ($exists) {
+        //     $this->addError('name_en', 'Bu dərəcə və fakültə üçün bu proqram adı (EN) artıq mövcuddur.');
+        //     return;
+        // }
 
         DB::transaction(function () {
             // Update programs table with EN name
@@ -130,6 +135,8 @@ class Edit extends Component
                 'degree_id' => $this->degree_id,
                 'faculty_id' => $this->faculty_id,
                 'price_per_year' => $this->price_per_year,
+                'is_thesis' => $this->is_thesis,
+
             ]);
 
             // Update or create EN translation (case-insensitive search)
@@ -197,13 +204,15 @@ class Edit extends Component
 
         // Reset form
         $this->reset([
-            'name_en', 
-            'name_tr', 
-            'degree_id', 
-            'faculty_id', 
+            'name_en',
+            'name_tr',
+            'degree_id',
+            'faculty_id',
             'price_per_year',
             'study_language_en',
-            'study_language_tr'
+            'study_language_tr',
+            'is_thesis'
+
         ]);
         $this->resetValidation();
 

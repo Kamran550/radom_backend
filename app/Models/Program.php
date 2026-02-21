@@ -17,6 +17,8 @@ class Program extends Model
         'faculty_id',
         'name',
         'price_per_year',
+        'is_thesis',
+
     ];
     protected $hidden = [
         'created_at',

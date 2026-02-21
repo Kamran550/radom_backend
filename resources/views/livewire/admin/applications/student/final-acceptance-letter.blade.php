@@ -398,42 +398,42 @@
                 </tr>
                 <tr>
                     <td class="label-col">Name</td>
-                    <td class="value-col">{{ tr_upper($student->first_name) }}</td>
+                    <td class="value-col">{{ strtoupper($student->first_name) }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Surname</td>
-                    <td class="value-col">{{ tr_upper($student->last_name) }}</td>
+                    <td class="value-col">{{ strtoupper($student->last_name) }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Place of Birth & Date</td>
                     <td class="value-col">
-                        {{ tr_upper($student->place_of_birth ?? ($student->nationality ?? 'N/A')) }} -
+                        {{ strtoupper($student->place_of_birth ?? ($student->nationality ?? 'N/A')) }} -
                         {{ $student->date_of_birth ? $student->date_of_birth->format('d/m/Y') : 'N/A' }}
                     </td>
                 </tr>
                 <tr>
                     <td class="label-col">Father's Name</td>
-                    <td class="value-col">{{ tr_upper($student->father_name ?? 'N/A') }}</td>
+                    <td class="value-col">{{ strtoupper($student->father_name ?? 'N/A') }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Nationality</td>
-                    <td class="value-col">{{ tr_upper($student->nationality ?? 'N/A') }}</td>
+                    <td class="value-col">{{ strtoupper($student->nationality ?? 'N/A') }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Education Level</td>
                     <td class="value-col">
-                        {{ tr_upper($student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A')) }}
+                        {{ degree_type_to_word($student->application->program?->degree?->name ?? 'N/A', $student->application->program?->is_thesis ?? false) }}
                     </td>
                 </tr>
                 <tr>
                     <td class="label-col">Institute / Faculty</td>
                     <td class="value-col">
-                        {{ tr_upper($student->application->program?->faculty?->name ?? 'GRADUATE SCHOOL') }}
+                        {{ strtoupper($student->application->program?->faculty?->name ?? 'GRADUATE SCHOOL') }}
                     </td>
                 </tr>
                 <tr>
                     <td class="label-col">Department</td>
-                    <td class="value-col">{{ tr_upper($student->application->program?->name ?? 'N/A') }}</td>
+                    <td class="value-col">{{ strtoupper($student->application->program?->name ?? 'N/A') }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Education Language</td>
@@ -501,11 +501,11 @@
     @php
         $startYear = $student->graduation_year;
         $endYear = $student->graduation_year + 1;
-        $programName = tr_upper($student->application->program?->name ?? 'N/A');
-        $degreeName = tr_upper($student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A'));
+        $programName = strtoupper($student->application->program?->name ?? 'N/A');
+        $degreeName = strtoupper($student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A'));
     @endphp
     <div class="body-text">
-        The person identified above, <strong>{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</strong>,
+        The person identified above, <strong>{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}</strong>,
         is a registered student of the {{ $programName }} {{ $degreeName }} Program.
         They have completed their course registration for the Fall semester of the
         {{ $startYear }}-{{ $endYear }} academic year and are entitled to all student rights.
@@ -558,7 +558,7 @@
                     </td>
                     <td class="verification-info-cell">
                         This document was e-signed for
-                        <strong>{{ tr_upper($student->first_name . ' ' . $student->last_name) }}</strong> on
+                        <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> on
                         {{ now()->format('d/m/Y') }} with document number
                         <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>.
                         The validity of the document can be confirmed by scanning the QR code or by document number at
