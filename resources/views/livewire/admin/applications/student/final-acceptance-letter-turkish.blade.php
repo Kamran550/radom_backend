@@ -421,7 +421,7 @@
                 <tr>
                     <td class="label-col">Eğitim Düzeyi</td>
                     <td class="value-col">
-                        {{ degree_type_to_word_turkish($student->application->program?->degree?->name ?? 'N/A', $student->application->program?->is_thesis ?? false) }}
+                        {{ tr_upper($student->application->program?->degree?->getDescription('TR') ?: $student->application->program?->degree?->name ?? 'N/A') }}
                     </td>
                 </tr>
                 <tr>

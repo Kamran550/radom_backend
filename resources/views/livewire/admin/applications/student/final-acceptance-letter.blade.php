@@ -422,7 +422,7 @@
                 <tr>
                     <td class="label-col">Education Level</td>
                     <td class="value-col">
-                        {{ degree_type_to_word($student->application->program?->degree?->name ?? 'N/A', $student->application->program?->is_thesis ?? false) }}
+                        {{ tr_upper($student->application->program?->degree?->getDescription('EN') ?: $student->application->program?->degree?->getName('EN') ?? 'N/A') }}
                     </td>
                 </tr>
                 <tr>
@@ -502,10 +502,14 @@
         $startYear = $student->graduation_year;
         $endYear = $student->graduation_year + 1;
         $programName = strtoupper($student->application->program?->name ?? 'N/A');
-        $degreeName = strtoupper($student->application->program?->degree?->description ?? ($student->application->program?->degree?->name ?? 'N/A'));
+        $degreeName = strtoupper(
+            $student->application->program?->degree?->description ??
+                ($student->application->program?->degree?->name ?? 'N/A'),
+        );
     @endphp
     <div class="body-text">
-        The person identified above, <strong>{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}</strong>,
+        The person identified above, <strong>{{ strtoupper($student->first_name) }}
+            {{ strtoupper($student->last_name) }}</strong>,
         is a registered student of the {{ $programName }} {{ $degreeName }} Program.
         They have completed their course registration for the Fall semester of the
         {{ $startYear }}-{{ $endYear }} academic year and are entitled to all student rights.
@@ -553,8 +557,7 @@
                                 ->generate($student->getVerificationUrl($verificationCodeForUrl));
                             $qrCodeBase64 = base64_encode($qrCode);
                         @endphp
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}"
-                        style="width: 56px; height: 56px;" />
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 56px; height: 56px;" />
                     </td>
                     <td class="verification-info-cell">
                         This document was e-signed for
