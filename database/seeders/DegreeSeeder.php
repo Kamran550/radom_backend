@@ -71,7 +71,7 @@ class DegreeSeeder extends Seeder
                     ],
                     'TR' => [
                         'name' => 'Doktora',
-                        'description' => 'Lisansüstü',
+                        'description' => 'Doktora',
                     ],
                 ],
             ],
