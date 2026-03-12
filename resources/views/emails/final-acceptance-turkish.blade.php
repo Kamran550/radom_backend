@@ -46,6 +46,24 @@
             Sorularınız varsa, lütfen bize ulaşın.
         </p>
         
+        @php
+            $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
+            $barcodeBase64 = '';
+            try {
+                $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
+                    ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
+                $barcodeBase64 = base64_encode($barcodePng);
+            } catch (\Throwable $e) {
+                // fallback - barcode hidden
+            }
+        @endphp
+        @if ($barcodeBase64)
+            <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 8px; display: inline-block;">
+                <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
+                <div style="font-size: 10px; color: #666; margin-top: 4px;">{{ now()->format('d/m/Y') }}</div>
+            </div>
+        @endif
+
         <p style="margin-top: 30px;">
             Saygıdeğerler,<br>
             {{ config('app.name') }}

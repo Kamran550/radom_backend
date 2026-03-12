@@ -19,6 +19,7 @@ class FacultySeeder extends Seeder
                 'translations' => [
                     'EN' => 'Faculty of Management Sciences',
                     'TR' => 'Yönetim Bilimleri Fakültesi',
+                    'PL' => 'Wydział Nauk o Zarządzaniu',
                 ],
             ],
             [
@@ -26,6 +27,7 @@ class FacultySeeder extends Seeder
                 'translations' => [
                     'EN' => 'Faculty of Health Sciences',
                     'TR' => 'Sağlık Bilimleri Fakültesi',
+                    'PL' => 'Wydział Nauk o zdrowiu',
                 ],
             ],
             [
@@ -33,6 +35,7 @@ class FacultySeeder extends Seeder
                 'translations' => [
                     'EN' => 'Faculty of Engineering',
                     'TR' => 'Mühendislik Fakültesi',
+                    'PL' => 'Wydział Inżynierii',
                 ],
             ],
             [
@@ -40,6 +43,7 @@ class FacultySeeder extends Seeder
                 'translations' => [
                     'EN' => 'Faculty of Law',
                     'TR' => 'Hukuk Fakültesi',
+                    'PL' => 'Wydział Prawa',
                 ],
             ],
         ];

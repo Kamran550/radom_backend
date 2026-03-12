@@ -7,6 +7,7 @@ enum DocumentStatusEnum: string
     case ACCAPTANCE_LETTER = 'acceptance_letter';
     case CERTIFICATE_ENGLISH_LETTER = 'certificate_english';
     case CERTIFICATE_TURKISH_LETTER = 'certificate_turkish';
+    case CERTIFICATE_POLAND_LETTER = 'certificate_poland';
     case DIPLOMA_LETTER = 'diploma';
     case TRANSFER_ENGLISH_LETTER = 'transfer_english';
     case TRANSFER_TURKISH_LETTER = 'transfer_turkish';

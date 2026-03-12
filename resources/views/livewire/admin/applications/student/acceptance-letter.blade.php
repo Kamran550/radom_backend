@@ -486,6 +486,22 @@
                 </div>
             </div> --}}
             <div class="header-right-info">
+                @php
+                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
+                    $barcodeBase64 = '';
+                    try {
+                        $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
+                            ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
+                        $barcodeBase64 = base64_encode($barcodePng);
+                    } catch (\Throwable $e) {
+                        // fallback - barcode hidden
+                    }
+                @endphp
+                @if ($barcodeBase64)
+                    <div style="margin-bottom: 4px;">
+                        <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
+                    </div>
+                @endif
                 <div>Date: {{ now()->format('d.m.Y') }}</div>
             </div>
         </div>

@@ -19,83 +19,83 @@ class ProgramSeeder extends Seeder
         // Bachelor's Programs
         $bachelorsPrograms = [
             'Faculty of Management Sciences' => [
-                ['en' => 'Aviation Management', 'tr' => 'Havacılık Yönetimi'],
-                ['en' => 'Business Administration', 'tr' => 'İşletme'],
-                ['en' => 'Political Science and Public Administration', 'tr' => 'Siyaset Bilimi ve Kamu Yönetimi'],
-                ['en' => 'International Relations', 'tr' => 'Uluslararası İlişkiler'],
-                ['en' => 'International Business and Entrepreneurship', 'tr' => 'Uluslararası İşletmecilik ve Girişimcilik'],
-                ['en' => 'International Trade and Logistics', 'tr' => 'Uluslararası Ticaret ve Lojistik'],
-                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri'],
-                ['en' => 'Economics and Finance', 'tr' => 'Ekonomi ve Finans'],
+                ['en' => 'Aviation Management', 'tr' => 'Havacılık Yönetimi', 'pl' => 'Zarządzanie lotnictwem'],
+                ['en' => 'Business Administration', 'tr' => 'İşletme', 'pl' => 'Zarządzanie'],
+                ['en' => 'Political Science and Public Administration', 'tr' => 'Siyaset Bilimi ve Kamu Yönetimi', 'pl' => 'Nauki polityczne i administracja publiczna'],
+                ['en' => 'International Relations', 'tr' => 'Uluslararası İlişkiler', 'pl' => 'Stosunki międzynarodowe'],
+                ['en' => 'International Business and Entrepreneurship', 'tr' => 'Uluslararası İşletmecilik ve Girişimcilik', 'pl' => 'Biznes międzynarodowy i przedsiębiorczość'],
+                ['en' => 'International Trade and Logistics', 'tr' => 'Uluslararası Ticaret ve Lojistik', 'pl' => 'Handel międzynarodowy i logistyka'],
+                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri', 'pl' => 'Systemy informatyczne w zarządzaniu'],
+                ['en' => 'Economics and Finance', 'tr' => 'Ekonomi ve Finans', 'pl' => 'Ekonomia i finanse'],
             ],
             'Faculty of Health Sciences' => [
-                ['en' => 'Exercise and Sports Sciences', 'tr' => 'Egzersiz ve Spor Bilimleri'],
-                ['en' => 'Exercise and Sports Sciences for People with Disabilities', 'tr' => 'Engellilerde Egzersiz ve Spor Bilimleri'],
-                ['en' => 'Health Management', 'tr' => 'Sağlık Yönetimi'],
-                ['en' => 'Cosmetology', 'tr' => 'Kozmetoloji'],
-                ['en' => 'Psychology', 'tr' => 'Psikoloji'],
+                ['en' => 'Exercise and Sports Sciences', 'tr' => 'Egzersiz ve Spor Bilimleri', 'pl' => 'Nauki o ćwiczeniach i sporcie'],
+                ['en' => 'Exercise and Sports Sciences for People with Disabilities', 'tr' => 'Engellilerde Egzersiz ve Spor Bilimleri', 'pl' => 'Nauki o ćwiczeniach i sporcie dla osób niepełnosprawnych'],
+                ['en' => 'Health Management', 'tr' => 'Sağlık Yönetimi', 'pl' => 'Zarządzanie w ochronie zdrowia'],
+                ['en' => 'Cosmetology', 'tr' => 'Kozmetoloji', 'pl' => 'Kosmetologia'],
+                ['en' => 'Psychology', 'tr' => 'Psikoloji', 'pl' => 'Psychologia'],
             ],
             'Faculty of Engineering' => [
-                ['en' => 'Computer Engineering', 'tr' => 'Bilgisayar Mühendisliği'],
-                ['en' => 'Software Engineering', 'tr' => 'Yazılım Mühendisliği'],
-                ['en' => 'Cyber Security Engineering', 'tr' => 'Siber Güvenlik Mühendisliği'],
-                ['en' => 'Artificial Intelligence Engineering', 'tr' => 'Yapay Zeka Mühendisliği'],
-                ['en' => 'Aviation Systems and Technologies Engineering', 'tr' => 'Havacılık Sistemleri ve Teknolojileri Mühendisliği'],
-                ['en' => 'Industrial Engineering', 'tr' => 'Endüstri Mühendisliği'],
-                ['en' => 'Management Engineering', 'tr' => 'İşletme Mühendisliği'],
+                ['en' => 'Computer Engineering', 'tr' => 'Bilgisayar Mühendisliği', 'pl' => 'Inżynieria komputerowa'],
+                ['en' => 'Software Engineering', 'tr' => 'Yazılım Mühendisliği', 'pl' => 'Inżynieria oprogramowania'],
+                ['en' => 'Cyber Security Engineering', 'tr' => 'Siber Güvenlik Mühendisliği', 'pl' => 'Inżynieria cyberbezpieczeństwa'],
+                ['en' => 'Artificial Intelligence Engineering', 'tr' => 'Yapay Zeka Mühendisliği', 'pl' => 'Inżynieria sztucznej inteligencji'],
+                ['en' => 'Aviation Systems and Technologies Engineering', 'tr' => 'Havacılık Sistemleri ve Teknolojileri Mühendisliği', 'pl' => 'Inżynieria systemów i technologii lotniczych'],
+                ['en' => 'Industrial Engineering', 'tr' => 'Endüstri Mühendisliği', 'pl' => 'Inżynieria przemysłowa'],
+                ['en' => 'Management Engineering', 'tr' => 'İşletme Mühendisliği', 'pl' => 'Inżynieria zarządzania'],
             ],
             'Faculty of Law' => [
-                ['en' => 'Law', 'tr' => 'Hukuk'],
+                ['en' => 'Law', 'tr' => 'Hukuk', 'pl' => 'Prawo'],
             ],
         ];
 
         // Master's Programs
         $mastersPrograms = [
             'Faculty of Health Sciences' => [
-                ['en' => 'Physical Activity Health and Sports', 'tr' => 'Fiziksel Aktivite Sağlık ve Spor'],
-                ['en' => 'Health Management', 'tr' => 'Sağlık Yönetimi'],
-                ['en' => 'Clinical Psychology', 'tr' => 'Klinik Psikoloji'],
+                ['en' => 'Physical Activity Health and Sports', 'tr' => 'Fiziksel Aktivite Sağlık ve Spor', 'pl' => 'Aktywność fizyczna, zdrowie i sport'],
+                ['en' => 'Health Management', 'tr' => 'Sağlık Yönetimi', 'pl' => 'Zarządzanie w ochronie zdrowia'],
+                ['en' => 'Clinical Psychology', 'tr' => 'Klinik Psikoloji', 'pl' => 'Psychologia kliniczna'],
             ],
             'Faculty of Engineering' => [
-                ['en' => 'Aviation Systems and Technologies', 'tr' => 'Havacılık Sistemleri ve Teknolojileri'],
-                ['en' => 'Engineering Management', 'tr' => 'Mühendislik Yönetimi'],
-                ['en' => 'Quality and Compliance Assessment Engineering', 'tr' => 'Kalite ve Uygunluk Değerlendirme Mühendisliği'],
-                ['en' => 'Cybersecurity Engineering', 'tr' => 'Siber Güvenlik Mühendisliği'],
-                ['en' => 'Software Engineering', 'tr' => 'Yazılım Mühendisliği'],
-                ['en' => 'Renewable Energy Engineering', 'tr' => 'Yenilenebilir Enerji Mühendisliği'],
-                ['en' => 'Data Science Engineering', 'tr' => 'Veri Bilimi Mühendisliği'],
-                ['en' => 'Computer Engineering', 'tr' => 'Bilgisayar Mühendisliği'],
-                ['en' => 'Artificial Intelligence Engineering', 'tr' => 'Yapay Zekâ Mühendisliği'],
+                ['en' => 'Aviation Systems and Technologies', 'tr' => 'Havacılık Sistemleri ve Teknolojileri', 'pl' => 'Systemy i technologie lotnicze'],
+                ['en' => 'Engineering Management', 'tr' => 'Mühendislik Yönetimi', 'pl' => 'Zarządzanie inżynierskie'],
+                ['en' => 'Quality and Compliance Assessment Engineering', 'tr' => 'Kalite ve Uygunluk Değerlendirme Mühendisliği', 'pl' => 'Inżynieria oceny jakości i zgodności'],
+                ['en' => 'Cybersecurity Engineering', 'tr' => 'Siber Güvenlik Mühendisliği', 'pl' => 'Inżynieria cyberbezpieczeństwa'],
+                ['en' => 'Software Engineering', 'tr' => 'Yazılım Mühendisliği', 'pl' => 'Inżynieria oprogramowania'],
+                ['en' => 'Renewable Energy Engineering', 'tr' => 'Yenilenebilir Enerji Mühendisliği', 'pl' => 'Inżynieria odnawialnych źródeł energii'],
+                ['en' => 'Data Science Engineering', 'tr' => 'Veri Bilimi Mühendisliği', 'pl' => 'Inżynieria nauki o danych'],
+                ['en' => 'Computer Engineering', 'tr' => 'Bilgisayar Mühendisliği', 'pl' => 'Inżynieria komputerowa'],
+                ['en' => 'Artificial Intelligence Engineering', 'tr' => 'Yapay Zekâ Mühendisliği', 'pl' => 'Inżynieria sztucznej inteligencji'],
             ],
             'Faculty of Management Sciences' => [
-                ['en' => 'Business Administration (MBA)', 'tr' => 'İşletme (MBA)'],
-                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri'],
+                ['en' => 'Business Administration (MBA)', 'tr' => 'İşletme (MBA)', 'pl' => 'Zarządzanie (MBA)'],
+                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri', 'pl' => 'Systemy informatyczne w zarządzaniu'],
             ],
             'Faculty of Law' => [
-                ['en' => 'Law', 'tr' => 'Hukuk'],
+                ['en' => 'Law', 'tr' => 'Hukuk', 'pl' => 'Prawo'],
             ],
         ];
 
         // PhD Programs
         $phdPrograms = [
             'Faculty of Engineering' => [
-                ['en' => 'Aviation Systems and Technologies', 'tr' => 'Havacılık Sistemleri ve Teknolojileri'],
-                ['en' => 'Cyber Security Engineering', 'tr' => 'Siber Güvenlik Mühendisliği'],
-                ['en' => 'Software Engineering', 'tr' => 'Yazılım Mühendisliği'],
-                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri'],
-                ['en' => 'Management Engineering', 'tr' => 'İşletme Mühendisliği'],
-                ['en' => 'Computer Engineering', 'tr' => 'Bilgisayar Mühendisliği'],
-                ['en' => 'Artificial Intelligence Engineering', 'tr' => 'Yapay Zekâ Mühendisliği'],
+                ['en' => 'Aviation Systems and Technologies', 'tr' => 'Havacılık Sistemleri ve Teknolojileri', 'pl' => 'Systemy i technologie lotnicze'],
+                ['en' => 'Cyber Security Engineering', 'tr' => 'Siber Güvenlik Mühendisliği', 'pl' => 'Inżynieria cyberbezpieczeństwa'],
+                ['en' => 'Software Engineering', 'tr' => 'Yazılım Mühendisliği', 'pl' => 'Inżynieria oprogramowania'],
+                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri', 'pl' => 'Systemy informatyczne w zarządzaniu'],
+                ['en' => 'Management Engineering', 'tr' => 'İşletme Mühendisliği', 'pl' => 'Inżynieria zarządzania'],
+                ['en' => 'Computer Engineering', 'tr' => 'Bilgisayar Mühendisliği', 'pl' => 'Inżynieria komputerowa'],
+                ['en' => 'Artificial Intelligence Engineering', 'tr' => 'Yapay Zekâ Mühendisliği', 'pl' => 'Inżynieria sztucznej inteligencji'],
             ],
             'Faculty of Management Sciences' => [
-                ['en' => 'Business Administration', 'tr' => 'İşletme'],
-                ['en' => 'Management and Organization', 'tr' => 'Yönetim ve Organizasyon'],
+                ['en' => 'Business Administration', 'tr' => 'İşletme', 'pl' => 'Zarządzanie'],
+                ['en' => 'Management and Organization', 'tr' => 'Yönetim ve Organizasyon', 'pl' => 'Zarządzanie i organizacja'],
             ],
             'Faculty of Health Sciences' => [
-                ['en' => 'Sports Health Sciences', 'tr' => 'Spor Sağlık Bilimleri'],
+                ['en' => 'Sports Health Sciences', 'tr' => 'Spor Sağlık Bilimleri', 'pl' => 'Nauki o zdrowiu w sporcie'],
             ],
             'Faculty of Law' => [
-                ['en' => 'Law', 'tr' => 'Hukuk'],
+                ['en' => 'Law', 'tr' => 'Hukuk', 'pl' => 'Prawo'],
             ],
         ];
 
@@ -158,7 +158,18 @@ class ProgramSeeder extends Seeder
                     ]
                 );
 
-                // Create study languages (both EN and TR are available for all programs)
+                // Create Polish translation
+                ProgramTranslation::firstOrCreate(
+                    [
+                        'program_id' => $program->id,
+                        'language' => 'PL',
+                    ],
+                    [
+                        'name' => $programData['pl'],
+                    ]
+                );
+
+                // Create study languages (EN, TR and PL are available for all programs)
                 ProgramStudyLanguage::firstOrCreate(
                     [
                         'program_id' => $program->id,
@@ -173,6 +184,16 @@ class ProgramSeeder extends Seeder
                     [
                         'program_id' => $program->id,
                         'language' => 'TR',
+                    ],
+                    [
+                        'is_available' => true,
+                    ]
+                );
+
+                ProgramStudyLanguage::firstOrCreate(
+                    [
+                        'program_id' => $program->id,
+                        'language' => 'PL',
                     ],
                     [
                         'is_available' => true,

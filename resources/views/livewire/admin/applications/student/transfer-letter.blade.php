@@ -170,10 +170,29 @@
             <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
         @endif
 
-        <div class="contact-info">
-            <strong>E-posta:</strong> international@must.edu.pl<br>
-            <strong>Telefon:</strong> +48 579 369 968<br>
-            <strong>Tarih:</strong> {{ now()->format('d/m/Y') }}
+        <div class="contact-info" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; flex-wrap: wrap;">
+            <div>
+                <strong>E-posta:</strong> international@must.edu.pl<br>
+                <strong>Telefon:</strong> +48 579 369 968<br>
+                <strong>Tarih:</strong> {{ now()->format('d/m/Y') }}
+            </div>
+            <div>
+                @php
+                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
+                    $barcodeBase64 = '';
+                    try {
+                        $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
+                            ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
+                        $barcodeBase64 = base64_encode($barcodePng);
+                    } catch (\Throwable $e) {
+                        // fallback - barcode hidden
+                    }
+                @endphp
+                @if ($barcodeBase64)
+                    <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
+                    <div style="font-size: 7pt; margin-top: 2px;">{{ now()->format('d/m/Y') }}</div>
+                @endif
+            </div>
         </div>
     </div>
     Mazovya Bilim ve Teknoloji Üniversitesi

@@ -27,6 +27,10 @@ class DegreeSeeder extends Seeder
                         'name' => 'Lisans',
                         'description' => 'Lisans',
                     ],
+                    'PL' => [
+                        'name' => 'Licencjat',
+                        'description' => 'Studia licencjackie',
+                    ],
                 ],
             ],
             [
@@ -41,6 +45,10 @@ class DegreeSeeder extends Seeder
                     'TR' => [
                         'name' => 'Yüksek Lisans',
                         'description' => 'Lisansüstü',
+                    ],
+                    'PL' => [
+                        'name' => 'Magister',
+                        'description' => 'Studia magisterskie (z pracą dyplomową)',
                     ],
                 ],
             ],
@@ -57,6 +65,10 @@ class DegreeSeeder extends Seeder
                         'name' => 'YÜKSEK LİSANS (TEZSİZ)',
                         'description' => 'YÜKSEK LİSANS (TEZSİZ)',
                     ],
+                    'PL' => [
+                        'name' => 'Magister (bez pracy dyplomowej)',
+                        'description' => 'Studia magisterskie (bez pracy dyplomowej)',
+                    ],
                 ],
             ],
 
@@ -72,6 +84,10 @@ class DegreeSeeder extends Seeder
                     'TR' => [
                         'name' => 'Doktora',
                         'description' => 'Doktora',
+                    ],
+                    'PL' => [
+                        'name' => 'Doktorat',
+                        'description' => 'Studia doktoranckie',
                     ],
                 ],
             ],

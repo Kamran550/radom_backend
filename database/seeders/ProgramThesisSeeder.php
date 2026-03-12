@@ -22,7 +22,7 @@ class ProgramThesisSeeder extends Seeder
 
         $programs = [
             'Faculty of Management Sciences' => [
-                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri'],
+                ['en' => 'Management Information Systems', 'tr' => 'Yönetim Bilişim Sistemleri', 'pl' => 'Systemy informatyczne w zarządzaniu'],
             ],
         ];
 
@@ -52,6 +52,11 @@ class ProgramThesisSeeder extends Seeder
                     ['name' => $programData['tr']]
                 );
 
+                ProgramTranslation::firstOrCreate(
+                    ['program_id' => $program->id, 'language' => 'PL'],
+                    ['name' => $programData['pl']]
+                );
+
                 ProgramStudyLanguage::firstOrCreate(
                     ['program_id' => $program->id, 'language' => 'EN'],
                     ['is_available' => true]
@@ -59,6 +64,11 @@ class ProgramThesisSeeder extends Seeder
 
                 ProgramStudyLanguage::firstOrCreate(
                     ['program_id' => $program->id, 'language' => 'TR'],
+                    ['is_available' => true]
+                );
+
+                ProgramStudyLanguage::firstOrCreate(
+                    ['program_id' => $program->id, 'language' => 'PL'],
                     ['is_available' => true]
                 );
             }
