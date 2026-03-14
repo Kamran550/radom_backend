@@ -64,14 +64,14 @@ class StudentApplicationRequest extends ApiFormRequest
             'address_line' => ['required', 'string'],
             
             // Documents (files)
-            'photo_id' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'profile_photo' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:5120'],
-            'high_school_diploma' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'high_school_transcript' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
+            'photo_id' => ['nullable', 'file', 'max:5120'],
+            'profile_photo' => ['nullable', 'file', 'max:5120'],
+            'high_school_diploma' => ['nullable', 'file', 'max:5120'],
+            'high_school_transcript' => ['nullable', 'file', 'max:5120'],
             'bachelor_diploma' => ['nullable', 'file', 'max:5120'],
-            'bachelor_transcript' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'master_diploma' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'master_transcript' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
+            'bachelor_transcript' => ['nullable', 'file', 'max:5120'],
+            'master_diploma' => ['nullable', 'file', 'max:5120'],
+            'master_transcript' => ['nullable', 'file', 'max:5120'],
             'teachingLanguage' => ['required', 'string', 'max:50'],
             // Optional metadata
             'locale' => ['nullable', 'string', 'max:5'],

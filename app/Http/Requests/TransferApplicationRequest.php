@@ -2,14 +2,14 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Enums\ApplicationTypeEnum;
 use Illuminate\Validation\Rule;
 use App\Enums\DegreeTypeEnum;
 use App\Enums\GenderEnum;
+use Illuminate\Support\Facades\Log;
 
 
-class TransferApplicationRequest extends FormRequest
+class TransferApplicationRequest extends ApiFormRequest
 {
     public function authorize(): bool
     {
@@ -19,6 +19,8 @@ class TransferApplicationRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
+        Log::info('Transfer request payload:', $this->all());
+
         $this->merge([
             'applicant_type' => ApplicationTypeEnum::TRANSFER->value,
         ]);
@@ -57,14 +59,14 @@ class TransferApplicationRequest extends FormRequest
             'address_line' => ['required', 'string'],
             
             // Documents (files)
-            'photo_id' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'profile_photo' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:5120'],
-            'high_school_diploma' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'high_school_transcript' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
+            'photo_id' => ['nullable', 'file', 'max:5120'],
+            'profile_photo' => ['nullable', 'file', 'max:5120'],
+            'high_school_diploma' => ['nullable', 'file', 'max:5120'],
+            'high_school_transcript' => ['nullable', 'file', 'max:5120'],
             'bachelor_diploma' => ['nullable', 'file', 'max:5120'],
-            'bachelor_transcript' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'master_diploma' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
-            'master_transcript' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
+            'bachelor_transcript' => ['nullable', 'file', 'max:5120'],
+            'master_diploma' => ['nullable', 'file', 'max:5120'],
+            'master_transcript' => ['nullable', 'file', 'max:5120'],
             'teachingLanguage' => ['required', 'string', 'max:50'],
             // Optional metadata
             'locale' => ['nullable', 'string', 'max:5'],
