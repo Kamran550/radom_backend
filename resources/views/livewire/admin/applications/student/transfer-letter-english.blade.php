@@ -115,7 +115,7 @@
             left: 0;
             right: 0;
             top: 10px;
-            margin-top: 20px;
+            margin-top: 10px;
             padding: 0;
             padding-bottom: 20px;
         }
@@ -184,18 +184,11 @@
 
             <div>
                 @php
-                    $barcodeCode =
-                        trim($student->student_number ?? ($student->application_number ?? '')) ?:
-                        'MUST-' . $student->id . '-' . now()->format('Ymd');
+                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
                     $barcodeBase64 = '';
                     try {
-                        $barcodePng = new \Picqer\Barcode\BarcodeGeneratorPNG()->getBarcode(
-                            $barcodeCode,
-                            \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
-                            1,
-                            22,
-                            [26, 39, 68],
-                        );
+                        $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
+                            ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
                         $barcodeBase64 = base64_encode($barcodePng);
                     } catch (\Throwable $e) {
                         // fallback - barcode hidden
