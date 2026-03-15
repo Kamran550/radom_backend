@@ -307,7 +307,7 @@
 
     <div class="verification-footer">
         <!-- Verification Box with QR Code -->
-        <table style="width: 100%; margin-bottom: 10px;">
+        <table style="width: 100%; margin-top: 40px;">
             <tr>
                 <!-- QR Code -->
 
