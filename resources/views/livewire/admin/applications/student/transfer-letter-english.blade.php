@@ -162,7 +162,7 @@
     <!-- Header with Logo and Address -->
     <div class="header">
         @php
-            $logoPath = public_path('images/MUST-logo-dark.png');
+            $logoPath = public_path('images/MUST-simvol.png');
             $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
             $logoMime = 'image/png';
         @endphp
