@@ -114,7 +114,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            margin-top: 10px;
+            margin-top: 20px;
             padding: 0;
             padding-bottom: 20px;
         }
