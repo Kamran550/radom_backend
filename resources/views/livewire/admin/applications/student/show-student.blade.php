@@ -112,6 +112,16 @@
             'label' => "Bachelor's Transcript",
             'path' => $student->bachelor_transcript_path,
         ];
+    } elseif ($degreeName === "Master's (Without Thesis)") {
+        // Master applicants provide bachelor documents
+        $documents[] = [
+            'label' => "Bachelor's Diploma",
+            'path' => $student->bachelor_diploma_path,
+        ];
+        $documents[] = [
+            'label' => "Bachelor's Transcript",
+            'path' => $student->bachelor_transcript_path,
+        ];
     } elseif ($degreeName === 'PhD') {
         // PhD applicants provide BOTH bachelor and master documents
         $documents[] = [
