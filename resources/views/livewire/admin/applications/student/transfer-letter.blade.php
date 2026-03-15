@@ -176,7 +176,7 @@
                 <strong>Telefon:</strong> +48 579 369 968<br>
                 <strong>Tarih:</strong> {{ now()->format('d/m/Y') }}
             </div>
-            <div>
+            {{-- <div>
                 @php
                     $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
                     $barcodeBase64 = '';
@@ -192,7 +192,7 @@
                     <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
                     <div style="font-size: 7pt; margin-top: 2px;">{{ now()->format('d/m/Y') }}</div>
                 @endif
-            </div>
+            </div> --}}
         </div>
     </div>
     Mazovya Bilim ve Teknoloji Üniversitesi
