@@ -160,23 +160,28 @@
     </div>
 
     <!-- Header with Logo and Address -->
-    <div class="header">
-        @php
-            $logoPath = public_path('images/MUST-simvol.png');
-            $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-            $logoMime = 'image/png';
-        @endphp
-        @if ($logoData)
-            <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
-        @endif
+    <div class="header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;">
+        {{-- Left: Logo --}}
+        <div>
+            @php
+                $logoPath = public_path('images/MUST-simvol.png');
+                $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
+                $logoMime = 'image/png';
+            @endphp
+            @if ($logoData)
+                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
+            @endif
+        </div>
 
-        <div class="contact-info" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; flex-wrap: wrap;">
+        {{-- Right: Contact info + Barcode --}}
+        <div class="contact-info" style="text-align: right;">
             <div>
                 <strong>E-posta:</strong> international@must.edu.pl<br>
                 <strong>Telefon:</strong> +48 579 369 968<br>
                 <strong>Tarih:</strong> {{ now()->format('d/m/Y') }}
             </div>
-            <div>
+
+            <div style="margin-top: 5px;">
                 @php
                     $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
                     $barcodeBase64 = '';
@@ -189,7 +194,8 @@
                     }
                 @endphp
                 @if ($barcodeBase64)
-                    <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
+                    <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
+                        style="max-width: 110px; height: auto; max-height: 28px; display: block; margin-left: auto;" />
                     <div style="font-size: 7pt; margin-top: 2px;">{{ now()->format('d/m/Y') }}</div>
                 @endif
             </div>
