@@ -181,13 +181,20 @@
                 <strong>Date:</strong> {{ now()->format('d/m/Y') }}
             </div>
 
-            <div style="margin-top: 5px;">
+            <div>
                 @php
-                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
+                    $barcodeCode =
+                        trim($student->student_number ?? ($student->application_number ?? '')) ?:
+                        'MUST-' . $student->id . '-' . now()->format('Ymd');
                     $barcodeBase64 = '';
                     try {
-                        $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
-                            ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
+                        $barcodePng = new \Picqer\Barcode\BarcodeGeneratorPNG()->getBarcode(
+                            $barcodeCode,
+                            \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
+                            1,
+                            22,
+                            [26, 39, 68],
+                        );
                         $barcodeBase64 = base64_encode($barcodePng);
                     } catch (\Throwable $e) {
                         // fallback - barcode hidden

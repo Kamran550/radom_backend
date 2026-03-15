@@ -181,7 +181,7 @@
                 <strong>Tarih:</strong> {{ now()->format('d/m/Y') }}
             </div>
 
-            <div style="margin-top: 5px;">
+            <div>
                 @php
                     $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
                     $barcodeBase64 = '';
