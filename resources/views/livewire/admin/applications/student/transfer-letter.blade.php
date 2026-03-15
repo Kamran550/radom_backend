@@ -161,14 +161,14 @@
 
     <!-- Header with Logo and Address -->
     <div class="header">
-        @php
+        {{-- @php
             $logoPath = public_path('images/MUST-logo-dark.png');
             $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
             $logoMime = 'image/png';
         @endphp
         @if ($logoData)
             <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
-        @endif
+        @endif --}}
 
         <div class="contact-info" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; flex-wrap: wrap;">
             <div>
