@@ -101,7 +101,7 @@
 
         .signature-section {
             margin-top: 30px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-style: italic;
         }
 
@@ -114,7 +114,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            margin-top: 20px;
+            margin-top: 10px;
             padding: 0;
             padding-bottom: 20px;
         }
@@ -307,7 +307,7 @@
 
     <div class="verification-footer">
         <!-- Verification Box with QR Code -->
-        <table style="width: 100%; margin-top: 30px;">
+        <table style="width: 100%; margin-bottom: 10px;">
             <tr>
                 <!-- QR Code -->
 
