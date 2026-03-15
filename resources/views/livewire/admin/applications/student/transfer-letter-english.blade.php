@@ -111,12 +111,12 @@
 
         .verification-footer {
             position: absolute;
-            bottom: 0;
+            bottom: -5mm;
             left: 0;
             right: 0;
             margin-top: 10px;
             padding: 0;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
         }
 
         .verification-table {
@@ -307,7 +307,7 @@
 
     <div class="verification-footer">
         <!-- Verification Box with QR Code -->
-        <table style="width: 100%; margin-top: 40px;">
+        <table style="width: 100%; margin-bottom: 10px;">
             <tr>
                 <!-- QR Code -->
 
