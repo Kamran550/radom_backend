@@ -148,7 +148,7 @@
 
 <body>
     <!-- Background Watermark -->
-    <div class="watermark">
+    {{-- <div class="watermark">
         @php
             $watermarkPath = public_path('images/MUST-simvol.png');
             $watermarkData = file_exists($watermarkPath) ? base64_encode(file_get_contents($watermarkPath)) : '';
@@ -157,7 +157,7 @@
         @if ($watermarkData)
             <img src="data:{{ $watermarkMime }};base64,{{ $watermarkData }}" alt="Watermark">
         @endif
-    </div>
+    </div> --}}
 
     <!-- Header with Logo and Address -->
     <div class="header">
