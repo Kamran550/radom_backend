@@ -201,7 +201,6 @@
             </div>
         </div>
     </div>
-    Mazovya Bilim ve Teknoloji Üniversitesi
     <!-- Document Title -->
     <div class="document-title">
         MAZOVYA BİLİM və TEKNOLOJİ ÜNİVERSİTESİ<br>
