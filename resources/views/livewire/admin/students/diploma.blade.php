@@ -474,7 +474,7 @@
                                         {{ $studentApplication->diploma_text['tr'] ?? '' }}
                                     </div>
                                     <div class="e-signature">✓ e-signed / e-imzalıdır</div>
-                                    <div class="location-item">Rektor / Rectör: Prof. Dr. Serdar Koral</div>
+                                    <div class="location-item">Rektor / Rectör: Prof. Dr. hab. Tomasz Żelazowski-Krępski</div>
                                 </td>
                             </tr>
                         </table>

@@ -217,29 +217,38 @@
             vertical-align: bottom;
         }
 
-        .stamp-cell {
-            width: 100px;
-            text-align: center;
-        }
-
-        .stamp-cell img {
-            width: 85px;
-            height: 85px;
-            opacity: 0.85;
-        }
-
         .sig-cell {
+            position: relative;
             text-align: right;
-            padding-right: 20px;
+            padding: 6px 20px 8px 20px;
+            min-height: 52px;
+        }
+
+        .sig-stamp-overlay {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-58%);
+            width: 72px;
+            height: auto;
+            max-height: 76px;
+            object-fit: contain;
+            opacity: 0.82;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .sig-cell .sig-name {
+            position: relative;
+            z-index: 1;
             font-weight: bold;
             font-size: 8pt;
             color: #1a2744;
         }
 
         .sig-cell .sig-title {
+            position: relative;
+            z-index: 1;
             font-size: 7.5pt;
             color: #555;
             margin-top: 2px;
@@ -525,13 +534,15 @@
     @endphp
     <table class="signature-stamp-table">
         <tr>
-            <td class="stamp-cell">
-                @if ($stampData)
-                    <img src="data:image/png;base64,{{ $stampData }}" alt="MUST Möhür">
-                @endif
-            </td>
             <td class="sig-cell">
-                <div class="sig-name">Prof. Dr. Serdar KORAL</div>
+                @if ($stampData)
+                    <img
+                        class="sig-stamp-overlay"
+                        src="data:image/png;base64,{{ $stampData }}"
+                        alt="MUST Möhür"
+                    >
+                @endif
+                <div class="sig-name">Prof. Dr. hab. Tomasz Żelazowski-Krępski</div>
                 <div class="sig-title">Rektör</div>
             </td>
         </tr>
@@ -579,14 +590,10 @@
 
         <!-- Address Block -->
         <div class="address-block">
-            <p class="institution-line">
-                Fully Accredited Multinational Higher Education Institution and Global Service Provider
-            </p>
             <p>ISTASYON MAH. 2325 SK. NO: 18 / 1 ETIMESGUT ANKARA / Türkiye [ MUST ]</p>
-            <p>Ogrodowa 5 00-876 Warsaw / Poland [ MUST ]</p>
-            <p>32-36 Bd d'Avranches, 1160 Bonnevoie-Nord-Verlorenkost / Luxembourg [ MUST ]</p>
+            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ MUST ]</p>
             <p style="margin-top: 3px;">
-                <strong>Tel:</strong> +90 5386796595 | +48 579 369 968 | +352 661115815
+                <strong>Tel:</strong>+48579277493
             </p>
             <p>
                 <strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl |

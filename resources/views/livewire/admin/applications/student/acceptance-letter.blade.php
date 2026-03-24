@@ -756,13 +756,10 @@
 
         <!-- Footer Bottom Section -->
         <div style="font-size: 5.5pt; line-height: 1.2; color: #555; text-align: center; margin-top: 4px;">
-            <p style="margin: 1px 0; font-weight: bold; color: #1a2744; font-size: 6pt;">
-                Fully Accredited Multinational Higher Education Institution and Global Service Provider
-            </p>
             <p style="margin: 1px 0;">
                 <strong>Tel:</strong> +48 579 369 968 |
                 <strong>Email:</strong> international@must.edu.pl |
-                <strong>Address:</strong> Ogrodowa 5 00-876 Warsaw / Poland |
+                <strong>Address:</strong> Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland |
                 <strong>Website:</strong> www.must.edu.pl
             </p>
         </div>

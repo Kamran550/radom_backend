@@ -80,10 +80,10 @@
         }
 
         .university-name {
-            font-size: 13pt;
-            font-weight: bold;
+            font-size: 12pt;
+            font-weight: normal;
             color: #1a2744;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.6px;
             margin: 0;
         }
 
@@ -251,29 +251,38 @@
             vertical-align: bottom;
         }
 
-        .stamp-cell {
-            width: 100px;
-            text-align: center;
-        }
-
-        .stamp-cell img {
-            width: 70px;
-            height: 70px;
-            opacity: 0.85;
-        }
-
         .sig-cell {
+            position: relative;
             text-align: right;
-            padding-right: 20px;
+            padding: 6px 20px 8px 20px;
+            min-height: 52px;
+        }
+
+        .sig-stamp-overlay {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-58%);
+            width: 72px;
+            height: auto;
+            max-height: 76px;
+            object-fit: contain;
+            opacity: 0.82;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .sig-cell .sig-name {
+            position: relative;
+            z-index: 1;
             font-weight: bold;
             font-size: 8pt;
             color: #1a2744;
         }
 
         .sig-cell .sig-title {
+            position: relative;
+            z-index: 1;
             font-size: 7.5pt;
             color: #555;
             margin-top: 2px;
@@ -604,8 +613,8 @@
         <p class="pl">* Przewidywany czas trwania programu wynosi {{ $duration }} {{ $durationPl }}.</p>
         <p class="en">* The foreseen duration of education for the programme is {{ $degree?->duration ?? 4 }} years.</p>
 
-        <p class="pl">* Zgodnie z odpowiednimi artykułami Regulaminu Studiów Podyplomowych i Egzaminów MUST (Global), osoby zapisane na program muszą w pełni przestrzegać wymagań dotyczących obecności, uczestnictwa i egzaminów na zajęciach, aby korzystać z praw studenta. W przeciwnym razie ich rejestracja w programie zostanie anulowana.</p>
-        <p class="en">* In accordance with the relevant articles of the MUST (Global) Graduate Education and Examination Directive, individuals enrolled in the program must fully comply with the attendance, participation, and examination requirements for courses in order to benefit from student rights. Otherwise, the individual's enrolment in the program shall be terminated.</p>
+        <p class="pl">* Zgodnie z odpowiednimi artykułami Regulaminu Studiów Podyplomowych i Egzaminów MUST, osoby zapisane na program muszą w pełni przestrzegać wymagań dotyczących obecności, uczestnictwa i egzaminów na zajęciach, aby korzystać z praw studenta. W przeciwnym razie ich rejestracja w programie zostanie anulowana.</p>
+        <p class="en">* In accordance with the relevant articles of the MUST Graduate Education and Examination Directive, individuals enrolled in the program must fully comply with the attendance, participation, and examination requirements for courses in order to benefit from student rights. Otherwise, the individual's enrolment in the program shall be terminated.</p>
 
         <p class="pl">* Oczekuje się, że zainteresowana osoba osiągnie etap ukończenia studiów w roku akademickim {{ $expectedGradPl }}.</p>
         <p class="en">* It is expected that the interested person will reach the graduation stage in the {{ $expectedGradEn }} academic year.</p>
@@ -621,13 +630,15 @@
     @endphp
     <table class="signature-stamp-table">
         <tr>
-            <td class="stamp-cell">
-                @if ($stampData)
-                    <img src="data:image/png;base64,{{ $stampData }}" alt="MUST Stamp">
-                @endif
-            </td>
             <td class="sig-cell">
-                <div class="sig-name">Prof. Dr. Serdar KORAL</div>
+                @if ($stampData)
+                    <img
+                        class="sig-stamp-overlay"
+                        src="data:image/png;base64,{{ $stampData }}"
+                        alt="MUST Stamp"
+                    >
+                @endif
+                <div class="sig-name">Prof. Dr. hab. Tomasz Żelazowski-Krępski</div>
                 <div class="sig-title">Rektor / Rector</div>
             </td>
         </tr>
@@ -664,11 +675,9 @@
         </div>
         <div class="bottom-divider"></div>
         <div class="address-block">
-            <p class="institution-line">Fully Accredited Multinational Higher Education Institution and Global Service Provider</p>
             <p>ISTASYON MAH. 2325 SK. NO: 18 / 1 ETIMESGUT ANKARA / Türkiye [ MUST ]</p>
-            <p>Ogrodowa 5 00-876 Warsaw / Poland [ MUST ]</p>
-            <p>32-36 Bd d'Avranches, 1160 Bonnevoie-Nord-Verlorenkost / Luxembourg [ MUST ]</p>
-            <p style="margin-top: 3px;"><strong>Tel:</strong> +90 5386796595 | +48 579 369 968 | +352 661115815</p>
+            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ MUST ]</p>
+            <p style="margin-top: 3px;"><strong>Tel:</strong>+48579277493</p>
             <p><strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl | <strong>Web:</strong> www.must.edu.pl | www.must.edu.rs</p>
         </div>
     </div>
