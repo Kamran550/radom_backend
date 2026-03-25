@@ -477,14 +477,14 @@
             @if ($logoData)
                 <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
             @endif
-            {{-- <div class="university-name-container">
+            <div class="university-name-container">
                 <div class="university-name">
                     MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
                 </div>
                 <div class="directorate-name">
                     Directorate of International Relations
                 </div>
-            </div> --}}
+            </div>
             <div class="header-right-info">
                 @php
                     $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
@@ -534,10 +534,10 @@
         <p>
             Your application to Mazovia University of Science and Technology for the
             {{ now()->format('Y') }}-{{ now()->addYear()->format('Y') }} academic year Fall semester has been
-            successfully approved. We are excited for you to be a member of the MUST Global family and to join a
+            successfully approved. We are excited for you to be a member of the MUST ( Mazovia University of Science and Technology ) and to join a
             dynamic and diverse student community in a place of endless opportunities. This letter is to confirm
             your conditional acceptance into
-            <strong>{{ tr_upper($student->application->program?->name ?? 'N/A') }}</strong>
+            <strong>{{ strtoupper($student->application->program?->name ?? 'N/A') }}</strong>
             {{ $student->application->program?->degree?->name ?? 'N/A' }} degree program under the
             <strong>{{ $student->application->program?->faculty?->name ?? 'N/A' }}</strong>.
             The duration of the program is
@@ -595,23 +595,23 @@
         <tbody>
             <tr>
                 <td><strong>BANK NAME</strong></td>
-                <td>BANK MILLENNIUM S.A.</td>
+                <td>Santander Bank Polska S.A.</td>
             </tr>
             <tr>
                 <td><strong>CITY / COUNTRY</strong></td>
-                <td>WARSZAWA - POLAND</td>
+                <td>Warszawa - Poland</td>
             </tr>
             <tr>
                 <td><strong>ACCOUNT NAME</strong></td>
-                <td>EURO.INTE AND PEACE.UNIVE.SP.ZOO</td>
+                <td>MAZOVIA.UNIV OF SCI AND TECH.SP.ZOO</td>
             </tr>
             <tr>
                 <td><strong>IBAN</strong></td>
-                <td>PL44116022022390000134915690</td>
+                <td>PL13109010140000071219812874</td>
             </tr>
             <tr>
                 <td><strong>SWIFT CODE</strong></td>
-                <td>BIGBPLPW</td>
+                <td>WBKPPLPP</td>
             </tr>
             <tr>
                 <td><strong>DEPOSIT AMOUNT</strong></td>
@@ -673,7 +673,7 @@
     <div class="subsection-title">English Proficiency and Preparatory Exam</div>
     <div class="content">
         <p>
-            Students who do not have an English proficiency certificate, or those who will study in Turkish, must take a
+            Students who do not have an English proficiency certificate, or those who will study in Polish, must take a
             proficiency exam.
             The tuition fees of students who register for their departments but fail the preparatory exam will be
             counted towards the preparatory

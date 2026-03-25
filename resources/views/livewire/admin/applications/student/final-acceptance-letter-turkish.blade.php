@@ -590,14 +590,13 @@
 
         <!-- Address Block -->
         <div class="address-block">
-            <p>ISTASYON MAH. 2325 SK. NO: 18 / 1 ETIMESGUT ANKARA / Türkiye [ MUST ]</p>
             <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ MUST ]</p>
             <p style="margin-top: 3px;">
                 <strong>Tel:</strong>+48579277493
             </p>
             <p>
                 <strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl |
-                <strong>Web:</strong> www.must.edu.pl | www.must.edu.rs
+                <strong>Web:</strong> www.must.edu.pl
             </p>
         </div>
     </div>

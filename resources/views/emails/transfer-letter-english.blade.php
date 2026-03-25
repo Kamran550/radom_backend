@@ -15,7 +15,8 @@
         </h1>
 
         <p style="font-size: 16px; margin-bottom: 15px;">
-            We would like to share an important update regarding your transfer application to Mazovia University of Science and Technology.
+            We would like to share an important update regarding your transfer application to Mazovia University of
+            Science and Technology.
         </p>
 
         <div
@@ -89,7 +90,8 @@
             © {{ date('Y') }} Mazovia University of Science and Technology. All rights reserved.
         </p>
         <p style="margin: 5px 0;">
-            Ogrodowa 58, 00-876 Warsaw / Poland
+            Aleja Józefa Piłsudskiego 35,
+            09-407 Płock / Poland
         </p>
     </div>
 </body>

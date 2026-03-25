@@ -152,7 +152,7 @@
         }
 
         .info-grid {
-            border:none;
+            border: none;
             display: table;
             width: 100%;
             margin: 8px 0;
@@ -480,14 +480,14 @@
             @if ($logoData)
                 <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
             @endif
-            {{-- <div class="university-name-container">
+            <div class="university-name-container">
                 <div class="university-name">
                     MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
                 </div>
                 <div class="directorate-name">
                     Directorate of International Relations
                 </div>
-            </div> --}}
+            </div>
             <div class="header-right-info">
                 <div>Date: {{ now()->format('d.m.Y') }}</div>
             </div>
@@ -522,10 +522,11 @@
         <p>
             Your application to Mazovia University of Science and Technology for the
             {{ now()->format('Y') }}-{{ now()->addYear()->format('Y') }} academic year Fall semester has been
-            successfully approved. We are excited for you to be a member of the MUST Global family and to join a
+            successfully approved. We are excited for you to be a member of the MUST ( Mazovia University of Science and
+            Technology ) and to join a
             dynamic and diverse student community in a place of endless opportunities. This letter is to confirm
             your conditional acceptance into
-            <strong>{{ tr_upper($student->application->program?->name ?? 'N/A') }}</strong>
+            <strong>{{ strtoupper($student->application->program?->name ?? 'N/A') }}</strong>
             {{ $student->application->program?->degree?->name ?? 'N/A' }} degree program under the
             <strong>{{ $student->application->program?->faculty?->name ?? 'N/A' }}</strong>.
             The duration of the program is
@@ -630,27 +631,27 @@
         <tbody>
             <tr>
                 <td><strong>BANK NAME</strong></td>
-                <td>BANK MILLENNIUM S.A.</td>
+                <td>Santander Bank Polska S.A.</td>
             </tr>
             <tr>
                 <td><strong>CITY / COUNTRY</strong></td>
-                <td>WARSZAWA - POLAND</td>
+                <td>Warszawa - Poland</td>
             </tr>
             <tr>
                 <td><strong>ACCOUNT NAME</strong></td>
-                <td>EURO.INTE AND PEACE.UNIVE.SP.ZOO</td>
+                <td>MAZOVIA.UNIV OF SCI AND TECH.SP.ZOO</td>
             </tr>
             <tr>
                 <td><strong>IBAN</strong></td>
-                <td>PL44116022022390000134915690</td>
+                <td>PL13109010140000071219812874</td>
             </tr>
             <tr>
                 <td><strong>SWIFT CODE</strong></td>
-                <td>BIGBPLPW</td>
+                <td>WBKPPLPP</td>
             </tr>
             <tr>
                 <td><strong>DEPOSIT AMOUNT</strong></td>
-                <td>185 EUR</td>
+                <td>1000 EUR</td>
             </tr>
         </tbody>
     </table>
@@ -770,8 +771,7 @@
                                 ->generate($student->getVerificationUrl($verificationCodeForUrl));
                             $qrCodeBase64 = base64_encode($qrCode);
                         @endphp
-                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}"
-                            style="width: 56px; height: 56px;" />
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 56px; height: 56px;" />
                     </td>
                     <td class="verification-info-cell">
                         This document was e-signed for

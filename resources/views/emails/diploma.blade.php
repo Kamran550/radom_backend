@@ -97,7 +97,7 @@
         <div style="text-align: center; padding: 20px; font-size: 12px; color: #888;">
             <p style="margin: 0;">
                 Mazovia University of Science and Technology<br>
-                Warsaw, Poland
+                Płock, Poland
             </p>
             <p style="margin: 10px 0 0 0;">
                 <a href="https://must.edu.pl" style="color: #8B0000; text-decoration: none;">www.must.edu.pl</a>
