@@ -479,14 +479,9 @@
                             'MUST-' . $student->id . '-' . now()->format('Ymd');
                         $barcodeBase64 = '';
                         try {
-                            $barcodePng = new \Picqer\Barcode\BarcodeGeneratorPNG()->getBarcode(
-                                $barcodeCode,
-                                \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
-                                1,
-                                22,
-                                [26, 39, 68],
-                            );
-                            $barcodeBase64 = base64_encode($barcodePng);
+                $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
+                    ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
+                $barcodeBase64 = base64_encode($barcodePng);
                         } catch (\Throwable $e) {
                             // fallback - barcode hidden
                         }
