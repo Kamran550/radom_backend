@@ -177,7 +177,7 @@
         <div class="contact-info" style="text-align: right;">
             <div>
                 <strong>E-posta:</strong> international@must.edu.pl<br>
-                <strong>Telefon:</strong> +48 579 369 968<br>
+                <strong>Telefon:</strong> +48 579 277 493<br>
                 <strong>Tarih:</strong> {{ now()->format('d/m/Y') }}
             </div>
 

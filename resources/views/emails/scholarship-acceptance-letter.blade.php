@@ -55,7 +55,7 @@
             Director of International Student Office<br>
             <strong>World Peace University</strong></p>
             <p style="margin-top: 15px;">
-                Tel: +48 579 369 968<br>
+                Tel: +48 579277493<br>
                 Website: www.must.edu.pl
             </p>
         </div>

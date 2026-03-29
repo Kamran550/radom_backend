@@ -398,7 +398,7 @@
             <tr>
                 <td class="footer-info" style="text-align: center;">
                     <p style="margin: 5px 0;">
-                        <strong>Phone:</strong> +48 579 369 968 |
+                        <strong>Phone:</strong> +48 579 277 493 |
                         <strong>Email:</strong> info@must.edu.pl |
                         <strong>Website:</strong> www.must.edu.pl |
                         <strong>Address:</strong> Aleja Józefa Piłsudskiego 35,

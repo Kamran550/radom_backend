@@ -79,6 +79,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 2px;
         }
 
         .header-right-info {
@@ -791,7 +792,7 @@
         <!-- Footer Bottom Section -->
         <div style="font-size: 5.5pt; line-height: 1.2; color: #555; text-align: center; margin-top: 4px;">
             <p style="margin: 1px 0;">
-                <strong>Tel:</strong> +48 579 369 968 |
+                <strong>Tel:</strong> +48 579 277 493 |
                 <strong>Email:</strong> international@must.edu.pl |
                 <strong>Address:</strong> Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland |
                 <strong>Website:</strong> www.must.edu.pl

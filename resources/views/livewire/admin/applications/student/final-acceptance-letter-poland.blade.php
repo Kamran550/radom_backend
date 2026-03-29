@@ -424,7 +424,7 @@
 
         $scholarshipStatus = $student->scholarship_status ?? '75%';
         $scholarshipEn = "{$scholarshipStatus} Scholarship";
-        $scholarshipPl = "%50 Stypendium";
+        $scholarshipPl = '%50 Stypendium';
 
         if (str_contains($scholarshipStatus, '100')) {
             $scholarshipPl = '100% Stypendium';
@@ -440,9 +440,6 @@
         $endYear = $startYear + 1;
         $academicYearEn = "{$startYear}-{$endYear} academic year";
         $academicYearPl = "Rok akademicki {$startYear}-{$endYear}";
-        $gradYear = $startYear + ($degree?->duration ?? 4);
-        $expectedGradEn = ($gradYear) . '-' . ($gradYear + 1);
-        $expectedGradPl = ($gradYear) . '-' . ($gradYear + 1);
     @endphp
 
     <!-- Top Accent Line -->
@@ -451,7 +448,9 @@
     <!-- Header -->
     <div class="header-wrapper">
         <div class="ref-number">
-            Numer referencyjny / Reference No: {{ $student->application_number ?? now()->format('Y-m-d') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }} {{ now()->format('d F Y') }}
+            Numer referencyjny / Reference No:
+            {{ $student->application_number ?? now()->format('Y-m-d') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
+            {{ now()->format('d F Y') }}
         </div>
         <table class="header-table">
             <tr>
@@ -475,11 +474,18 @@
                 </td>
                 <td class="date-barcode-cell">
                     @php
-                        $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
+                        $barcodeCode =
+                            trim($student->student_number ?? ($student->application_number ?? '')) ?:
+                            'MUST-' . $student->id . '-' . now()->format('Ymd');
                         $barcodeBase64 = '';
                         try {
-                            $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
-                                ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
+                            $barcodePng = new \Picqer\Barcode\BarcodeGeneratorPNG()->getBarcode(
+                                $barcodeCode,
+                                \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
+                                1,
+                                22,
+                                [26, 39, 68],
+                            );
                             $barcodeBase64 = base64_encode($barcodePng);
                         } catch (\Throwable $e) {
                             // fallback - barcode hidden
@@ -487,7 +493,8 @@
                     @endphp
                     @if ($barcodeBase64)
                         <div class="barcode-wrap">
-                            <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
+                            <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
+                                style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
                         </div>
                     @endif
                     <div class="date-text">{{ now()->format('d/m/Y') }}</div>
@@ -507,11 +514,12 @@
             <table class="info-table">
                 <tr>
                     <td class="label-col">Numer dokumentu tożsamości / ID card number</td>
-                    <td class="value-col">{{ $student->passport_number ?? $student->student_number ?? 'N/A' }}</td>
+                    <td class="value-col">{{ $student->passport_number ?? ($student->student_number ?? 'N/A') }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Imię i nazwisko / Name - surname</td>
-                    <td class="value-col">{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}</td>
+                    <td class="value-col">{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}
+                    </td>
                 </tr>
                 <tr>
                     <td class="label-col">Imię ojca / Father name</td>
@@ -523,11 +531,14 @@
                 </tr>
                 <tr>
                     <td class="label-col">Płeć / Gender</td>
-                    <td class="value-col">{{ $student->gender ? (strtolower($student->gender) === 'male' ? 'Mężczyzna / Male' : (strtolower($student->gender) === 'female' ? 'Kobieta / Female' : ucfirst($student->gender))) : 'N/A' }}</td>
+                    <td class="value-col">
+                        {{ $student->gender ? (strtolower($student->gender) === 'male' ? 'Mężczyzna / Male' : (strtolower($student->gender) === 'female' ? 'Kobieta / Female' : ucfirst($student->gender))) : 'N/A' }}
+                    </td>
                 </tr>
                 <tr>
                     <td class="label-col">Data urodzenia / Date of birth</td>
-                    <td class="value-col">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</td>
+                    <td class="value-col">
+                        {{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Miejsce urodzenia / Place of birth</td>
@@ -535,11 +546,13 @@
                 </tr>
                 <tr>
                     <td class="label-col">Jednostka akademicka / Academic unit</td>
-                    <td class="value-col">Instytut Studiów Podyplomowych (Międzynarodowy) / Institute of Graduate Education (Multinational)</td>
+                    <td class="value-col">Instytut Studiów Podyplomowych (Międzynarodowy) / Institute of Graduate
+                        Education (Multinational)</td>
                 </tr>
                 <tr>
                     <td class="label-col">Program / Program</td>
-                    <td class="value-col">{{ $programNamePl }} - {{ $degreeNamePl }} / {{ $programNameEn }} - {{ $degreeNameEn }}</td>
+                    <td class="value-col">{{ $programNamePl }} - {{ $degreeNamePl }} / {{ $programNameEn }} -
+                        {{ $degreeNameEn }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Rok studiów / Class</td>
@@ -589,7 +602,8 @@
                                 default => 'image/jpeg',
                             };
                         }
-                    } catch (\Exception $e) {}
+                    } catch (\Exception $e) {
+                    }
                 }
             @endphp
             @if ($photoData)
@@ -609,15 +623,27 @@
         <p class="pl">* Osoba, której dane identyfikacyjne podano powyżej, jest naszym studentem.</p>
         <p class="en">* The person whose identity information is given above is our student.</p>
 
-        @php $duration = $degree?->duration ?? 4; $durationPl = $duration === 1 ? 'rok' : ($duration < 5 ? 'lata' : 'lat'); @endphp
+        @php
+            $duration = $degree?->duration ?? 4;
+            $durationPl = $duration === 1 ? 'rok' : ($duration < 5 ? 'lata' : 'lat');
+        @endphp
         <p class="pl">* Przewidywany czas trwania programu wynosi {{ $duration }} {{ $durationPl }}.</p>
-        <p class="en">* The foreseen duration of education for the programme is {{ $degree?->duration ?? 4 }} years.</p>
+        <p class="en">* The foreseen duration of education for the programme is {{ $degree?->duration ?? 4 }}
+            years.</p>
 
-        <p class="pl">* Zgodnie z odpowiednimi artykułami Regulaminu Studiów Podyplomowych i Egzaminów MUST, osoby zapisane na program muszą w pełni przestrzegać wymagań dotyczących obecności, uczestnictwa i egzaminów na zajęciach, aby korzystać z praw studenta. W przeciwnym razie ich rejestracja w programie zostanie anulowana.</p>
-        <p class="en">* In accordance with the relevant articles of the MUST Graduate Education and Examination Directive, individuals enrolled in the program must fully comply with the attendance, participation, and examination requirements for courses in order to benefit from student rights. Otherwise, the individual's enrolment in the program shall be terminated.</p>
+        <p class="pl">* Zgodnie z odpowiednimi artykułami Regulaminu Studiów Podyplomowych i Egzaminów MUST, osoby
+            zapisane na program muszą w pełni przestrzegać wymagań dotyczących obecności, uczestnictwa i egzaminów na
+            zajęciach, aby korzystać z praw studenta. W przeciwnym razie ich rejestracja w programie zostanie anulowana.
+        </p>
+        <p class="en">* In accordance with the relevant articles of the MUST Graduate Education and Examination
+            Directive, individuals enrolled in the program must fully comply with the attendance, participation, and
+            examination requirements for courses in order to benefit from student rights. Otherwise, the individual's
+            enrolment in the program shall be terminated.</p>
 
-        <p class="pl">* Oczekuje się, że zainteresowana osoba osiągnie etap ukończenia studiów w roku akademickim {{ $expectedGradPl }}.</p>
-        <p class="en">* It is expected that the interested person will reach the graduation stage in the {{ $expectedGradEn }} academic year.</p>
+        <p class="pl">* Oczekuje się, że zainteresowana osoba osiągnie etap ukończenia studiów w roku akademickim
+            {{ $startYear }}-{{ $endYear }}.</p>
+        <p class="en">* It is expected that the interested person will reach the graduation stage in the
+            {{ $startYear }}-{{ $endYear }} academic year.</p>
 
         <p class="pl">* Niniejszy dokument został sporządzony na prośbę zainteresowanej osoby.</p>
         <p class="en">* This document has been issued upon the request of the person concerned.</p>
@@ -632,11 +658,7 @@
         <tr>
             <td class="sig-cell">
                 @if ($stampData)
-                    <img
-                        class="sig-stamp-overlay"
-                        src="data:image/png;base64,{{ $stampData }}"
-                        alt="MUST Stamp"
-                    >
+                    <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}" alt="MUST Stamp">
                 @endif
                 <div class="sig-name">Prof. Dr. hab. Tomasz Żelazowski-Krępski</div>
                 <div class="sig-title">Rektor / Rector</div>
@@ -666,9 +688,19 @@
                         <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 56px; height: 56px;" />
                     </td>
                     <td class="verification-info-cell">
-                        <span class="pl">Niniejszy dokument został podpisany elektronicznie dnia {{ now()->format('d/m/Y') }} na nazwisko <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> z numerem dokumentu <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>. Ważność dokumentu można potwierdzić skanując kod QR lub za pomocą numeru dokumentu pod adresem <strong>{{ $student->getVerificationUrl() }}</strong></span>
+                        <span class="pl">Niniejszy dokument został podpisany elektronicznie dnia
+                            {{ now()->format('d/m/Y') }} na nazwisko
+                            <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> z
+                            numerem dokumentu <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>.
+                            Ważność dokumentu można potwierdzić skanując kod QR lub za pomocą numeru dokumentu pod
+                            adresem <strong>{{ $student->getVerificationUrl() }}</strong></span>
                         <br><br>
-                        <span class="en">This document was e-signed for <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> on {{ now()->format('d/m/Y') }} with document number <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>. The validity of the document can be confirmed by scanning the QR code or by document number at <strong>{{ $student->getVerificationUrl() }}</strong></span>
+                        <span class="en">This document was e-signed for
+                            <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> on
+                            {{ now()->format('d/m/Y') }} with document number
+                            <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>. The validity of
+                            the document can be confirmed by scanning the QR code or by document number at
+                            <strong>{{ $student->getVerificationUrl() }}</strong></span>
                     </td>
                 </tr>
             </table>
@@ -677,7 +709,8 @@
         <div class="address-block">
             <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ MUST ]</p>
             <p style="margin-top: 3px;"><strong>Tel:</strong>+48579277493</p>
-            <p><strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl | <strong>Web:</strong> www.must.edu.pl</p>
+            <p><strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl | <strong>Web:</strong> www.must.edu.pl
+            </p>
         </div>
     </div>
 

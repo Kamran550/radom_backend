@@ -59,7 +59,7 @@
                     style="color: #007bff; text-decoration: none;">international@must.edu.pl</a>
             </p>
             <p style="margin: 5px 0; font-size: 14px;">
-                <strong>Telefon:</strong> +48 579 369 968
+                <strong>Telefon:</strong> +48 579 277 493
             </p>
             <p style="margin: 5px 0; font-size: 14px;">
                 <strong>Web:</strong> <a href="https://www.must.edu.pl"
