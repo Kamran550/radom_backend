@@ -104,8 +104,7 @@ class FinalAcceptanceLetterPolandMail extends Mailable
             ])
             ->setPaper('a4', 'portrait');
 
-            $fileName = $this->student->first_name . '_' . $this->student->last_name . '_[Ikinci-Belge-Poland]_' . now()->format('Y-m-d') . '.pdf';
-            $fileName = preg_replace('/[^a-zA-Z0-9_\-\[\]\.]/', '_', $fileName);
+            $fileName = 'Zaświadczenie studenckie-Student Certificate_' . now()->format('Y-m-d') . '.pdf';
             $filePath = 'applications/certificates/' . $fileName;
 
             Storage::put($filePath, $pdf->output());
