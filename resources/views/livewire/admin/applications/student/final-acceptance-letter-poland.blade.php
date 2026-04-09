@@ -449,7 +449,7 @@
     <div class="header-wrapper">
         <div class="ref-number">
             Numer referencyjny / Reference No:
-            {{ $student->application_number ?? {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
+            {{ $student->application_number ?? \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
             {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}
         </div>
         <table class="header-table">
