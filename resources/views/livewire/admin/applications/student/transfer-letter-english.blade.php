@@ -178,7 +178,7 @@
             <div>
                 <strong>Email:</strong> international@must.edu.pl<br>
                 <strong>Phone:</strong> +48 579 277 493<br>
-                <strong>Date:</strong> {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}
+                <strong>Date:</strong> {{ now()->format('d/m/Y') }}
             </div>
 
             <div>
@@ -196,7 +196,7 @@
                 @if ($barcodeBase64)
                     <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
                         style="max-width: 110px; height: auto; max-height: 28px; display: block; margin-left: auto;" />
-                    <div style="font-size: 7pt; margin-top: 2px;">{{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}</div>
+                    <div style="font-size: 7pt; margin-top: 2px;">{{ now()->format('d/m/Y') }}</div>
                 @endif
             </div>
         </div>
@@ -315,7 +315,7 @@
                 <td style="padding-left: 10px; padding-right: 15px;">
                     <div
                         style="background: #f0f0f0; padding: 12px 15px; border-radius: 8px; font-size: 11px; line-height: 1.2;">
-                        This document was electronically signed on {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }} on behalf of
+                        This document was electronically signed on {{ now()->format('d/m/Y') }} on behalf of
                         <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong>
                         with document number <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>.
                         The validity of the document can be verified by scanning the QR code or using the document

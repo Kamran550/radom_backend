@@ -444,13 +444,14 @@
 
     <!-- Top Accent Line -->
     <div class="header-top-accent"></div>
-
+{{ now()->format('d/m/Y') }}
     <!-- Header -->
     <div class="header-wrapper">
         <div class="ref-number">
             Numer referencyjny / Reference No:
-            {{ $student->application_number ?? \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
-            {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}
+            {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
+            {{ now()->format('d/m/Y') }}
+
         </div>
         <table class="header-table">
             <tr>
@@ -492,7 +493,8 @@
                                 style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
                         </div>
                     @endif
-                    <div class="date-text">{{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}</div>
+                    <div class="date-text">{{ now()->format('d/m/Y') }}
+</div>
                 </td>
             </tr>
         </table>
@@ -567,7 +569,8 @@
                 </tr>
                 <tr>
                     <td class="label-col">Data rejestracji / Registration date</td>
-                    <td class="value-col">{{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}</td>
+                    <td class="value-col">{{ now()->format('d/m/Y') }}
+</td>
                 </tr>
                 <tr>
                     <td class="label-col">Rok akademicki / Academic year</td>
@@ -664,7 +667,8 @@
     <!-- Verification Footer -->
     <div class="verification-footer">
         <div class="verification-date">
-            Data / Date: {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}
+            Data / Date: {{ now()->format('d/m/Y') }}
+
         </div>
         <div class="verification-card">
             <div class="verification-card-header">
@@ -684,7 +688,7 @@
                     </td>
                     <td class="verification-info-cell">
                         <span class="pl">Niniejszy dokument został podpisany elektronicznie dnia
-                            {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }} na nazwisko
+                            {{ now()->format('d/m/Y') }} na nazwisko
                             <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> z
                             numerem dokumentu <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>.
                             Ważność dokumentu można potwierdzić skanując kod QR lub za pomocą numeru dokumentu pod
@@ -692,7 +696,7 @@
                         <br><br>
                         <span class="en">This document was e-signed for
                             <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> on
-                            {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }} with document number
+                            {{ now()->format('d/m/Y') }} with document number
                             <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>. The validity of
                             the document can be confirmed by scanning the QR code or by document number at
                             <strong>{{ $student->getVerificationUrl() }}</strong></span>

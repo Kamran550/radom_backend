@@ -178,7 +178,7 @@
             <div>
                 <strong>E-posta:</strong> international@must.edu.pl<br>
                 <strong>Telefon:</strong> +48 579 277 493<br>
-                <strong>Tarih:</strong> {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}
+                <strong>Tarih:</strong> {{ now()->format('d/m/Y') }}
             </div>
 
             <div>
@@ -196,7 +196,7 @@
                 @if ($barcodeBase64)
                     <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
                         style="max-width: 110px; height: auto; max-height: 28px; display: block; margin-left: auto;" />
-                    <div style="font-size: 7pt; margin-top: 2px;">{{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}</div>
+                    <div style="font-size: 7pt; margin-top: 2px;">{{ now()->format('d/m/Y') }}</div>
                 @endif
             </div>
         </div>
@@ -312,7 +312,7 @@
                     <div
                         style="background: #f0f0f0; padding: 12px 15px; border-radius: 8px; font-size: 11px; line-height: 1.2;">
                         Bu belge,
-                        {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }} tarihinde
+                        {{ now()->format('d/m/Y') }} tarihinde
                         <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> adına
                         <strong>{{ $verificationCode ?? tr_upper(Str::random(12)) }}</strong>
                         belge numarasıyla elektronik olarak imzalanmıştır. Belgenin geçerliliği, QR kodunu tarayarak

@@ -503,7 +503,7 @@
                         <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
                     </div>
                 @endif
-                <div>Date: {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}</div>
+                <div>Date: {{ now()->format('d/m/Y') }}</div>
             </div>
         </div>
 
@@ -719,8 +719,7 @@
     <div class="verification-footer">
         <!-- Date -->
         <div class="date-line">
-            {{-- Date: {{ now()->format('d/m/Y') }} --}}
-            Date: {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }}
+            Date: {{ now()->format('d/m/Y') }}
         </div>
 
         <!-- Verification Card with QR -->
@@ -744,7 +743,7 @@
                     <td class="verification-info-cell">
                         This document was e-signed for
                         <strong>{{ tr_upper($student->first_name . ' ' . $student->last_name) }}</strong> on
-                        {{ \Carbon\Carbon::parse('2026-03-12')->format('d.m.Y') }} with document number
+                        {{ now()->format('d/m/Y') }} with document number
                         <strong>{{ $verificationCode ?? strtoupper(\Illuminate\Support\Str::random(12)) }}</strong>.
                         The validity of the document can be confirmed by scanning the QR code or by document number at
                         <strong>{{ $student->getVerificationUrl() }}</strong>
