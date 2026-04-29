@@ -232,16 +232,16 @@
     <div class="header">
         <div class="logo-container">
             @php
-                $logoPath = public_path(path: 'images/MUST-simvol.png');
+                $logoPath = public_path(path: 'images/RADOM-simvol.png');
                 $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
                 $logoMime = 'image/jpeg';
             @endphp
             @if ($logoData)
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
+                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
             @endif
             <div class="university-name-container">
                 <div class="university-name">
-                    MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
+                    RADOM UNIVERSITY
                 </div>
             </div>
         </div>
@@ -373,12 +373,12 @@
                         on {{ $payment->created_at->format('d/m/Y') }} with document number
                         <strong>{{ $verificationCode }}</strong>.
                         The validity of the document can be confirmed by scanning the QR code or by document number at
-                        <strong> {{ 'https://' . config('app.verify_domain', 'validate.must.edu.pl') }} </strong>
+                        <strong> {{ 'https://' . config('app.verify_domain', 'validate.radomuniversity.pl') }} </strong>
                     </div>
                 </td>
                 <td style="width: 70px; vertical-align: top;">
                     @php
-                        $verifyDomain = config('app.verify_domain', 'validate.must.edu.pl');
+                        $verifyDomain = config('app.verify_domain', 'validate.radomuniversity.pl');
                         $verificationUrl = 'https://' . $verifyDomain . '?verificationcode=' . $verificationCode;
                         $qrCodeSvg = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
                             ->size(120)
@@ -399,8 +399,7 @@
                 <td class="footer-info" style="text-align: center;">
                     <p style="margin: 5px 0;">
                         <strong>Phone:</strong> +48 579 277 493 |
-                        <strong>Email:</strong> info@must.edu.pl |
-                        <strong>Website:</strong> www.must.edu.pl |
+                        <strong>Email:</strong> info@radomuniversity.pl |
                         <strong>Address:</strong> Aleja Józefa Piłsudskiego 35,
                         09-407 Płock / Poland
                     </p>

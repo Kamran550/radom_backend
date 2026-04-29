@@ -9,8 +9,8 @@
         <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <img
-                    src="{{ asset('images/MUST-logo-dark.png') }}"
-                    alt="MUST Logo"
+                    src="{{ asset('images/RADOM-logo-dark.png') }}"
+                    alt="RADOM Logo"
                     class="h-12 sm:h-16 md:h-[4.25rem] w-auto object-contain"
                 >
             </div>

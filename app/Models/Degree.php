@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,6 +28,14 @@ class Degree extends Model
     public function programs(): HasMany
     {
         return $this->hasMany(Program::class);
+    }
+
+    /**
+     * Get unique faculties connected through programs.
+     */
+    public function faculties(): BelongsToMany
+    {
+        return $this->belongsToMany(Faculty::class, 'programs', 'degree_id', 'faculty_id')->distinct();
     }
     public function translations()
     {

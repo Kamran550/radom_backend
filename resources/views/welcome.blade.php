@@ -6,7 +6,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         
-        <link rel="icon" type="image/png" href="{{ asset('images/MUST-simvol.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('images/RADOM-simvol.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

@@ -3,6 +3,8 @@
 use App\Livewire\Admin\Applications\Agency\Index as AgencyApplicationsIndex;
 use App\Livewire\Admin\Applications\Student\Index as StudentApplicationsIndex;
 use App\Livewire\Admin\Applications\Student\ShowStudent;
+use App\Livewire\Admin\Apply\Student as ApplyStudent;
+use App\Livewire\Admin\Apply\Transfer as ApplyTransfer;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Degrees\Index as DegreesIndex;
 use App\Livewire\Admin\Degrees\Create as DegreesCreate;
@@ -57,6 +59,11 @@ Route::name('admin.')->group(function () {
             Route::get('/', PaymentsIndex::class)->name('index');
             Route::get('/create', \App\Livewire\Admin\Payments\Create::class)->name('create');
             Route::get('/{payment}', PaymentsShow::class)->name('show');
+        });
+
+        Route::prefix('apply')->name('apply.')->group(function () {
+            Route::get('/student', ApplyStudent::class)->name('student');
+            Route::get('/transfer', ApplyTransfer::class)->name('transfer');
         });
 
         Route::prefix(prefix: 'applications')->name('applications.')->group(function () {

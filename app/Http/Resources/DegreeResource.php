@@ -16,7 +16,9 @@ class DegreeResource extends JsonResource
     {
         $faculties = collect();
         
-        if ($this->relationLoaded('programs')) {
+        if ($this->relationLoaded('faculties')) {
+            $faculties = $this->faculties->values();
+        } elseif ($this->relationLoaded('programs')) {
             $faculties = $this->programs
                 ->pluck('faculty')
                 ->filter()

@@ -8,8 +8,8 @@
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #1a1a1a; margin-bottom: 10px;">MUST</h1>
-            <h2 style="color: #1a1a1a; margin-top: 0;">MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY</h2>
+            <h1 style="color: #1a1a1a; margin-bottom: 10px;">RADOM</h1>
+            <h2 style="color: #1a1a1a; margin-top: 0;">RADOM UNIVERSITY</h2>
         </div>
 
         <p>Dear <strong>{{ $student->first_name }} {{ $student->last_name }}</strong>,</p>
@@ -46,7 +46,7 @@
 
         <p>
             We very much look forward to welcoming you to WPU. If you have any questions, please contact us at 
-            <a href="mailto:international@must.edu.pl">international@must.edu.pl</a> or <a href="mailto:imo@wpu.edu.tr">imo@wpu.edu.tr</a>.
+            <a href="mailto:international@radomuniversity.pl">international@radomuniversity.pl</a> or <a href="mailto:info@radomuniversity.pl">info@radomuniversity.pl</a>.
         </p>
 
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
@@ -56,7 +56,7 @@
             <strong>World Peace University</strong></p>
             <p style="margin-top: 15px;">
                 Tel: +48 579277493<br>
-                Website: www.must.edu.pl
+                Website: www.radomuniversity.pl
             </p>
         </div>
     </div>

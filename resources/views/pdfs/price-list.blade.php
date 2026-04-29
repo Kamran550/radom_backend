@@ -218,7 +218,7 @@
     <!-- Header -->
     <div class="header clearfix">
         <div class="logo-container">
-            <img src="{{ public_path('images/MUST-simvol.png') }}" alt="MUST Logo" class="logo">
+            <img src="{{ public_path('images/RADOM-simvol.png') }}" alt="RADOM Logo" class="logo">
         </div>
 
         <div class="qr-container">
@@ -278,10 +278,6 @@
     @endforeach
 
     <!-- Footer -->
-    <div class="footer">
-        {{ $translations['for_more_info'] }}<br>
-        <a href="https://must.edu.pl">www.must.edu.pl</a>
-    </div>
 </body>
 
 </html>

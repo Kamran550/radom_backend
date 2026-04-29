@@ -2,8 +2,8 @@
     <!-- Logo - Top Left -->
     <div class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 z-10">
         <img 
-            src="{{ asset('images/MUST-logo-dark.png') }}" 
-            alt="MUST Logo" 
+            src="{{ asset('images/RADOM-logo-dark.png') }}" 
+            alt="RADOM Logo" 
             class="h-24 sm:h-24 lg:h-24 w-auto object-contain"
         >
     </div>

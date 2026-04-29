@@ -34,7 +34,7 @@
             transform: translate(-50%, -50%);
             width: 500px;
             height: 500px;
-            background-image: url('{{ public_path(path: 'images/MUST-simvol.png') }}');
+            background-image: url('{{ public_path(path: 'images/RADOM-simvol.png') }}');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -365,17 +365,17 @@
             <tr>
                 <td class="logo-cell">
                     @php
-                        $logoPath = public_path('images/MUST-simvol.png');
+                        $logoPath = public_path('images/RADOM-simvol.png');
                         $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
                         $logoMime = 'image/jpeg';
                     @endphp
                     @if ($logoData)
-                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
+                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
                     @endif
                 </td>
                 <td class="title-cell">
                     <div class="university-name">
-                        MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
+                        RADOM UNIVERSITY
                     </div>
                     <div class="department-name">
                         Student Affairs Department
@@ -527,7 +527,7 @@
 
     <!-- Signature + Stamp -->
     @php
-        $stampPath = public_path('images/must-möhür.png');
+        $stampPath = public_path('images/radom-möhür.png');
         $stampData = file_exists($stampPath) ? base64_encode(file_get_contents($stampPath)) : '';
     @endphp
     <table class="signature-stamp-table">
@@ -537,7 +537,7 @@
                     <img
                         class="sig-stamp-overlay"
                         src="data:image/png;base64,{{ $stampData }}"
-                        alt="MUST Stamp"
+                        alt="RADOM Stamp"
                     >
                 @endif
                 <div class="sig-name">Prof. Dr. hab. Tomasz Żelazowski-Krępski</div>
@@ -587,13 +587,12 @@
 
         <!-- Address Block -->
         <div class="address-block">
-            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ MUST ]</p>
+            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ RADOM ]</p>
             <p style="margin-top: 3px;">
                 <strong>Tel:</strong>+48579277493
             </p>
             <p>
-                <strong>e-mail:</strong> info@must.edu.pl | rectorate@must.edu.pl |
-                <strong>Web:</strong> www.must.edu.pl 
+                <strong>e-mail:</strong> info@radomuniversity.pl | rectorate@radomuniversity.pl |
             </p>
         </div>
     </div>

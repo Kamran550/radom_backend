@@ -8,8 +8,8 @@
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #1a1a1a; margin-bottom: 10px;">MUST</h1>
-            <h2 style="color: #1a1a1a; margin-top: 0;">MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY</h2>
+            <h1 style="color: #1a1a1a; margin-bottom: 10px;">RADOM</h1>
+            <h2 style="color: #1a1a1a; margin-top: 0;">RADOM</h2>
         </div>
 
         <p>Dear <strong>{{ $student->first_name }} {{ $student->last_name }}</strong>,</p>
@@ -30,12 +30,12 @@
         </p>
 
         <p>
-            If you have any questions, please contact us at <a href="mailto:international@must.edu.pl">international@must.edu.pl</a>.
+            If you have any questions, please contact us at <a href="mailto:international@radomuniversity.pl.pl">international@radomuniversity.pl</a>.
         </p>
 
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">
             <p>Best regards,<br>
-            <strong>MUST</strong><br>
+            <strong>RADOM</strong><br>
             Acceptance Committee</p>
         </div>
     </div>

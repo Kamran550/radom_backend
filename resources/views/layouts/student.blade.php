@@ -7,7 +7,7 @@
 
     <title>{{ config('app.name', 'Laravel') }} - Student Panel</title>
     
-    <link rel="icon" type="image/png" href="{{ asset('images/MUST-simvol.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/RADOM-simvol.png') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles

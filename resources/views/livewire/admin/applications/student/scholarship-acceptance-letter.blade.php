@@ -35,7 +35,7 @@
             transform: translate(-50%, -50%);
             width: 600px;
             height: 600px;
-            background-image: url('{{ public_path('images/MUST-logo-dark.png') }}');
+            background-image: url('{{ public_path('images/RADOM-logo-dark.png') }}');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -474,16 +474,16 @@
     <div class="header">
         <div class="logo-container">
             @php
-                $logoPath = public_path('images/MUST-simvol.png');
+                $logoPath = public_path('images/RADOM-simvol.png');
                 $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
                 $logoMime = 'image/jpeg';
             @endphp
             @if ($logoData)
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
+                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
             @endif
             <div class="university-name-container">
                 <div class="university-name">
-                    MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY
+                    RADOM UNIVERSITY
                 </div>
                 <div class="directorate-name">
                     Directorate of International Relations
@@ -521,10 +521,9 @@
             Congratulations!
         </p>
         <p>
-            Your application to Mazovia University of Science and Technology for the
+            Your application to RADOM UNIVERSITY for the
             {{ now()->format('Y') }}-{{ now()->addYear()->format('Y') }} academic year Fall semester has been
-            successfully approved. We are excited for you to be a member of the MUST ( Mazovia University of Science and
-            Technology ) and to join a
+            successfully approved. We are excited for you to be a member of the RADOM UNIVERSITY and to join a
             dynamic and diverse student community in a place of endless opportunities. This letter is to confirm
             your conditional acceptance into
             <strong>{{ strtoupper($student->application->program?->name ?? 'N/A') }}</strong>
@@ -612,11 +611,11 @@
     <div class="content">
         <p>
             The official Acceptance Letter will be issued upon payment of a non-refundable deposit of 185 EUR, either
-            by credit card via the MUST Application
+            by credit card via the RADOM Application
             Platform or by bank transfer to the University's bank account. For all bank transfers; name, surname and
             application number must be provided. The
             bank account details are provided below. To proceed to the next stage of your application, you are required
-            to upload a copy of the bank receipt or payment confirmation to the MUST Application Platform after
+            to upload a copy of the bank receipt or payment confirmation to the RADOM Application Platform after
             completing the transfer.
         </p>
     </div>
@@ -710,9 +709,7 @@
             proficiency exam.
             The tuition fees of students who register for their departments but fail the preparatory exam will be
             counted towards the preparatory
-            class fee, and any remaining balance will be collected at the beginning of the academic year. For more
-            information, please visit:
-            <strong>https://must.edu.pl</strong>
+            class fee, and any remaining balance will be collected at the beginning of the academic year. 
         </p>
     </div>
 
@@ -734,12 +731,8 @@
     <!-- Additional Information -->
     <div class="content">
         <p>
-            Please follow our website at <strong>www.must.edu.pl</strong> for updates on registrations, academic
-            calendar, and other developments.
-        </p>
-        <p>
             For inquiries regarding application, payment, registration, etc., please contact us at:
-            <strong>international@must.edu.pl</strong>
+            <strong>international@radomuniversity.pl</strong>
         </p>
     </div>
 
@@ -793,9 +786,8 @@
         <div style="font-size: 5.5pt; line-height: 1.2; color: #555; text-align: center; margin-top: 4px;">
             <p style="margin: 1px 0;">
                 <strong>Tel:</strong> +48 579 277 493 |
-                <strong>Email:</strong> international@must.edu.pl |
+                <strong>Email:</strong> international@radomuniversity.pl |
                 <strong>Address:</strong> Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland |
-                <strong>Website:</strong> www.must.edu.pl
             </p>
         </div>
 

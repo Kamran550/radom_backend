@@ -150,7 +150,7 @@
     <!-- Background Watermark -->
     <div class="watermark">
         @php
-            $watermarkPath = public_path('images/MUST-simvol.png');
+            $watermarkPath = public_path('images/RADOM-simvol.png');
             $watermarkData = file_exists($watermarkPath) ? base64_encode(file_get_contents($watermarkPath)) : '';
             $watermarkMime = 'image/png';
         @endphp
@@ -164,26 +164,26 @@
         {{-- Left: Logo --}}
         <div>
             @php
-                $logoPath = public_path('images/MUST-simvol.png');
+                $logoPath = public_path('images/RADOM-simvol.png');
                 $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
                 $logoMime = 'image/png';
             @endphp
             @if ($logoData)
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
+                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
             @endif
         </div>
 
         {{-- Right: Contact info + Barcode --}}
         <div class="contact-info" style="text-align: right;">
             <div>
-                <strong>Email:</strong> international@must.edu.pl<br>
+                <strong>Email:</strong> international@radomuniversity.pl<br>
                 <strong>Phone:</strong> +48 579 277 493<br>
                 <strong>Date:</strong> {{ now()->format('d/m/Y') }}
             </div>
 
             <div>
                 @php
-                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
+                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('RADOM-' . $student->id . '-' . now()->format('Ymd'));
                     $barcodeBase64 = '';
                     try {
                         $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
@@ -205,7 +205,7 @@
 
     <!-- Document Title -->
     <div class="document-title">
-        MAZOVIA UNIVERSITY OF SCIENCE AND TECHNOLOGY<br>
+        RADOM UNIVERSITY<br>
         TRANSFER ACCEPTANCE LETTER
     </div>
 
@@ -243,7 +243,7 @@
             in the
             {{ $student->application->program?->degree?->getName('EN') ?? ($student->application->program?->degree?->name ?? 'N/A') }}
             {{ $student->application->program?->getName('EN') ?? ($student->application->program?->name ?? 'N/A') }}
-            program at Mazovia University of Science and Technology for the
+            program at RADOM UNIVERSITY for the
             @php
                 $applicationDate = $student->application->submitted_at ?? ($student->application->created_at ?? now());
                 $startYear = $applicationDate->format('Y');
@@ -270,7 +270,7 @@
         </div>
         <br>
         <div class="signature-line">
-            MAZOVIA UNIVERSITY OF SCIENCE AND TECHNOLOGY
+            RADOM UNIVERSITY
         </div>
     </div>
 

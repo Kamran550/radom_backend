@@ -73,7 +73,7 @@ class ExportPriceList extends Component
             }
 
             // Generate QR code as SVG (no imagick extension required)
-            $qrCodeSvg = QrCode::format('svg')->size(100)->generate('https://must.edu.pl/en/apply');
+            $qrCodeSvg = QrCode::format('svg')->size(100)->generate('https://radomuniversity.pl/en/apply');
             $qrCode = base64_encode($qrCodeSvg);
 
             // Prepare translations
@@ -87,15 +87,15 @@ class ExportPriceList extends Component
             ])->setPaper('a4', 'portrait');
 
             $fileName = $language === 'TR'
-                ? 'MUST-Fiyat-Listesi-2025.pdf'
-                : 'MUST-Price-List-2025.pdf';
+                ? 'RADOM-Fiyat-Listesi-2025.pdf'
+                : 'RADOM-Price-List-2025.pdf';
 
             return response()->streamDownload(function () use ($pdf) {
                 echo $pdf->output();
             }, $fileName, [
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-                'Cache-Control' => 'no-cache, no-store, must-revalidate',
+                'Cache-Control' => 'no-cache, no-store, radom-revalidate',
                 'Pragma' => 'no-cache',
                 'Expires' => '0'
             ]);
@@ -128,7 +128,7 @@ class ExportPriceList extends Component
         }
         
         return [
-            'university_name' => 'MAZOVIA UNIVERSITY of SCIENCE and TECHNOLOGY',
+            'university_name' => 'RADOM UNİVERSİTY',
             'scan_me' => 'SCAN ME',
             'programs' => 'PROGRAMS',
             'academic_year' => 'ACADEMIC YEAR 2025/2026',

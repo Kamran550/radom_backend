@@ -417,16 +417,16 @@
             <!-- Header -->
             <div class="header">
                 @php
-                    $logoPath = public_path('images/MUST-simvol.png');
+                    $logoPath = public_path('images/RADOM-simvol.png');
                     $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
                     $logoMime = 'image/png';
                 @endphp
                 <div class="header-content">
                     @if ($logoData)
-                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="MUST Logo" class="logo">
+                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
                     @endif
                     <div class="university-info">
-                        <div class="university-name">Mazovia University of Science and Technology</div>
+                        <div class="university-name">RADOM UNIVERSITY</div>
                         <div class="university-subtitle">Business Eurasia Education Alliance</div>
                         <div class="countries-text">POLAND | LUXEMBOURG | TÜRKİYE</div>
                     </div>

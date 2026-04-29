@@ -6,7 +6,7 @@
         <!-- Logo -->
         <div class="px-4 py-4 border-b border-[#853535] flex items-center justify-between">
             <div class="flex items-center">
-                <img src="{{ asset('images/MUST-logo-dark.png') }}" alt="MUST Logo" class="h-17 w-auto object-contain">
+                <img src="{{ asset('images/RADOM-logo-dark.png') }}" alt="RADOM Logo" class="h-17 w-auto object-contain">
             </div>
 
             <!-- Close (mobile only) -->

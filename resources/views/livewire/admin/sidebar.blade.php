@@ -6,7 +6,7 @@
         <!-- Logo -->
         <div class="px-4 py-4 border-b border-[#853535] flex items-center justify-between">
             <div class="flex items-center">
-                <img src="{{ asset('images/MUST-logo-dark.png') }}" alt="MUST Logo" class="h-17 w-auto object-contain">
+                <img src="{{ asset('images/RADOM-logo-dark.png') }}" alt="RADOM Logo" class="h-17 w-auto object-contain">
             </div>
 
             <!-- Close (mobile only) -->
@@ -78,6 +78,35 @@
                         Faculties
                     </a>
 
+                </div>
+            </div>
+
+            <!-- Apply Dropdown -->
+            <div x-data="{ open: false }">
+
+                <!-- Dropdown Button -->
+                <button @click="open = !open"
+                    class="w-full flex items-center justify-between px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition">
+                    <span>Apply</span>
+                    <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" fill="none"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <!-- Dropdown Items -->
+                <div x-show="open" x-collapse class="ml-6 mt-1 space-y-1">
+                    <a href="{{ route('admin.apply.student') }}"
+                        class="block px-4 py-2 text-[#d4b896] hover:text-white hover:bg-[#8B2525] rounded-lg transition"
+                        @click="sidebarOpen = false">
+                        Student
+                    </a>
+
+                    <a href="{{ route('admin.apply.transfer') }}"
+                        class="block px-4 py-2 text-[#d4b896] hover:text-white hover:bg-[#8B2525] rounded-lg transition"
+                        @click="sidebarOpen = false">
+                        Transfer Apply
+                    </a>
                 </div>
             </div>
 

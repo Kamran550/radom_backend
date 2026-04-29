@@ -23,7 +23,7 @@
             <h3 style="color: #2c3e50; margin-top: 0;">Student Portal Login Information</h3>
             <p style="margin-bottom: 10px;">
                 <strong>Portal address:</strong> 
-                <a href="https://student.must.edu.pl" style="color: #007bff;">https://student.must.edu.pl</a>
+                <a href="https://student.radomuniversity.pl" style="color: #007bff;"></a>
             </p>
             <p style="margin-bottom: 10px;">
                 <strong>Username:</strong> {{ $user->username }}

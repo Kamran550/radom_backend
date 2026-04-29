@@ -23,7 +23,7 @@
             <h3 style="color: #2c3e50; margin-top: 0;">Öğrenci Portal Giriş Bilgileri</h3>
             <p style="margin-bottom: 10px;">
                 <strong>Portal adresi:</strong> 
-                <a href="https://student.must.edu.pl" style="color: #007bff;">https://student.must.edu.pl</a>
+                <a href="https://student.radomuniversity.pl" style="color: #007bff;">https://student.radomuniversity.pl</a>
             </p>
             <p style="margin-bottom: 10px;">
                 <strong>Kullanıcı adı:</strong> {{ $user->username }}
@@ -47,7 +47,7 @@
         </p>
         
         @php
-            $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('MUST-' . $student->id . '-' . now()->format('Ymd'));
+            $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('RADOM-' . $student->id . '-' . now()->format('Ymd'));
             $barcodeBase64 = '';
             try {
                 $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())

@@ -15,8 +15,7 @@
         </h1>
 
         <p style="font-size: 16px; margin-bottom: 15px;">
-            We would like to share an important update regarding your transfer application to Mazovia University of
-            Science and Technology.
+            We would like to share an important update regarding your transfer application to RADOM UNIVERSITY.
         </p>
 
         <div
@@ -55,15 +54,15 @@
                 Contact Information:
             </h3>
             <p style="margin: 5px 0; font-size: 14px;">
-                <strong>Email:</strong> <a href="mailto:international@must.edu.pl"
-                    style="color: #007bff; text-decoration: none;">international@must.edu.pl</a>
+                <strong>Email:</strong> <a href="mailto:international@radomuniversity.pl"
+                    style="color: #007bff; text-decoration: none;">international@radomuniversity.pl</a>
             </p>
             <p style="margin: 5px 0; font-size: 14px;">
                 <strong>Phone:</strong> +48 579 277 493
             </p>
             <p style="margin: 5px 0; font-size: 14px;">
-                <strong>Web:</strong> <a href="https://www.must.edu.pl"
-                    style="color: #007bff; text-decoration: none;">www.must.edu.pl</a>
+                <strong>Web:</strong> <a href="https://www.radomuniversity.pl"
+                    style="color: #007bff; text-decoration: none;">www.radomuniversity.pl</a>
             </p>
         </div>
 
@@ -79,7 +78,7 @@
                 International Student Affairs Department
             </p>
             <p style="font-size: 14px; margin: 5px 0; color: #2c3e50; font-weight: bold;">
-                Mazovia University of Science and Technology
+                RADOM UNIVERSITY
             </p>
         </div>
     </div>
@@ -87,7 +86,7 @@
     <div
         style="text-align: center; font-size: 12px; color: #6c757d; margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6;">
         <p style="margin: 5px 0;">
-            © {{ date('Y') }} Mazovia University of Science and Technology. All rights reserved.
+            © {{ date('Y') }} RADOM UNIVERSITY. All rights reserved.
         </p>
         <p style="margin: 5px 0;">
             Aleja Józefa Piłsudskiego 35,

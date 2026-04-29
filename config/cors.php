@@ -8,10 +8,10 @@ return [
     'allowed_origins' => [
         'http://localhost:3000',
         'http://127.0.0.1:3000',
-        'https://must.edu.pl',
-        'https://admin.must.edu.pl',
-        'https://teacher.must.edu.pl',
-        'https://student.must.edu.pl',
+        'https://radomuniversity.pl',
+        'https://admin.radomuniversity.pl',
+        'https://teacher.radomuniversity.pl',
+        'https://student.radomuniversity.pl',
     ],
 
     'allowed_origins_patterns' => [],

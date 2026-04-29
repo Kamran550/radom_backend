@@ -3,8 +3,8 @@
         <!-- Logo -->
         <div class="flex justify-center mb-8">
             <img 
-                src="{{ asset('images/MUST-logo-dark.png') }}" 
-                alt="MUST Logo" 
+                src="{{ asset('images/RADOM-logo-dark.png') }}" 
+                alt="RADOM Logo" 
                 class="max-w-full h-auto"
                 style="max-width: 300px; height: auto;"
             >
@@ -83,7 +83,7 @@
 
         <!-- Footer -->
         <div class="mt-8 text-center text-sm text-gray-500">
-            <p>Mazovia University of Science and Technology</p>
+            <p>RADOM UNIVERSITY</p>
             <p class="mt-1">Document Verification System</p>
         </div>
     </div>
