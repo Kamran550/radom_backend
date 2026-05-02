@@ -2,12 +2,10 @@
     <div class="w-full max-w-md">
         <!-- Logo -->
         <div class="flex justify-center mb-8">
-            <img 
-                src="{{ asset('images/RADOM-logo-dark.png') }}" 
-                alt="RADOM Logo" 
-                class="max-w-full h-auto"
-                style="max-width: 300px; height: auto;"
-            >
+            <div class="text-center leading-tight">
+                <span class="block font-serif text-4xl md:text-5xl font-bold tracking-[0.2em] text-gray-900">Radom</span>
+                <span class="mt-2 block text-sm font-light tracking-[0.42em] text-teal-700 uppercase">University</span>
+            </div>
         </div>
 
         <!-- Verification Form -->

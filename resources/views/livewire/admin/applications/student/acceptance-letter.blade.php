@@ -26,22 +26,9 @@
             min-height: 100vh;
         }
 
-        /* Background Watermark */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background-image: url('{{ public_path('images/RADOM-logo-dark.png') }}');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.08;
-            z-index: -1;
-            pointer-events: none;
+        .letter-meta {
+            font-size: 7.5pt;
+            margin-bottom: 10px;
         }
 
         .header {
@@ -49,83 +36,41 @@
             margin-bottom: 8px;
         }
 
-        .logo-container {
-            text-align: center;
-            padding: 0;
-            position: relative;
-            margin-bottom: 3px;
-            margin-top: 0;
-        }
-
-
-        /* .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0;
-            position: relative;
-        } */
-
-        .logo {
-            max-width: 40mm;
-            height: auto;
-            flex-shrink: 0;
-        }
-
-        .university-name-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2px
-        }
-
-        .header-right-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            font-size: 7.5pt;
-            text-align: right;
-            min-width: 80mm;
-        }
-
         .university-name {
-            font-size: 14pt;
+            font-size: 12pt;
             font-weight: bold;
-            color: #000;
             text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .directorate-name {
-            font-size: 9pt;
-            font-weight: normal;
-            color: #000;
-            text-align: center;
-            margin: 2px 0 0 0;
-            padding: 0;
-        }
-
-        .subject-info {
-            margin: 8px 0 4px 0;
-            font-size: 7.5pt;
-        }
-
-        .subject-info-row {
-            margin: 2px 0;
+            margin: 6px 0 2px 0;
+            letter-spacing: 0.04em;
         }
 
         .document-title {
             font-size: 11pt;
             font-weight: bold;
             text-align: center;
-            margin: 10px 0;
+            margin: 4px 0 12px 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        .applicant-lines {
+            font-size: 7.5pt;
+            line-height: 1.45;
+            margin: 0 0 10px 0;
+        }
+
+        .applicant-lines div {
+            margin: 2px 0;
+        }
+
+        .study-details {
+            font-size: 7.5pt;
+            line-height: 1.45;
+            margin: 10px 0;
+        }
+
+        .study-details div {
+            margin: 2px 0;
         }
 
         .greeting {
@@ -316,89 +261,55 @@
             padding: 0;
         }
 
-        .verification-box-2 {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .verification-box {
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            padding: 12px 15px;
-            flex: 1;
-        }
-
-        .verification-text-box {
-            font-size: 10pt;
-            line-height: 1.5;
+        /* Plain block like sample PDF: heading, URL line, QR + instructions */
+        .verification-pdf {
+            font-size: 7.5pt;
+            line-height: 1.35;
             color: #000;
+            text-align: left;
+            margin-bottom: 8px;
         }
 
-        .doc-number {
+        .verification-pdf-title {
+            margin: 0 0 5px 0;
             font-weight: bold;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 0.5px;
         }
 
-        .qr-code {
-            width: 70px;
-            height: 70px;
-            flex-shrink: 0;
+        .verification-pdf-url {
+            margin: 0 0 8px 0;
+            font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
+            font-size: 7pt;
+            word-break: break-all;
+        }
+
+        .verification-pdf-layout {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .verification-pdf-qr-cell {
+            width: 72px;
+            padding: 0 10px 0 0;
+            vertical-align: top;
+        }
+
+        .verification-pdf-text-cell {
+            vertical-align: top;
+            text-align: justify;
+            font-size: 7.5pt;
+            line-height: 1.35;
+        }
+
+        .verification-pdf-text-cell p {
+            margin: 0;
         }
 
         .footer-divider {
-            height: 2px;
-            background: linear-gradient(90deg, #1a2744 0%, #c5a55a 50%, #1a2744 100%);
-            margin: 5px 0;
-        }
-
-        .verification-card {
-            width: 100%;
-            border: 1.5px solid #1a2744;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 6px;
-        }
-
-        .verification-card-header {
-            background: #1a2744;
-            color: #fff;
-            font-size: 6pt;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 3px 12px;
-            text-align: center;
-        }
-
-        .verification-card-body {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .verification-card-body td {
-            vertical-align: middle;
-        }
-
-        .verification-qr-cell {
-            width: 70px;
-            padding: 6px;
-            text-align: center;
-            background: #f4f6fa;
-            border-right: 1px solid #dde1e8;
-        }
-
-        .verification-info-cell {
-            padding: 6px 10px;
-            font-size: 6.5pt;
-            line-height: 1.5;
-            color: #333;
-        }
-
-        .verification-info-cell strong {
-            color: #1a2744;
+            height: 1px;
+            background: #000;
+            margin: 8px 0 6px 0;
+            opacity: 0.25;
         }
 
         .website-row {
@@ -446,13 +357,6 @@
             font-size: 11pt;
         }
 
-        .date-line {
-            font-weight: bold;
-            font-size: 7.5pt;
-            color: #1a2744;
-            margin-bottom: 4px;
-        }
-
         @media print {
             body {
                 margin: 0;
@@ -467,124 +371,71 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo-container">
-            @php
-                $logoPath = public_path('images/RADOM-simvol.png');
-                $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-                $logoMime = 'image/jpeg';
-            @endphp
-            @if ($logoData)
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
-            @endif
-            <div class="university-name-container">
-                <div class="university-name">
-                    RADOM UNIVERSITY
-                </div>
-                <div class="directorate-name">
-                    Directorate of International Relations
-                </div>
-            </div>
-            <div class="header-right-info">
-                @php
-                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('RADOM-' . $student->id . '-' . now()->format('Ymd'));
-                    $barcodeBase64 = '';
-                    try {
-                        $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
-                            ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
-                        $barcodeBase64 = base64_encode($barcodePng);
-                    } catch (\Throwable $e) {
-                        // fallback - barcode hidden
-                    }
-                @endphp
-                @if ($barcodeBase64)
-                    <div style="margin-bottom: 4px;">
-                        <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode" style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
-                    </div>
-                @endif
-                <div>Date: {{ now()->format('d/m/Y') }}</div>
-            </div>
-        </div>
+    @php
+        $facultyName = $student->application->program?->faculty?->name ?? 'N/A';
+        $programName = $student->application->program?->name ?? 'N/A';
+        $durationStudies = $student->application->program?->degree?->duration ?? 'N/A';
+        $beginStudiesYear = now()->month <= 8 ? now()->year : now()->addYear()->year;
+        $priceYear = (float) ($student->application->program?->price_per_year ?? 4000);
+        $tuitionSemesterEur = $priceYear > 0 ? round($priceYear / 2) : 3000;
+        $studyLangLabel = $student->study_language === 'en' ? 'English' : 'Turkish';
+        $citizenship = $student->nationality ?: ($student->country ?? 'N/A');
+        $dob = $student->date_of_birth ? $student->date_of_birth->format('Y-m-d') : 'N/A';
+        $refNo = $student->application_number ?? ('RADOM/' . $student->id);
+    @endphp
 
-        <!-- Subject and Application Code -->
-        <div class="subject-info">
-            <div class="subject-info-row">
-                Subject: {{ $student->application->program?->degree?->name ?? 'N/A' }} Degree - CONDITIONAL ACCEPTANCE
-                LETTER
-            </div>
-            <div class="subject-info-row">
-                Application Code: {{ $student->application_number ?? 'N/A' }}
-            </div>
-            <div class="subject-info-row">
-                Dear {{ tr_upper(text: $student->first_name . ' ' . $student->last_name) }}
-            </div>
-            <div>
-                Conditional Acceptance Letter
-            </div>
-
-        </div>
+    <div class="letter-meta">
+        Płock, Poland, {{ now()->format('d.m.Y') }} {{ $refNo }}
     </div>
 
-    <!-- Document Title -->
-    <!-- Introduction Content -->
-    <div class="content">
-        <p style="font-size: 9pt; font-weight: bold; color: #1a2744; margin-bottom: 6px;">
-            Congratulations!
-        </p>
-        <p>
-            Your application to RADOM UNIVERSITY for the
-            {{ now()->format('Y') }}-{{ now()->addYear()->format('Y') }} academic year Fall semester has been
-            successfully approved. We are excited for you to be a member of the RADOM UNIVERSITY and to join a
-            dynamic and diverse student community in a place of endless opportunities. This letter is to confirm
-            your conditional acceptance into
-            <strong>{{ strtoupper($student->application->program?->name ?? 'N/A') }}</strong>
-            {{ $student->application->program?->degree?->name ?? 'N/A' }} degree program under the
-            <strong>{{ $student->application->program?->faculty?->name ?? 'N/A' }}</strong>.
-            The duration of the program is
-            {{ $student->application->program?->degree?->duration ?? 'N/A' }} years, and the medium of
-            instruction is {{ $student->study_language === 'EN' ? 'English' : 'Turkish' }}.
-        </p>
-    </div>
-    <br>
+    <div class="university-name">Radom University</div>
+    <div class="document-title">Conditional Letter of Acceptance</div>
 
-    <!-- Tuition Fee -->
-
-    <div class="info-grid">
-        <div class="info-row">
-            <div class="info-label">Annual Program Tuition Fee</div>
-            <div class="info-value"><strong>4000 EUR</strong></div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Tuition Fee with Discount</div>
-            <div class="info-value"><strong>1000 EUR</strong></div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Scholarship</div>
-            <div class="info-value"><strong>75%</strong></div>
-        </div>
-        <div class="info-row">
-            <div class="info-label">Amount of Deposit Payment</div>
-            <div class="info-value"><strong>1000 EUR</strong></div>
-        </div>
+    <div class="applicant-lines">
+        <div><strong>Family name:</strong> {{ $student->last_name }}</div>
+        <div><strong>First name:</strong> {{ $student->first_name }}</div>
+        <div><strong>Citizenship:</strong> {{ $citizenship }}</div>
+        <div><strong>Date of birth:</strong> {{ $dob }}</div>
+        <div><strong>Passport:</strong> {{ $student->passport_number ?? 'N/A' }}</div>
     </div>
-    <br>
-    <br>
-    <!-- Section 1 -->
-    {{-- <div class="section-header">1. Condition for Issuing the Acceptance Letter</div> --}}
-    <div class="subsection-title">Deposit Payment</div>
+
     <div class="content">
         <p>
-            The official Acceptance Letter will be issued upon payment of a non-refundable deposit of 1000 EUR, either
-            by credit card via the RADOM Application
-            Platform or by bank transfer to the University's bank account. For all bank transfers; name, surname and
-            application number must be provided. The
-            bank account details are provided below. To proceed to the next stage of your application, you are required
-            to upload a copy of the bank receipt or payment confirmation to the RADOM Application Platform after
-            completing the transfer.
+            It is a great pleasure for me to inform you that you successfully passed the entrance examination of the
+            {{ $facultyName }} of Radom University, Poland.
         </p>
     </div>
-    <br>
+
+    <div class="study-details">
+        <div><strong>Study Location:</strong> Płock, Poland</div>
+        <div><strong>Study language:</strong> {{ $studyLangLabel }}</div>
+        <div><strong>Study Programme:</strong> {{ $programName }}</div>
+        <div><strong>Study level:</strong> full-time</div>
+        <div><strong>Duration of studies:</strong> {{ is_numeric($durationStudies) ? $durationStudies . ' years' : $durationStudies }}</div>
+        <div><strong>Beginning of studies:</strong> September {{ $beginStudiesYear }}</div>
+    </div>
+
+    <div class="content">
+        <p>On receiving the first semester tuition fee and the accommodation fee:</p>
+        <p>
+            The tuition fee /semester: €{{ number_format($tuitionSemesterEur, 0, '.', ',') }} per semester EUR<br>
+            The accommodation fee / semester: 650 EUR
+        </p>
+        <p>FINAL LETTER OF ACCEPTANCE is issued and sent to you to start your VISA application.</p>
+        <p>The tuition fee is primarily non-refundable, except in the case of visa refusal.</p>
+        <p>
+            Accommodation is provided to you in the student dormitories of Radom University, situated at the campus.<br>
+            Address: Poland – 09-407 Płock, Aleja Józefa Piłsudskiego 35.
+        </p>
+        <p>
+            You can find the invoices for the first semester tuition and accommodation fee by logging into your RADOM
+            Application Platform account and checking the “Invoice” section. By clicking on the invoice, you will see the
+            available payment options.
+        </p>
+        <p>For payment by bank transfer to the University’s account, please use the bank details below. For all bank transfers, name, surname and application number must be provided. After completing the transfer, upload a copy of the bank receipt or payment confirmation to the RADOM Application Platform.</p>
+        <p>We look forward to welcoming you at Radom University.</p>
+    </div>
+
     <!-- Payment Table -->
     <table class="payment-table">
         <thead>
@@ -622,131 +473,39 @@
     </table>
 
     <br>
-    <br>
-    <br>
 
-    <!-- English Language Proficiency Requirements -->
-    {{-- <div class="section-header">English Language Proficiency Requirements</div>
-
-    <table class="proficiency-table">
-        <thead>
-            <tr>
-                <th style="width: 18%;">Test Name</th>
-                <th style="width: 20%;">Requirement Level 1</th>
-                <th style="width: 20%;">Requirement Level 2</th>
-                <th style="width: 20%;">Requirement Level 3</th>
-                <th style="width: 18%;">Requirement Level 4</th>
-                <th style="width: 10%;">Validity</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>PTE Academic</strong><br>(Pearson Test of English Academic)</td>
-                <td>At least 69 overall with a minimum of 59 in all communicative skills.</td>
-                <td>At least 69 overall with a minimum of 62 in all communicative skills.</td>
-                <td>At least 76 overall with a minimum of 62 in all communicative skills.</td>
-                <td>At least 80 overall with a minimum of 80 in all communicative skills.</td>
-                <td>Two calendar years</td>
-            </tr>
-            <tr>
-                <td><strong>TOEFL iBT</strong><br>(including Home Edition)</td>
-                <td>At least 90 overall with minimum scores of 17 for writing, 17 for listening, 18 for reading, and 20
-                    for speaking.</td>
-                <td>At least 90 overall with a minimum of 20 in each subskill.</td>
-                <td>At least 100 overall with a minimum of 20 in each subskill.</td>
-                <td>At least 109 overall with a minimum of 26 in speaking and 24 in all other subskills.</td>
-                <td>Two calendar years</td>
-            </tr>
-            <tr>
-                <td><strong>IELTS (Academic)</strong><br>test from a recognized IELTS test centre (including one skill
-                    retake).</td>
-                <td>At least 6.5 overall with a minimum of 5.5 in each subskill.</td>
-                <td>At least 6.5 overall with a minimum of 6.0 in each subskill.</td>
-                <td>At least 7.0 overall with at least 6.0 in each subskill.</td>
-                <td>At least 7.5 overall with at least 7.5 in each subskill.</td>
-                <td>Two calendar years</td>
-            </tr>
-        </tbody>
-    </table> --}}
-
-
-    <!-- English Proficiency and Preparatory Exam -->
-    <div class="subsection-title">English Proficiency and Preparatory Exam</div>
-    <div class="content">
-        <p>
-            Students who do not have an English proficiency certificate, or those who will study in Polish, must take a
-            proficiency exam.
-            The tuition fees of students who register for their departments but fail the preparatory exam will be
-            counted towards the preparatory
-            class fee, and any remaining balance will be collected at the beginning of the academic year.
-        </p>
-    </div>
-
-    <!-- Conditional Acceptance Notice -->
-    <div class="section-header">Conditional Acceptance</div>
-    <div class="content">
-        <p>
-            This letter constitutes a <strong>conditional acceptance</strong> to the program indicated above. Your final
-            enrollment is subject to the university's verification of your submitted documents and compliance with all
-            admission requirements. You will receive a <strong>Final Acceptance Letter</strong> once your file has been
-            fully reviewed and approved. Until then, please ensure that you complete any pending steps (e.g. language
-            proficiency, document submission, or payment) as communicated by the International Admissions Office.
-        </p>
-    </div>
-
-    <!-- Additional Information -->
-    <div class="content">
-        <p>
-            For inquiries regarding application, payment, registration, etc., please contact us at:
-            <strong>international@radomuniversity.pl</strong>
-        </p>
-    </div>
-
-    <!-- Closing -->
-    <div class="closing-section">
-        <p>Sincerely,</p>
-        <p><strong>International Admissions Office</strong></p>
-    </div>
-
-
-    <!-- Footer Section -->
+    <!-- Footer Section (verification block styled like sample PDF) -->
     <div class="verification-footer">
-        <!-- Date -->
-        <div class="date-line">
-            Date: {{ now()->format('d/m/Y') }}
-        </div>
+        @php
+            $verificationCodeForUrl = $verificationCode ?? null;
+            $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
+            $codeForEntry = $verificationCode ? strtoupper(trim($verificationCode)) : '—';
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                ->size(70)
+                ->generate($verificationUrl);
+            $qrCodeBase64 = base64_encode($qrCode);
+        @endphp
 
-        <!-- Verification Card with QR -->
-        <div class="verification-card">
-            <div class="verification-card-header">
-                Document Verification
-            </div>
-            <table class="verification-card-body">
+        <div class="verification-pdf">
+            <p class="verification-pdf-title">Check the authenticity of this document:</p>
+            <p class="verification-pdf-url">{{ $verificationUrl }}</p>
+            <table class="verification-pdf-layout">
                 <tr>
-                    <td class="verification-qr-cell">
-                        @php
-                            $verificationCodeForUrl = $verificationCode ?? null;
-                            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                                ->size(70)
-                                ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                            $qrCodeBase64 = base64_encode($qrCode);
-                        @endphp
-                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}"
-                            style="width: 56px; height: 56px;" />
+                    <td class="verification-pdf-qr-cell">
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
+                            style="width: 64px; height: 64px; display: block;" />
                     </td>
-                    <td class="verification-info-cell">
-                        This document was e-signed for
-                        <strong>{{ tr_upper($student->first_name . ' ' . $student->last_name) }}</strong> on
-                        {{ now()->format('d/m/Y') }} with document number
-                        <strong>{{ $verificationCode ?? strtoupper(\Illuminate\Support\Str::random(12)) }}</strong>.
-                        The validity of the document can be confirmed by scanning the QR code or by document number at
-                        <strong>{{ $student->getVerificationUrl() }}</strong>
+                    <td class="verification-pdf-text-cell">
+                        <p>
+                            Scan the QR code or open the link manually in order to check for authenticity of this
+                            document. When prompted, type this verification code:
+                            <strong>{{ $codeForEntry }}</strong>
+                        </p>
                     </td>
                 </tr>
             </table>
         </div>
 
-        <!-- Divider Line -->
         <div class="footer-divider"></div>
 
         <!-- Footer Bottom Section -->

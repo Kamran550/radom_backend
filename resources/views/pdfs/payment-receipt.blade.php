@@ -50,6 +50,32 @@
             height: auto;
         }
 
+        .brand-wordmark {
+            text-align: center;
+            margin-bottom: 4px;
+            line-height: 1.05;
+        }
+
+        .brand-wordmark-primary {
+            display: block;
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 15pt;
+            font-weight: bold;
+            color: #1f2937;
+            letter-spacing: 0.14em;
+        }
+
+        .brand-wordmark-secondary {
+            display: block;
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-size: 8.5pt;
+            font-weight: normal;
+            color: #4b5563;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
         .university-name-container {
             text-align: center;
         }
@@ -231,17 +257,10 @@
     <!-- Header -->
     <div class="header">
         <div class="logo-container">
-            @php
-                $logoPath = public_path(path: 'images/RADOM-simvol.png');
-                $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-                $logoMime = 'image/jpeg';
-            @endphp
-            @if ($logoData)
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
-            @endif
             <div class="university-name-container">
-                <div class="university-name">
-                    RADOM UNIVERSITY
+                <div class="brand-wordmark">
+                    <span class="brand-wordmark-primary">Radom</span>
+                    <span class="brand-wordmark-secondary">University</span>
                 </div>
             </div>
         </div>

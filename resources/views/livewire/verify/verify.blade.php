@@ -7,12 +7,9 @@
 
     <header class="relative z-10 border-b border-slate-200/80 bg-white/80 backdrop-blur-md shadow-[0_1px_0_rgba(15,23,42,0.04)]">
         <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <img
-                    src="{{ asset('images/RADOM-logo-dark.png') }}"
-                    alt="RADOM Logo"
-                    class="h-12 sm:h-16 md:h-[4.25rem] w-auto object-contain"
-                >
+            <div class="flex flex-col leading-tight">
+                <span class="font-serif text-xl sm:text-2xl md:text-3xl font-bold tracking-[0.18em] text-slate-900">Radom</span>
+                <span class="text-[10px] sm:text-xs font-light tracking-[0.38em] text-teal-700 uppercase">University</span>
             </div>
             <span class="hidden sm:inline-flex text-xs font-medium uppercase tracking-[0.2em] text-teal-700/80">
                 Official verify

@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'verify_domain' => env('VERIFY_DOMAIN', 'validate.radomuniversity.pl'),
+    'verify_domain' => env('VERIFY_DOMAIN', 'verify.radomuniversity.pl'),
 
     /*
     |--------------------------------------------------------------------------

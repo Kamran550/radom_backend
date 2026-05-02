@@ -51,6 +51,31 @@
             height: 70px;
         }
 
+        .brand-wordmark-header-pdf {
+            text-align: center;
+            line-height: 1.05;
+            padding-top: 6px;
+        }
+
+        .brand-wordmark-header-pdf .bwh-primary {
+            display: block;
+            font-family: Georgia, 'DejaVu Serif', serif;
+            font-size: 11pt;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 0.08em;
+        }
+
+        .brand-wordmark-header-pdf .bwh-secondary {
+            display: block;
+            font-size: 7pt;
+            font-weight: normal;
+            color: #fbbf24;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
         .qr-container {
             float: right;
             width: 70px;
@@ -218,7 +243,10 @@
     <!-- Header -->
     <div class="header clearfix">
         <div class="logo-container">
-            <img src="{{ public_path('images/RADOM-simvol.png') }}" alt="RADOM Logo" class="logo">
+            <div class="brand-wordmark-header-pdf">
+                <span class="bwh-primary">Radom</span>
+                <span class="bwh-secondary">University</span>
+            </div>
         </div>
 
         <div class="qr-container">

@@ -1,34 +1,33 @@
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-100 via-white to-emerald-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <!-- Logo and Title -->
         <div class="text-center">
             <div class="flex justify-center mb-6">
-                <div class="bg-[#6E0C0C] p-4 rounded-2xl shadow-lg">
-                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
+                <div class="bg-cyan-700 px-8 py-5 rounded-2xl shadow-lg text-center">
+                    <span class="block font-serif text-2xl font-bold tracking-[0.2em] text-white">Radom</span>
+                    <span class="mt-1 block text-[11px] font-light tracking-[0.4em] text-cyan-100 uppercase">University</span>
                 </div>
             </div>
-            <h2 class="text-3xl font-extrabold text-gray-900">
+            <h2 class="text-3xl font-extrabold text-slate-900">
                 Admin Panel
             </h2>
-            <p class="mt-2 text-sm text-gray-600">
+            <p class="mt-2 text-sm text-slate-600">
                 Login to your account
             </p>
         </div>
 
         <!-- Login Form -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+        <div class="bg-cyan-50 rounded-2xl shadow-xl p-8 space-y-6 border border-cyan-200">
             @if($error)
-                <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded">
+                <div class="bg-rose-50 border-l-4 border-rose-400 p-4 rounded">
                     <div class="flex">
                         <div class="shrink-0">
-                            <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="h-5 w-5 text-rose-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm text-red-700">{{ $error }}</p>
+                            <p class="text-sm text-rose-700">{{ $error }}</p>
                         </div>
                     </div>
                 </div>
@@ -37,12 +36,12 @@
             <form wire:submit="login" class="space-y-6">
                 <!-- Email Field -->
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="email" class="block text-sm font-medium text-slate-700 mb-2">
                         Email Address
                     </label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
                             </svg>
                         </div>
@@ -53,23 +52,23 @@
                             wire:model="email"
                             autocomplete="email" 
                             required 
-                            class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('email') border-red-300 @enderror"
+                            class="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition duration-150 @error('email') border-rose-300 @enderror"
                             placeholder="Enter your email address"
                         >
                     </div>
                     @error('email')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Password Field -->
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="password" class="block text-sm font-medium text-slate-700 mb-2">
                         Password
                     </label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                             </svg>
                         </div>
@@ -80,12 +79,12 @@
                             wire:model="password"
                             autocomplete="current-password" 
                             required 
-                            class="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150 @error('password') border-red-300 @enderror"
+                            class="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition duration-150 @error('password') border-rose-300 @enderror"
                             placeholder="••••••••"
                         >
                     </div>
                     @error('password')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -97,9 +96,9 @@
                             name="remember" 
                             type="checkbox" 
                             wire:model="remember"
-                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                            class="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-slate-300 rounded"
                         >
-                        <label for="remember" class="ml-2 block text-sm text-gray-700">
+                        <label for="remember" class="ml-2 block text-sm text-slate-700">
                             Remember Me
                         </label>
                     </div>
@@ -111,7 +110,7 @@
                         type="submit"
                         wire:loading.attr="disabled"
                         wire:target="login"
-                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-[#6E0C0C] hover:bg-[#8B2525] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6E0C0C] transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-cyan-700 hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-600 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                     >
                         <span wire:loading.remove wire:target="login">
                             Login
@@ -129,7 +128,7 @@
 
         <!-- Footer -->
         <div class="text-center">
-            <p class="text-xs text-gray-500">
+            <p class="text-xs text-slate-500">
                 © {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
             </p>
         </div>

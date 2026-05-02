@@ -1,22 +1,21 @@
 <div class="min-h-screen flex relative">
     <!-- Logo - Top Left -->
     <div class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 z-10">
-        <img 
-            src="{{ asset('images/RADOM-logo-dark.png') }}" 
-            alt="RADOM Logo" 
-            class="h-24 sm:h-24 lg:h-24 w-auto object-contain"
-        >
+        <div class="flex flex-col leading-tight">
+            <span class="font-serif text-3xl sm:text-4xl font-bold tracking-[0.2em] text-slate-900">Radom</span>
+            <span class="text-xs font-light tracking-[0.42em] text-cyan-700 uppercase">University</span>
+        </div>
     </div>
 
     <!-- Left Side - Login Form -->
-    <div class="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-8 bg-slate-50">
         <div class="w-full max-w-md mx-auto">
             <!-- Title -->
             <div class="mb-4 sm:mb-6">
-                <h2 class="text-3xl font-extrabold text-gray-900">
+                <h2 class="text-3xl font-extrabold text-slate-900">
                     Login
                 </h2>
-                <p class="mt-2 text-sm text-gray-600">
+                <p class="mt-2 text-sm text-slate-600">
                     Welcome back! Please login to your account.
                 </p>
             </div>
@@ -24,15 +23,15 @@
             <!-- Login Form -->
             <div class="space-y-6">
                 @if($error)
-                    <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded">
+                    <div class="bg-rose-50 border-l-4 border-rose-400 p-4 rounded">
                         <div class="flex">
                             <div class="shrink-0">
-                                <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="h-5 w-5 text-rose-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
                             <div class="ml-3">
-                                <p class="text-sm text-red-700">{{ $error }}</p>
+                                <p class="text-sm text-rose-700">{{ $error }}</p>
                             </div>
                         </div>
                     </div>
@@ -41,7 +40,7 @@
                 <form wire:submit="login" class="space-y-6">
                     <!-- Email/Username Field -->
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="email" class="block text-sm font-medium text-slate-700 mb-2">
                             E-mail/Username/Student No
                         </label>
                         <input 
@@ -51,17 +50,17 @@
                             wire:model="email"
                             autocomplete="username" 
                             required 
-                            class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('email') border-red-300 @enderror"
+                            class="appearance-none block w-full px-4 py-3 border border-slate-300 rounded-lg placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition duration-150 @error('email') border-rose-300 @enderror"
                             placeholder="Type your email or username"
                         >
                         @error('email')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- Password Field -->
                     <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="password" class="block text-sm font-medium text-slate-700 mb-2">
                             Password
                         </label>
                         <div class="relative">
@@ -72,13 +71,13 @@
                                 wire:model="password"
                                 autocomplete="current-password" 
                                 required 
-                                class="appearance-none block w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E0C0C] focus:border-transparent transition duration-150 @error('password') border-red-300 @enderror"
+                                class="appearance-none block w-full px-4 py-3 pr-10 border border-slate-300 rounded-lg placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent transition duration-150 @error('password') border-rose-300 @enderror"
                                 placeholder="Type your password"
                             >
                             <button 
                                 type="button"
                                 onclick="togglePassword()"
-                                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
                             >
                                 <svg id="eye-icon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -90,7 +89,7 @@
                             </button>
                         </div>
                         @error('password')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -100,7 +99,7 @@
                             type="submit"
                             wire:loading.attr="disabled"
                             wire:target="login"
-                            class="w-full flex justify-center py-3 px-4 border border-transparent text-base font-medium rounded-lg text-white bg-[#6E0C0C] hover:bg-[#8B2525] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6E0C0C] transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent text-base font-medium rounded-lg text-white bg-cyan-700 hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-600 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <span wire:loading.remove wire:target="login">
                                 Login

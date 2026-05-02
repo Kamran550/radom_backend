@@ -1,16 +1,17 @@
 <aside x-cloak :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-    class="fixed lg:static inset-y-0 left-0 z-50 w-64 bg-[#6E0C0C] text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 shrink-0">
+    class="fixed lg:static inset-y-0 left-0 z-50 w-64 bg-[#0B4F4A] text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 shrink-0">
 
     <div class="h-full flex flex-col">
 
         <!-- Logo -->
-        <div class="px-4 py-4 border-b border-[#853535] flex items-center justify-between">
-            <div class="flex items-center">
-                <img src="{{ asset('images/RADOM-logo-dark.png') }}" alt="RADOM Logo" class="h-17 w-auto object-contain">
+        <div class="px-4 py-4 border-b border-[#147A73] flex items-center justify-between">
+            <div class="flex flex-col leading-tight">
+                <span class="font-serif text-xl font-bold tracking-[0.18em] text-white">Radom</span>
+                <span class="text-[10px] font-light tracking-[0.38em] text-[#BDEDE6] uppercase">University</span>
             </div>
 
             <!-- Close (mobile only) -->
-            <button @click="sidebarOpen = false" class="lg:hidden text-[#d4b896] hover:text-white focus:outline-none">
+            <button @click="sidebarOpen = false" class="lg:hidden text-[#BDEDE6] hover:text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -22,7 +23,7 @@
 
             <!-- Dashboard -->
             <a href="{{ route('student.dashboard') }}"
-                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#E1F7F4] hover:bg-[#0E675F] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,7 +34,7 @@
 
             <!-- Lessons -->
             <a href="#"
-                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#E1F7F4] hover:bg-[#0E675F] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,7 +45,7 @@
 
             <!-- Assignments -->
             <a href="#"
-                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#E1F7F4] hover:bg-[#0E675F] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,7 +56,7 @@
 
             <!-- Exams -->
             <a href="#"
-                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#E1F7F4] hover:bg-[#0E675F] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -66,7 +67,7 @@
 
             <!-- Documents -->
             <a href="#"
-                class="flex items-center px-4 py-3 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition"
+                class="flex items-center px-4 py-3 text-[#E1F7F4] hover:bg-[#0E675F] hover:text-white rounded-lg transition"
                 @click="sidebarOpen = false">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -79,18 +80,18 @@
 
         <!-- Profile Section -->
         @auth
-            <div class="border-t border-[#853535] p-4">
+            <div class="border-t border-[#147A73] p-4">
                 <div x-data="{ profileOpen: false }" class="relative">
                     <!-- Profile Button -->
                     <button @click="profileOpen = !profileOpen" @click.away="profileOpen = false"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-[#e8d5d5] hover:bg-[#8B2525] hover:text-white rounded-lg transition">
+                        class="w-full flex items-center gap-3 px-3 py-2 text-[#E1F7F4] hover:bg-[#0E675F] hover:text-white rounded-lg transition">
                         <!-- Profile Icon -->
                         @if (Auth::user()->profile_photo)
                             <img src="{{ Storage::disk('do_spaces')->url(Auth::user()->profile_photo) }}"
                                 alt="{{ Auth::user()->name }}"
-                                class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-[#C49F5F]">
+                                class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-[#3EC9B5]">
                         @else
-                            <div class="w-10 h-10 bg-[#C49F5F] rounded-full flex items-center justify-center shrink-0">
+                            <div class="w-10 h-10 bg-[#3EC9B5] rounded-full flex items-center justify-center shrink-0">
                                 <span class="text-white font-semibold text-sm">
                                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}{{ strtoupper(substr(Auth::user()->surname ?? '', 0, 1)) }}
                                 </span>
@@ -101,7 +102,7 @@
                             <p class="text-sm font-medium truncate">
                                 {{ Auth::user()->name }} {{ Auth::user()->surname }}
                             </p>
-                            <p class="text-xs text-[#d4b896] truncate">
+                            <p class="text-xs text-[#BDEDE6] truncate">
                                 {{ Auth::user()->email }}
                             </p>
                         </div>
@@ -119,11 +120,11 @@
                         x-transition:leave="transition ease-in duration-75"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95" style="display: none;"
-                        class="absolute bottom-full left-0 right-0 mb-2 bg-[#8B2525] rounded-lg shadow-lg overflow-hidden z-50">
+                        class="absolute bottom-full left-0 right-0 mb-2 bg-[#0E675F] rounded-lg shadow-lg overflow-hidden z-50">
 
                         <!-- Profile Settings -->
                         <a href="{{ route('student.profile') }}" @click="profileOpen = false"
-                            class="w-full flex items-center gap-3 px-4 py-3 text-[#e8d5d5] hover:bg-[#6E0C0C] hover:text-white transition text-left">
+                            class="w-full flex items-center gap-3 px-4 py-3 text-[#E1F7F4] hover:bg-[#0B4F4A] hover:text-white transition text-left">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -132,7 +133,7 @@
                         </a>
 
                         <!-- Divider -->
-                        <div class="border-t border-[#853535]"></div>
+                        <div class="border-t border-[#147A73]"></div>
 
                         <!-- Logout -->
                         @livewire('student.auth.logout')

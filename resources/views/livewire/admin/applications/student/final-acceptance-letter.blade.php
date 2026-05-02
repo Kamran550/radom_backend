@@ -27,20 +27,20 @@
 
         /* Watermark */
         body::before {
-            content: '';
+            content: 'Radom University';
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background-image: url('{{ public_path(path: 'images/RADOM-simvol.png') }}');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 40pt;
+            font-weight: bold;
+            color: #1a2744;
             opacity: 0.05;
             z-index: -1;
             pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: 0.06em;
         }
 
         /* ── Header ── */
@@ -66,13 +66,38 @@
         }
 
         .logo-cell {
-            width: 70px;
+            width: 92px;
             text-align: left;
+            vertical-align: middle;
         }
 
         .logo {
             max-width: 22mm;
             height: auto;
+        }
+
+        .brand-wordmark-compact {
+            line-height: 1.05;
+        }
+
+        .brand-wordmark-compact .brand-wordmark-primary {
+            display: block;
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 11pt;
+            font-weight: bold;
+            color: #1a2744;
+            letter-spacing: 0.1em;
+        }
+
+        .brand-wordmark-compact .brand-wordmark-secondary {
+            display: block;
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-size: 6pt;
+            font-weight: normal;
+            color: #3d5a80;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-top: 1px;
         }
 
         .title-cell {
@@ -364,14 +389,10 @@
         <table class="header-table">
             <tr>
                 <td class="logo-cell">
-                    @php
-                        $logoPath = public_path('images/RADOM-simvol.png');
-                        $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-                        $logoMime = 'image/jpeg';
-                    @endphp
-                    @if ($logoData)
-                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
-                    @endif
+                    <div class="brand-wordmark-compact">
+                        <span class="brand-wordmark-primary">Radom</span>
+                        <span class="brand-wordmark-secondary">University</span>
+                    </div>
                 </td>
                 <td class="title-cell">
                     <div class="university-name">

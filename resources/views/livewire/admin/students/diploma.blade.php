@@ -118,6 +118,33 @@
             margin-right: 3mm;
         }
 
+        .brand-wordmark-inline {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 3mm;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .brand-wordmark-inline .brand-wordmark-primary {
+            display: block;
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 16pt;
+            font-weight: bold;
+            color: #8B0000;
+            letter-spacing: 0.12em;
+        }
+
+        .brand-wordmark-inline .brand-wordmark-secondary {
+            display: block;
+            font-size: 8pt;
+            font-weight: normal;
+            color: #1a365d;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-top: 1px;
+        }
+
         .university-info {
             display: inline-block;
             vertical-align: middle;
@@ -416,15 +443,11 @@
         <div class="content">
             <!-- Header -->
             <div class="header">
-                @php
-                    $logoPath = public_path('images/RADOM-simvol.png');
-                    $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-                    $logoMime = 'image/png';
-                @endphp
                 <div class="header-content">
-                    @if ($logoData)
-                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
-                    @endif
+                    <div class="brand-wordmark-inline">
+                        <span class="brand-wordmark-primary">Radom</span>
+                        <span class="brand-wordmark-secondary">University</span>
+                    </div>
                     <div class="university-info">
                         <div class="university-name">RADOM UNIVERSITY</div>
                         <div class="university-subtitle">Business Eurasia Education Alliance</div>

@@ -26,20 +26,20 @@
 
         /* Watermark */
         body::before {
-            content: '';
+            content: 'Radom University';
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background-image: url('{{ public_path('images/RADOM-simvol.png') }}');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 40pt;
+            font-weight: bold;
+            color: #1a2744;
             opacity: 0.05;
             z-index: -1;
             pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: 0.06em;
         }
 
         /* ── Header ── */
@@ -65,13 +65,38 @@
         }
 
         .logo-cell {
-            width: 70px;
+            width: 92px;
             text-align: left;
+            vertical-align: middle;
         }
 
         .logo {
             max-width: 22mm;
             height: auto;
+        }
+
+        .brand-wordmark-compact {
+            line-height: 1.05;
+        }
+
+        .brand-wordmark-compact .brand-wordmark-primary {
+            display: block;
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 11pt;
+            font-weight: bold;
+            color: #1a2744;
+            letter-spacing: 0.1em;
+        }
+
+        .brand-wordmark-compact .brand-wordmark-secondary {
+            display: block;
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-size: 6pt;
+            font-weight: normal;
+            color: #3d5a80;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-top: 1px;
         }
 
         .title-cell {
@@ -138,7 +163,7 @@
             margin: 0;
             padding: 6px 0;
             display: inline-block;
-            border-bottom: 2px solid #c5a55a;
+            border-bottom: 2px solidrgb(27, 84, 205);
         }
 
         /* ── Student Info (Bilingual labels) ── */
@@ -166,14 +191,6 @@
             border-collapse: collapse;
             font-size: 7pt;
             line-height: 1.2;
-        }
-
-        .info-table tr {
-            border-bottom: 1px solid #e8e8e8;
-        }
-
-        .info-table tr:last-child {
-            border-bottom: none;
         }
 
         .info-table td {
@@ -301,60 +318,67 @@
             font-weight: bold;
             font-size: 6.5pt;
             color: #1a2744;
-            margin-bottom: 2px;
+            margin-bottom: 6px;
         }
 
-        .verification-card {
-            width: 100%;
-            border: 1px solid #1a2744;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 4px;
+        /* Plain verification block (same layout as conditional acceptance letter) */
+        .verification-pdf {
+            font-size: 7pt;
+            line-height: 1.35;
+            color: #1a1a1a;
+            text-align: left;
+            margin-bottom: 8px;
         }
 
-        .verification-card-header {
-            background: #1a2744;
-            color: #fff;
-            font-size: 5.5pt;
+        .verification-pdf-title {
+            margin: 0 0 5px 0;
             font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 3px 12px;
-            text-align: center;
         }
 
-        .verification-card-body {
+        .verification-pdf-url {
+            margin: 0 0 8px 0;
+            font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
+            font-size: 6.5pt;
+            word-break: break-all;
+        }
+
+        .verification-pdf-layout {
             width: 100%;
             border-collapse: collapse;
+            margin: 0;
         }
 
-        .verification-card-body td {
-            vertical-align: middle;
+        .verification-pdf-qr-cell {
+            width: 72px;
+            padding: 0 10px 0 0;
+            vertical-align: top;
         }
 
-        .verification-qr-cell {
-            width: 60px;
-            padding: 4px;
-            text-align: center;
-            background: #f4f6fa;
-            border-right: 1px solid #dde1e8;
-        }
-
-        .verification-info-cell {
-            padding: 4px 8px;
-            font-size: 6pt;
+        .verification-pdf-text-cell {
+            vertical-align: top;
+            text-align: justify;
+            font-size: 7pt;
             line-height: 1.35;
-            color: #333;
         }
 
-        .verification-info-cell strong {
-            color: #1a2744;
+        .verification-pdf-text-cell p {
+            margin: 0;
+        }
+
+        .verification-pdf-text-cell p + p {
+            margin-top: 5px;
+        }
+
+        .verification-pdf-text-cell .en {
+            font-style: italic;
+            color: #444;
         }
 
         .bottom-divider {
-            height: 2px;
-            background: linear-gradient(90deg, #1a2744 0%, #c5a55a 50%, #1a2744 100%);
-            margin: 5px 0;
+            height: 1px;
+            background: #000;
+            margin: 8px 0 6px 0;
+            opacity: 0.25;
         }
 
         .address-block {
@@ -444,33 +468,26 @@
 
     <!-- Top Accent Line -->
     <div class="header-top-accent"></div>
-{{ now()->format('d/m/Y') }}
     <!-- Header -->
     <div class="header-wrapper">
         <div class="ref-number">
             Numer referencyjny / Reference No:
             {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
-            {{ now()->format('d/m/Y') }}
-
         </div>
         <table class="header-table">
             <tr>
                 <td class="logo-cell">
-                    @php
-                        $logoPath = public_path('images/RADOM-simvol.png');
-                        $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-                        $logoMime = 'image/jpeg';
-                    @endphp
-                    @if ($logoData)
-                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
-                    @endif
+                    <div class="brand-wordmark-compact">
+                        <span class="brand-wordmark-primary">Radom</span>
+                        <span class="brand-wordmark-secondary">University</span>
+                    </div>
                 </td>
                 <td class="title-cell">
                     <div class="university-name">
                         RADOM UNIVERSITY
                     </div>
                     <div class="department-name">
-                        Wydział Spraw Studenckich / Student Affairs Department
+                        Wydział Spraw Studenckich / Office of Student Affairs
                     </div>
                 </td>
                 <td class="date-barcode-cell">
@@ -493,8 +510,7 @@
                                 style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
                         </div>
                     @endif
-                    <div class="date-text">{{ now()->format('d/m/Y') }}
-</div>
+                    <div class="date-text">{{ now()->format('d/m/Y') }}</div>
                 </td>
             </tr>
         </table>
@@ -502,7 +518,7 @@
 
     <!-- Document Title (Bilingual) -->
     <div class="document-title">
-        <h1>ZAŚWIADCZENIE STUDENCKIE | DOCUMENTATION OF STUDENT STATUS</h1>
+        <h1>ZAŚWIADCZENIE STUDENCKIE | CERTIFICATE OF STUDENT STATUS</h1>
     </div>
 
     <!-- Student Information (Bilingual: PL / EN) -->
@@ -569,8 +585,7 @@
                 </tr>
                 <tr>
                     <td class="label-col">Data rejestracji / Registration date</td>
-                    <td class="value-col">{{ now()->format('d/m/Y') }}
-</td>
+                    <td class="value-col">{{ now()->format('d/m/Y') }}</td>
                 </tr>
                 <tr>
                     <td class="label-col">Rok akademicki / Academic year</td>
@@ -618,8 +633,8 @@
 
     <!-- Body Text (Bilingual) -->
     <div class="body-text">
-        <p class="pl">* Osoba, której dane identyfikacyjne podano powyżej, jest naszym studentem.</p>
-        <p class="en">* The person whose identity information is given above is our student.</p>
+        <p class="pl">* Osoba, której dane identyfikacyjne wskazano powyżej, jest studentem naszej uczelni.</p>
+        <p class="en">* The person identified above is a student of this university.</p>
 
         @php
             $duration = $degree?->duration ?? 4;
@@ -643,8 +658,8 @@
         <p class="en">* It is expected that the interested person will reach the graduation stage in the
             {{ $startYear }}-{{ $endYear }} academic year.</p>
 
-        <p class="pl">* Niniejszy dokument został sporządzony na prośbę zainteresowanej osoby.</p>
-        <p class="en">* This document has been issued upon the request of the person concerned.</p>
+        <p class="pl">* Niniejsze zaświadczenie wydano na wniosek osoby, której dotyczy.</p>
+        <p class="en">* This certificate is issued at the request of the person named herein.</p>
     </div>
 
     <!-- Signature + Stamp -->
@@ -668,48 +683,45 @@
     <div class="verification-footer">
         <div class="verification-date">
             Data / Date: {{ now()->format('d/m/Y') }}
-
         </div>
-        <div class="verification-card">
-            <div class="verification-card-header">
-                Weryfikacja dokumentu / Document Verification
-            </div>
-            <table class="verification-card-body">
+        @php
+            $verificationCodeForUrl = $verificationCode ?? null;
+            $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
+            $codeForEntry = $verificationCode ? strtoupper(trim($verificationCode)) : '—';
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                ->size(70)
+                ->generate($verificationUrl);
+            $qrCodeBase64 = base64_encode($qrCode);
+        @endphp
+        <div class="verification-pdf">
+            <p class="verification-pdf-title">Sprawdź autentyczność dokumentu / Check the authenticity of this document:</p>
+            <p class="verification-pdf-url">{{ $verificationUrl }}</p>
+            <table class="verification-pdf-layout">
                 <tr>
-                    <td class="verification-qr-cell">
-                        @php
-                            $verificationCodeForUrl = $verificationCode ?? null;
-                            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                                ->size(70)
-                                ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                            $qrCodeBase64 = base64_encode($qrCode);
-                        @endphp
-                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 56px; height: 56px;" />
+                    <td class="verification-pdf-qr-cell">
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
+                            style="width: 64px; height: 64px; display: block;" />
                     </td>
-                    <td class="verification-info-cell">
-                        <span class="pl">Niniejszy dokument został podpisany elektronicznie dnia
-                            {{ now()->format('d/m/Y') }} na nazwisko
-                            <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> z
-                            numerem dokumentu <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>.
-                            Ważność dokumentu można potwierdzić skanując kod QR lub za pomocą numeru dokumentu pod
-                            adresem <strong>{{ $student->getVerificationUrl() }}</strong></span>
-                        <br><br>
-                        <span class="en">This document was e-signed for
-                            <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> on
-                            {{ now()->format('d/m/Y') }} with document number
-                            <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>. The validity of
-                            the document can be confirmed by scanning the QR code or by document number at
-                            <strong>{{ $student->getVerificationUrl() }}</strong></span>
+                    <td class="verification-pdf-text-cell">
+                        <p>
+                            Zeskanuj kod QR lub otwórz powyższy link, aby zweryfikować autentyczność dokumentu. Po
+                            wyświetleniu monitu wpisz kod weryfikacyjny:
+                            <strong>{{ $codeForEntry }}</strong>
+                        </p>
+                        <p class="en">
+                            Scan the QR code or open the link manually in order to check for authenticity of this
+                            document. When prompted, type this verification code:
+                            <strong>{{ $codeForEntry }}</strong>
+                        </p>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="bottom-divider"></div>
         <div class="address-block">
-            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ RADOM ]</p>
-            <p style="margin-top: 3px;"><strong>Tel:</strong>+48579277493</p>
-            <p><strong>e-mail:</strong> info@radomuniversity.pl | rectorate@radomuniversity.pl
-            </p>
+            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock, Poland</p>
+            <p style="margin-top: 3px;"><strong>Tel:</strong> +48 579 277 493</p>
+            <p><strong>E-mail:</strong> info@radomuniversity.pl | rectorate@radomuniversity.pl</p>
         </div>
     </div>
 

@@ -28,18 +28,19 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 450px;
-            height: 450px;
-            opacity: 0.12;
+            transform: translate(-50%, -50%) rotate(-22deg);
             z-index: -1;
             pointer-events: none;
+            opacity: 0.11;
         }
 
-        .watermark img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        .watermark-text-inner {
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 56pt;
+            font-weight: bold;
+            color: #1a2744;
+            white-space: nowrap;
+            letter-spacing: 0.06em;
         }
 
         .header {
@@ -50,6 +51,31 @@
             max-width: 180px;
             height: auto;
             margin-bottom: 8px;
+        }
+
+        .brand-wordmark-header {
+            line-height: 1.08;
+            margin-bottom: 8px;
+        }
+
+        .brand-wordmark-header .brand-wordmark-primary {
+            display: block;
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a2744;
+            letter-spacing: 0.12em;
+        }
+
+        .brand-wordmark-header .brand-wordmark-secondary {
+            display: block;
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            color: #3d5a80;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-top: 2px;
         }
 
         .contact-info {
@@ -148,29 +174,18 @@
 
 <body>
     <!-- Background Watermark -->
-    <div class="watermark">
-        @php
-            $watermarkPath = public_path('images/RADOM-simvol.png');
-            $watermarkData = file_exists($watermarkPath) ? base64_encode(file_get_contents($watermarkPath)) : '';
-            $watermarkMime = 'image/png';
-        @endphp
-        @if ($watermarkData)
-            <img src="data:{{ $watermarkMime }};base64,{{ $watermarkData }}" alt="Watermark">
-        @endif
+    <div class="watermark" aria-hidden="true">
+        <span class="watermark-text-inner">Radom University</span>
     </div>
 
     <!-- Header with Logo and Address -->
     <div class="header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;">
-        {{-- Left: Logo --}}
+        {{-- Left: Wordmark --}}
         <div>
-            @php
-                $logoPath = public_path('images/RADOM-simvol.png');
-                $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-                $logoMime = 'image/png';
-            @endphp
-            @if ($logoData)
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
-            @endif
+            <div class="brand-wordmark-header">
+                <span class="brand-wordmark-primary">Radom</span>
+                <span class="brand-wordmark-secondary">University</span>
+            </div>
         </div>
 
         {{-- Right: Contact info + Barcode --}}

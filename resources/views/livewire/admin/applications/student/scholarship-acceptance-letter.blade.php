@@ -28,18 +28,18 @@
 
         /* Background Watermark */
         body::before {
-            content: '';
+            content: 'Radom University';
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background-image: url('{{ public_path('images/RADOM-logo-dark.png') }}');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.08;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 42pt;
+            font-weight: bold;
+            color: #1a2744;
+            opacity: 0.06;
+            white-space: nowrap;
+            letter-spacing: 0.06em;
             z-index: -1;
             pointer-events: none;
         }
@@ -70,6 +70,32 @@
             max-width: 40mm;
             height: auto;
             flex-shrink: 0;
+        }
+
+        .brand-wordmark {
+            text-align: center;
+            margin-bottom: 2px;
+            line-height: 1.05;
+        }
+
+        .brand-wordmark-primary {
+            display: block;
+            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
+            font-size: 16pt;
+            font-weight: bold;
+            color: #1a2744;
+            letter-spacing: 0.14em;
+        }
+
+        .brand-wordmark-secondary {
+            display: block;
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            color: #3d5a80;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            margin-top: 1px;
         }
 
         .university-name-container {
@@ -473,17 +499,10 @@
     <!-- Header -->
     <div class="header">
         <div class="logo-container">
-            @php
-                $logoPath = public_path('images/RADOM-simvol.png');
-                $logoData = file_exists($logoPath) ? base64_encode(file_get_contents($logoPath)) : '';
-                $logoMime = 'image/jpeg';
-            @endphp
-            @if ($logoData)
-                <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="RADOM Logo" class="logo">
-            @endif
             <div class="university-name-container">
-                <div class="university-name">
-                    RADOM UNIVERSITY
+                <div class="brand-wordmark">
+                    <span class="brand-wordmark-primary">Radom</span>
+                    <span class="brand-wordmark-secondary">University</span>
                 </div>
                 <div class="directorate-name">
                     Directorate of International Relations
