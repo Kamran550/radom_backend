@@ -145,22 +145,47 @@
             padding-bottom: 10px;
         }
 
-        .verification-table {
+        .verification-pdf {
+            font-size: 7.5pt;
+            line-height: 1.35;
+            color: #000;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        .verification-pdf-title {
+            margin: 0 0 5px 0;
+            font-weight: bold;
+        }
+
+        .verification-pdf-url {
+            margin: 0 0 8px 0;
+            font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
+            font-size: 7pt;
+            word-break: break-all;
+        }
+
+        .verification-pdf-layout {
             width: 100%;
-            margin-bottom: 10px;
+            border-collapse: collapse;
+            margin: 0 0 8px 0;
         }
 
-        .verification-box {
-            background: #f0f0f0;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 9pt;
-            line-height: 1.2;
+        .verification-pdf-qr-cell {
+            width: 72px;
+            padding: 0 10px 0 0;
+            vertical-align: top;
         }
 
-        .qr-code {
-            width: 70px;
-            height: 70px;
+        .verification-pdf-text-cell {
+            vertical-align: top;
+            text-align: justify;
+            font-size: 7.5pt;
+            line-height: 1.35;
+        }
+
+        .verification-pdf-text-cell p {
+            margin: 0;
         }
 
         @media print {
@@ -317,41 +342,34 @@
     </div> --}}
 
     <div class="verification-footer">
-        <!-- Verification Box with QR Code -->
-        <table style="width: 100%; margin-bottom: 20px;">
-            <tr>
-                <!-- QR Code -->
-
-                <!-- Text Box -->
-                <td style="padding-left: 10px; padding-right: 15px;">
-                    <div
-                        style="background: #f0f0f0; padding: 12px 15px; border-radius: 8px; font-size: 11px; line-height: 1.2;">
-                        Bu belge,
-                        {{ now()->format('d/m/Y') }} tarihinde
-                        <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> adına
-                        <strong>{{ $verificationCode ?? tr_upper(Str::random(12)) }}</strong>
-                        belge numarasıyla elektronik olarak imzalanmıştır. Belgenin geçerliliği, QR kodunu tarayarak
-                        veya belge numarasını kullanarak
-                        <strong>{{ $student->getVerificationUrl() }}</strong> adresinden doğrulanabilir.
-                    </div>
-
-                </td>
-                <td style="width: 80px; vertical-align: top; padding-left: 10px;">
-                    @php
-                        $verificationCodeForUrl = $verificationCode ?? null;
-                        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                            ->size(70)
-                            ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                        $qrCodeBase64 = base64_encode($qrCode);
-                    @endphp
-
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 70px; height: 70px;" />
-                </td>
-
-            </tr>
-        </table>
-
-
+        @php
+            $verificationCodeForUrl = $verificationCode ?? null;
+            $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
+            $codeForEntry = $verificationCode ? strtoupper(trim($verificationCode)) : '—';
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                ->size(70)
+                ->generate($verificationUrl);
+            $qrCodeBase64 = base64_encode($qrCode);
+        @endphp
+        <div class="verification-pdf">
+            <p class="verification-pdf-title">Belgenin doğruluğunu kontrol edin:</p>
+            <p class="verification-pdf-url">{{ $verificationUrl }}</p>
+            <table class="verification-pdf-layout">
+                <tr>
+                    <td class="verification-pdf-qr-cell">
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
+                            style="width: 64px; height: 64px; display: block;" />
+                    </td>
+                    <td class="verification-pdf-text-cell">
+                        <p>
+                            Belgenin doğruluğunu kontrol etmek için QR kodu tarayın veya bağlantıyı manuel açın.
+                            İstendiğinde bu doğrulama kodunu girin:
+                            <strong>{{ $codeForEntry }}</strong>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 

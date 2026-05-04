@@ -288,64 +288,54 @@
             padding: 0;
         }
 
-        .verification-date {
-            font-weight: bold;
+        .verification-pdf {
             font-size: 7.5pt;
-            color: #1a2744;
-            margin-bottom: 4px;
+            line-height: 1.35;
+            color: #000;
+            text-align: left;
+            margin-bottom: 8px;
         }
 
-        .verification-card {
-            width: 100%;
-            border: 1.5px solid #1a2744;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 6px;
-        }
-
-        .verification-card-header {
-            background: #1a2744;
-            color: #fff;
-            font-size: 6pt;
+        .verification-pdf-title {
+            margin: 0 0 5px 0;
             font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 3px 12px;
-            text-align: center;
         }
 
-        .verification-card-body {
+        .verification-pdf-url {
+            margin: 0 0 8px 0;
+            font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
+            font-size: 7pt;
+            word-break: break-all;
+        }
+
+        .verification-pdf-layout {
             width: 100%;
             border-collapse: collapse;
+            margin: 0;
         }
 
-        .verification-card-body td {
-            vertical-align: middle;
+        .verification-pdf-qr-cell {
+            width: 72px;
+            padding: 0 10px 0 0;
+            vertical-align: top;
         }
 
-        .verification-qr-cell {
-            width: 70px;
-            padding: 6px;
-            text-align: center;
-            background: #f4f6fa;
-            border-right: 1px solid #dde1e8;
+        .verification-pdf-text-cell {
+            vertical-align: top;
+            text-align: justify;
+            font-size: 7.5pt;
+            line-height: 1.35;
         }
 
-        .verification-info-cell {
-            padding: 6px 10px;
-            font-size: 6.5pt;
-            line-height: 1.5;
-            color: #333;
-        }
-
-        .verification-info-cell strong {
-            color: #1a2744;
+        .verification-pdf-text-cell p {
+            margin: 0;
         }
 
         .bottom-divider {
-            height: 2px;
-            background: linear-gradient(90deg, #1a2744 0%, #c5a55a 50%, #1a2744 100%);
-            margin: 5px 0;
+            height: 1px;
+            background: #000;
+            margin: 8px 0 6px 0;
+            opacity: 0.25;
         }
 
         .address-block {
@@ -571,36 +561,30 @@
 
     <!-- Verification Footer -->
     <div class="verification-footer">
-        <!-- Date -->
-        <div class="verification-date">
-            Tarih: {{ now()->format('d/m/Y') }}
-        </div>
-
-        <!-- Verification Card with QR -->
-        <div class="verification-card">
-            <div class="verification-card-header">
-                Belge Doğrulama
-            </div>
-            <table class="verification-card-body">
+        @php
+            $verificationCodeForUrl = $verificationCode ?? null;
+            $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
+            $codeForEntry = $verificationCode ? strtoupper(trim($verificationCode)) : '—';
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                ->size(70)
+                ->generate($verificationUrl);
+            $qrCodeBase64 = base64_encode($qrCode);
+        @endphp
+        <div class="verification-pdf">
+            <p class="verification-pdf-title">Belgenin doğruluğunu kontrol edin:</p>
+            <p class="verification-pdf-url">{{ $verificationUrl }}</p>
+            <table class="verification-pdf-layout">
                 <tr>
-                    <td class="verification-qr-cell">
-                        @php
-                            $verificationCodeForUrl = $verificationCode ?? null;
-                            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                                ->size(70)
-                                ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                            $qrCodeBase64 = base64_encode($qrCode);
-                        @endphp
-                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 56px; height: 56px;" />
+                    <td class="verification-pdf-qr-cell">
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
+                            style="width: 64px; height: 64px; display: block;" />
                     </td>
-                    <td class="verification-info-cell">
-                        Bu belge,
-                        {{ now()->format('d/m/Y') }} tarihinde
-                        <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> adına
-                        <strong>{{ $verificationCode ?? tr_upper(Str::random(12)) }}</strong>
-                        belge numarasıyla elektronik olarak imzalanmıştır. Belgenin geçerliliği, QR kodunu tarayarak
-                        veya belge numarasını kullanarak
-                        <strong>{{ $student->getVerificationUrl() }}</strong> adresinden doğrulanabilir.
+                    <td class="verification-pdf-text-cell">
+                        <p>
+                            Belgenin doğruluğunu kontrol etmek için QR kodu tarayın veya bağlantıyı manuel açın.
+                            İstendiğinde bu doğrulama kodunu girin:
+                            <strong>{{ $codeForEntry }}</strong>
+                        </p>
                     </td>
                 </tr>
             </table>

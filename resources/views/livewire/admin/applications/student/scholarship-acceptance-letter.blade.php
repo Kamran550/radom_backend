@@ -345,89 +345,54 @@
             padding: 0;
         }
 
-        .verification-box-2 {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .verification-box {
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            padding: 12px 15px;
-            flex: 1;
-        }
-
-        .verification-text-box {
-            font-size: 10pt;
-            line-height: 1.5;
+        .verification-pdf {
+            font-size: 7.5pt;
+            line-height: 1.35;
             color: #000;
+            text-align: left;
+            margin-bottom: 8px;
         }
 
-        .doc-number {
+        .verification-pdf-title {
+            margin: 0 0 5px 0;
             font-weight: bold;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 0.5px;
         }
 
-        .qr-code {
-            width: 70px;
-            height: 70px;
-            flex-shrink: 0;
+        .verification-pdf-url {
+            margin: 0 0 8px 0;
+            font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
+            font-size: 7pt;
+            word-break: break-all;
+        }
+
+        .verification-pdf-layout {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .verification-pdf-qr-cell {
+            width: 72px;
+            padding: 0 10px 0 0;
+            vertical-align: top;
+        }
+
+        .verification-pdf-text-cell {
+            vertical-align: top;
+            text-align: justify;
+            font-size: 7.5pt;
+            line-height: 1.35;
+        }
+
+        .verification-pdf-text-cell p {
+            margin: 0;
         }
 
         .footer-divider {
-            height: 2px;
-            background: linear-gradient(90deg, #1a2744 0%, #c5a55a 50%, #1a2744 100%);
-            margin: 5px 0;
-        }
-
-        .verification-card {
-            width: 100%;
-            border: 1.5px solid #1a2744;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 6px;
-        }
-
-        .verification-card-header {
-            background: #1a2744;
-            color: #fff;
-            font-size: 6pt;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 3px 12px;
-            text-align: center;
-        }
-
-        .verification-card-body {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .verification-card-body td {
-            vertical-align: middle;
-        }
-
-        .verification-qr-cell {
-            width: 70px;
-            padding: 6px;
-            text-align: center;
-            background: #f4f6fa;
-            border-right: 1px solid #dde1e8;
-        }
-
-        .verification-info-cell {
-            padding: 6px 10px;
-            font-size: 6.5pt;
-            line-height: 1.5;
-            color: #333;
-        }
-
-        .verification-info-cell strong {
-            color: #1a2744;
+            height: 1px;
+            background: #000;
+            margin: 8px 0 6px 0;
+            opacity: 0.25;
         }
 
         .website-row {
@@ -764,35 +729,30 @@
 
     <!-- Footer Section -->
     <div class="verification-footer">
-        <!-- Date -->
-        <div class="date-line">
-            Date: {{ now()->format('d/m/Y') }}
-        </div>
-
-        <!-- Verification Card with QR -->
-        <div class="verification-card">
-            <div class="verification-card-header">
-                Document Verification
-            </div>
-            <table class="verification-card-body">
+        @php
+            $verificationCodeForUrl = $verificationCode ?? null;
+            $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
+            $codeForEntry = $verificationCode ? strtoupper(trim($verificationCode)) : '—';
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+                ->size(70)
+                ->generate($verificationUrl);
+            $qrCodeBase64 = base64_encode($qrCode);
+        @endphp
+        <div class="verification-pdf">
+            <p class="verification-pdf-title">Check the authenticity of this document:</p>
+            <p class="verification-pdf-url">{{ $verificationUrl }}</p>
+            <table class="verification-pdf-layout">
                 <tr>
-                    <td class="verification-qr-cell">
-                        @php
-                            $verificationCodeForUrl = $verificationCode ?? null;
-                            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                                ->size(70)
-                                ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                            $qrCodeBase64 = base64_encode($qrCode);
-                        @endphp
-                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 56px; height: 56px;" />
+                    <td class="verification-pdf-qr-cell">
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
+                            style="width: 64px; height: 64px; display: block;" />
                     </td>
-                    <td class="verification-info-cell">
-                        This document was e-signed for
-                        <strong>{{ tr_upper($student->first_name . ' ' . $student->last_name) }}</strong> on
-                        {{ now()->format('d/m/Y') }} with document number
-                        <strong>{{ $verificationCode ?? strtoupper(\Illuminate\Support\Str::random(12)) }}</strong>.
-                        The validity of the document can be confirmed by scanning the QR code or by document number at
-                        <strong>{{ $student->getVerificationUrl() }}</strong>
+                    <td class="verification-pdf-text-cell">
+                        <p>
+                            Scan the QR code or open the link manually in order to check for authenticity of this
+                            document. When prompted, type this verification code:
+                            <strong>{{ $codeForEntry }}</strong>
+                        </p>
                     </td>
                 </tr>
             </table>

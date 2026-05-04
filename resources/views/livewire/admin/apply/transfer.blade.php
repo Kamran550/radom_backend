@@ -196,12 +196,28 @@
                         class="mt-2 text-sm text-red-600"></p>
                 </div>
 
+                @php
+                    $languageOptions = [
+                        'Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque', 'Belarusian', 'Bengali', 'Bosnian', 'Bulgarian', 'Burmese', 'Catalan', 'Cebuano',
+                        'Chinese (Mandarin)', 'Chinese (Cantonese)', 'Croatian', 'Czech', 'Danish', 'Dutch', 'English', 'Estonian', 'Filipino', 'Finnish', 'French', 'Galician', 'Georgian',
+                        'German', 'Greek', 'Gujarati', 'Hebrew', 'Hindi', 'Hungarian', 'Icelandic', 'Indonesian', 'Irish', 'Italian', 'Japanese', 'Javanese', 'Kannada', 'Kazakh', 'Khmer',
+                        'Korean', 'Kurdish', 'Lao', 'Latvian', 'Lithuanian', 'Macedonian', 'Malay', 'Malayalam', 'Maltese', 'Marathi', 'Mongolian', 'Nepali', 'Norwegian', 'Pashto',
+                        'Persian (Farsi)', 'Polish', 'Portuguese', 'Punjabi', 'Romanian', 'Russian', 'Serbian', 'Sinhala', 'Slovak', 'Slovenian', 'Somali', 'Spanish', 'Swahili', 'Swedish',
+                        'Tagalog', 'Tamil', 'Telugu', 'Thai', 'Turkish', 'Ukrainian', 'Urdu', 'Uzbek', 'Vietnamese', 'Welsh', 'Yoruba', 'Zulu',
+                    ];
+                @endphp
+
                 <div>
                     <label for="nationality" class="block text-sm font-medium text-gray-700 mb-2">Nationality <span
                             class="text-red-500">*</span></label>
-                    <input id="nationality" name="nationality" type="text"
-                        class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#6E0C0C] focus:border-[#6E0C0C]"
+                    <select id="nationality" name="nationality"
+                        class="w-full px-4 py-3 border rounded-lg bg-white focus:ring-2 focus:ring-[#6E0C0C] focus:border-[#6E0C0C]"
                         :class="fieldClass('nationality')">
+                        <option value="">Select nationality</option>
+                        @foreach ($languageOptions as $option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                        @endforeach
+                    </select>
                     <p x-show="errors.nationality" x-text="firstError('nationality')"
                         class="mt-2 text-sm text-red-600"></p>
                 </div>
@@ -209,9 +225,14 @@
                 <div>
                     <label for="native_language" class="block text-sm font-medium text-gray-700 mb-2">Native Language
                         <span class="text-red-500">*</span></label>
-                    <input id="native_language" name="native_language" type="text"
-                        class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#6E0C0C] focus:border-[#6E0C0C]"
+                    <select id="native_language" name="native_language"
+                        class="w-full px-4 py-3 border rounded-lg bg-white focus:ring-2 focus:ring-[#6E0C0C] focus:border-[#6E0C0C]"
                         :class="fieldClass('native_language')">
+                        <option value="">Select native language</option>
+                        @foreach ($languageOptions as $option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                        @endforeach
+                    </select>
                     <p x-show="errors.native_language" x-text="firstError('native_language')"
                         class="mt-2 text-sm text-red-600"></p>
                 </div>
