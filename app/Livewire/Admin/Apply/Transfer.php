@@ -4,10 +4,8 @@ namespace App\Livewire\Admin\Apply;
 
 use App\Enums\DegreeTypeEnum;
 use App\Models\Degree;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('layouts.admin')]
 class Transfer extends Component
 {
     public function render()
@@ -37,7 +35,7 @@ class Transfer extends Component
 
         return view('livewire.admin.apply.transfer', [
             'degrees' => $degrees,
-        ]);
+        ])->layout($this->resolveLayout());
     }
 
     private function mapDegreeType(string $degreeName): string
@@ -49,5 +47,10 @@ class Transfer extends Component
             'PhD' => DegreeTypeEnum::phD->value,
             default => DegreeTypeEnum::BACHELOR->value,
         };
+    }
+
+    private function resolveLayout(): string
+    {
+        return request()->routeIs('student.*') ? 'layouts.auth' : 'layouts.admin';
     }
 }

@@ -115,6 +115,23 @@
                 </form>
             </div>
         </div>
+        <div class="w-full max-w-md mx-auto mt-6">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">Quick Apply</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a href="{{ route('student.apply.student') }}"
+                    class="group flex items-center justify-between rounded-xl border border-cyan-200 bg-white px-4 py-3 text-sm font-medium text-cyan-800 shadow-sm hover:border-cyan-500 hover:bg-cyan-50 transition">
+                    <span>Student Apply</span>
+                    <span class="text-cyan-500 group-hover:translate-x-0.5 transition">&rarr;</span>
+                </a>
+
+                <a href="{{ route('student.apply.transfer') }}"
+                    class="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm hover:border-cyan-400 hover:bg-cyan-50 hover:text-cyan-800 transition">
+                    <span>Transfer Apply</span>
+                    <span class="text-slate-400 group-hover:text-cyan-500 group-hover:translate-x-0.5 transition">&rarr;</span>
+                </a>
+            </div>
+        </div>
+
     </div>
 
     <!-- Right Side - Campus Image -->
