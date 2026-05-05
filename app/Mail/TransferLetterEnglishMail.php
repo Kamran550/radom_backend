@@ -68,6 +68,7 @@ class TransferLetterEnglishMail extends Mailable
             $this->student->refresh();
 
             $verificationCode = null;
+            $digitCode = null;
             if ($this->student->application) {
                 $verificationCode = strtoupper(Str::random(14));
 
@@ -77,6 +78,7 @@ class TransferLetterEnglishMail extends Mailable
                     'verification_code' => $verificationCode,
                     'file_path' => null,
                 ]);
+                $digitCode = $documentVerification->digit_code;
 
                 $this->student->application->load('documentVerifications');
             }
@@ -84,6 +86,7 @@ class TransferLetterEnglishMail extends Mailable
             $pdf = Pdf::loadView('livewire.admin.applications.student.transfer-letter-english', [
                 'student' => $this->student,
                 'verificationCode' => $verificationCode,
+                'digitCode' => $digitCode,
             ])
                 ->setOptions([
                     'isRemoteEnabled' => false,

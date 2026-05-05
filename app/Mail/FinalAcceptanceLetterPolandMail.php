@@ -78,6 +78,7 @@ class FinalAcceptanceLetterPolandMail extends Mailable
             $this->student->load('application.program.degree.translations', 'application.program.translations', 'application.program.faculty.translations');
 
             $verificationCode = null;
+            $digitCode = null;
             if ($this->student->application) {
                 $verificationCode = strtoupper(Str::random(14));
 
@@ -87,6 +88,7 @@ class FinalAcceptanceLetterPolandMail extends Mailable
                     'verification_code' => $verificationCode,
                     'file_path' => null,
                 ]);
+                $digitCode = $documentVerification->digit_code;
 
                 $this->student->application->load('documentVerifications');
             }
@@ -95,6 +97,7 @@ class FinalAcceptanceLetterPolandMail extends Mailable
                 'student' => $this->student,
                 'user' => $this->user,
                 'verificationCode' => $verificationCode,
+                'digitCode' => $digitCode,
             ])
             ->setOptions([
                 'isRemoteEnabled' => false,

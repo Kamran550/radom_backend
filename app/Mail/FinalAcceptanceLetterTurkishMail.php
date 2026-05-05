@@ -76,6 +76,7 @@ class FinalAcceptanceLetterTurkishMail extends Mailable
             }
 
             $verificationCode = null;
+            $digitCode = null;
             if ($this->student->application) {
                 $verificationCode = strtoupper(Str::random(14));
 
@@ -85,6 +86,7 @@ class FinalAcceptanceLetterTurkishMail extends Mailable
                     'verification_code' => $verificationCode,
                     'file_path' => null, // Will be updated after PDF is saved
                 ]);
+                $digitCode = $documentVerification->digit_code;
 
                 // Load the relationship so it's available in the view
                 $this->student->application->load('documentVerifications');
@@ -95,6 +97,7 @@ class FinalAcceptanceLetterTurkishMail extends Mailable
                 'student' => $this->student,
                 'user' => $this->user,
                 'verificationCode' => $verificationCode,
+                'digitCode' => $digitCode,
             ])->setOptions([
                 'isRemoteEnabled' => false,
                 'isHtml5ParserEnabled' => true,

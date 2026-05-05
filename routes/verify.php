@@ -4,5 +4,5 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Verify\Verify;
 
 Route::name('verify.')->group(function () {
-    Route::get('/', Verify::class)->name('index');
+    Route::get('/{verificationCode?}', Verify::class)->name('index');
 });

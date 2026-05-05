@@ -398,7 +398,7 @@
                 <td style="width: 70px; vertical-align: top;">
                     @php
                         $verifyDomain = config('app.verify_domain', 'validate.radomuniversity.pl');
-                        $verificationUrl = 'https://' . $verifyDomain . '?verificationcode=' . $verificationCode;
+                        $verificationUrl = 'https://' . $verifyDomain . '/' . urlencode($verificationCode);
                         $qrCodeSvg = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
                             ->size(120)
                             ->generate($verificationUrl);

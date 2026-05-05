@@ -7,6 +7,7 @@ use App\Mail\AcceptanceLetterMail;
 use App\Mail\FinalAcceptanceLetterMail;
 use App\Mail\FinalAcceptanceLetterTurkishMail;
 use App\Mail\FinalAcceptanceLetterPolandMail;
+use App\Mail\FinalAcceptanceLetterPolishMail;
 use App\Mail\FinalScholarshipAcceptanceLetterMail;
 use App\Mail\ScholarshipAcceptanceLetterMail;
 use App\Mail\TransferLetterMail;
@@ -578,6 +579,87 @@ class ShowStudent extends Component
             ]);
 
             $errorMessage = 'Polşa attestatı göndərilərkən xəta baş verdi: ' . $e->getMessage();
+            if (str_contains($e->getMessage(), 'Connection') || str_contains($e->getMessage(), 'SMTP')) {
+                $errorMessage .= ' SMTP konfiqurasiyasını yoxlayın.';
+            }
+
+            session()->flash('error', $errorMessage);
+        }
+    }
+
+    public function sendFinalAcceptanceLetterPolish()
+    {
+        try {
+            Log::info('=== sendFinalAcceptanceLetterPolish metodu çağırıldı ===');
+            Log::info('Student ID: ' . $this->student->id);
+            Log::info('Student Email: ' . ($this->student->email ?? 'YOXDUR'));
+
+            if (!$this->student->email) {
+                Log::warning('Email ünvanı yoxdur!');
+                session()->flash('error', 'Tələbənin email ünvanı yoxdur.');
+                return;
+            }
+
+            if (!$this->student->application) {
+                session()->flash('error', 'Müraciət tapılmadı.');
+                return;
+            }
+
+            $this->student->load('application.program.degree.translations', 'application.program.translations', 'application.program.faculty.translations');
+
+            $user = User::where('email', $this->student->email)->first();
+            $plainPassword = null;
+
+            if (!$user) {
+                $plainPassword = Str::random(12);
+
+                $user = DB::transaction(function () use ($plainPassword) {
+                    $user = User::create([
+                        'name' => $this->student->first_name,
+                        'surname' => $this->student->last_name,
+                        'email' => $this->student->email,
+                        'username' => $this->student->student_number,
+                        'phone' => $this->student->phone,
+                        'password' => Hash::make($plainPassword),
+                        'role_id' => 3,
+                    ]);
+
+                    $this->student->application->update([
+                        'user_id' => $user->id,
+                    ]);
+
+                    return $user;
+                });
+            } else {
+                if (!$this->student->application->user_id) {
+                    $this->student->application->update([
+                        'user_id' => $user->id,
+                    ]);
+                }
+            }
+
+            $mailDriver = config('mail.default');
+
+            Mail::to($this->student->email)->send(new FinalAcceptanceLetterPolishMail($this->student, $user, $plainPassword));
+
+            $this->student->application->update([
+                'document_status' => DocumentStatusEnum::CERTIFICATE_POLAND_LETTER->value,
+            ]);
+            $this->student->load('application');
+
+            if ($mailDriver === 'log') {
+                session()->flash('success', 'Polşa tələbə attestatı (PL) log faylına yazıldı. SMTP konfiqurasiyası üçün .env faylında MAIL_MAILER=smtp təyin edin.');
+            } else {
+                session()->flash('success', 'Polşa tələbə attestatı (PL) ' . $this->student->email . ' ünvanına göndərildi.');
+            }
+        } catch (\Exception $e) {
+            Log::error('Polşa attestatı (PL) göndərilərkən xəta: ' . $e->getMessage(), [
+                'student_id' => $this->student->id,
+                'email' => $this->student->email,
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            $errorMessage = 'Polşa attestatı (PL) göndərilərkən xəta baş verdi: ' . $e->getMessage();
             if (str_contains($e->getMessage(), 'Connection') || str_contains($e->getMessage(), 'SMTP')) {
                 $errorMessage .= ' SMTP konfiqurasiyasını yoxlayın.';
             }

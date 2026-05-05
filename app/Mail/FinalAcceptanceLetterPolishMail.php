@@ -2,8 +2,10 @@
 
 namespace App\Mail;
 
+use App\Enums\DocumentTypeEnum;
 use App\Models\DocumentVerification;
 use App\Models\StudentApplication;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -14,60 +16,52 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Enums\DocumentTypeEnum;
-use App\Enums\ScholarshipStatusEnum;
 
-class AcceptanceLetterMail extends Mailable
+class FinalAcceptanceLetterPolishMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public StudentApplication $student;
+    public User $user;
+    public ?string $plainPassword;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct(StudentApplication $student)
+    public function __construct(StudentApplication $student, User $user, ?string $plainPassword = null)
     {
         $this->student = $student;
+        $this->user = $user;
+        $this->plainPassword = $plainPassword;
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Conditional Acceptance Letter - ' . $this->student->first_name . ' ' . $this->student->last_name,
+            subject: 'Zaświadczenie studenta - ' . $this->student->first_name . ' ' . $this->student->last_name,
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            view: 'emails.acceptance-letter',
+            view: 'emails.final-acceptance-letter',
             with: [
                 'student' => $this->student,
+                'user' => $this->user,
+                'plainPassword' => $this->plainPassword,
             ],
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
         try {
             ini_set('memory_limit', '5016M');
             set_time_limit(0);
-            // Ensure student has application relationship loaded
+
             if (!$this->student->relationLoaded('application')) {
                 $this->student->load('application');
             }
+
+            $this->student->load('application.program.degree.translations', 'application.program.translations', 'application.program.faculty.translations');
 
             $verificationCode = null;
             $digitCode = null;
@@ -76,22 +70,18 @@ class AcceptanceLetterMail extends Mailable
 
                 $documentVerification = DocumentVerification::create([
                     'application_id' => $this->student->application->id,
-                    'document_type' => DocumentTypeEnum::ACCEPTANCE,
+                    'document_type' => DocumentTypeEnum::CERTIFICATE,
                     'verification_code' => $verificationCode,
-                    'file_path' => null, // Will be updated after PDF is saved
+                    'file_path' => null,
                 ]);
                 $digitCode = $documentVerification->digit_code;
 
-                // Load the relationship so it's available in the view
                 $this->student->application->load('documentVerifications');
             }
 
-            $this->student->scholarship_status = ScholarshipStatusEnum::PERCENT_75->value;
-            $this->student->save();
-
-            // Generate PDF from the acceptance letter blade template
-            $pdf = Pdf::loadView('livewire.admin.applications.student.acceptance-letter', [
+            $pdf = Pdf::loadView('livewire.admin.applications.student.final-acceptance-letter-polish', [
                 'student' => $this->student,
+                'user' => $this->user,
                 'verificationCode' => $verificationCode,
                 'digitCode' => $digitCode,
             ])
@@ -99,14 +89,15 @@ class AcceptanceLetterMail extends Mailable
                     'isRemoteEnabled' => false,
                     'isHtml5ParserEnabled' => true,
                     'isFontSubsettingEnabled' => true,
-                    'defaultFont' => 'DejaVu Serif'
-                ])->setPaper('a4', 'portrait');
+                    'defaultFont' => 'DejaVu Serif',
+                ])
+                ->setPaper('a4', 'portrait');
 
-            $fileName = 'Conditional_Acceptence_Letter_' . $this->student->first_name . '_' . $this->student->last_name . '_' . now()->format('Y-m-d') . '.pdf';
-            $filePath = 'applications/acceptance-letters/' . $fileName;
+            $fileName = 'Zaswiadczenie-studenta-PL_' . now()->format('Y-m-d') . '.pdf';
+            $filePath = 'applications/certificates/' . $fileName;
 
-            // Save PDF to storage (uses default disk - local or DO Spaces based on env)
             Storage::put($filePath, $pdf->output());
+
             if ($this->student->application && isset($documentVerification)) {
                 $documentVerification->update([
                     'file_path' => $filePath,
@@ -114,16 +105,16 @@ class AcceptanceLetterMail extends Mailable
             }
 
             return [
-                Attachment::fromData(fn() => $pdf->output(), $fileName)
+                Attachment::fromData(fn () => $pdf->output(), $fileName)
                     ->withMime('application/pdf'),
             ];
         } catch (\Exception $e) {
-            Log::error('Error generating PDF: ' . $e->getMessage(), [
+            Log::error('Polish certificate PDF generation error: ' . $e->getMessage(), [
                 'student_id' => $this->student->id,
-                'trace' => $e->getTraceAsString()
+                'user_id' => $this->user->id,
+                'trace' => $e->getTraceAsString(),
             ]);
 
-            // Return empty array if PDF generation fails
             return [];
         }
     }

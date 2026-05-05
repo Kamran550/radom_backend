@@ -11,6 +11,7 @@ use Livewire\Component;
 class Verify extends Component
 {
     public $verificationCode = '';
+    public $digitCode = '';
     public $message = '';
     public $messageType = ''; // 'success' or 'error'
     public $application = null;
@@ -18,15 +19,10 @@ class Verify extends Component
     /**
      * Mount the component and check for verification code in query parameter
      */
-    public function mount()
+    public function mount(?string $verificationCode = null)
     {
-        // Check if verification code is provided in query parameter (for QR code scanning)
-        $queryCode = request()->query('verificationcode');
-        
-        if ($queryCode) {
-            $this->verificationCode = strtoupper(trim($queryCode));
-            // Automatically verify if code is provided in URL
-            $this->verify();
+        if ($verificationCode) {
+            $this->verificationCode = strtoupper(trim($verificationCode));
         }
     }
 
@@ -35,19 +31,32 @@ class Verify extends Component
         $this->reset(['message', 'messageType', 'application']);
 
         if (empty($this->verificationCode)) {
-            $this->message = 'Please enter the verification code.';
+            $this->message = 'Verification link is invalid. Please use the original QR link.';
+            $this->messageType = 'error';
+            return;
+        }
+
+        if (empty($this->digitCode)) {
+            $this->message = 'Please enter the 4-digit code.';
             $this->messageType = 'error';
             return;
         }
 
         $verificationCode = strtoupper(trim($this->verificationCode));
+        $digitCode = trim($this->digitCode);
 
-        // Find application by verification code
-        // $application = Application::where('verification_code', $verificationCode)->first();
-        $application = DocumentVerification::where('verification_code', $verificationCode)->first();
+        if (!preg_match('/^\d{4}$/', $digitCode)) {
+            $this->message = 'Digit code must be exactly 4 numbers.';
+            $this->messageType = 'error';
+            return;
+        }
+
+        $application = DocumentVerification::where('verification_code', $verificationCode)
+            ->where('digit_code', $digitCode)
+            ->first();
 
         if (!$application) {
-            $this->message = 'Invalid verification code. Please try again.';
+            $this->message = 'Invalid verification code or digit code. Please try again.';
             $this->messageType = 'error';
             return;
         }

@@ -76,7 +76,7 @@ class StudentApplication extends Model
         $url = "https://{$domain}";
 
         if ($verificationCode) {
-            $url .= "?verificationcode=" . urlencode($verificationCode);
+            $url .= '/' . urlencode($verificationCode);
         }
 
         return $url;

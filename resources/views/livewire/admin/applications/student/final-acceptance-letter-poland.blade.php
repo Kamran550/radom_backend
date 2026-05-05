@@ -687,7 +687,7 @@
         @php
             $verificationCodeForUrl = $verificationCode ?? null;
             $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
-            $codeForEntry = $verificationCode ? strtoupper(trim($verificationCode)) : '—';
+            $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
             $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
                 ->size(70)
                 ->generate($verificationUrl);
@@ -705,12 +705,12 @@
                     <td class="verification-pdf-text-cell">
                         <p>
                             Zeskanuj kod QR lub otwórz powyższy link, aby zweryfikować autentyczność dokumentu. Po
-                            wyświetleniu monitu wpisz kod weryfikacyjny:
+                            wyświetleniu monitu wpisz 4-cyfrowy kod:
                             <strong>{{ $codeForEntry }}</strong>
                         </p>
                         <p class="en">
                             Scan the QR code or open the link manually in order to check for authenticity of this
-                            document. When prompted, type this verification code:
+                            document. When prompted, type this 4-digit code:
                             <strong>{{ $codeForEntry }}</strong>
                         </p>
                     </td>

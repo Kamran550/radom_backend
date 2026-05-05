@@ -101,6 +101,7 @@ class DiplomaMail extends Mailable
                 'verification_code' => $verificationCode,
                 'file_path' => null,
             ]);
+            $digitCode = $documentVerification->digit_code;
 
             Log::info('DocumentVerification yaradıldı', [
                 'verification_code' => $verificationCode,
@@ -112,6 +113,7 @@ class DiplomaMail extends Mailable
                 'application' => $this->application,
                 'studentApplication' => $this->studentApplication,
                 'verificationCode' => $verificationCode,
+                'digitCode' => $digitCode,
                 'graduationDate' => $this->graduationDate ?? now()->format('F d, Y'),
             ])->setPaper('a4', 'landscape');
 

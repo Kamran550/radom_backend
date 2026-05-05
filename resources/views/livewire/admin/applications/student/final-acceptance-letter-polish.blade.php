@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Certificate - {{ $student->first_name }} {{ $student->last_name }}</title>
+    <title>Zaswiadczenie studenta - {{ $student->first_name }} {{ $student->last_name }}</title>
     <style>
         @page {
             margin: 12mm 12mm 12mm 12mm;
@@ -292,29 +292,46 @@
         $degree = $program?->degree;
         $faculty = $program?->faculty;
 
-        $programName = strtoupper($program?->name ?? 'N/A');
-        $degreeName = strtoupper($degree?->description ?? ($degree?->name ?? 'N/A'));
-        $facultyName = strtoupper($faculty?->name ?? 'GRADUATE SCHOOL');
+        $programNameEn = $program?->getName('EN') ?: $program?->name ?? 'N/A';
+        $programNamePl = $program?->getName('PL') ?: $programNameEn;
+        $degreeNameEn = $degree?->getName('EN') ?: $degree?->name ?? 'N/A';
+        $degreeNamePl = $degree?->getName('PL') ?: $degreeNameEn;
+        $facultyNameEn = $faculty?->getName('EN') ?: $faculty?->name ?? 'Institute of Graduate Education';
+        $facultyNamePl = $faculty?->getName('PL') ?: $facultyNameEn;
 
-        $studyLanguage = strtoupper($student->study_language ?? 'EN');
-        $studyLanguageLabel = match ($studyLanguage) {
+        $studyLangCode = strtoupper($student->study_language ?? 'EN');
+        $studyLangEn = match ($studyLangCode) {
             'EN' => 'English',
             'TR' => 'Turkish',
             'PL' => 'Polish',
             default => 'English',
         };
+        $studyLangDisplay = language_to_polish($studyLangEn);
 
-        $nationality = strtoupper($student->nationality ?? 'N/A');
-        $placeOfBirth = strtoupper($student->place_of_birth ?? ($student->nationality ?? 'N/A'));
-        $educationType = 'On-site Education';
+        $nationalityDisplay = nationality_to_polish($student->nationality);
+        $placeOfBirthDisplay = nationality_to_polish($student->place_of_birth ?? $student->nationality);
+
+        $educationTypePl = 'Studia stacjonarne';
         $classYear = $student->current_course ?? 1;
-        $classLabel = "Freshman ({$classYear} Grade)";
-        $scholarshipStatus = $student->scholarship_status . ' Scholarship' ?? '75% Scholarship';
+        $classPl = "Etap zajec ({$classYear}. rok studiow)";
+
+        $scholarshipStatus = $student->scholarship_status ?? '75%';
+        $scholarshipPl = '%50 Stypendium';
+        if (str_contains($scholarshipStatus, '100')) {
+            $scholarshipPl = '100% Stypendium';
+        } elseif (str_contains($scholarshipStatus, '75')) {
+            $scholarshipPl = '%75 Stypendium';
+        } elseif (str_contains($scholarshipStatus, '50')) {
+            $scholarshipPl = '%50 Stypendium';
+        } else {
+            $scholarshipPl = $scholarshipStatus . ' Stypendium';
+        }
 
         $startYear = $student->graduation_year ?? now()->year;
         $endYear = $startYear + 1;
-        $academicYear = "{$startYear}-{$endYear} academic year";
+        $academicYearPl = "Rok akademicki {$startYear}-{$endYear}";
         $duration = $degree?->duration ?? 4;
+        $durationPl = $duration === 1 ? 'rok' : ($duration < 5 ? 'lata' : 'lat');
 
         $photoData = null;
         $photoMime = 'image/jpeg';
@@ -354,78 +371,77 @@
         <div class="header">
             <div class="header-left">
                 <div class="brand-name">RADOM UNIVERSITY</div>
-                <div class="brand-sub">Student Affairs Department</div>
+                <div class="brand-sub">Biuro spraw studenckich</div>
             </div>
             <div class="header-right">
-                <div>Issue date: {{ now()->format('d/m/Y') }}</div>
-                <div>Reference no: {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}</div>
+                <div>Data wydania: {{ now()->format('d/m/Y') }}</div>
+                <div>Numer referencyjny: {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}</div>
             </div>
         </div>
 
         <div class="hero">
-            <h1 class="hero-title">Student Certificate</h1>
-            <p class="hero-subtitle">Confirmation of student status and registration details</p>
+            <h1 class="hero-title">Zaswiadczenie studenta</h1>
+            <p class="hero-subtitle">Potwierdzenie statusu studenta i danych rejestracyjnych</p>
         </div>
 
         <div class="identity">
             <div class="identity-left">
-                <div class="identity-line"><span class="label">Student number</span> <span class="value">{{ $student->student_number ?? $student->id }}</span></div>
-                <div class="identity-line"><span class="label">Passport no</span> <span class="value">{{ $student->passport_number ?? 'N/A' }}</span></div>
-                <div class="identity-line"><span class="label">Name and surname</span> <span class="value">{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}</span></div>
-                <div class="identity-line"><span class="label">Father's name</span> <span class="value">{{ strtoupper($student->father_name ?? 'N/A') }}</span></div>
-                <div class="identity-line"><span class="label">Date of birth</span> <span class="value">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</span></div>
-                <div class="identity-line"><span class="label">Place of birth</span> <span class="value">{{ $placeOfBirth }}</span></div>
-                <div class="identity-line"><span class="label">Nationality</span> <span class="value">{{ $nationality }}</span></div>
-                <div class="identity-line"><span class="label">Gender</span> <span class="value">{{ $student->gender ? ucfirst($student->gender) : 'N/A' }}</span></div>
+                <div class="identity-line"><span class="label">Imie i nazwisko</span> <span class="value">{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}</span></div>
+                <div class="identity-line"><span class="label">Numer dokumentu</span> <span class="value">{{ $student->passport_number ?? ($student->student_number ?? 'N/A') }}</span></div>
+                <div class="identity-line"><span class="label">Imie ojca</span> <span class="value">{{ strtoupper($student->father_name ?? 'N/A') }}</span></div>
+                <div class="identity-line"><span class="label">Data urodzenia</span> <span class="value">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</span></div>
+                <div class="identity-line"><span class="label">Miejsce urodzenia</span> <span class="value">{{ $placeOfBirthDisplay }}</span></div>
+                <div class="identity-line"><span class="label">Obywatelstwo</span> <span class="value">{{ $nationalityDisplay }}</span></div>
+                <div class="identity-line"><span class="label">Plec</span> <span class="value">{{ $student->gender ? (strtolower($student->gender) === 'male' ? 'Mezczyzna' : (strtolower($student->gender) === 'female' ? 'Kobieta' : ucfirst($student->gender))) : 'N/A' }}</span></div>
             </div>
             <div class="identity-right">
                 <div class="photo">
                     @if ($photoData)
-                        <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="Student photo">
+                        <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="Zdjecie studenta">
                     @else
-                        <div class="photo-empty">No photo</div>
+                        <div class="photo-empty">Brak zdjecia</div>
                     @endif
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <p class="card-title">Program details</p>
-            <p class="program-title">{{ $programName }} - {{ $degreeName }}</p>
+            <p class="card-title">Dane programu</p>
+            <p class="program-title">{{ $programNamePl }} - {{ $degreeNamePl }}</p>
             <p class="program-meta">
-                Institute / Faculty: {{ $facultyName }} |
-                Education language: {{ $studyLanguageLabel }} |
-                Education type: {{ $educationType }} |
-                Scholarship status: {{ $scholarshipStatus }} |
-                Class: {{ $classLabel }} |
-                Academic year: {{ $academicYear }}
+                Jednostka akademicka: {{ $facultyNamePl }} |
+                Jezyk nauczania: {{ $studyLangDisplay }} |
+                Typ edukacji: {{ $educationTypePl }} |
+                Status stypendium: {{ $scholarshipPl }} |
+                Rok studiow: {{ $classPl }} |
+                Rok akademicki: {{ $academicYearPl }}
             </p>
         </div>
 
         <div class="statement">
-            <p>The person identified in this document is a registered student of RADOM UNIVERSITY and currently holds active student status.</p>
-            <p>The planned total duration of the program is {{ $duration }} years. Current registration applies for the {{ $academicYear }} period.</p>
-            <p>According to university regulations, the student is required to fulfill curriculum obligations, attend classes regularly, and complete required assessments and examinations.</p>
-            <p>This certificate is issued upon the request of the relevant person solely for confirmation of student status.</p>
+            <p>Osoba wskazana w niniejszym dokumencie jest zarejestrowanym studentem RADOM UNIVERSITY i posiada aktywny status studenta.</p>
+            <p>Planowany laczny okres trwania programu wynosi {{ $duration }} {{ $durationPl }}. Aktualna rejestracja dotyczy okresu akademickiego {{ $startYear }}-{{ $endYear }}.</p>
+            <p>Zgodnie z regulaminem studiow uczelni student ma obowiazek realizowac wymagania programowe, uczestniczyc w zajeciach oraz przystepowac do zaliczen i egzaminow zgodnie z harmonogramem.</p>
+            <p>Niniejsze zaswiadczenie wydano na wniosek osoby zainteresowanej wyłącznie w celu potwierdzenia statusu studenta.</p>
         </div>
 
         <div class="signature">
             @if ($stampData)
-                <img class="stamp" src="data:image/png;base64,{{ $stampData }}" alt="Stamp">
+                <img class="stamp" src="data:image/png;base64,{{ $stampData }}" alt="Pieczec">
             @endif
             <div class="sign-name">Prof. Dr. hab. Tomasz Zelazowski-Krepski</div>
-            <div class="sign-title">Rector</div>
+            <div class="sign-title">Rektor</div>
         </div>
 
         <div class="verify">
-            <p class="verify-title">Check the authenticity of this document</p>
+            <p class="verify-title">Weryfikacja autentycznosci dokumentu</p>
             <p class="verify-url">{{ $verificationUrl }}</p>
             <div class="verify-left">
                 <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
                     style="width: 64px; height: 64px; display: block;" />
             </div>
             <div class="verify-right">
-                Scan the QR code or open the link above. During verification, enter this 4-digit code:
+                Zeskanuj kod QR lub otworz powyzszy link. Podczas weryfikacji wpisz 4-cyfrowy kod:
                 <strong class="verify-code">{{ $codeForEntry }}</strong>
             </div>
 

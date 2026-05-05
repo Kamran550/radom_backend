@@ -345,7 +345,7 @@
         @php
             $verificationCodeForUrl = $verificationCode ?? null;
             $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
-            $codeForEntry = $verificationCode ? strtoupper(trim($verificationCode)) : '—';
+            $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
             $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
                 ->size(70)
                 ->generate($verificationUrl);
@@ -363,7 +363,7 @@
                     <td class="verification-pdf-text-cell">
                         <p>
                             Belgenin doğruluğunu kontrol etmek için QR kodu tarayın veya bağlantıyı manuel açın.
-                            İstendiğinde bu doğrulama kodunu girin:
+                            İstendiğinde bu 4 haneli kodu girin:
                             <strong>{{ $codeForEntry }}</strong>
                         </p>
                     </td>
