@@ -104,6 +104,7 @@
         .identity-right {
             width: 20%;
             text-align: right;
+            border: none !important;
         }
 
         .identity-line {
@@ -128,7 +129,7 @@
         .photo {
             width: 94px;
             height: 114px;
-            border: 1px solid #d1d5db;
+            border: none !important;
             background: #f8fafc;
             overflow: hidden;
             text-align: center;
