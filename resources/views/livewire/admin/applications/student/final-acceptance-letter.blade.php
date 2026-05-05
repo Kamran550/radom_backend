@@ -128,8 +128,8 @@
         .photo {
             width: 94px;
             height: 114px;
-            border: 1px solid #d1d5db;
-            background: #f8fafc;
+            border: none !important;
+            background: none !important;
             overflow: hidden;
             text-align: center;
         }

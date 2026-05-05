@@ -130,7 +130,7 @@
             width: 94px;
             height: 114px;
             border: none !important;
-            background: #f8fafc;
+            background: none !important;
             overflow: hidden;
             text-align: center;
         }
