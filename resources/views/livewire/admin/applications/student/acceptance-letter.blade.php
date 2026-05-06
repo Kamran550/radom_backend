@@ -382,10 +382,29 @@
         $citizenship = $student->nationality ?: ($student->country ?? 'N/A');
         $dob = $student->date_of_birth ? $student->date_of_birth->format('Y-m-d') : 'N/A';
         $refNo = $student->application_number ?? ('RADOM/' . $student->id);
+        $barcodeCode = trim($student->student_number ?? ($student->application_number ?? '')) ?: 'RADOM-' . $student->id . '-' . now()->format('Ymd');
+        $barcodeBase64 = '';
+        try {
+            $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())->getBarcode(
+                $barcodeCode,
+                \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
+                1,
+                22,
+                [26, 39, 68],
+            );
+            $barcodeBase64 = base64_encode($barcodePng);
+        } catch (\Throwable $e) {
+            // fallback - barcode hidden
+        }
     @endphp
 
     <div class="letter-meta">
-        Płock, Poland, {{ now()->format('d.m.Y') }} {{ $refNo }}
+        Płock, Poland, {{ now()->format('d.m.Y') }}<br>
+        Reference no: {{ $refNo }}<br>
+        @if ($barcodeBase64)
+            <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
+                style="max-width: 110px; height: auto; max-height: 28px; display: inline-block; margin-top: 4px;" />
+        @endif
     </div>
 
     <div class="university-name">Radom University</div>

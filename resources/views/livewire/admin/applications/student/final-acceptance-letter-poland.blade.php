@@ -149,6 +149,12 @@
             margin-bottom: 4px;
         }
 
+        .ref-number .barcode-wrap {
+            margin-top: 4px;
+            display: inline-block;
+            line-height: 0;
+        }
+
         /* ── Document Title (Bilingual) ── */
         .document-title {
             text-align: center;
@@ -473,6 +479,30 @@
         <div class="ref-number">
             Numer referencyjny / Reference No:
             {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
+            @php
+                $headerBarcodeCode =
+                    trim($student->student_number ?? ($student->application_number ?? '')) ?:
+                    'RADOM-' . $student->id . '-' . now()->format('Ymd');
+                $headerBarcodeBase64 = '';
+                try {
+                    $headerBarcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())->getBarcode(
+                        $headerBarcodeCode,
+                        \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
+                        1,
+                        22,
+                        [26, 39, 68],
+                    );
+                    $headerBarcodeBase64 = base64_encode($headerBarcodePng);
+                } catch (\Throwable $e) {
+                    // fallback - barcode hidden
+                }
+            @endphp
+            @if ($headerBarcodeBase64)
+                <div class="barcode-wrap">
+                    <img src="data:image/png;base64,{{ $headerBarcodeBase64 }}" alt="Barcode"
+                        style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
+                </div>
+            @endif
         </div>
         <table class="header-table">
             <tr>

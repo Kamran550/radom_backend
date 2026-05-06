@@ -48,6 +48,12 @@
             color: #475569;
         }
 
+        .header-right .barcode-wrap {
+            margin-top: 4px;
+            display: inline-block;
+            line-height: 0;
+        }
+
         .brand-name {
             font-size: 15pt;
             font-weight: bold;
@@ -364,6 +370,20 @@
             ->size(70)
             ->generate($verificationUrl);
         $qrCodeBase64 = base64_encode($qrCode);
+        $barcodeCode = trim($student->student_number ?? ($student->application_number ?? '')) ?: 'RADOM-' . $student->id . '-' . now()->format('Ymd');
+        $barcodeBase64 = '';
+        try {
+            $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())->getBarcode(
+                $barcodeCode,
+                \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
+                1,
+                22,
+                [26, 39, 68],
+            );
+            $barcodeBase64 = base64_encode($barcodePng);
+        } catch (\Throwable $e) {
+            // fallback - barcode hidden
+        }
     @endphp
 
     <div class="document">
@@ -377,6 +397,12 @@
             <div class="header-right">
                 <div>Data wydania: {{ now()->format('d/m/Y') }}</div>
                 <div>Numer referencyjny: {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}</div>
+                @if ($barcodeBase64)
+                    <div class="barcode-wrap">
+                        <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
+                            style="max-width: 110px; height: auto; max-height: 28px; display: block;" />
+                    </div>
+                @endif
             </div>
         </div>
 
