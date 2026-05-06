@@ -32,7 +32,6 @@
             text-align: right;
             border: 1px solid #d9d9d9;
             padding: 5px 7px;
-            background: none;
         }
 
         .header {
@@ -386,7 +385,7 @@
             'RADOM-' . $student->id . '-' . now()->format('Ymd');
         $barcodeBase64 = '';
         try {
-            $barcodePng = new \Picqer\Barcode\BarcodeGeneratorPNG()->getBarcode(
+            $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())->getBarcode(
                 $barcodeCode,
                 \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
                 1,
