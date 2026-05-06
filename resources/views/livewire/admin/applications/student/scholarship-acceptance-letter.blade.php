@@ -476,21 +476,6 @@
         </div>
     </div>
     <br>
-    <br>
-    <div class="subsection-title">1.1. Conditions of Scholarship</div>
-    <div class="content">
-        <p>
-            This scholarship letter confirms that the applicant has been awarded a tuition scholarship for the selected
-            degree program. The scholarship terms remain valid for the standard duration of study, provided that the
-            student completes registration and complies with university admission procedures. This award is granted in
-            line with the current scholarship and admissions regulations of Radom University.
-        </p>
-    </div>
-
-    <br>
-    <br>
-    <br>
-    <br>
     <!-- Payment Table -->
     <table class="payment-table">
         <thead>
