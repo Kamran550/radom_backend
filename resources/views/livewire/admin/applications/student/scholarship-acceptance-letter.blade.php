@@ -32,7 +32,7 @@
             text-align: right;
             border: 1px solid #d9d9d9;
             padding: 5px 7px;
-            background: #fafafa;
+            background: none;
         }
 
         .header {
