@@ -29,6 +29,10 @@
         .letter-meta {
             font-size: 7.5pt;
             margin-bottom: 10px;
+            text-align: right;
+            border: 1px solid #d9d9d9;
+            padding: 5px 7px;
+            background: #fafafa;
         }
 
         .header {
@@ -398,7 +402,7 @@
         Reference no: {{ $refNo }}<br>
         @if ($barcodeBase64)
             <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
-                style="max-width: 110px; height: auto; max-height: 28px; display: inline-block; margin-top: 4px;" />
+                style="max-width: 110px; height: auto; max-height: 28px; display: block; margin-top: 4px; margin-left: auto;" />
         @endif
     </div>
 
@@ -473,8 +477,6 @@
             <div class="info-value">{{ $student->study_language === 'EN' ? 'English' : 'Turkish' }}</div>
         </div>
     </div>
-
-    <br>
     <!-- Tuition Fee -->
 
     <div class="info-grid">
@@ -495,7 +497,6 @@
             <div class="info-value"><strong>185 EUR</strong></div>
         </div>
     </div>
-    <br>
     <!-- Payment Table -->
     <table class="payment-table">
         <thead>
