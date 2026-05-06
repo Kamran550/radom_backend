@@ -559,14 +559,14 @@
     <br>
     <br>
     <!-- Conditional Acceptance Notice -->
-    <div class="section-header">Conditional Acceptance</div>
+    <div class="section-header">Scholarship Confirmation and Enrollment Steps</div>
     <div class="content">
         <p>
-            This letter constitutes a <strong>conditional acceptance</strong> to the program indicated above. Your final
-            enrollment is subject to the university's verification of your submitted documents and compliance with all
-            admission requirements. You will receive a <strong>Final Acceptance Letter</strong> once your file has been
-            fully reviewed and approved. Until then, please ensure that you complete any pending steps (e.g. language
-            proficiency, document submission, or payment) as communicated by the International Admissions Office.
+            This document confirms your <strong>scholarship-based acceptance</strong> to the program listed above.
+            To finalize your enrollment, please complete all required admission procedures, including document
+            verification and payment-related steps communicated by the International Admissions Office.
+            After successful completion of these steps, your admission process will proceed to the final stage in
+            accordance with university regulations.
         </p>
     </div>
 
