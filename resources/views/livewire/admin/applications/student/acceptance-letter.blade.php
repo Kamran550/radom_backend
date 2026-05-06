@@ -29,6 +29,7 @@
         .letter-meta {
             font-size: 7.5pt;
             margin-bottom: 10px;
+            text-align: right;
         }
 
         .header {
@@ -403,7 +404,7 @@
         Reference no: {{ $refNo }}<br>
         @if ($barcodeBase64)
             <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
-                style="max-width: 110px; height: auto; max-height: 28px; display: inline-block; margin-top: 4px;" />
+                style="max-width: 110px; height: auto; max-height: 28px; display: block; margin-top: 4px; margin-left: auto;" />
         @endif
     </div>
 
