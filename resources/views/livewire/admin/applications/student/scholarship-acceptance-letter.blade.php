@@ -13,7 +13,7 @@
 
         body {
             /* font-family: 'Times New Roman', 'Times', 'Georgia', serif; */
-            font-family: 'DejaVu Serif', 'Times New Roman', serif;
+            font-family: 'DejaVu Sans', 'Helvetica', Arial, sans-serif;
 
             font-size: 7.2pt;
             line-height: 1.3;
@@ -378,13 +378,15 @@
 
 <body>
     @php
-        $citizenship = $student->nationality ?: ($student->country ?? 'N/A');
+        $citizenship = $student->nationality ?: $student->country ?? 'N/A';
         $dob = $student->date_of_birth ? $student->date_of_birth->format('Y-m-d') : 'N/A';
-        $refNo = $student->application_number ?? ('RADOM/' . $student->id);
-        $barcodeCode = trim($student->student_number ?? ($student->application_number ?? '')) ?: 'RADOM-' . $student->id . '-' . now()->format('Ymd');
+        $refNo = $student->application_number ?? 'RADOM/' . $student->id;
+        $barcodeCode =
+            trim($student->student_number ?? ($student->application_number ?? '')) ?:
+            'RADOM-' . $student->id . '-' . now()->format('Ymd');
         $barcodeBase64 = '';
         try {
-            $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())->getBarcode(
+            $barcodePng = new \Picqer\Barcode\BarcodeGeneratorPNG()->getBarcode(
                 $barcodeCode,
                 \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128,
                 1,
@@ -612,9 +614,7 @@
             $verificationCodeForUrl = $verificationCode ?? null;
             $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
             $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
-            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                ->size(70)
-                ->generate($verificationUrl);
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(70)->generate($verificationUrl);
             $qrCodeBase64 = base64_encode($qrCode);
         @endphp
         <div class="verification-pdf">
