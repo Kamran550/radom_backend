@@ -26,22 +26,9 @@
             min-height: 100vh;
         }
 
-        /* Background Watermark */
-        body::before {
-            content: 'Radom University';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-25deg);
-            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
-            font-size: 42pt;
-            font-weight: bold;
-            color: #1a2744;
-            opacity: 0.06;
-            white-space: nowrap;
-            letter-spacing: 0.06em;
-            z-index: -1;
-            pointer-events: none;
+        .letter-meta {
+            font-size: 7.5pt;
+            margin-bottom: 10px;
         }
 
         .header {
@@ -49,109 +36,41 @@
             margin-bottom: 8px;
         }
 
-        .logo-container {
-            text-align: center;
-            padding: 0;
-            position: relative;
-            margin-bottom: 3px;
-            margin-top: 0;
-        }
-
-
-        /* .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0;
-            position: relative;
-        } */
-
-        .logo {
-            max-width: 40mm;
-            height: auto;
-            flex-shrink: 0;
-        }
-
-        .brand-wordmark {
-            text-align: center;
-            margin-bottom: 2px;
-            line-height: 1.05;
-        }
-
-        .brand-wordmark-primary {
-            display: block;
-            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
-            font-size: 16pt;
-            font-weight: bold;
-            color: #1a2744;
-            letter-spacing: 0.14em;
-        }
-
-        .brand-wordmark-secondary {
-            display: block;
-            font-family: 'DejaVu Sans', Arial, sans-serif;
-            font-size: 9pt;
-            font-weight: normal;
-            color: #3d5a80;
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
-            margin-top: 1px;
-        }
-
-        .university-name-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2px;
-        }
-
-        .header-right-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            font-size: 7.5pt;
-            text-align: right;
-            min-width: 80mm;
-        }
-
         .university-name {
-            font-size: 14pt;
+            font-size: 12pt;
             font-weight: bold;
-            color: #000;
             text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .directorate-name {
-            font-size: 9pt;
-            font-weight: normal;
-            color: #000;
-            text-align: center;
-            margin: 2px 0 0 0;
-            padding: 0;
-        }
-
-        .subject-info {
-            margin: 8px 0 4px 0;
-            font-size: 7.5pt;
-        }
-
-        .subject-info-row {
-            margin: 2px 0;
+            margin: 6px 0 2px 0;
+            letter-spacing: 0.04em;
         }
 
         .document-title {
             font-size: 11pt;
             font-weight: bold;
             text-align: center;
-            margin: 10px 0;
+            margin: 4px 0 12px 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        .applicant-lines {
+            font-size: 7.5pt;
+            line-height: 1.45;
+            margin: 0 0 10px 0;
+        }
+
+        .applicant-lines div {
+            margin: 2px 0;
+        }
+
+        .study-details {
+            font-size: 7.5pt;
+            line-height: 1.45;
+            margin: 10px 0;
+        }
+
+        .study-details div {
+            margin: 2px 0;
         }
 
         .greeting {
@@ -440,13 +359,6 @@
             font-size: 11pt;
         }
 
-        .date-line {
-            font-weight: bold;
-            font-size: 7.5pt;
-            color: #1a2744;
-            margin-bottom: 4px;
-        }
-
         @media print {
             body {
                 margin: 0;
@@ -461,38 +373,24 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo-container">
-            <div class="university-name-container">
-                <div class="brand-wordmark">
-                    <span class="brand-wordmark-primary">Radom</span>
-                    <span class="brand-wordmark-secondary">University</span>
-                </div>
-                <div class="directorate-name">
-                    Directorate of International Relations
-                </div>
-            </div>
-            <div class="header-right-info">
-                <div>Date: {{ now()->format('d.m.Y') }}</div>
-            </div>
-        </div>
+    @php
+        $citizenship = $student->nationality ?: ($student->country ?? 'N/A');
+        $dob = $student->date_of_birth ? $student->date_of_birth->format('Y-m-d') : 'N/A';
+    @endphp
 
-        <!-- Subject and Application Code -->
-        <div class="subject-info">
-            <div class="subject-info-row">
-                Subject: {{ $student->application->program?->degree?->name ?? 'N/A' }} Degree - CONDITIONAL SCHOLARSHIP
-                ACCEPTANCE LETTER
-            </div>
-            <div class="subject-info-row">
-                Application Code: {{ $student->application_number ?? 'N/A' }}
-            </div>
-            <div class="subject-info-row">
-                Dear {{ tr_upper(text: $student->first_name . ' ' . $student->last_name) }}
-            </div>
-            <div class="subject-info-row">Conditional Scholarship Acceptance Letter</div>
+    <div class="letter-meta">
+        Płock, Poland, {{ now()->format('d.m.Y') }} {{ $student->application_number ?? 'N/A' }}
+    </div>
 
-        </div>
+    <div class="university-name">Radom University</div>
+    <div class="document-title">Conditional Scholarship Acceptance Letter</div>
+
+    <div class="applicant-lines">
+        <div><strong>Family name:</strong> {{ $student->last_name }}</div>
+        <div><strong>First name:</strong> {{ $student->first_name }}</div>
+        <div><strong>Citizenship:</strong> {{ $citizenship }}</div>
+        <div><strong>Date of birth:</strong> {{ $dob }}</div>
+        <div><strong>Passport:</strong> {{ $student->passport_number ?? 'N/A' }}</div>
     </div>
 
     <!-- Document Title -->
@@ -582,27 +480,16 @@
     <div class="subsection-title">1.1. Conditions of Scholarship</div>
     <div class="content">
         <p>
-            This 100% scholarship covers the full tuition fees for 4 years, during which the student will not be
-            required to pay any tuition fees. The student is required to pay only an initial admission fee of 185 EUR.
-            Please note that this scholarship is not based on academic performance and cannot be revoked during the
-            4-year period. The scholarship has been granted in accordance with the university’s policies </p>
+            This scholarship letter confirms that the applicant has been awarded a tuition scholarship for the selected
+            degree program. The scholarship terms remain valid for the standard duration of study, provided that the
+            student completes registration and complies with university admission procedures. This award is granted in
+            line with the current scholarship and admissions regulations of Radom University.
+        </p>
     </div>
 
     <br>
     <br>
     <br>
-    <div class="subsection-title">1.2. Deposit Payment</div>
-    <div class="content">
-        <p>
-            The official Acceptance Letter will be issued upon payment of a non-refundable deposit of 185 EUR, either
-            by credit card via the RADOM Application
-            Platform or by bank transfer to the University's bank account. For all bank transfers; name, surname and
-            application number must be provided. The
-            bank account details are provided below. To proceed to the next stage of your application, you are required
-            to upload a copy of the bank receipt or payment confirmation to the RADOM Application Platform after
-            completing the transfer.
-        </p>
-    </div>
     <br>
     <!-- Payment Table -->
     <table class="payment-table">
@@ -683,20 +570,6 @@
             </tr>
         </tbody>
     </table> --}}
-
-
-    <!-- English Proficiency and Preparatory Exam -->
-    <div class="subsection-title">English Proficiency and Preparatory Exam</div>
-    <div class="content">
-        <p>
-            Students who do not have an English proficiency certificate, or those who will study in Turkish, must take a
-            proficiency exam.
-            The tuition fees of students who register for their departments but fail the preparatory exam will be
-            counted towards the preparatory
-            class fee, and any remaining balance will be collected at the beginning of the academic year. 
-        </p>
-    </div>
-
 
     <br>
     <br>
