@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditional Acceptance Letter - {{ $student->first_name }} {{ $student->last_name }}</title>
+    <title>Warunkowy list przyjęcia / Conditional Acceptance Letter - {{ $student->first_name }}
+        {{ $student->last_name }}</title>
     <style>
         @page {
-            margin: 10.5mm;
+            margin: 9.5mm;
             size: A4;
         }
 
@@ -17,8 +18,8 @@
 
         body {
             font-family: 'DejaVu Sans', Helvetica, Arial, sans-serif;
-            font-size: 9pt;
-            line-height: 1.42;
+            font-size: 7.25pt;
+            line-height: 1.34;
             color: #111;
             margin: 0;
             padding: 0;
@@ -40,55 +41,70 @@
             padding: 0;
         }
 
-        .uni-serif {
-            font-family: 'DejaVu Serif', Georgia, 'Times New Roman', serif;
-            font-size: 15pt;
+        .uni-pl {
+            font-family: 'DejaVu Serif', Georgia, serif;
+            font-size: 12pt;
             font-weight: bold;
-            letter-spacing: 0.02em;
             color: #1a237e;
-            margin: 0 0 3px 0;
-            line-height: 1.15;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .uni-en {
+            font-family: 'DejaVu Sans', sans-serif;
+            font-size: 9.5pt;
+            font-weight: bold;
+            color: #1a237e;
+            margin: 2px 0 0 0;
         }
 
         .uni-sub {
-            font-size: 7pt;
+            font-size: 6.5pt;
             color: #333;
-            margin: 0;
-            font-weight: normal;
+            margin: 3px 0 0 0;
+            line-height: 1.25;
         }
 
         .contact-block {
             text-align: right;
-            font-size: 8pt;
-            line-height: 1.45;
+            font-size: 6.75pt;
+            line-height: 1.4;
             color: #222;
-        }
-
-        .contact-block div {
-            margin: 0;
         }
 
         .rule {
             border: none;
             border-top: 1px solid #bbb;
-            margin: 9px 0 12px 0;
+            margin: 6px 0 8px 0;
         }
 
         .doc-title {
-            font-family: 'DejaVu Sans', Helvetica, Arial, sans-serif;
             text-align: center;
-            font-size: 11.5pt;
+            margin: 0 0 7px 0;
+        }
+
+        .doc-title .pl {
+            font-size: 9.5pt;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
             color: #1a237e;
-            margin: 0 0 10px 0;
+            margin: 0;
+        }
+
+        .doc-title .en {
+            font-size: 9pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1a237e;
+            margin: 2px 0 0 0;
         }
 
         .meta-row {
             width: 100%;
-            margin-bottom: 14px;
-            font-size: 9pt;
+            margin-bottom: 9px;
+            font-size: 7.25pt;
         }
 
         .meta-row-table {
@@ -99,31 +115,42 @@
         .meta-row-table td {
             width: 50%;
             padding: 0;
+            vertical-align: top;
         }
 
         .meta-right {
             text-align: right;
         }
 
-        .greeting {
-            margin: 0 0 7px 0;
-            font-weight: normal;
+        .greeting-pl {
+            margin: 0 0 2px 0;
         }
 
-        .intro {
-            margin: 0 0 16px 0;
+        .greeting-en {
+            margin: 0 0 4px 0;
+        }
+
+        .intro-pl {
+            margin: 0 0 4px 0;
+            text-align: justify;
+            font-style: italic;
+            color: #222;
+        }
+
+        .intro-en {
+            margin: 0 0 10px 0;
             text-align: justify;
             font-style: italic;
             color: #222;
         }
 
         .section-heading {
-            font-size: 9pt;
+            font-size: 7.25pt;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
-            margin: 14px 0 6px 0;
-            padding-bottom: 4px;
+            letter-spacing: 0.02em;
+            margin: 9px 0 4px 0;
+            padding-bottom: 3px;
             border-bottom: 1px solid #999;
             color: #000;
         }
@@ -131,92 +158,111 @@
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 8.5pt;
-            margin-bottom: 4px;
+            font-size: 7.5pt;
+            margin-bottom: 3px;
         }
 
         .data-table td {
             border: 1px solid #ccc;
-            padding: 7px 9px;
+            padding: 4px 6px;
             vertical-align: top;
         }
 
         .data-table td.label {
             font-weight: bold;
-            width: 38%;
+            width: 42%;
             background: #f5f5f5;
             color: #111;
         }
 
-        .conditions-intro {
-            margin: 6px 0 5px 0;
+        .conditions-intro-row td {
+            border: none;
+            padding: 3px 4px 2px 4px;
+            vertical-align: top;
+            font-size: 6.25pt;
+            width: 50%;
             text-align: justify;
         }
 
-        .conditions-list {
-            margin: 5px 0 11px 20px;
+        .conditions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 3px 0 7px 0;
+            font-size: 7pt;
+        }
+
+        .conditions-table td {
+            border: none;
+            padding: 0 4px 0 0;
+            vertical-align: top;
+            width: 50%;
+            text-align: justify;
+        }
+
+        .conditions-table ul {
+            margin: 3px 0 0 14px;
             padding: 0;
         }
 
-        .conditions-list li {
-            margin: 3px 0;
+        .conditions-table li {
+            margin: 1px 0;
         }
 
         .highlight-box {
             border: 1px solid #999;
-            padding: 11px 13px;
+            padding: 6px 8px;
             text-align: center;
-            font-size: 8.5pt;
-            margin: 12px 0 17px 0;
-            line-height: 1.38;
+            font-size: 7pt;
+            margin: 8px 0 12px 0;
+            line-height: 1.32;
         }
 
         .footer-three {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 7px;
-            margin-bottom: 10px;
+            margin-top: 4px;
+            margin-bottom: 6px;
         }
 
         .footer-three td {
             width: 33.33%;
             vertical-align: bottom;
-            padding: 7px 6px;
-            font-size: 8pt;
+            padding: 4px 3px;
+            font-size: 6.75pt;
         }
 
         .sig-line {
             border-top: 1px solid #333;
-            padding-top: 6px;
-            margin-top: 32px;
+            padding-top: 4px;
+            margin-top: 22px;
             text-align: center;
-            line-height: 1.32;
+            line-height: 1.25;
         }
 
         .seal-placeholder {
-            width: 70px;
-            height: 70px;
+            width: 58px;
+            height: 58px;
             margin: 0 auto;
             border: 2px dashed #999;
             border-radius: 50%;
             text-align: center;
-            font-size: 6.5pt;
+            font-size: 6pt;
             color: #666;
-            padding: 16px 7px 0 7px;
-            line-height: 1.22;
+            padding: 11px 4px 0 4px;
+            line-height: 1.1;
         }
 
         .verification-box {
             border: 1px solid #999;
-            padding: 7px 9px;
-            font-size: 7.25pt;
+            padding: 5px 6px;
+            font-size: 6.5pt;
         }
 
         .verification-box h4 {
-            margin: 0 0 7px 0;
-            font-size: 8pt;
+            margin: 0 0 4px 0;
+            font-size: 6.75pt;
             text-transform: uppercase;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
             text-align: center;
         }
 
@@ -231,33 +277,30 @@
         }
 
         .verification-inner .qr-cell {
-            width: 70px;
-            padding-right: 8px;
+            width: 54px;
+            padding-right: 6px;
         }
 
         .verification-url {
             word-break: break-all;
             font-family: 'DejaVu Sans Mono', monospace;
-            font-size: 7pt;
-            margin-top: 4px;
+            font-size: 5.75pt;
+            margin-top: 3px;
         }
 
         .doc-note {
             text-align: center;
-            font-size: 7.5pt;
+            font-size: 6.5pt;
             color: #444;
-            margin-top: 11px;
-            padding-top: 7px;
+            margin-top: 6px;
+            padding-top: 5px;
             border-top: 1px solid #ddd;
+            line-height: 1.3;
         }
 
         @media print {
             body {
                 margin: 0;
-            }
-
-            .no-print {
-                display: none;
             }
         }
     </style>
@@ -293,20 +336,32 @@
         };
 
         $issueDateFormatted = now()->format('j F Y');
+
+        $scholarshipStatusLabelPl = match ($student->scholarship_status ?? '') {
+            \App\Enums\ScholarshipStatusEnum::PERCENT_75->value => 'Stypendium na czesne – 75%',
+            \App\Enums\ScholarshipStatusEnum::PERCENT_100->value => 'Stypendium na czesne – 100%',
+            default => $student->scholarship_status
+                ? 'Stypendium: ' . $student->scholarship_status
+                : 'Zgodnie z oceną wniosku',
+        };
+        $studyLangLabelPl = $student->study_language === 'en' ? 'Angielski' : 'Turecki';
+        $programDurationLabelPl = is_numeric($durationStudies) ? $durationStudies . ' lat' : $programDurationLabel;
+        $modeOfStudyPl = 'Studia stacjonarne';
     @endphp
 
-    {{-- Header --}}
     <table class="header-table">
         <tr>
             <td style="width: 52%;">
-                <div class="uni-serif navy">RADOM UNIVERSITY</div>
-                <p class="uni-sub">International Admissions Office</p>
+                <div class="uni-pl navy">UNIWERSYTET RADOMSKI</div>
+                <div class="uni-en navy">RADOM UNIVERSITY</div>
+                <p class="uni-sub">Biuro Rekrutacji Międzynarodowej / International Admissions Office</p>
             </td>
             <td style="width: 48%;">
                 <div class="contact-block">
                     <div>Jacka Malczewskiego 24, 26-600 Radom, Poland</div>
                     <div>Tel: +48 579 277 493</div>
                     <div>E-mail: admissions@radomuniversity.pl</div>
+                    <div>Web: www.radomuniversity.pl</div>
                 </div>
             </td>
         </tr>
@@ -314,100 +369,122 @@
 
     <hr class="rule" />
 
-    <h1 class="doc-title navy">Conditional Letter of Acceptance</h1>
+    <div class="doc-title navy">
+        <p class="pl">Warunkowy list przyjęcia</p>
+        <p class="en">Conditional Letter of Acceptance</p>
+    </div>
 
     <table class="meta-row-table meta-row">
         <tr>
-            <td><strong>Reference Number:</strong> {{ $refNo }}</td>
-            <td class="meta-right"><strong>Date of Issue:</strong> {{ $issueDateFormatted }}</td>
+            <td><strong>Numer referencyjny / Reference Number:</strong> {{ $refNo }}</td>
+            <td class="meta-right"><strong>Data wydania / Date of Issue:</strong> {{ $issueDateFormatted }}</td>
         </tr>
     </table>
 
-    <p class="greeting">Dear Applicant,</p>
-    <p class="intro">
+    <p class="greeting-pl">Szanowny Kandydacie,</p>
+    <p class="greeting-en">Dear Applicant,</p>
+
+    <p class="intro-pl">
+        Z przyjemnością informujemy, że po rozpatrzeniu dokumentów rekrutacyjnych został(a) Pan(i) przyjęty(a)
+        warunkowo na Uniwersytecie Radomskim na program studiów określony poniżej.
+    </p>
+    <p class="intro-en">
         We are pleased to inform you that, based on the evaluation of your application documents, you have been
         conditionally accepted to Radom University for the programme detailed below.
     </p>
 
-    <div class="section-heading">Applicant Information</div>
+    <div class="section-heading">Dane kandydata / Applicant Information</div>
     <table class="data-table">
         <tr>
-            <td class="label">Full Name</td>
+            <td class="label">Imię i nazwisko / Full Name</td>
             <td>{{ $fullName }}</td>
         </tr>
         <tr>
-            <td class="label">Date of Birth</td>
+            <td class="label">Data urodzenia / Date of Birth</td>
             <td>{{ $dobFormatted }}</td>
         </tr>
         <tr>
-            <td class="label">Nationality</td>
+            <td class="label">Obywatelstwo / Nationality</td>
             <td>{{ $citizenship }}</td>
         </tr>
         <tr>
-            <td class="label">Passport Number</td>
+            <td class="label">Numer paszportu / Passport Number</td>
             <td>{{ $student->passport_number ?? 'N/A' }}</td>
         </tr>
     </table>
 
-    <div class="section-heading">Programme Information</div>
+    <div class="section-heading">Informacje o programie / Programme Information</div>
     <table class="data-table">
         <tr>
-            <td class="label">Field of Study</td>
+            <td class="label">Kierunek studiów / Field of Study</td>
             <td>{{ $programName }}</td>
         </tr>
         <tr>
-            <td class="label">Study Level</td>
+            <td class="label">Poziom studiów / Study Level</td>
             <td>{{ $studyLevelLabel }}</td>
         </tr>
         <tr>
-            <td class="label">Mode of Study</td>
-            <td>{{ $modeOfStudy }}</td>
+            <td class="label">Forma studiów / Mode of Study</td>
+            <td>{{ $modeOfStudyPl }} / {{ $modeOfStudy }}</td>
         </tr>
         <tr>
-            <td class="label">Language of Instruction</td>
-            <td>{{ $studyLangLabel }}</td>
+            <td class="label">Język nauczania / Language of Instruction</td>
+            <td>{{ $studyLangLabelPl }} / {{ $studyLangLabel }}</td>
         </tr>
         <tr>
-            <td class="label">Programme Duration</td>
-            <td>{{ $programDurationLabel }}</td>
+            <td class="label">Czas trwania programu / Programme Duration</td>
+            <td>{{ $programDurationLabelPl }} / {{ $programDurationLabel }}</td>
         </tr>
         <tr>
-            <td class="label">Intended Start Date</td>
+            <td class="label">Planowany termin rozpoczęcia / Intended Start Date</td>
             <td>{{ $intendedStartDate }}</td>
         </tr>
         <tr>
-            <td class="label">Expected Graduation Date</td>
+            <td class="label">Planowany termin ukończenia / Expected Graduation Date</td>
             <td>{{ $expectedGraduationDate }}</td>
         </tr>
         <tr>
-            <td class="label">Scholarship Status</td>
-            <td>{{ $scholarshipStatusLabel }}</td>
+            <td class="label">Status stypendium / Scholarship Status</td>
+            <td>{{ $scholarshipStatusLabelPl }} / {{ $scholarshipStatusLabel }}</td>
         </tr>
     </table>
 
-    <div class="section-heading">Conditions of Acceptance</div>
-    <p class="conditions-intro">
-        This admission is conditional and valid subject to the fulfillment of the following requirements:
-    </p>
-    <ul class="conditions-list">
-        <li>submission of original academic documents,</li>
-        <li>successful verification of documents by the University,</li>
-        <li>completion of registration and payment procedures,</li>
-        <li>fulfillment of visa and immigration requirements.</li>
-    </ul>
+    <div class="section-heading">Warunki przyjęcia / Conditions of Acceptance</div>
+    <table class="conditions-table">
+        <tr>
+            <td>
+                Niniejsze przyjęcie ma charakter warunkowy i jest ważne pod warunkiem spełnienia następujących wymogów:
+                <ul>
+                    <li>złożenie oryginałów dokumentów potwierdzających wykształcenie,</li>
+                    <li>pozytywna weryfikacja dokumentów przez Uczelnię,</li>
+                    <li>ukończenie procedur rejestracji i opłat,</li>
+                    <li>spełnienie wymogów wizowych i imigracyjnych.</li>
+                </ul>
+            </td>
+            <td>
+                This admission is conditional and valid subject to the fulfillment of the following requirements:
+                <ul>
+                    <li>submission of original academic documents,</li>
+                    <li>successful verification of documents by the University,</li>
+                    <li>completion of registration and payment procedures,</li>
+                    <li>fulfillment of visa and immigration requirements.</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
 
     <div class="highlight-box">
+        Po spełnieniu powyższych warunków uzyska Pan(i) pełny status studenta Uniwersytetu Radomskiego.<br />
         Upon successful completion of all the above conditions, you will obtain full student status at Radom
         University.
     </div>
 
-    {{-- Footer: signature | seal | verification --}}
     @php
         $verificationCodeForUrl = $verificationCode ?? null;
         $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
         $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
         $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-            ->size(52)
+            ->size(50)
             ->generate($verificationUrl);
         $qrCodeBase64 = base64_encode($qrCode);
     @endphp
@@ -417,26 +494,27 @@
             <td>
                 <div class="sig-line">
                     <strong>Prof. Dr. Tomasz Zieliński</strong><br />
-                    RECTOR
+                    REKTOR / RECTOR
                 </div>
             </td>
             <td style="text-align: center;">
                 <div style="display: inline-block;">
-                    <div class="seal-placeholder">University Seal</div>
+                    <div class="seal-placeholder">Pieczęć uczelni<br />University Seal</div>
                 </div>
             </td>
             <td>
                 <div class="verification-box">
-                    <h4>Document Verification</h4>
+                    <h4>Weryfikacja dokumentu / Document Verification</h4>
                     <table class="verification-inner">
                         <tr>
                             <td class="qr-cell">
                                 <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
-                                    style="width: 50px; height: 50px; display: block;" />
+                                    style="width: 48px; height: 48px; display: block;" />
                             </td>
                             <td>
-                                <div><strong>Verification Code:</strong> {{ $codeForEntry }}</div>
-                                <div class="verification-url"><strong>Verification:</strong> {{ $verificationUrl }}</div>
+                                <div><strong>Kod weryfikacyjny / Verification Code:</strong> {{ $codeForEntry }}</div>
+                                <div class="verification-url"><strong>Weryfikacja / Verification:</strong>
+                                    {{ $verificationUrl }}</div>
                             </td>
                         </tr>
                     </table>
@@ -446,6 +524,7 @@
     </table>
 
     <p class="doc-note">
+        Niniejszy dokument został wygenerowany elektronicznie i nie wymaga podpisu ani pieczęci.<br />
         This document has been generated electronically and does not require a signature or stamp.
     </p>
 

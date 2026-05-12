@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Applications\Student;
 
 use App\Enums\ApplicationStatusEnum;
 use App\Mail\AcceptanceLetterMail;
+use App\Mail\AcceptanceLetterBilingualMail;
 use App\Mail\FinalAcceptanceLetterMail;
 use App\Mail\FinalAcceptanceLetterTurkishMail;
 use App\Mail\FinalAcceptanceLetterPolandMail;
@@ -74,6 +75,51 @@ class ShowStudent extends Component
                 'student_id' => $this->student->id,
                 'email' => $this->student->email,
                 'trace' => $e->getTraceAsString()
+            ]);
+
+            $errorMessage = 'Mail göndərilərkən xəta baş verdi: ' . $e->getMessage();
+            if (str_contains($e->getMessage(), 'Connection') || str_contains($e->getMessage(), 'SMTP')) {
+                $errorMessage .= ' SMTP konfiqurasiyasını yoxlayın.';
+            }
+
+            session()->flash('error', $errorMessage);
+        }
+    }
+
+    public function sendAcceptanceLetterBilingualEnPl()
+    {
+        try {
+            Log::info('=== sendAcceptanceLetterBilingualEnPl metodu çağırıldı ===');
+            Log::info('Student ID: ' . $this->student->id);
+
+            if (!$this->student->email) {
+                Log::warning('Email ünvanı yoxdur!');
+                session()->flash('error', 'Tələbənin email ünvanı yoxdur.');
+                return;
+            }
+
+            $this->student->load('application');
+
+            $mailDriver = config('mail.default');
+
+            Mail::to($this->student->email)->send(new AcceptanceLetterBilingualMail($this->student));
+
+            $this->student->application->update([
+                'document_status' => DocumentStatusEnum::ACCAPTANCE_LETTER->value,
+            ]);
+
+            $this->student->load('application');
+
+            if ($mailDriver === 'log') {
+                session()->flash('success', 'Mail log faylına yazıldı (EN+PL CAL). SMTP üçün .env-də MAIL_MAILER=smtp təyin edin.');
+            } else {
+                session()->flash('success', 'Conditional Acceptance Letter (EN+PL) sent to ' . $this->student->email . '.');
+            }
+        } catch (\Exception $e) {
+            Log::error('EN+PL CAL göndərilərkən xəta: ' . $e->getMessage(), [
+                'student_id' => $this->student->id,
+                'email' => $this->student->email,
+                'trace' => $e->getTraceAsString(),
             ]);
 
             $errorMessage = 'Mail göndərilərkən xəta baş verdi: ' . $e->getMessage();
