@@ -358,10 +358,8 @@
             </td>
             <td style="width: 48%;">
                 <div class="contact-block">
-                    <div>Jacka Malczewskiego 24, 26-600 Radom, Poland</div>
                     <div>Tel: +48 579 277 493</div>
                     <div>E-mail: admissions@radomuniversity.pl</div>
-                    <div>Web: www.radomuniversity.pl</div>
                 </div>
             </td>
         </tr>
@@ -497,11 +495,11 @@
                     REKTOR / RECTOR
                 </div>
             </td>
-            <td style="text-align: center;">
+            {{-- <td style="text-align: center;">
                 <div style="display: inline-block;">
                     <div class="seal-placeholder">Pieczęć uczelni<br />University Seal</div>
                 </div>
-            </td>
+            </td> --}}
             <td>
                 <div class="verification-box">
                     <h4>Weryfikacja dokumentu / Document Verification</h4>

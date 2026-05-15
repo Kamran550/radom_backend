@@ -371,8 +371,8 @@
             <div class="identity-left">
                 <div class="identity-line"><span class="label">Student number</span> <span class="value">{{ $student->student_number ?? $student->id }}</span></div>
                 <div class="identity-line"><span class="label">Passport no</span> <span class="value">{{ $student->passport_number ?? 'N/A' }}</span></div>
-                <div class="identity-line"><span class="label">Name and surname</span> <span class="value">{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}</span></div>
-                <div class="identity-line"><span class="label">Father's name</span> <span class="value">{{ strtoupper($student->father_name ?? 'N/A') }}</span></div>
+                <div class="identity-line"><span class="label">Name and surname</span> <span class="value">{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</span></div>
+                <div class="identity-line"><span class="label">Father's name</span> <span class="value">{{ tr_upper($student->father_name ?? 'N/A') }}</span></div>
                 <div class="identity-line"><span class="label">Date of birth</span> <span class="value">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</span></div>
                 <div class="identity-line"><span class="label">Place of birth</span> <span class="value">{{ $placeOfBirth }}</span></div>
                 <div class="identity-line"><span class="label">Nationality</span> <span class="value">{{ $nationality }}</span></div>

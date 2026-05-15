@@ -140,19 +140,28 @@
             border-collapse: collapse;
             font-size: 6.85pt;
             margin-bottom: 7px;
+            table-layout: fixed;
         }
 
         .data-table td {
             border: 1px solid #ccc;
-            padding: 4px 7px;
+            padding: 5px 8px;
             vertical-align: top;
+            width: 50%;
         }
 
-        .data-table td.label {
+        .field-label {
+            font-weight: normal;
+            color: #333;
+            line-height: 1.3;
+            margin: 0 0 2px 0;
+        }
+
+        .field-value {
             font-weight: bold;
-            width: 40%;
-            background: #fafafa;
-            color: #1a237e;
+            color: #111;
+            line-height: 1.3;
+            margin: 0;
         }
 
         .body-columns {
@@ -181,9 +190,9 @@
         }
 
         .signature-block {
-            margin-top: 8px;
-            margin-bottom: 7px;
-            font-size: 6.75pt;
+            margin-top: 10px;
+            margin-bottom: 8px;
+            text-align: right;
         }
 
         .signature-inner {
@@ -196,69 +205,133 @@
             padding: 0;
         }
 
-        .sig-line {
-            border-top: 1px solid #333;
-            padding-top: 4px;
-            margin-top: 18px;
-            text-align: center;
-            line-height: 1.25;
-            min-width: 168px;
+        .sig-graphic-wrap {
+            position: relative;
+            min-height: 42px;
+            margin-bottom: 2px;
+            text-align: right;
+        }
+
+        .sig-handwritten {
+            display: block;
+            margin-left: auto;
+            width: 155px;
+            height: auto;
+            max-height: 48px;
+            object-fit: contain;
         }
 
         .sig-stamp-overlay {
-            width: 56px;
+            position: absolute;
+            right: 88px;
+            bottom: -4px;
+            width: 52px;
             height: auto;
-            max-height: 58px;
+            max-height: 54px;
             object-fit: contain;
-            opacity: 0.85;
-            display: block;
-            margin-right: 10px;
-            margin-bottom: 2px;
+            opacity: 0.82;
+        }
+
+        .sig-line {
+            border-top: 1px solid #333;
+            padding-top: 4px;
+            margin-top: 2px;
+            text-align: center;
+            line-height: 1.25;
+            min-width: 175px;
+            font-size: 6.75pt;
+        }
+
+        .sig-name {
+            font-weight: bold;
+            color: #111;
+        }
+
+        .sig-title {
+            font-size: 6.35pt;
+            color: #333;
+            letter-spacing: 0.04em;
         }
 
         .verification-wrap {
-            border: 1px solid #ccc;
-            padding: 6px 8px;
-            margin-top: 5px;
-            font-size: 6.35pt;
+            border: 1px solid #bbb;
+            margin-top: 6px;
+            font-size: 6.2pt;
+            background: #fafafa;
         }
 
-        .verification-wrap h4 {
-            margin: 0 0 5px 0;
-            font-size: 6.6pt;
+        .verification-header {
+            background: #eef0fb;
+            border-bottom: 1px solid #c5cae9;
+            padding: 5px 9px;
+            font-size: 6.4pt;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.03em;
             color: #1a237e;
+            text-align: center;
         }
 
-        .verification-inner {
+        .verification-body {
             width: 100%;
             border-collapse: collapse;
+            background: #fff;
         }
 
-        .verification-inner td {
+        .verification-body td {
             vertical-align: top;
-            padding: 0;
+            padding: 7px 8px;
         }
 
-        .verification-inner .qr-cell {
-            width: 52px;
-            padding-right: 6px;
+        .verification-body .qr-cell {
+            width: 62px;
+            border-right: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .verification-body .qr-cell img {
+            width: 54px;
+            height: 54px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .verification-body .text-cell {
+            width: auto;
+            border-right: 1px solid #ddd;
+            font-size: 5.9pt;
+            line-height: 1.35;
+            color: #333;
+            text-align: justify;
+        }
+
+        .verification-body .code-cell {
+            width: 32%;
+            font-size: 6pt;
+            line-height: 1.4;
+        }
+
+        .verification-info-text {
+            font-size: 5.9pt;
+            line-height: 1.35;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: justify;
+        }
+
+        .verification-info-text p {
+            margin: 0 0 4px 0;
+        }
+
+        .verification-info-text p:last-child {
+            margin-bottom: 0;
         }
 
         .verification-url {
             word-break: break-all;
             font-family: 'DejaVu Sans Mono', monospace;
-            font-size: 5.5pt;
+            font-size: 5.4pt;
             color: #1a237e;
-            margin-top: 3px;
-        }
-
-        .verify-instruct {
-            font-size: 6pt;
-            line-height: 1.3;
-            margin: 0 0 4px 0;
         }
 
         .footer-line {
@@ -330,6 +403,14 @@
         $endYear = $startYear + 1;
         $academicYearEn = "{$startYear}-{$endYear} academic year";
         $academicYearPl = "Rok akademicki {$startYear}-{$endYear}";
+
+        $genderDisplay = $student->gender
+            ? (strtolower($student->gender) === 'male'
+                ? 'Mężczyzna / Male'
+                : (strtolower($student->gender) === 'female'
+                    ? 'Kobieta / Female'
+                    : ucfirst($student->gender)))
+            : 'N/A';
     @endphp
 
     {{-- Header (Biuro Spraw Studenckich / Student Affairs Office) --}}
@@ -342,7 +423,6 @@
             </td>
             <td style="width: 45%;">
                 <div class="contact-block">
-                    <div>Aleja Józefa Piłsudskiego 35, 09-407 Płock, Poland</div>
                     <div>Tel: +48 579 277 493</div>
                     <div>E-mail: info@radomuniversity.pl</div>
                 </div>
@@ -372,86 +452,105 @@
     <div class="section-banner">Dane studenta / Student Information</div>
     <table class="data-table">
         <tr>
-            <td class="label">Imię i nazwisko / Full Name</td>
-            <td>{{ strtoupper($student->first_name) }} {{ strtoupper($student->last_name) }}</td>
-        </tr>
-        <tr>
-            <td class="label">Imię ojca / Father's Name</td>
-            <td>{{ strtoupper($student->father_name ?? 'N/A') }}</td>
-        </tr>
-        <tr>
-            <td class="label">Data urodzenia / Date of Birth</td>
-            <td>{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</td>
-        </tr>
-        <tr>
-            <td class="label">Płeć / Gender</td>
             <td>
-                {{ $student->gender ? (strtolower($student->gender) === 'male' ? 'Mężczyzna / Male' : (strtolower($student->gender) === 'female' ? 'Kobieta / Female' : ucfirst($student->gender))) : 'N/A' }}
+                <div class="field-label">Imię i nazwisko / Full Name:</div>
+                <div class="field-value">{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</div>
+            </td>
+            <td>
+                <div class="field-label">Imię ojca / Father's Name:</div>
+                <div class="field-value">{{ tr_upper($student->father_name ?? 'N/A') }}</div>
             </td>
         </tr>
         <tr>
-            <td class="label">Miejsce urodzenia / Place of Birth</td>
-            <td>{{ $placeOfBirthDisplay }}</td>
+            <td>
+                <div class="field-label">Data urodzenia / Date of Birth:</div>
+                <div class="field-value">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</div>
+            </td>
+            <td>
+                <div class="field-label">Płeć / Gender:</div>
+                <div class="field-value">{{ $genderDisplay }}</div>
+            </td>
         </tr>
         <tr>
-            <td class="label">Numer studenta / Student ID Number</td>
-            <td>{{ $student->student_number ?? 'N/A' }}</td>
+            <td>
+                <div class="field-label">Miejsce urodzenia / Place of Birth:</div>
+                <div class="field-value">{{ $placeOfBirthDisplay }}</div>
+            </td>
+            <td>
+                <div class="field-label">Numer albumu / Student ID Number:</div>
+                <div class="field-value">{{ $student->student_number ?? 'N/A' }}</div>
+            </td>
         </tr>
         <tr>
-            <td class="label">Obywatelstwo / Nationality</td>
-            <td>{{ $nationalityDisplay }}</td>
+            <td>
+                <div class="field-label">Obywatelstwo / Nationality:</div>
+                <div class="field-value">{{ $nationalityDisplay }}</div>
+            </td>
+            <td>
+                <div class="field-label">Adres e-mail / E-mail Address:</div>
+                <div class="field-value">{{ $student->email ?? 'N/A' }}</div>
+            </td>
         </tr>
         <tr>
-            <td class="label">Adres e-mail / E-mail Address</td>
-            <td>{{ $student->email ?? 'N/A' }}</td>
-        </tr>
-        <tr>
-            <td class="label">Numer paszportu / Passport Number</td>
-            <td>{{ $student->passport_number ?? 'N/A' }}</td>
-        </tr>
-        <tr>
-            <td class="label">Numer telefonu / Phone Number</td>
-            <td>{{ $student->phone ?? 'N/A' }}</td>
+            <td>
+                <div class="field-label">Numer dokumentu / Passport Number:</div>
+                <div class="field-value">{{ $student->passport_number ?? 'N/A' }}</div>
+            </td>
+            <td>
+                <div class="field-label">Numer telefonu / Phone Number:</div>
+                <div class="field-value">{{ $student->phone ?? 'N/A' }}</div>
+            </td>
         </tr>
     </table>
 
     <div class="section-banner">Dane programu / Programme Information</div>
     <table class="data-table">
         <tr>
-            <td class="label">Program studiów / Study Programme</td>
-            <td>{{ $programNamePl }} / {{ $programNameEn }}</td>
+            <td>
+                <div class="field-label">Kierunek studiów / Study Programme:</div>
+                <div class="field-value">{{ $programNamePl }} / {{ $programNameEn }}</div>
+            </td>
+            <td>
+                <div class="field-label">Wydział / Faculty:</div>
+                <div class="field-value">{{ $facultyNamePl }} / {{ $facultyNameEn }}</div>
+            </td>
         </tr>
         <tr>
-            <td class="label">Wydział / Faculty</td>
-            <td>{{ $facultyNamePl }} / {{ $facultyNameEn }}</td>
+            <td>
+                <div class="field-label">Poziom studiów / Degree Level:</div>
+                <div class="field-value">{{ $degreeNamePl }} / {{ $degreeNameEn }}</div>
+            </td>
+            <td>
+                <div class="field-label">Rok studiów / Year of Study:</div>
+                <div class="field-value">{{ $classYear }}</div>
+            </td>
         </tr>
         <tr>
-            <td class="label">Poziom studiów / Degree Level</td>
-            <td>{{ $degreeNamePl }} / {{ $degreeNameEn }}</td>
+            <td>
+                <div class="field-label">Forma studiów / Mode of Study:</div>
+                <div class="field-value">{{ $educationTypePl }} / {{ $educationTypeEn }}</div>
+            </td>
+            <td>
+                <div class="field-label">Rok akademicki / Academic Year:</div>
+                <div class="field-value">{{ $startYear }}/{{ $endYear }}</div>
+            </td>
         </tr>
         <tr>
-            <td class="label">Rok studiów / Year of Study</td>
-            <td>{{ $classPl }} / {{ $classEn }}</td>
+            <td>
+                <div class="field-label">Język kształcenia / Language of Instruction:</div>
+                <div class="field-value">{{ $studyLangDisplay }}</div>
+            </td>
+            <td>
+                <div class="field-label">Status studenta / Student Status:</div>
+                <div class="field-value">Aktywny / Active</div>
+            </td>
         </tr>
         <tr>
-            <td class="label">Forma studiów / Mode of Study</td>
-            <td>{{ $educationTypePl }} / {{ $educationTypeEn }}</td>
-        </tr>
-        <tr>
-            <td class="label">Rok akademicki / Academic Year</td>
-            <td>{{ $academicYearPl }} / {{ $academicYearEn }}</td>
-        </tr>
-        <tr>
-            <td class="label">Język nauczania / Language of Instruction</td>
-            <td>{{ $studyLangDisplay }}</td>
-        </tr>
-        <tr>
-            <td class="label">Status studenta / Student Status</td>
-            <td>Aktywny student / Active student</td>
-        </tr>
-        <tr>
-            <td class="label">Status stypendium / Scholarship Status</td>
-            <td>{{ $scholarshipPl }} / {{ $scholarshipEn }}</td>
+            <td></td>
+            <td>
+                <div class="field-label">Status stypendium / Scholarship Status:</div>
+                <div class="field-value">{{ $scholarshipPl }} / {{ $scholarshipEn }}</div>
+            </td>
         </tr>
     </table>
 
@@ -484,52 +583,58 @@
     @php
         $stampPath = public_path('images/radom-möhür.png');
         $stampData = file_exists($stampPath) ? base64_encode(file_get_contents($stampPath)) : '';
+
+        $signaturePath = public_path('images/imza.png');
+        $signatureData = file_exists($signaturePath) ? base64_encode(file_get_contents($signaturePath)) : '';
+
+        $verificationCodeForUrl = $verificationCode ?? null;
+        $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
+        $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
+        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(54)->generate($verificationUrl);
+        $qrCodeBase64 = base64_encode($qrCode);
     @endphp
+
     <div class="signature-block">
         <table class="signature-inner" align="right">
             <tr>
-                @if ($stampData)
-                    <td>
-                        <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}" alt="">
-                    </td>
-                @endif
                 <td>
+                    <div class="sig-graphic-wrap">
+                        @if ($stampData)
+                            <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}" alt="">
+                        @endif
+                        @if ($signatureData)
+                            <img class="sig-handwritten" src="data:image/png;base64,{{ $signatureData }}" alt="">
+                        @endif
+                    </div>
                     <div class="sig-line">
-                        <strong>Prof. Dr. Tomasz Zieliński</strong><br />
-                        REKTOR / RECTOR
+                        <span class="sig-name">Prof. Dr. Tomasz Zieliński</span><br />
+                        <span class="sig-title">REKTOR / RECTOR</span>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
 
-    @php
-        $verificationCodeForUrl = $verificationCode ?? null;
-        $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
-        $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
-        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(44)->generate($verificationUrl);
-        $qrCodeBase64 = base64_encode($qrCode);
-    @endphp
-
     <div class="verification-wrap">
-        <h4>Weryfikacja autentyczności dokumentu / Document Verification</h4>
-        <table class="verification-inner">
+        <div class="verification-header">
+            Weryfikacja autentyczności dokumentu / Document Verification
+        </div>
+        <table class="verification-body">
             <tr>
                 <td class="qr-cell">
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
-                        style="width: 42px; height: 42px; display: block;" />
+                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
                 </td>
-                <td>
-                    <p class="verify-instruct">
-                        Zeskanuj kod QR lub otwórz link, aby sprawdzić autentyczność dokumentu. Po wyświetleniu monitu
-                        wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong>
-                    </p>
-                    <p class="verify-instruct">
-                        Scan the QR code or open the link to verify this document. When prompted, enter the 4-digit
-                        code:
-                        <strong>{{ $codeForEntry }}</strong>
-                    </p>
-                    <div><strong>Kod weryfikacyjny / Verification Code:</strong> {{ $codeForEntry }}</div>
+                <td class="text-cell">
+                    Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
+                    Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br /><br />
+                    Scan the QR code or open the verification link to confirm the authenticity of this document.
+                    When prompted, enter the 4-digit code: <strong>{{ $codeForEntry }}</strong>
+                </td>
+                <td class="code-cell">
+                    <div class="verification-info-text">
+                        <p>Aby zweryfikować autentyczność niniejszego dokumentu, odwiedź poniższy adres internetowy lub zeskanuj kod QR.</p>
+                        <p>To verify the authenticity of this document, visit the web address below or scan the QR code.</p>
+                    </div>
                     <div class="verification-url">{{ $verificationUrl }}</div>
                 </td>
             </tr>
@@ -537,7 +642,7 @@
     </div>
 
     <div class="footer-line">
-        Aleja Józefa Piłsudskiego 35, 09-407 Płock, Poland &nbsp;|&nbsp; Tel: +48 579 277 493 &nbsp;|&nbsp; E-mail:
+        Tel: +48 579 277 493 &nbsp;|&nbsp; E-mail:
         info@radomuniversity.pl
     </div>
 

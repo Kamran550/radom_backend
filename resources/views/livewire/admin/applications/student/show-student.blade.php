@@ -257,7 +257,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    <span wire:loading.remove wire:target="sendAcceptanceLetter">Send 75% CAL</span>
+                    <span wire:loading.remove wire:target="sendAcceptanceLetter">75% CAL</span>
                     <span wire:loading wire:target="sendAcceptanceLetter">Sending...</span>
                 </button>
 
@@ -278,7 +278,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    <span wire:loading.remove wire:target="sendAcceptanceLetterBilingualEnPl">Send 75% CAL (EN+PL)</span>
+                    <span wire:loading.remove wire:target="sendAcceptanceLetterBilingualEnPl">75% CAL (EN+PL)</span>
                     <span wire:loading wire:target="sendAcceptanceLetterBilingualEnPl">Sending...</span>
                 </button>
 
@@ -299,7 +299,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">Send 100% CAL</span>
+                    <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">100% CAL</span>
                     <span wire:loading wire:target="sendScholarshipAcceptanceLetter">Sending...</span>
                 </button>
             @endif
@@ -362,7 +362,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">Send 100% CAL</span>
+                    <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">100% CAL</span>
                     <span wire:loading wire:target="sendScholarshipAcceptanceLetter">Sending...</span>
                 </button>
             @endif
