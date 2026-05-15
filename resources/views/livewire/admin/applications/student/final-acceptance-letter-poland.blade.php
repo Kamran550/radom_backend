@@ -464,7 +464,8 @@
         <tr>
             <td>
                 <div class="field-label">Data urodzenia / Date of Birth:</div>
-                <div class="field-value">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</div>
+                <div class="field-value">
+                    {{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</div>
             </td>
             <td>
                 <div class="field-label">Płeć / Gender:</div>
@@ -546,7 +547,11 @@
             </td>
         </tr>
         <tr>
-            <td></td>
+            <td>
+                <div class="field-label">Forma studiów / Mode of Study:</div>
+                <div class="field-value">Studia stacjonarne
+                    Full-Time Study</div>
+            </td>
             <td>
                 <div class="field-label">Status stypendium / Scholarship Status:</div>
                 <div class="field-value">{{ $scholarshipPl }} / {{ $scholarshipEn }}</div>
@@ -600,10 +605,12 @@
                 <td>
                     <div class="sig-graphic-wrap">
                         @if ($stampData)
-                            <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}" alt="">
+                            <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
+                                alt="">
                         @endif
                         @if ($signatureData)
-                            <img class="sig-handwritten" src="data:image/png;base64,{{ $signatureData }}" alt="">
+                            <img class="sig-handwritten" src="data:image/png;base64,{{ $signatureData }}"
+                                alt="">
                         @endif
                     </div>
                     <div class="sig-line">
@@ -632,8 +639,10 @@
                 </td>
                 <td class="code-cell">
                     <div class="verification-info-text">
-                        <p>Aby zweryfikować autentyczność niniejszego dokumentu, odwiedź poniższy adres internetowy lub zeskanuj kod QR.</p>
-                        <p>To verify the authenticity of this document, visit the web address below or scan the QR code.</p>
+                        <p>Aby zweryfikować autentyczność niniejszego dokumentu, odwiedź poniższy adres internetowy lub
+                            zeskanuj kod QR.</p>
+                        <p>To verify the authenticity of this document, visit the web address below or scan the QR code.
+                        </p>
                     </div>
                     <div class="verification-url">{{ $verificationUrl }}</div>
                 </td>
