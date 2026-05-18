@@ -93,7 +93,7 @@ class TransferLetterEnglishMail extends Mailable
                     'isHtml5ParserEnabled' => true,
                     'isFontSubsettingEnabled' => true,
                     'defaultFont' => 'DejaVu Serif'
-                ])->setPaper('a4', 'portrait');
+                ])->setPaper([0, 0, 950, 595]);
 
             $fileName = 'Transfer_Acceptance_Letter_' . $this->student->first_name . '_' . $this->student->last_name . '_' . now()->format('Y-m-d') . '.pdf';
             $filePath = 'applications/transfer-letters/' . $fileName;

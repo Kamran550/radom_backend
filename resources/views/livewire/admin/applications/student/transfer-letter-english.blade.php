@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,8 @@
     <title>Student Transfer Certificate - {{ $student->first_name }} {{ $student->last_name }}</title>
     <style>
         @page {
-            margin: 10mm;
-            size: A4;
+            margin: 7mm 11mm;
+            size: 335mm 210mm landscape;
         }
 
         * {
@@ -17,13 +17,19 @@
 
         body {
             font-family: 'DejaVu Sans', Helvetica, Arial, sans-serif;
-            font-size: 7.5pt;
+            font-size: 7.25pt;
             line-height: 1.35;
             color: #222;
             margin: 0;
-            padding: 10px 12px;
+            padding: 0;
             background: #fff;
-            border: 1px solid #d0d0d0;
+        }
+
+        .page-sheet {
+            width: 100%;
+            min-height: 196mm;
+            padding: 4px 2px;
+            border: 1px solid #d8d8d8;
         }
 
         .navy {
@@ -43,12 +49,13 @@
 
         .uni-name {
             font-family: 'DejaVu Serif', Georgia, serif;
-            font-size: 14pt;
+            font-size: 15pt;
             font-weight: bold;
             color: #1a237e;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.05em;
             margin: 0 0 4px 0;
             line-height: 1.1;
+            text-transform: uppercase;
         }
 
         .uni-address {
@@ -177,8 +184,8 @@
         .transfer-box {
             width: 100%;
             border-collapse: collapse;
-            border: 1px solid #bbb;
-            border-radius: 6px;
+            border: 1px solid #1a237e;
+            border-radius: 8px;
             margin-bottom: 12px;
             overflow: hidden;
         }
@@ -212,7 +219,7 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            color: #555;
+            color: #1a237e;
             margin-bottom: 4px;
         }
 
@@ -244,14 +251,10 @@
         }
 
         .student-table .label-cell {
-            width: 58%;
+            width: 56%;
             color: #333;
             line-height: 1.35;
-        }
-
-        .student-table .label-cell .en-label {
             font-style: italic;
-            color: #555;
         }
 
         .student-table .value-cell {
@@ -328,16 +331,21 @@
             color: #444;
         }
 
+        .bilingual-label {
+            font-style: italic;
+        }
+
         @media print {
             body {
                 margin: 0;
-                padding: 8px 10px;
+                padding: 0;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="page-sheet">
     @php
         $applicationDate = $student->application->submitted_at ?? ($student->application->created_at ?? now());
         $startYear = $applicationDate->format('Y');
@@ -346,9 +354,13 @@
         $programNameEn =
             $student->application->program?->getName('EN') ??
             ($student->application->program?->name ?? 'N/A');
+        $programNamePl =
+            $student->application->program?->getName('PL') ?? $programNameEn;
         $degreeNameEn =
             $student->application->program?->degree?->getName('EN') ??
             ($student->application->program?->degree?->name ?? 'N/A');
+        $degreeNamePl =
+            $student->application->program?->degree?->getName('PL') ?? $degreeNameEn;
 
         $refNo =
             'RU/TR/' .
@@ -376,7 +388,7 @@
             </td>
             <td style="width: 34%;">
                 <div class="office-block">
-                    <div class="office-title navy">Student Affairs Office</div>
+                    <div class="office-title navy">Biuro Spraw Studenckich / Student Affairs Office</div>
                     Tel: +48 48 361 70 00<br>
                     Email: studentoffice@ru.edu.pl<br>
                     Web: www.radomuniversity.edu.pl
@@ -392,14 +404,14 @@
 
     <table class="meta-row-table">
         <tr>
-            <td><strong>Ref. No.:</strong> {{ $refNo }}</td>
-            <td class="meta-right"><strong>Date:</strong> {{ now()->format('d.m.Y') }}</td>
+            <td><strong>Nr ref. / Ref. No.:</strong> {{ $refNo }}</td>
+            <td class="meta-right"><strong>Data / Date:</strong> {{ now()->format('d.m.Y') }}</td>
         </tr>
     </table>
 
     <div class="doc-title navy">
-        <p class="pl">Zaświadczenie o przeniesieniu studenta</p>
-        <p class="en">Student Transfer Certificate</p>
+        <p class="pl">ZAŚWIADCZENIE O PRZENIESIENIU STUDENTA</p>
+        <p class="en">STUDENT TRANSFER CERTIFICATE</p>
     </div>
     <div class="title-underline"></div>
 
@@ -417,13 +429,13 @@
     <table class="transfer-box">
         <tr>
             <td class="from-cell">
-                <div class="transfer-label">From / Z uczelni</div>
+                <div class="transfer-label">FROM / Z UCZELNI</div>
                 <div class="transfer-value">{{ $student->current_university ?: 'N/A' }}</div>
             </td>
             <td class="arrow-cell">→</td>
             <td class="to-cell">
-                <div class="transfer-label">To / Do uczelni</div>
-                <div class="transfer-value">Radom University</div>
+                <div class="transfer-label">TO / DO UCZELNI</div>
+                <div class="transfer-value">Uniwersytet Radomski / Radom University</div>
             </td>
         </tr>
     </table>
@@ -431,13 +443,13 @@
     <table class="student-table">
         <tr>
             <td class="label-cell">
-                Imię i nazwisko studenta / <span class="en-label">Student's Full Name</span>
+                Imię i nazwisko studenta / Student's Full Name
             </td>
             <td class="value-cell">{{ $student->first_name }} {{ $student->last_name }}</td>
         </tr>
         <tr>
             <td class="label-cell">
-                Data urodzenia / <span class="en-label">Date of Birth</span>
+                Data urodzenia / Date of Birth
             </td>
             <td class="value-cell">
                 {{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}
@@ -445,40 +457,40 @@
         </tr>
         <tr>
             <td class="label-cell">
-                Numer paszportu / <span class="en-label">Passport Number</span>
+                Numer paszportu / Passport Number
             </td>
             <td class="value-cell">{{ $student->passport_number ?? 'N/A' }}</td>
         </tr>
         <tr>
             <td class="label-cell">
-                Numer studenta w uczelni macierzystej / <span class="en-label">Student ID at Home Institution</span>
+                Numer studenta w uczelni macierzystej / Student ID at Home Institution
             </td>
             <td class="value-cell">{{ $student->student_number ?? ($student->application_number ?? 'N/A') }}</td>
         </tr>
         <tr>
             <td class="label-cell">
-                Kierunek studiów / <span class="en-label">Field of Study</span>
+                Kierunek studiów / Field of Study
             </td>
-            <td class="value-cell">{{ $programNameEn }}</td>
+            <td class="value-cell">{{ $programNamePl }} / {{ $programNameEn }}</td>
         </tr>
         <tr>
             <td class="label-cell">
-                Poziom studiów / <span class="en-label">Level of Study</span>
+                Poziom studiów / Level of Study
             </td>
-            <td class="value-cell">{{ $degreeNameEn }}</td>
+            <td class="value-cell">{{ $degreeNamePl }} / {{ $degreeNameEn }}</td>
         </tr>
         <tr>
             <td class="label-cell">
-                Forma studiów / <span class="en-label">Mode of Study</span>
+                Forma studiów / Mode of Study
             </td>
-            <td class="value-cell">Full-time</td>
+            <td class="value-cell">Studia stacjonarne / Full-time</td>
         </tr>
         <tr>
             <td class="label-cell">
-                Planowany semestr rozpoczęcia studiów w Radom University / <span class="en-label">Planned Semester of
-                    Enrollment at Radom University</span>
+                Planowany semestr rozpoczęcia studiów w Radom University / Planned Semester of
+                    Enrollment at Radom University
             </td>
-            <td class="value-cell">Winter Semester {{ $startYear }}/{{ $endYear }} (October {{ $startYear }})</td>
+            <td class="value-cell">Semestr zimowy {{ $startYear }}/{{ $endYear }} (październik {{ $startYear }}) / Winter Semester {{ $startYear }}/{{ $endYear }} (October {{ $startYear }})</td>
         </tr>
     </table>
 
@@ -506,12 +518,13 @@
                     @endif
                     <div class="sig-line">
                         <span class="sig-name">Michał Kowalski</span><br />
-                        <span class="sig-title">Head of Student Affairs</span><br />
-                        <span class="sig-title">Radom University</span>
+                        <span class="sig-title">Kierownik Biura Spraw Studenckich / Head of Student Affairs</span><br />
+                        <span class="sig-title">Uniwersytet Radomski / Radom University</span>
                     </div>
                 </td>
             </tr>
         </table>
+    </div>
     </div>
 
 </body>
