@@ -79,9 +79,7 @@
                         :class="fieldClass('teachingLanguage')" :disabled="!selectedProgramId || loadingPrograms">
                         <option value=""
                             x-text="selectedProgramId ? 'Select teaching language' : 'Select program first'"></option>
-                        <template x-for="language in availableTeachingLanguages" :key="language.value">
-                            <option :value="language.value" x-text="language.label"></option>
-                        </template>
+                        <option value="en">EN</option>
                     </select>
                     <p x-show="errors.teachingLanguage" x-text="firstError('teachingLanguage')"
                         class="mt-2 text-sm text-red-600"></p>
@@ -502,34 +500,12 @@
             generalError: '',
             errors: {},
 
-            get selectedProgram() {
-                return this.programs.find((program) => String(program.id) === String(this.selectedProgramId)) ||
-                    null;
-            },
-
             get selectedDegree() {
                 return this.degrees.find((degree) => String(degree.id) === String(this.selectedDegreeId)) || null;
             },
 
             get availableFaculties() {
                 return this.selectedDegree?.faculties || [];
-            },
-
-            get availableTeachingLanguages() {
-                if (!this.selectedProgram) {
-                    return [];
-                }
-
-                // const languages = this.selectedProgram.study_languages.length ?
-                //     this.selectedProgram.study_languages :
-                //     ['en', 'tr'];
-
-                const languages = ['en', 'tr']
-
-                return languages.map((language) => ({
-                    value: language,
-                    label: language.toUpperCase(),
-                }));
             },
 
             get selectedDegreeTypeLabel() {
@@ -596,7 +572,6 @@
                         name: program.name,
                         faculty_name: program.faculty?.name || '',
                         price_per_year: program.price_per_year,
-                        study_languages: ['en', 'tr'],
                     }));
                 } catch (error) {
                     this.programs = [];
@@ -608,7 +583,7 @@
             handleProgramChange() {
                 delete this.errors.program_id;
                 delete this.errors.teachingLanguage;
-                this.selectedTeachingLanguage = '';
+                this.selectedTeachingLanguage = this.selectedProgramId ? 'en' : '';
             },
 
             programLabel(program) {
