@@ -297,12 +297,7 @@
         $facultyName = strtoupper($faculty?->name ?? 'GRADUATE SCHOOL');
 
         $studyLanguage = strtoupper($student->study_language ?? 'EN');
-        $studyLanguageLabel = match ($studyLanguage) {
-            'EN' => 'English',
-            'TR' => 'Turkish',
-            'PL' => 'Polish',
-            default => 'English',
-        };
+        $studyLanguageLabel = 'English'
 
         $nationality = strtoupper($student->nationality ?? 'N/A');
         $placeOfBirth = strtoupper($student->place_of_birth ?? ($student->nationality ?? 'N/A'));
@@ -342,9 +337,7 @@
         $verificationCodeForUrl = $verificationCode ?? null;
         $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
         $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '-';
-        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-            ->size(70)
-            ->generate($verificationUrl);
+        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(70)->generate($verificationUrl);
         $qrCodeBase64 = base64_encode($qrCode);
     @endphp
 
@@ -358,7 +351,9 @@
             </div>
             <div class="header-right">
                 <div>Issue date: {{ now()->format('d/m/Y') }}</div>
-                <div>Reference no: {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}</div>
+                <div>Reference no:
+                    {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
+                </div>
             </div>
         </div>
 
@@ -369,14 +364,24 @@
 
         <div class="identity">
             <div class="identity-left">
-                <div class="identity-line"><span class="label">Student number</span> <span class="value">{{ $student->student_number ?? $student->id }}</span></div>
-                <div class="identity-line"><span class="label">Passport no</span> <span class="value">{{ $student->passport_number ?? 'N/A' }}</span></div>
-                <div class="identity-line"><span class="label">Name and surname</span> <span class="value">{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</span></div>
-                <div class="identity-line"><span class="label">Father's name</span> <span class="value">{{ tr_upper($student->father_name ?? 'N/A') }}</span></div>
-                <div class="identity-line"><span class="label">Date of birth</span> <span class="value">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</span></div>
-                <div class="identity-line"><span class="label">Place of birth</span> <span class="value">{{ $placeOfBirth }}</span></div>
-                <div class="identity-line"><span class="label">Nationality</span> <span class="value">{{ $nationality }}</span></div>
-                <div class="identity-line"><span class="label">Gender</span> <span class="value">{{ $student->gender ? ucfirst($student->gender) : 'N/A' }}</span></div>
+                <div class="identity-line"><span class="label">Student number</span> <span
+                        class="value">{{ $student->student_number ?? $student->id }}</span></div>
+                <div class="identity-line"><span class="label">Passport no</span> <span
+                        class="value">{{ $student->passport_number ?? 'N/A' }}</span></div>
+                <div class="identity-line"><span class="label">Name and surname</span> <span
+                        class="value">{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</span>
+                </div>
+                <div class="identity-line"><span class="label">Father's name</span> <span
+                        class="value">{{ tr_upper($student->father_name ?? 'N/A') }}</span></div>
+                <div class="identity-line"><span class="label">Date of birth</span> <span
+                        class="value">{{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</span>
+                </div>
+                <div class="identity-line"><span class="label">Place of birth</span> <span
+                        class="value">{{ $placeOfBirth }}</span></div>
+                <div class="identity-line"><span class="label">Nationality</span> <span
+                        class="value">{{ $nationality }}</span></div>
+                <div class="identity-line"><span class="label">Gender</span> <span
+                        class="value">{{ $student->gender ? ucfirst($student->gender) : 'N/A' }}</span></div>
             </div>
             <div class="identity-right">
                 <div class="photo">
@@ -403,18 +408,23 @@
         </div>
 
         <div class="statement">
-            <p>The person identified in this document is a registered student of RADOM UNIVERSITY and currently holds active student status.</p>
-            <p>The planned total duration of the program is {{ $duration }} years. Current registration applies for the {{ $academicYear }} period.</p>
-            <p>According to university regulations, the student is required to fulfill curriculum obligations, attend classes regularly, and complete required assessments and examinations.</p>
-            <p>This certificate is issued upon the request of the relevant person solely for confirmation of student status.</p>
+            <p>The person identified in this document is a registered student of RADOM UNIVERSITY and currently holds
+                active student status.</p>
+            <p>The planned total duration of the program is {{ $duration }} years. Current registration applies for
+                the {{ $academicYear }} period.</p>
+            <p>According to university regulations, the student is required to fulfill curriculum obligations, attend
+                classes regularly, and complete required assessments and examinations.</p>
+            <p>This certificate is issued upon the request of the relevant person solely for confirmation of student
+                status.</p>
         </div>
 
         <div class="signature">
             @if ($stampData)
                 <img class="stamp" src="data:image/png;base64,{{ $stampData }}" alt="Stamp">
             @endif
-            <div class="sign-name">Prof. Dr. hab. Tomasz Zelazowski-Krepski</div>
-            <div class="sign-title">Rector</div>
+            <div class="sign-name">Michał Kowalski</div>
+            <div class="sign-title">Director of Student Affairs
+            </div>
         </div>
 
         <div class="verify">
@@ -431,7 +441,7 @@
 
             <div class="address">
                 <p>Aleja Jozefa Pilsudskiego 35, 09-407 Plock, Poland</p>
-                <p>Tel: +48 579 277 493</p>
+                <p>Radom, Poland</p>
                 <p>E-mail: info@radomuniversity.pl | rectorate@radomuniversity.pl</p>
             </div>
         </div>

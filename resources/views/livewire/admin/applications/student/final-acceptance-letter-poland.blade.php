@@ -367,12 +367,7 @@
         $facultyNamePl = $faculty?->getName('PL') ?: $facultyNameEn;
 
         $studyLangCode = strtoupper($student->study_language ?? 'EN');
-        $studyLangEn = match ($studyLangCode) {
-            'EN' => 'English',
-            'TR' => 'Turkish',
-            'PL' => 'Polish',
-            default => 'English',
-        };
+        $studyLangEn = 'English';
         $studyLangDisplay = language_to_polish($studyLangEn);
 
         $nationalityDisplay = nationality_to_polish($student->nationality);
@@ -423,7 +418,7 @@
             </td>
             <td style="width: 45%;">
                 <div class="contact-block">
-                    <div>Tel: +48 579 277 493</div>
+                    <div>Radom, Poland</div>
                     <div>E-mail: info@radomuniversity.pl</div>
                 </div>
             </td>
@@ -614,8 +609,9 @@
                         @endif
                     </div>
                     <div class="sig-line">
-                        <span class="sig-name">Prof. Dr. Tomasz Zieliński</span><br />
-                        <span class="sig-title">REKTOR / RECTOR</span>
+                        <span class="sig-name">Michał Kowalski</span><br />
+                        <span class="sig-title">Director of Student Affairs /
+                            Dyrektor Działu Spraw Studenckich</span>
                     </div>
                 </td>
             </tr>
@@ -651,7 +647,7 @@
     </div>
 
     <div class="footer-line">
-        Tel: +48 579 277 493 &nbsp;|&nbsp; E-mail:
+        Radom, Poland &nbsp;|&nbsp; E-mail:
         info@radomuniversity.pl
     </div>
 

@@ -314,10 +314,10 @@
         $beginStudiesYear = now()->month <= 8 ? now()->year : now()->addYear()->year;
         $priceYear = (float) ($student->application->program?->price_per_year ?? 4000);
         $tuitionSemesterEur = $priceYear > 0 ? round($priceYear / 2) : 3000;
-        $studyLangLabel = $student->study_language === 'en' ? 'English' : 'Turkish';
-        $citizenship = $student->nationality ?: ($student->country ?? 'N/A');
+        $studyLangLabel = 'English';
+        $citizenship = $student->nationality ?: $student->country ?? 'N/A';
         $dobFormatted = $student->date_of_birth ? $student->date_of_birth->format('j F Y') : 'N/A';
-        $refNo = $student->application_number ?? ('RADOM/' . $student->id);
+        $refNo = $student->application_number ?? 'RADOM/' . $student->id;
         $fullName = trim(($student->first_name ?? '') . ' ' . ($student->last_name ?? ''));
         $studyLevelLabel = $student->application->program?->degree?->name ?? 'N/A';
         $modeOfStudy = 'Full-time';
@@ -344,7 +344,7 @@
                 ? 'Stypendium: ' . $student->scholarship_status
                 : 'Zgodnie z oceną wniosku',
         };
-        $studyLangLabelPl = $student->study_language === 'en' ? 'Angielski' : 'Turecki';
+        $studyLangLabelPl = 'Angielski';
         $programDurationLabelPl = is_numeric($durationStudies) ? $durationStudies . ' lat' : $programDurationLabel;
         $modeOfStudyPl = 'Studia stacjonarne';
     @endphp
@@ -358,7 +358,7 @@
             </td>
             <td style="width: 48%;">
                 <div class="contact-block">
-                    <div>Tel: +48 579 277 493</div>
+                    <div>Radom, Poland</div>
                     <div>E-mail: admissions@radomuniversity.pl</div>
                 </div>
             </td>
@@ -481,9 +481,7 @@
         $verificationCodeForUrl = $verificationCode ?? null;
         $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
         $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
-        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-            ->size(50)
-            ->generate($verificationUrl);
+        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(50)->generate($verificationUrl);
         $qrCodeBase64 = base64_encode($qrCode);
     @endphp
 
@@ -491,8 +489,10 @@
         <tr>
             <td>
                 <div class="sig-line">
-                    <strong>Prof. Dr. Tomasz Zieliński</strong><br />
-                    REKTOR / RECTOR
+                    <strong>Michał Kowalski</strong><br />
+                    Director of Student Affairs /
+                    Dyrektor Działu Spraw Studenckich
+
                 </div>
             </td>
             {{-- <td style="text-align: center;">
