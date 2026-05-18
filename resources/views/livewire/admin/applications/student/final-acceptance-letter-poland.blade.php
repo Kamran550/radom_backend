@@ -647,7 +647,7 @@
     </div>
 
     <div class="footer-line">
-        Radom, Poland &nbsp;|&nbsp; E-mail:
+        Radom, Poland &nbsp;|&nbsp; Tel: +48 579 277 493 &nbsp;|&nbsp; E-mail:
         info@radomuniversity.pl
     </div>
 
