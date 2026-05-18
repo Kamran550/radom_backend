@@ -1,360 +1,519 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yatay Geçiş Kabul Mektubu - {{ $student->first_name }} {{ $student->last_name }}</title>
+    <title>Student Transfer Certificate - {{ $student->first_name }} {{ $student->last_name }}</title>
     <style>
         @page {
-            margin: 15mm 20mm;
+            margin: 10mm;
             size: A4;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'DejaVu Serif', 'Times New Roman', serif;
-            font-size: 10pt;
-            line-height: 1.4;
-            color: #000;
+            font-family: 'DejaVu Sans', Helvetica, Arial, sans-serif;
+            font-size: 7.5pt;
+            line-height: 1.35;
+            color: #222;
             margin: 0;
-            padding: 0;
-            background: white;
-            position: relative;
-            min-height: 297mm;
+            padding: 10px 12px;
+            background: #fff;
+            border: 1px solid #d0d0d0;
         }
 
-        /* Background Watermark */
-        .watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-22deg);
-            z-index: -1;
-            pointer-events: none;
-            opacity: 0.11;
+        .navy {
+            color: #1a237e;
         }
 
-        .watermark-text-inner {
-            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
-            font-size: 56pt;
-            font-weight: bold;
-            color: #1a2744;
-            white-space: nowrap;
-            letter-spacing: 0.06em;
-        }
-
-        .header {
-            margin-bottom: 30px;
-        }
-
-        .logo {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 8px;
-        }
-
-        .brand-wordmark-header {
-            line-height: 1.08;
-            margin-bottom: 8px;
-        }
-
-        .brand-wordmark-header .brand-wordmark-primary {
-            display: block;
-            font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif;
-            font-size: 18pt;
-            font-weight: bold;
-            color: #1a2744;
-            letter-spacing: 0.12em;
-        }
-
-        .brand-wordmark-header .brand-wordmark-secondary {
-            display: block;
-            font-family: 'DejaVu Sans', Arial, sans-serif;
-            font-size: 9pt;
-            font-weight: normal;
-            color: #3d5a80;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        .contact-info {
-            font-size: 8.5pt;
-            line-height: 1.3;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .document-title {
-            font-size: 13pt;
-            font-weight: bold;
-            text-align: center;
-            margin: 25px 0 10px 0;
-            /* text-transform: uppercase; */
-            letter-spacing: 0.5px;
-        }
-
-        .department {
-            font-size: 9pt;
-            text-align: center;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .reference-line {
-            font-size: 9pt;
-            margin: 8px 0;
-            font-style: italic;
-        }
-
-        .greeting {
-            text-align: center;
-            font-size: 10pt;
-            font-weight: bold;
-            margin: 15px 0 12px 0;
-        }
-
-        .content {
-            text-align: justify;
-            line-height: 1.6;
-            margin: 12px 0;
-            font-style: italic;
-        }
-
-        .content p {
-            margin: 10px 0;
-        }
-
-        .signature-section {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-
-        .signature-line {
-            margin: 4px 0;
-        }
-
-        .verification-footer {
-            position: absolute;
-            bottom: -5mm;
-            left: 0;
-            right: 0;
-            margin-top: 10px;
-            padding: 0;
-            padding-bottom: 10px;
-        }
-
-        .verification-table {
+        .header-table {
             width: 100%;
-            margin-bottom: 10px;
+            border-collapse: collapse;
+            margin-bottom: 0;
         }
 
-        .verification-box {
-            background: #f0f0f0;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 9pt;
+        .header-table td {
+            vertical-align: top;
+            padding: 0;
+        }
+
+        .uni-name {
+            font-family: 'DejaVu Serif', Georgia, serif;
+            font-size: 14pt;
+            font-weight: bold;
+            color: #1a237e;
+            letter-spacing: 0.04em;
+            margin: 0 0 4px 0;
+            line-height: 1.1;
+        }
+
+        .uni-address {
+            font-size: 6.5pt;
+            color: #444;
+            line-height: 1.35;
+            margin: 0;
+        }
+
+        .header-vdivider {
+            width: 1px;
+            background: #ccc;
+            padding: 0 !important;
+        }
+
+        .header-vdivider-inner {
+            width: 1px;
+            min-height: 52px;
+            background: #ccc;
+            margin: 0 auto;
+        }
+
+        .office-block {
+            font-size: 6.5pt;
+            line-height: 1.45;
+            color: #333;
+            padding-left: 8px;
+        }
+
+        .office-block .office-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #1a237e;
+            margin-bottom: 3px;
+            font-size: 6.25pt;
+        }
+
+        .qr-header {
+            text-align: right;
+            padding-left: 6px;
+        }
+
+        .qr-header img {
+            width: 52px;
+            height: 52px;
+            display: block;
+            margin-left: auto;
+        }
+
+        .header-rule {
+            border: none;
+            border-top: 2.5px solid #1a237e;
+            margin: 8px 0 10px 0;
+        }
+
+        .meta-row-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 7pt;
+        }
+
+        .meta-row-table td {
+            padding: 0;
+            vertical-align: top;
+        }
+
+        .meta-right {
+            text-align: right;
+        }
+
+        .doc-title {
+            text-align: center;
+            margin: 0 0 6px 0;
+        }
+
+        .doc-title .pl {
+            font-family: 'DejaVu Serif', Georgia, serif;
+            font-size: 10.5pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1a237e;
+            margin: 0;
             line-height: 1.2;
         }
 
-        .qr-code {
-            width: 70px;
-            height: 70px;
+        .doc-title .en {
+            font-family: 'DejaVu Serif', Georgia, serif;
+            font-size: 9.5pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #1a237e;
+            margin: 3px 0 0 0;
+            line-height: 1.2;
+        }
+
+        .title-underline {
+            width: 48px;
+            border-top: 1px solid #1a237e;
+            margin: 6px auto 10px auto;
+        }
+
+        .intro-columns {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 7pt;
+            line-height: 1.4;
+        }
+
+        .intro-columns td {
+            width: 50%;
+            vertical-align: top;
+            padding: 0 10px 0 0;
+            text-align: justify;
+        }
+
+        .intro-columns td.en-col {
+            padding: 0 0 0 10px;
+            border-left: 1px solid #ddd;
+        }
+
+        .transfer-box {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .transfer-box td {
+            padding: 10px 12px;
+            vertical-align: middle;
+            font-size: 7pt;
+        }
+
+        .transfer-box .from-cell {
+            width: 44%;
+            border-right: none;
+        }
+
+        .transfer-box .arrow-cell {
+            width: 12%;
+            text-align: center;
+            font-size: 16pt;
+            color: #1a237e;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        .transfer-box .to-cell {
+            width: 44%;
+        }
+
+        .transfer-label {
+            font-size: 6.25pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        .transfer-value {
+            font-size: 8pt;
+            font-weight: bold;
+            color: #111;
+            line-height: 1.3;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 7pt;
+        }
+
+        .student-table tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .student-table tr:last-child {
+            border-bottom: 1px solid #bbb;
+        }
+
+        .student-table td {
+            padding: 6px 8px;
+            vertical-align: top;
+        }
+
+        .student-table .label-cell {
+            width: 58%;
+            color: #333;
+            line-height: 1.35;
+        }
+
+        .student-table .label-cell .en-label {
+            font-style: italic;
+            color: #555;
+        }
+
+        .student-table .value-cell {
+            width: 42%;
+            font-weight: bold;
+            color: #111;
+            text-align: left;
+        }
+
+        .closing-columns {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 14px 0;
+            font-size: 6.85pt;
+            line-height: 1.4;
+        }
+
+        .closing-columns td {
+            width: 50%;
+            vertical-align: top;
+            padding: 0 10px 0 0;
+            text-align: justify;
+            color: #333;
+        }
+
+        .closing-columns td.en-col {
+            padding: 0 0 0 10px;
+            border-left: 1px solid #ddd;
+        }
+
+        .signature-block {
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .signature-inner {
+            margin-left: auto;
+            border-collapse: collapse;
+        }
+
+        .sig-graphic-wrap {
+            position: relative;
+            min-height: 38px;
+            margin-bottom: 2px;
+            text-align: right;
+        }
+
+        .sig-handwritten {
+            display: block;
+            margin-left: auto;
+            width: 140px;
+            height: auto;
+            max-height: 44px;
+            object-fit: contain;
+        }
+
+        .sig-line {
+            border-top: 1px solid #333;
+            padding-top: 4px;
+            margin-top: 2px;
+            text-align: center;
+            line-height: 1.3;
+            min-width: 168px;
+            font-size: 7pt;
+        }
+
+        .sig-name {
+            font-weight: bold;
+            color: #111;
+        }
+
+        .sig-title {
+            font-size: 6.5pt;
+            color: #444;
         }
 
         @media print {
             body {
                 margin: 0;
-                padding: 0;
+                padding: 8px 10px;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Background Watermark -->
-    <div class="watermark" aria-hidden="true">
-        <span class="watermark-text-inner">Radom University</span>
+    @php
+        $applicationDate = $student->application->submitted_at ?? ($student->application->created_at ?? now());
+        $startYear = $applicationDate->format('Y');
+        $endYear = $startYear + 1;
+
+        $programNameEn =
+            $student->application->program?->getName('EN') ??
+            ($student->application->program?->name ?? 'N/A');
+        $degreeNameEn =
+            $student->application->program?->degree?->getName('EN') ??
+            ($student->application->program?->degree?->name ?? 'N/A');
+
+        $refNo =
+            'RU/TR/' .
+            now()->format('Y') .
+            '/' .
+            str_pad((string) $student->id, 5, '0', STR_PAD_LEFT);
+
+        $signaturePath = public_path('images/imza.png');
+        $signatureData = file_exists($signaturePath) ? base64_encode(file_get_contents($signaturePath)) : '';
+
+        $verificationCodeForUrl = $verificationCode ?? null;
+        $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
+        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(52)->generate($verificationUrl);
+        $qrCodeBase64 = base64_encode($qrCode);
+    @endphp
+
+    <table class="header-table">
+        <tr>
+            <td style="width: 38%;">
+                <p class="uni-name navy">RADOM UNIVERSITY</p>
+                <p class="uni-address">JACKA MALCZEWSKIEGO 24<br>26-600 RADOM, POLAND</p>
+            </td>
+            <td class="header-vdivider" style="width: 1%;">
+                <div class="header-vdivider-inner"></div>
+            </td>
+            <td style="width: 34%;">
+                <div class="office-block">
+                    <div class="office-title navy">Student Affairs Office</div>
+                    Tel: +48 48 361 70 00<br>
+                    Email: studentoffice@ru.edu.pl<br>
+                    Web: www.radomuniversity.edu.pl
+                </div>
+            </td>
+            <td class="qr-header" style="width: 22%;">
+                <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
+            </td>
+        </tr>
+    </table>
+
+    <hr class="header-rule" />
+
+    <table class="meta-row-table">
+        <tr>
+            <td><strong>Ref. No.:</strong> {{ $refNo }}</td>
+            <td class="meta-right"><strong>Date:</strong> {{ now()->format('d.m.Y') }}</td>
+        </tr>
+    </table>
+
+    <div class="doc-title navy">
+        <p class="pl">Zaświadczenie o przeniesieniu studenta</p>
+        <p class="en">Student Transfer Certificate</p>
     </div>
+    <div class="title-underline"></div>
 
-    <!-- Header with Logo and Address -->
-    <div class="header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;">
-        {{-- Left: Wordmark --}}
-        <div>
-            <div class="brand-wordmark-header">
-                <span class="brand-wordmark-primary">Radom</span>
-                <span class="brand-wordmark-secondary">University</span>
-            </div>
-        </div>
+    <table class="intro-columns">
+        <tr>
+            <td>
+                Niniejszym zaświadcza się, że niżej wymieniony student ubiega się o przeniesienie z uczelni:
+            </td>
+            <td class="en-col">
+                This is to certify that the below mentioned student is applying for transfer from the institution:
+            </td>
+        </tr>
+    </table>
 
-        {{-- Right: Contact info + Barcode --}}
-        <div class="contact-info" style="text-align: right;">
-            <div>
-                <strong>Email:</strong> international@radomuniversity.pl<br>
-                <strong>Phone:</strong> +48 579 277 493<br>
-                <strong>Date:</strong> {{ now()->format('d/m/Y') }}
-            </div>
+    <table class="transfer-box">
+        <tr>
+            <td class="from-cell">
+                <div class="transfer-label">From / Z uczelni</div>
+                <div class="transfer-value">{{ $student->current_university ?: 'N/A' }}</div>
+            </td>
+            <td class="arrow-cell">→</td>
+            <td class="to-cell">
+                <div class="transfer-label">To / Do uczelni</div>
+                <div class="transfer-value">Radom University</div>
+            </td>
+        </tr>
+    </table>
 
-            <div>
-                @php
-                    $barcodeCode = trim($student->student_number ?? $student->application_number ?? '') ?: ('RADOM-' . $student->id . '-' . now()->format('Ymd'));
-                    $barcodeBase64 = '';
-                    try {
-                        $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())
-                            ->getBarcode($barcodeCode, \Picqer\Barcode\BarcodeGenerator::TYPE_CODE_128, 1, 22, [26, 39, 68]);
-                        $barcodeBase64 = base64_encode($barcodePng);
-                    } catch (\Throwable $e) {
-                        // fallback - barcode hidden
-                    }
-                @endphp
-                @if ($barcodeBase64)
-                    <img src="data:image/png;base64,{{ $barcodeBase64 }}" alt="Barcode"
-                        style="max-width: 110px; height: auto; max-height: 28px; display: block; margin-left: auto;" />
-                    <div style="font-size: 7pt; margin-top: 2px;">{{ now()->format('d/m/Y') }}</div>
-                @endif
-            </div>
-        </div>
+    <table class="student-table">
+        <tr>
+            <td class="label-cell">
+                Imię i nazwisko studenta / <span class="en-label">Student's Full Name</span>
+            </td>
+            <td class="value-cell">{{ $student->first_name }} {{ $student->last_name }}</td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Data urodzenia / <span class="en-label">Date of Birth</span>
+            </td>
+            <td class="value-cell">
+                {{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}
+            </td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Numer paszportu / <span class="en-label">Passport Number</span>
+            </td>
+            <td class="value-cell">{{ $student->passport_number ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Numer studenta w uczelni macierzystej / <span class="en-label">Student ID at Home Institution</span>
+            </td>
+            <td class="value-cell">{{ $student->student_number ?? ($student->application_number ?? 'N/A') }}</td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Kierunek studiów / <span class="en-label">Field of Study</span>
+            </td>
+            <td class="value-cell">{{ $programNameEn }}</td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Poziom studiów / <span class="en-label">Level of Study</span>
+            </td>
+            <td class="value-cell">{{ $degreeNameEn }}</td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Forma studiów / <span class="en-label">Mode of Study</span>
+            </td>
+            <td class="value-cell">Full-time</td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Planowany semestr rozpoczęcia studiów w Radom University / <span class="en-label">Planned Semester of
+                    Enrollment at Radom University</span>
+            </td>
+            <td class="value-cell">Winter Semester {{ $startYear }}/{{ $endYear }} (October {{ $startYear }})</td>
+        </tr>
+    </table>
 
-    </div>
+    <table class="closing-columns">
+        <tr>
+            <td>
+                Zaświadczenie zostało wydane na prośbę studenta w celu przedłożenia w Radom University oraz do innych
+                instytucji wymagających potwierdzenia zamiaru przeniesienia.
+            </td>
+            <td class="en-col">
+                This certificate is issued at the request of the student for submission to Radom University and any
+                other institution requiring confirmation of the transfer intention.
+            </td>
+        </tr>
+    </table>
 
-    <!-- Document Title -->
-    <div class="document-title">
-        RADOM UNIVERSITY<br>
-        TRANSFER ACCEPTANCE LETTER
-    </div>
-
-    <div class="department">
-        International Student Affairs Department
-    </div>
-
-    <!-- Reference Information -->
-    <div class="reference-line">
-        <strong>Student Number:</strong> {{ $student->student_number ?? 'N/A' }}
-    </div>
-    <div class="reference-line">
-        <strong>Passport Number:</strong> {{ $student->passport_number ?? 'N/A' }}
-    </div>
-
-
-    <div class="reference-line">
-        <strong>Subject:</strong> Transfer Acceptance – {{ tr_upper(text: $student->first_name) }}
-        {{ tr_upper(text: $student->last_name) }}
-    </div>
-
-    <!-- Greeting -->
-    <div class="greeting">
-        To Whom It May Concern
-    </div>
-
-    <!-- Content -->
-    <div class="content">
-        <p>
-            This letter is issued to confirm that
-            <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong>,
-            previously enrolled at <strong>{{ $student->current_university ?: 'N/A' }}</strong>,
-            has been formally accepted as a
-            {{ course_to_word_english($student->current_course) }} year student
-            in the
-            {{ $student->application->program?->degree?->getName('EN') ?? ($student->application->program?->degree?->name ?? 'N/A') }}
-            {{ $student->application->program?->getName('EN') ?? ($student->application->program?->name ?? 'N/A') }}
-            program at RADOM UNIVERSITY for the
-            @php
-                $applicationDate = $student->application->submitted_at ?? ($student->application->created_at ?? now());
-                $startYear = $applicationDate->format('Y');
-                $endYear = $startYear + 1;
-            @endphp
-            {{ $startYear }}–{{ $endYear }} academic year.
-        </p>
-
-        <p>
-            The student's academic records have been carefully reviewed, and it has been decided to place them
-            directly in the {{ course_to_word_english($student->current_course) }} year of the program in accordance
-            with
-            their qualifications.
-        </p>
-    </div>
-
-    <!-- Signature Section -->
-    <div class="signature-section">
-        <div class="signature-line">
-            Best regards,
-        </div>
-        <div class="signature-line" style="margin-top: 15px;">
-            International Student Affairs Department
-        </div>
-        <br>
-        <div class="signature-line">
-            RADOM UNIVERSITY
-        </div>
-    </div>
-
-    <!-- Verification Footer Section -->
-    {{-- <div class="verification-footer">
-        <!-- Verification Box with QR Code -->
-        <table class="verification-table">
+    <div class="signature-block">
+        <table class="signature-inner" align="right">
             <tr>
-                <!-- Text Box -->
-                <td style="padding-left: 10px;">
-                    <div class="verification-box">
-                        Bu belge,
-                        {{ now()->format('d/m/Y') }} tarihinde
-                        <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong> adına
-                        <strong>{{ $verificationCode ?? tr_upper(\Illuminate\Support\Str::random(12)) }}</strong>
-                        belge numarasıyla elektronik olarak imzalanmıştır. Belgenin geçerliliği, QR kodunu tarayarak
-                        veya belge numarasını kullanarak
-                        <strong>{{ $student->getVerificationUrl() }}</strong> adresinden doğrulanabilir.
+                <td>
+                    @if ($signatureData)
+                        <div class="sig-graphic-wrap">
+                            <img class="sig-handwritten" src="data:image/png;base64,{{ $signatureData }}" alt="">
+                        </div>
+                    @endif
+                    <div class="sig-line">
+                        <span class="sig-name">Michał Kowalski</span><br />
+                        <span class="sig-title">Head of Student Affairs</span><br />
+                        <span class="sig-title">Radom University</span>
                     </div>
-                </td>
-                <td style="width: 80px; vertical-align: top;">
-                    @php
-                        $verificationCodeForUrl = $verificationCode ?? null;
-                        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                            ->size(70)
-                            ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                        $qrCodeBase64 = base64_encode($qrCode);
-                    @endphp
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" class="qr-code" />
                 </td>
             </tr>
         </table>
-    </div> --}}
-
-    <div class="verification-footer">
-        <!-- Verification Box with QR Code -->
-        <table style="width: 100%; margin-bottom: 10px;">
-            <tr>
-                <!-- QR Code -->
-
-                <!-- Text Box -->
-                <td style="padding-left: 10px; padding-right: 15px;">
-                    <div
-                        style="background: #f0f0f0; padding: 12px 15px; border-radius: 8px; font-size: 11px; line-height: 1.2;">
-                        This document was electronically signed on {{ now()->format('d/m/Y') }} on behalf of
-                        <strong>{{ strtoupper($student->first_name . ' ' . $student->last_name) }}</strong>
-                        with document number <strong>{{ $verificationCode ?? strtoupper(Str::random(12)) }}</strong>.
-                        The validity of the document can be verified by scanning the QR code or using the document
-                        number at <strong>{{ $student->getVerificationUrl() }}</strong>.
-                    </div>
-
-                </td>
-                <td style="width: 80px; vertical-align: top; padding-left: 10px;">
-                    @php
-                        $verificationCodeForUrl = $verificationCode ?? null;
-                        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
-                            ->size(70)
-                            ->generate($student->getVerificationUrl($verificationCodeForUrl));
-                        $qrCodeBase64 = base64_encode($qrCode);
-                    @endphp
-
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" style="width: 70px; height: 70px;" />
-                </td>
-
-            </tr>
-        </table>
-
-
     </div>
+
 </body>
 
 </html>
