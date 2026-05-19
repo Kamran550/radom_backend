@@ -95,7 +95,14 @@ class TransferLetterEnglishMail extends Mailable
                     'defaultFont' => 'DejaVu Serif'
                 ])->setPaper('a4', 'portrait');
 
-            $fileName = 'Transfer_Acceptance_Letter_' . $this->student->first_name . '_' . $this->student->last_name . '_' . now()->format('Y-m-d') . '.pdf';
+            $fileName = sprintf(
+                'Transfer_Acceptance_Letter_%s_%s_%s_student-%s_%s.pdf',
+                $this->student->first_name,
+                $this->student->last_name,
+                now()->format('Y-m-d'),
+                $this->student->id,
+                Str::lower(Str::random(8))
+            );
             $filePath = 'applications/transfer-letters/' . $fileName;
 
             Storage::put($filePath, $pdf->output());

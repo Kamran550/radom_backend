@@ -93,7 +93,12 @@ class FinalAcceptanceLetterPolishMail extends Mailable
                 ])
                 ->setPaper('a4', 'portrait');
 
-            $fileName = 'Zaswiadczenie-studenta-PL_' . now()->format('Y-m-d') . '.pdf';
+            $fileName = sprintf(
+                'Zaswiadczenie-studenta-PL_%s_student-%s_%s.pdf',
+                now()->format('Y-m-d'),
+                $this->student->id,
+                Str::lower(Str::random(8))
+            );
             $filePath = 'applications/certificates/' . $fileName;
 
             Storage::put($filePath, $pdf->output());

@@ -367,7 +367,7 @@
                 </button>
             @endif
             @if ($application && $currentStatus === ApplicationStatusEnum::APPROVED->value)
-                <button type="button" wire:click="sendFinalAcceptanceLetter" wire:loading.attr="disabled"
+                {{-- <button type="button" wire:click="sendFinalAcceptanceLetter" wire:loading.attr="disabled"
                     wire:target="sendFinalAcceptanceLetter"
                     class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#C49F5F] hover:bg-[#B8860B] rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Send Certificate (English)">
@@ -386,7 +386,7 @@
                     </svg>
                     <span wire:loading.remove wire:target="sendFinalAcceptanceLetter">Certificate (EN)</span>
                     <span wire:loading wire:target="sendFinalAcceptanceLetter">Sending...</span>
-                </button>
+                </button> --}}
                 <button type="button" wire:click="sendFinalAcceptanceLetterPoland" wire:loading.attr="disabled"
                     wire:target="sendFinalAcceptanceLetterPoland"
                     class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"

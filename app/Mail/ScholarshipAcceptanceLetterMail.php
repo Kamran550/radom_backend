@@ -102,7 +102,15 @@ class ScholarshipAcceptanceLetterMail extends Mailable
                     'defaultFont' => 'DejaVu Serif'
                 ])->setPaper('a4', 'portrait');
 
-            $fileName = '100_Scholarship_CAL_' . $this->student->student_number . '_' . $this->student->first_name . '_' . $this->student->last_name . '.pdf';
+            $fileName = sprintf(
+                '100_Scholarship_CAL_%s_%s_%s_%s_student-%s_%s.pdf',
+                $this->student->student_number ?? 'N/A',
+                $this->student->first_name,
+                $this->student->last_name,
+                now()->format('Y-m-d'),
+                $this->student->id,
+                Str::lower(Str::random(8))
+            );
             $filePath = 'applications/scholarship-acceptance-letters/' . $fileName;
 
             // Save PDF to storage (uses default disk - local or DO Spaces based on env)

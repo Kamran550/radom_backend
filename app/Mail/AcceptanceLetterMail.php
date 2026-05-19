@@ -102,7 +102,14 @@ class AcceptanceLetterMail extends Mailable
                     'defaultFont' => 'DejaVu Serif'
                 ])->setPaper('a4', 'portrait');
 
-            $fileName = 'Conditional_Acceptence_Letter_' . $this->student->first_name . '_' . $this->student->last_name . '_' . now()->format('Y-m-d') . '.pdf';
+            $fileName = sprintf(
+                'Conditional_Acceptence_Letter_%s_%s_%s_student-%s_%s.pdf',
+                $this->student->first_name,
+                $this->student->last_name,
+                now()->format('Y-m-d'),
+                $this->student->id,
+                Str::lower(Str::random(8))
+            );
             $filePath = 'applications/acceptance-letters/' . $fileName;
 
             // Save PDF to storage (uses default disk - local or DO Spaces based on env)
