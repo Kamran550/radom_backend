@@ -304,7 +304,7 @@
                 </button>
             @endif
             @if ($application && $application->applicant_type === \App\Enums\ApplicationTypeEnum::TRANSFER->value)
-                <button type="button" wire:click="sendTransferLetter" wire:loading.attr="disabled"
+                {{-- <button type="button" wire:click="sendTransferLetter" wire:loading.attr="disabled"
                     wire:target="sendTransferLetter"
                     class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-purple-600 hover:bg-purple-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Send Transfer Letter (Turkish)">
@@ -323,7 +323,7 @@
                     </svg>
                     <span wire:loading.remove wire:target="sendTransferLetter">Transfer Letter (TR)</span>
                     <span wire:loading wire:target="sendTransferLetter">Sending...</span>
-                </button>
+                </button> --}}
                 <button type="button" wire:click="sendTransferLetterEnglish" wire:loading.attr="disabled"
                     wire:target="sendTransferLetterEnglish"
                     class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
@@ -341,7 +341,7 @@
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                         </path>
                     </svg>
-                    <span wire:loading.remove wire:target="sendTransferLetterEnglish">Transfer Letter (EN)</span>
+                    <span wire:loading.remove wire:target="sendTransferLetterEnglish">Transfer Letter (EN + PL)</span>
                     <span wire:loading wire:target="sendTransferLetterEnglish">Sending...</span>
                 </button>
 
