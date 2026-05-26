@@ -275,7 +275,7 @@
 
         .verification-wrap {
             border: 1px solid #bbb;
-            margin-top: 0;
+            margin-top: 8px;
             margin-bottom: 0;
             font-size: 6.15pt;
             background: #fafafa;
