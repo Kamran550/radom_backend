@@ -354,9 +354,9 @@
             font-size: 6.25pt;
             color: #444;
             margin-top: 7px;
-            padding-top: 6px;
+            padding-top: 2px;
             border-top: 1px solid #ddd;
-            line-height: 1.35;
+            line-height: 1.25;
         }
 
         @media print {
