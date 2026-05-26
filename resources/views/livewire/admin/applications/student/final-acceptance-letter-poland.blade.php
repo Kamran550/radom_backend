@@ -235,7 +235,7 @@
         .e-sign-box {
             border: 1px solid #333;
             padding: 7px 11px;
-            margin-top: 4px;
+            /* margin-top: 4px; */
             text-align: center;
             line-height: 1.35;
             min-width: 175px;
