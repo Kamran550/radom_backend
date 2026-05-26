@@ -21,14 +21,13 @@
             line-height: 1.3;
             color: #111;
             margin: 0;
-            padding: 0 0 9mm 0;
+            padding: 0;
             background: #fff;
         }
 
         .page-bottom {
             page-break-inside: avoid;
             margin-top: 2px;
-            padding-bottom: 8mm;
         }
 
         .page-bottom-layout {
@@ -44,8 +43,8 @@
         }
 
         .verification-gap td {
-            height: 11mm;
-            line-height: 11mm;
+            height: 3mm;
+            line-height: 3mm;
             font-size: 1pt;
         }
 
@@ -374,18 +373,13 @@
         }
 
         .footer-line {
-            position: fixed;
-            left: 8.5mm;
-            right: 8.5mm;
-            bottom: 6mm;
             text-align: center;
             font-size: 6.2pt;
             color: #444;
-            margin: 0;
-            padding-top: 3px;
+            margin: 4px 0 0 0;
+            padding-top: 4px;
             border-top: 1px solid #ddd;
             line-height: 1.25;
-            background: #fff;
         }
 
         @media print {
@@ -692,11 +686,11 @@
                 </td>
             </tr>
         </table>
-    </div>
 
-    <div class="footer-line">
-        Radom, Poland &nbsp;|&nbsp; Tel: +48 73 947 16 22 &nbsp;|&nbsp; E-mail:
-        admission@radomuniversity.pl
+        <div class="footer-line">
+            Radom, Poland &nbsp;|&nbsp; Tel: +48 73 947 16 22 &nbsp;|&nbsp; E-mail:
+            admission@radomuniversity.pl
+        </div>
     </div>
 
 </body>
