@@ -600,7 +600,7 @@
                 <strong>Tel:</strong>+48579277493
             </p>
             <p>
-                <strong>e-mail:</strong> info@radomuniversity.pl | rectorate@radomuniversity.pl |
+                <strong>e-mail:</strong> admission@radomuniversity.pl | rectorate@radomuniversity.pl |
             </p>
         </div>
     </div>

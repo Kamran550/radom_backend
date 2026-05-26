@@ -167,7 +167,7 @@
         .body-columns {
             width: 100%;
             border-collapse: collapse;
-            margin: 8px 0 7px 0;
+            margin: 8px 0 5px 0;
             font-size: 7pt;
             line-height: 1.34;
         }
@@ -190,7 +190,7 @@
         }
 
         .signature-block {
-            margin-top: 10px;
+            margin-top: 2px;
             margin-bottom: 8px;
             text-align: right;
         }
@@ -232,25 +232,40 @@
             opacity: 0.82;
         }
 
-        .sig-line {
-            border-top: 1px solid #333;
-            padding-top: 4px;
-            margin-top: 2px;
+        .e-sign-box {
+            border: 1px solid #333;
+            padding: 7px 11px;
+            margin-top: 4px;
             text-align: center;
-            line-height: 1.25;
+            line-height: 1.35;
             min-width: 175px;
             font-size: 6.75pt;
+            background: #fafafa;
         }
 
-        .sig-name {
+        .e-sign-badge {
+            font-weight: bold;
+            font-size: 6.6pt;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1a237e;
+            margin-bottom: 5px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .e-sign-name {
             font-weight: bold;
             color: #111;
+            font-size: 7pt;
+            margin-top: 3px;
         }
 
-        .sig-title {
+        .e-sign-title {
             font-size: 6.35pt;
             color: #333;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.02em;
+            line-height: 1.3;
         }
 
         .verification-wrap {
@@ -418,9 +433,9 @@
             </td>
             <td style="width: 45%;">
                 <div class="contact-block">
-                    <div>Tel: +48 579 277 493</div>
+                    <div>Tel: +48 73 947 16 22</div>
                     <div>Radom, Poland</div>
-                    <div>E-mail: info@radomuniversity.pl</div>
+                    <div>E-mail: admission@radomuniversity.pl</div>
                 </div>
             </td>
         </tr>
@@ -586,7 +601,6 @@
         $stampData = file_exists($stampPath) ? base64_encode(file_get_contents($stampPath)) : '';
 
         $signaturePath = public_path('images/imza.png');
-        $signatureData = file_exists($signaturePath) ? base64_encode(file_get_contents($signaturePath)) : '';
 
         $verificationCodeForUrl = $verificationCode ?? null;
         $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
@@ -604,15 +618,11 @@
                             <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
                                 alt="">
                         @endif
-                        @if ($signatureData)
-                            <img class="sig-handwritten" src="data:image/png;base64,{{ $signatureData }}"
-                                alt="">
-                        @endif
                     </div>
-                    <div class="sig-line">
-                        <span class="sig-name">Michał Kowalski</span><br />
-                        <span class="sig-title">Director of Student Affairs /
-                            Dyrektor Działu Spraw Studenckich</span>
+                    <div class="e-sign-box">
+                        <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
+                        <div class="e-sign-name">Michał Kowalski</div>
+                        <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
                     </div>
                 </td>
             </tr>
@@ -648,8 +658,8 @@
     </div>
 
     <div class="footer-line">
-        Radom, Poland &nbsp;|&nbsp; Tel: +48 579 277 493 &nbsp;|&nbsp; E-mail:
-        info@radomuniversity.pl
+        Radom, Poland &nbsp;|&nbsp; Tel: +48 73 947 16 22 &nbsp;|&nbsp; E-mail:
+        admission@radomuniversity.pl
     </div>
 
 </body>

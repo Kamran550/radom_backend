@@ -305,7 +305,7 @@
             <td style="width: 48%;">
                 <div class="contact-block">
                     <div>Jacka Malczewskiego 24, 26-600 Radom, Poland</div>
-                    <div>Tel: +48 579 277 493</div>
+                    <div>Tel: +48 73 947 16 22</div>
                     <div>E-mail: admissions@radomuniversity.pl</div>
                 </div>
             </td>

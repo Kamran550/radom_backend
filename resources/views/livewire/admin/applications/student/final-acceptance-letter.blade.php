@@ -441,9 +441,9 @@
 
             <div class="address">
                 <p>Aleja Jozefa Pilsudskiego 35, 09-407 Plock, Poland</p>
-                <p>Tel: +48 579 277 493</p>
+                <p>Tel: +48 73 947 16 22</p>
                 <p>Radom, Poland</p>
-                <p>E-mail: info@radomuniversity.pl | rectorate@radomuniversity.pl</p>
+                <p>E-mail: admission@radomuniversity.pl | rectorate@radomuniversity.pl</p>
             </div>
         </div>
     </div>

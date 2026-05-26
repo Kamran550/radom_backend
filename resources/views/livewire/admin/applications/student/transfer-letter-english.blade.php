@@ -105,16 +105,55 @@
             line-height: 1.4;
         }
 
-        .qr-header {
-            text-align: right;
+        .header-verify-cell {
+            vertical-align: top;
             padding-left: 6px;
         }
 
-        .qr-header img {
-            width: 58px;
-            height: 58px;
+        .header-verification-box {
+            border: 1px solid #999;
+            padding: 5px 6px;
+            font-size: 6pt;
+            line-height: 1.35;
+        }
+
+        .header-verification-box h4 {
+            margin: 0 0 4px 0;
+            font-size: 6.35pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            text-align: center;
+            color: #1a237e;
+        }
+
+        .header-verification-inner {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .header-verification-inner td {
+            vertical-align: top;
+            padding: 0;
+        }
+
+        .header-verification-inner .qr-cell {
+            width: 46px;
+            padding-right: 5px;
+        }
+
+        .header-verification-inner .qr-cell img {
+            width: 44px;
+            height: 44px;
             display: block;
-            margin-left: auto;
+        }
+
+        .header-verification-url {
+            word-break: break-all;
+            font-family: 'DejaVu Sans Mono', monospace;
+            font-size: 5.25pt;
+            color: #1a237e;
+            margin-top: 2px;
         }
 
         .header-rule {
@@ -189,7 +228,7 @@
         }
 
         .intro-columns td.en-col {
-            padding: 2px 0 2px 12px;
+            padding: 2px 0 2px 10px;
             border-left: 1px solid #ddd;
         }
 
@@ -324,24 +363,36 @@
             object-fit: contain;
         }
 
-        .sig-line {
-            border-top: 1px solid #333;
-            padding-top: 5px;
-            margin-top: 3px;
+        .e-sign-box {
+            border: 1px solid #333;
+            padding: 8px 12px;
             text-align: center;
-            line-height: 1.45;
-            min-width: 175px;
-            font-size: 8pt;
+            line-height: 1.4;
+            min-width: 185px;
+            font-size: 7.5pt;
+            background: #fafafa;
         }
 
-        .sig-name {
+        .e-sign-badge {
+            font-weight: bold;
+            font-size: 7.25pt;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1a237e;
+            margin-bottom: 6px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .e-sign-name {
             font-weight: bold;
             color: #111;
             font-size: 8.5pt;
+            margin-top: 4px;
         }
 
-        .sig-title {
-            font-size: 7.5pt;
+        .e-sign-title {
+            font-size: 7.25pt;
             color: #444;
             line-height: 1.42;
         }
@@ -377,11 +428,12 @@
             $refNo = 'RU/TR/' . now()->format('Y') . '/' . str_pad((string) $student->id, 5, '0', STR_PAD_LEFT);
 
             $signaturePath = public_path('images/imza.png');
-            $signatureData = file_exists($signaturePath) ? base64_encode(file_get_contents($signaturePath)) : '';
+            // $signatureData = file_exists($signaturePath) ? base64_encode(file_get_contents($signaturePath)) : '';
 
             $verificationCodeForUrl = $verificationCode ?? null;
             $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
-            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(52)->generate($verificationUrl);
+            $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
+            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(44)->generate($verificationUrl);
             $qrCodeBase64 = base64_encode($qrCode);
         @endphp
 
@@ -398,12 +450,26 @@
                     <div class="office-block">
                         <div class="office-title navy">Biuro Spraw Studenckich / Student Affairs Office</div>
                         Radom, Poland <br>
-                        Tel: +48 48 361 70 00<br>
-                        Email: info@radomuniversity.pl<br>
+                        Tel: +48 73 947 16 22<br>
+                        Email: admission@radomuniversity.pl<br>
                     </div>
                 </td>
-                <td class="qr-header" style="width: 22%;">
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
+                <td class="header-verify-cell" style="width: 28%;">
+                    <div class="header-verification-box">
+                        <h4>Weryfikacja dokumentu / Document Verification</h4>
+                        <table class="header-verification-inner">
+                            <tr>
+                                <td class="qr-cell">
+                                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
+                                </td>
+                                <td>
+                                    <div><strong>Kod weryfikacyjny / Verification Code:</strong> {{ $codeForEntry }}</div>
+                                    <div class="header-verification-url"><strong>Weryfikacja / Verification:</strong>
+                                        {{ $verificationUrl }}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </td>
             </tr>
         </table>
@@ -522,17 +588,17 @@
             <table class="signature-inner" align="right">
                 <tr>
                     <td>
-                        @if ($signatureData)
+                        {{-- @if ($signatureData)
                             <div class="sig-graphic-wrap">
                                 <img class="sig-handwritten" src="data:image/png;base64,{{ $signatureData }}"
                                     alt="">
                             </div>
-                        @endif
-                        <div class="sig-line">
-                            <span class="sig-name">Michał Kowalski</span><br />
-                            <span class="sig-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs
-                            </span><br />
-                            <span class="sig-title">Uniwersytet Radomski / Radom University</span>
+                        @endif --}}
+                        <div class="e-sign-box">
+                            <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
+                            <div class="e-sign-name">Michał Kowalski</div>
+                            <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
+                            <div class="e-sign-title">Uniwersytet Radomski / Radom University</div>
                         </div>
                     </td>
                 </tr>

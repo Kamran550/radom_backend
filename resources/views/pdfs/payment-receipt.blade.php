@@ -418,7 +418,7 @@
                 <td class="footer-info" style="text-align: center;">
                     <p style="margin: 5px 0;">
                         <strong>Phone:</strong> +48 579 277 493 |
-                        <strong>Email:</strong> info@radomuniversity.pl |
+                        <strong>Email:</strong> admission@radomuniversity.pl |
                         <strong>Address:</strong> Aleja Józefa Piłsudskiego 35,
                         09-407 Płock / Poland
                     </p>

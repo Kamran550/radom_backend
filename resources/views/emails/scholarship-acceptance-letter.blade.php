@@ -46,7 +46,7 @@
 
         <p>
             We very much look forward to welcoming you to WPU. If you have any questions, please contact us at 
-            <a href="mailto:international@radomuniversity.pl">international@radomuniversity.pl</a> or <a href="mailto:info@radomuniversity.pl">info@radomuniversity.pl</a>.
+            <a href="mailto:international@radomuniversity.pl">international@radomuniversity.pl</a> or <a href="mailto:admission@radomuniversity.pl">admission@radomuniversity.pl</a>.
         </p>
 
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666;">

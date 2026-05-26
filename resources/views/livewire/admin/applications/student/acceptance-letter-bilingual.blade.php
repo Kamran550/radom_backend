@@ -231,12 +231,38 @@
             font-size: 6.75pt;
         }
 
-        .sig-line {
-            border-top: 1px solid #333;
-            padding-top: 4px;
-            margin-top: 22px;
+        .e-sign-box {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            margin-top: 14px;
             text-align: center;
-            line-height: 1.25;
+            line-height: 1.35;
+            min-width: 168px;
+            font-size: 6.75pt;
+            background: #fafafa;
+        }
+
+        .e-sign-badge {
+            font-weight: bold;
+            font-size: 6.85pt;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1a237e;
+            margin-bottom: 6px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .e-sign-name {
+            font-weight: bold;
+            color: #111;
+            margin-top: 4px;
+        }
+
+        .e-sign-title {
+            font-size: 6.5pt;
+            color: #444;
+            line-height: 1.3;
         }
 
         .seal-placeholder {
@@ -358,7 +384,7 @@
             </td>
             <td style="width: 48%;">
                 <div class="contact-block">
-                    <div>Tel: +48 579 277 493</div>
+                    <div>Tel: +48 73 947 16 22</div>
                     <div>Radom, Poland</div>
                     <div>E-mail: admissions@radomuniversity.pl</div>
                 </div>
@@ -489,11 +515,10 @@
     <table class="footer-three">
         <tr>
             <td>
-                <div class="sig-line">
-                    <strong>Michał Kowalski</strong><br />
-                    Director of Student Affairs /
-                    Dyrektor Działu Spraw Studenckich
-
+                <div class="e-sign-box">
+                    <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
+                    <div class="e-sign-name">Michał Kowalski</div>
+                    <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
                 </div>
             </td>
             {{-- <td style="text-align: center;">
