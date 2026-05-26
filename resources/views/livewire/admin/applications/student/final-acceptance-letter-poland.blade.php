@@ -31,6 +31,24 @@
             padding-bottom: 8mm;
         }
 
+        .page-bottom-layout {
+            width: 100%;
+            border-collapse: collapse;
+            border: none;
+        }
+
+        .page-bottom-layout td {
+            padding: 0;
+            vertical-align: top;
+            border: none;
+        }
+
+        .verification-gap td {
+            height: 11mm;
+            line-height: 11mm;
+            font-size: 1pt;
+        }
+
         .navy {
             color: #1a237e;
         }
@@ -275,7 +293,7 @@
 
         .verification-wrap {
             border: 1px solid #bbb;
-            margin-top: 8px;
+            margin-top: 0;
             margin-bottom: 0;
             font-size: 6.15pt;
             background: #fafafa;
@@ -621,47 +639,59 @@
     @endphp
 
     <div class="page-bottom">
-        <div class="signature-block">
-            <table class="signature-inner" align="right">
-                <tr>
-                    <td>
-                        <div class="sig-graphic-wrap">
-                            @if ($stampData)
-                                <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
-                                    alt="">
-                            @endif
+        <table class="page-bottom-layout" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="right">
+                    <div class="signature-block">
+                        <table class="signature-inner" align="right">
+                            <tr>
+                                <td>
+                                    <div class="sig-graphic-wrap">
+                                        @if ($stampData)
+                                            <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
+                                                alt="">
+                                        @endif
+                                    </div>
+                                    <div class="e-sign-box">
+                                        <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
+                                        <div class="e-sign-name">Michał Kowalski</div>
+                                        <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr class="verification-gap">
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="verification-wrap">
+                        <div class="verification-header">
+                            Weryfikacja autentyczności dokumentu / Document Verification
                         </div>
-                        <div class="e-sign-box">
-                            <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
-                            <div class="e-sign-name">Michał Kowalski</div>
-                            <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="verification-wrap">
-            <div class="verification-header">
-                Weryfikacja autentyczności dokumentu / Document Verification
-            </div>
-            <table class="verification-body">
-                <tr>
-                    <td class="qr-cell">
-                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
-                    </td>
-                    <td class="text-cell">
-                        Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
-                        Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br />
-                        Scan the QR code or open the verification link. Enter the 4-digit code:
-                        <strong>{{ $codeForEntry }}</strong>
-                    </td>
-                    <td class="code-cell">
-                        <div class="verification-url">{{ $verificationUrl }}</div>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                        <table class="verification-body">
+                            <tr>
+                                <td class="qr-cell">
+                                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
+                                </td>
+                                <td class="text-cell">
+                                    Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
+                                    Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br />
+                                    Scan the QR code or open the verification link. Enter the 4-digit code:
+                                    <strong>{{ $codeForEntry }}</strong>
+                                </td>
+                                <td class="code-cell">
+                                    <div class="verification-url">{{ $verificationUrl }}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="footer-line">
