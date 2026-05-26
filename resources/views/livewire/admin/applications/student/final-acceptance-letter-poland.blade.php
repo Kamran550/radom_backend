@@ -25,27 +25,21 @@
             background: #fff;
         }
 
-        .page-bottom {
+        .page-content {
+            padding-bottom: 58mm;
+        }
+
+        .page-bottom-fixed {
+            position: fixed;
+            left: 8.5mm;
+            right: 8.5mm;
+            bottom: 6mm;
+            width: auto;
             page-break-inside: avoid;
-            margin-top: 2px;
         }
 
-        .page-bottom-layout {
-            width: 100%;
-            border-collapse: collapse;
-            border: none;
-        }
-
-        .page-bottom-layout td {
-            padding: 0;
-            vertical-align: top;
-            border: none;
-        }
-
-        .verification-gap td {
-            height: 3mm;
-            line-height: 3mm;
-            font-size: 1pt;
+        .page-bottom-fixed .signature-block {
+            margin-bottom: 3px;
         }
 
         .navy {
@@ -376,10 +370,11 @@
             text-align: center;
             font-size: 6.2pt;
             color: #444;
-            margin: 4px 0 0 0;
-            padding-top: 4px;
+            margin: 3px 0 0 0;
+            padding-top: 3px;
             border-top: 1px solid #ddd;
             line-height: 1.25;
+            background: #fff;
         }
 
         @media print {
@@ -391,6 +386,8 @@
 </head>
 
 <body>
+
+    <div class="page-content">
 
     @php
         $program = $student->application?->program;
@@ -619,6 +616,8 @@
         </tr>
     </table>
 
+    </div>{{-- .page-content --}}
+
     @php
         $stampPath = public_path('images/radom-möhür.png');
         $stampData = file_exists($stampPath) ? base64_encode(file_get_contents($stampPath)) : '';
@@ -632,60 +631,48 @@
         $qrCodeBase64 = base64_encode($qrCode);
     @endphp
 
-    <div class="page-bottom">
-        <table class="page-bottom-layout" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="right">
-                    <div class="signature-block">
-                        <table class="signature-inner" align="right">
-                            <tr>
-                                <td>
-                                    <div class="sig-graphic-wrap">
-                                        @if ($stampData)
-                                            <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
-                                                alt="">
-                                        @endif
-                                    </div>
-                                    <div class="e-sign-box">
-                                        <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
-                                        <div class="e-sign-name">Michał Kowalski</div>
-                                        <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            <tr class="verification-gap">
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="verification-wrap">
-                        <div class="verification-header">
-                            Weryfikacja autentyczności dokumentu / Document Verification
+    <div class="page-bottom-fixed">
+        <div class="signature-block">
+            <table class="signature-inner" align="right">
+                <tr>
+                    <td>
+                        <div class="sig-graphic-wrap">
+                            @if ($stampData)
+                                <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
+                                    alt="">
+                            @endif
                         </div>
-                        <table class="verification-body">
-                            <tr>
-                                <td class="qr-cell">
-                                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
-                                </td>
-                                <td class="text-cell">
-                                    Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
-                                    Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br />
-                                    Scan the QR code or open the verification link. Enter the 4-digit code:
-                                    <strong>{{ $codeForEntry }}</strong>
-                                </td>
-                                <td class="code-cell">
-                                    <div class="verification-url">{{ $verificationUrl }}</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                        <div class="e-sign-box">
+                            <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
+                            <div class="e-sign-name">Michał Kowalski</div>
+                            <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="verification-wrap">
+            <div class="verification-header">
+                Weryfikacja autentyczności dokumentu / Document Verification
+            </div>
+            <table class="verification-body">
+                <tr>
+                    <td class="qr-cell">
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
+                    </td>
+                    <td class="text-cell">
+                        Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
+                        Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br />
+                        Scan the QR code or open the verification link. Enter the 4-digit code:
+                        <strong>{{ $codeForEntry }}</strong>
+                    </td>
+                    <td class="code-cell">
+                        <div class="verification-url">{{ $verificationUrl }}</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
         <div class="footer-line">
             Radom, Poland &nbsp;|&nbsp; Tel: +48 73 947 16 22 &nbsp;|&nbsp; E-mail:
