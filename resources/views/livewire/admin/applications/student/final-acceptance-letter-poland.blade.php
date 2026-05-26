@@ -7,7 +7,7 @@
     <title>Zaświadczenie o statusie studenta - {{ $student->first_name }} {{ $student->last_name }}</title>
     <style>
         @page {
-            margin: 8.5mm;
+            margin: 7mm 8.5mm 11mm 8.5mm;
             size: A4;
         }
 
@@ -18,11 +18,17 @@
         body {
             font-family: 'DejaVu Sans', Helvetica, Arial, sans-serif;
             font-size: 7pt;
-            line-height: 1.32;
+            line-height: 1.3;
             color: #111;
             margin: 0;
-            padding: 0;
+            padding: 0 0 9mm 0;
             background: #fff;
+        }
+
+        .page-bottom {
+            page-break-inside: avoid;
+            margin-top: 2px;
+            padding-bottom: 8mm;
         }
 
         .navy {
@@ -129,8 +135,8 @@
             background: #eef0fb;
             border: 1px solid #c5cae9;
             border-bottom: none;
-            padding: 6px 9px;
-            margin: 9px 0 0 0;
+            padding: 5px 8px;
+            margin: 6px 0 0 0;
             color: #1a237e;
             text-align: center;
         }
@@ -139,13 +145,13 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 6.85pt;
-            margin-bottom: 7px;
+            margin-bottom: 5px;
             table-layout: fixed;
         }
 
         .data-table td {
             border: 1px solid #ccc;
-            padding: 5px 8px;
+            padding: 4px 7px;
             vertical-align: top;
             width: 50%;
         }
@@ -167,9 +173,9 @@
         .body-columns {
             width: 100%;
             border-collapse: collapse;
-            margin: 8px 0 2px 0;
+            margin: 5px 0 2px 0;
             font-size: 7pt;
-            line-height: 1.34;
+            line-height: 1.32;
         }
 
         .body-columns td {
@@ -190,8 +196,8 @@
         }
 
         .signature-block {
-            margin-top: 2px;
-            margin-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 4px;
             text-align: right;
         }
 
@@ -207,7 +213,7 @@
 
         .sig-graphic-wrap {
             position: relative;
-            min-height: 42px;
+            min-height: 34px;
             margin-bottom: 2px;
             text-align: right;
         }
@@ -234,12 +240,11 @@
 
         .e-sign-box {
             border: 1px solid #333;
-            padding: 7px 11px;
-            /* margin-top: 4px; */
+            padding: 5px 9px;
             text-align: center;
-            line-height: 1.35;
-            min-width: 175px;
-            font-size: 6.75pt;
+            line-height: 1.3;
+            min-width: 168px;
+            font-size: 6.65pt;
             background: #fafafa;
         }
 
@@ -270,16 +275,17 @@
 
         .verification-wrap {
             border: 1px solid #bbb;
-            margin-top: 6px;
-            font-size: 6.2pt;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 6.15pt;
             background: #fafafa;
         }
 
         .verification-header {
             background: #eef0fb;
             border-bottom: 1px solid #c5cae9;
-            padding: 5px 9px;
-            font-size: 6.4pt;
+            padding: 4px 8px;
+            font-size: 6.3pt;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.03em;
@@ -295,7 +301,7 @@
 
         .verification-body td {
             vertical-align: top;
-            padding: 7px 8px;
+            padding: 5px 6px;
         }
 
         .verification-body .qr-cell {
@@ -305,8 +311,8 @@
         }
 
         .verification-body .qr-cell img {
-            width: 54px;
-            height: 54px;
+            width: 48px;
+            height: 48px;
             display: block;
             margin: 0 auto;
         }
@@ -350,13 +356,18 @@
         }
 
         .footer-line {
+            position: fixed;
+            left: 8.5mm;
+            right: 8.5mm;
+            bottom: 6mm;
             text-align: center;
-            font-size: 6.25pt;
+            font-size: 6.2pt;
             color: #444;
-            margin-top: 7px;
-            padding-top: 2px;
+            margin: 0;
+            padding-top: 3px;
             border-top: 1px solid #ddd;
             line-height: 1.25;
+            background: #fff;
         }
 
         @media print {
@@ -605,56 +616,52 @@
         $verificationCodeForUrl = $verificationCode ?? null;
         $verificationUrl = $student->getVerificationUrl($verificationCodeForUrl);
         $codeForEntry = isset($digitCode) && $digitCode !== null ? trim((string) $digitCode) : '—';
-        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(54)->generate($verificationUrl);
+        $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(48)->generate($verificationUrl);
         $qrCodeBase64 = base64_encode($qrCode);
     @endphp
 
-    <div class="signature-block">
-        <table class="signature-inner" align="right">
-            <tr>
-                <td>
-                    <div class="sig-graphic-wrap">
-                        @if ($stampData)
-                            <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
-                                alt="">
-                        @endif
-                    </div>
-                    <div class="e-sign-box">
-                        <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
-                        <div class="e-sign-name">Michał Kowalski</div>
-                        <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="verification-wrap">
-        <div class="verification-header">
-            Weryfikacja autentyczności dokumentu / Document Verification
+    <div class="page-bottom">
+        <div class="signature-block">
+            <table class="signature-inner" align="right">
+                <tr>
+                    <td>
+                        <div class="sig-graphic-wrap">
+                            @if ($stampData)
+                                <img class="sig-stamp-overlay" src="data:image/png;base64,{{ $stampData }}"
+                                    alt="">
+                            @endif
+                        </div>
+                        <div class="e-sign-box">
+                            <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
+                            <div class="e-sign-name">Michał Kowalski</div>
+                            <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <table class="verification-body">
-            <tr>
-                <td class="qr-cell">
-                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
-                </td>
-                <td class="text-cell">
-                    Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
-                    Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br /><br />
-                    Scan the QR code or open the verification link to confirm the authenticity of this document.
-                    When prompted, enter the 4-digit code: <strong>{{ $codeForEntry }}</strong>
-                </td>
-                <td class="code-cell">
-                    <div class="verification-info-text">
-                        <p>Aby zweryfikować autentyczność niniejszego dokumentu, odwiedź poniższy adres internetowy lub
-                            zeskanuj kod QR.</p>
-                        <p>To verify the authenticity of this document, visit the web address below or scan the QR code.
-                        </p>
-                    </div>
-                    <div class="verification-url">{{ $verificationUrl }}</div>
-                </td>
-            </tr>
-        </table>
+
+        <div class="verification-wrap">
+            <div class="verification-header">
+                Weryfikacja autentyczności dokumentu / Document Verification
+            </div>
+            <table class="verification-body">
+                <tr>
+                    <td class="qr-cell">
+                        <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
+                    </td>
+                    <td class="text-cell">
+                        Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
+                        Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br />
+                        Scan the QR code or open the verification link. Enter the 4-digit code:
+                        <strong>{{ $codeForEntry }}</strong>
+                    </td>
+                    <td class="code-cell">
+                        <div class="verification-url">{{ $verificationUrl }}</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <div class="footer-line">
