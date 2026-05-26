@@ -167,7 +167,7 @@
         .body-columns {
             width: 100%;
             border-collapse: collapse;
-            margin: 8px 0 5px 0;
+            margin: 8px 0 2px 0;
             font-size: 7pt;
             line-height: 1.34;
         }
@@ -186,7 +186,7 @@
         }
 
         .body-columns p {
-            margin: 0 0 4px 0;
+            margin: 0 0 2px 0;
         }
 
         .signature-block {
