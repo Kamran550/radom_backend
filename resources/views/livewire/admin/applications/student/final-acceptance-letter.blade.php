@@ -308,7 +308,7 @@
 
         $startYear = $student->graduation_year ?? now()->year;
         $endYear = $startYear + 1;
-        $academicYear = "{$startYear}-{$endYear} academic year";
+        $academicYear = "{$startYear}-{$endYear} expected graduation";
         $duration = $degree?->duration ?? 4;
 
         $photoData = null;
