@@ -422,264 +422,283 @@
 
     <div class="page-content">
 
-    @php
-        $program = $student->application?->program;
-        $degree = $program?->degree;
-        $faculty = $program?->faculty;
+        @php
+            $program = $student->application?->program;
+            $degree = $program?->degree;
+            $faculty = $program?->faculty;
 
-        $programNameEn = $program?->getName('EN') ?: $program?->name ?? 'N/A';
-        $programNamePl = $program?->getName('PL') ?: $programNameEn;
-        $degreeNameEn = $degree?->getName('EN') ?: $degree?->name ?? 'N/A';
-        $degreeNamePl = $degree?->getName('PL') ?: $degreeNameEn;
-        $facultyNameEn = $faculty?->getName('EN') ?: $faculty?->name ?? 'Institute of Graduate Education';
-        $facultyNamePl = $faculty?->getName('PL') ?: $facultyNameEn;
+            $programNameEn = $program?->getName('EN') ?: $program?->name ?? 'N/A';
+            $programNamePl = $program?->getName('PL') ?: $programNameEn;
+            $degreeNameEn = $degree?->getName('EN') ?: $degree?->name ?? 'N/A';
+            $degreeNamePl = $degree?->getName('PL') ?: $degreeNameEn;
+            $facultyNameEn = $faculty?->getName('EN') ?: $faculty?->name ?? 'Institute of Graduate Education';
+            $facultyNamePl = $faculty?->getName('PL') ?: $facultyNameEn;
 
-        $studyLangCode = strtoupper($student->study_language ?? 'EN');
-        $studyLangEn = 'English';
-        $studyLangDisplay = language_to_polish($studyLangEn);
+            $studyLangCode = strtoupper($student->study_language ?? 'EN');
+            $studyLangEn = 'English';
+            $studyLangDisplay = language_to_polish($studyLangEn);
 
-        $nationalityDisplay = nationality_to_polish($student->nationality);
-        $placeOfBirthDisplay = nationality_to_polish($student->place_of_birth ?? $student->nationality);
+            $nationalityDisplay = nationality_to_polish($student->nationality);
+            $placeOfBirthDisplay = nationality_to_polish($student->place_of_birth ?? $student->nationality);
 
-        $educationTypeEn = 'Full time';
-        $educationTypePl = 'Studia stacjonarne';
+            $educationTypeEn = 'Full time';
+            $educationTypePl = 'Studia stacjonarne';
 
-        $classYear = $student->current_course ?? 1;
-        $classEn = "Lesson stage ({$classYear}st year)";
-        $classPl = "Etap zajęć ({$classYear}. rok studiów)";
+            $classYear = $student->current_course ?? 1;
+            $classEn = "Lesson stage ({$classYear}st year)";
+            $classPl = "Etap zajęć ({$classYear}. rok studiów)";
 
-        $scholarshipStatus = $student->scholarship_status ?? '75%';
-        $scholarshipEn = "{$scholarshipStatus} Scholarship";
-        $scholarshipPl = '%50 Stypendium';
-
-        if (str_contains($scholarshipStatus, '100')) {
-            $scholarshipPl = '100% Stypendium';
-        } elseif (str_contains($scholarshipStatus, '75')) {
-            $scholarshipPl = '%75 Stypendium';
-        } elseif (str_contains($scholarshipStatus, '50')) {
+            $scholarshipStatus = $student->scholarship_status ?? '75%';
+            $scholarshipEn = "{$scholarshipStatus} Scholarship";
             $scholarshipPl = '%50 Stypendium';
-        } else {
-            $scholarshipPl = $scholarshipStatus . ' Stypendium';
-        }
 
-        $startYear = $student->graduation_year ?? now()->year;
-        $endYear = $startYear + 1;
-        $academicYearEn = "{$startYear}-{$endYear} expected graduation";
-        $academicYearPl = "Rok akademicki {$startYear}-{$endYear}";
-
-        $genderDisplay = $student->gender
-            ? (strtolower($student->gender) === 'male'
-                ? 'Mężczyzna / Male'
-                : (strtolower($student->gender) === 'female'
-                    ? 'Kobieta / Female'
-                    : ucfirst($student->gender)))
-            : 'N/A';
-
-        // --- Profile photo (added) ---
-        $photoData = null;
-        $photoMime = 'image/jpeg';
-
-        if ($student->profile_photo_path && Storage::exists($student->profile_photo_path)) {
-            try {
-                $photoContent = Storage::get($student->profile_photo_path);
-                if ($photoContent) {
-                    $photoData = base64_encode($photoContent);
-                    $extension = strtolower(pathinfo($student->profile_photo_path, PATHINFO_EXTENSION));
-                    $photoMime = match ($extension) {
-                        'jpg', 'jpeg' => 'image/jpeg',
-                        'png' => 'image/png',
-                        'gif' => 'image/gif',
-                        'webp' => 'image/webp',
-                        default => 'image/jpeg',
-                    };
-                }
-            } catch (\Exception $e) {
-                $photoData = null;
+            if (str_contains($scholarshipStatus, '100')) {
+                $scholarshipPl = '100% Stypendium';
+            } elseif (str_contains($scholarshipStatus, '75')) {
+                $scholarshipPl = '%75 Stypendium';
+            } elseif (str_contains($scholarshipStatus, '50')) {
+                $scholarshipPl = '%50 Stypendium';
+            } else {
+                $scholarshipPl = $scholarshipStatus . ' Stypendium';
             }
-        }
-    @endphp
 
-    {{-- Header (Biuro Spraw Studenckich / Student Affairs Office) --}}
-    <table class="header-table">
-        <tr>
-            <td style="width: 48%;">
-                <div class="uni-pl navy">UNIWERSYTET RADOMSKI</div>
-                <div class="uni-en navy">RADOM UNIVERSITY</div>
-                <p class="uni-sub">Biuro Spraw Studenckich / Student Affairs Office</p>
-            </td>
-            <td style="width: 30%;">
-                <div class="contact-block">
-                    <div>Tel: +48 73 947 16 22</div>
-                    <div>Radom, Poland</div>
-                    <div>E-mail: admission@radomuniversity.pl</div>
-                </div>
-            </td>
-            <td class="photo-cell">
-                <div class="photo-box">
-                    @if ($photoData)
-                        <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="">
-                    @else
-                        <div class="photo-placeholder">Foto<br>N/A</div>
-                    @endif
-                </div>
-            </td>
-        </tr>
-    </table>
+            $startYear = $student->graduation_year ?? now()->year;
+            $endYear = $startYear + 1;
+            $academicYearEn = "{$startYear}-{$endYear} expected graduation";
+            $academicYearPl = "Rok akademicki {$startYear}-{$endYear}";
 
-    <hr class="rule" />
+            $genderDisplay = $student->gender
+                ? (strtolower($student->gender) === 'male'
+                    ? 'Mężczyzna / Male'
+                    : (strtolower($student->gender) === 'female'
+                        ? 'Kobieta / Female'
+                        : ucfirst($student->gender)))
+                : 'N/A';
 
-    <div class="doc-title navy">
-        <p class="pl">Zaświadczenie o statusie studenta</p>
-        <p class="en">Certificate of Student Status</p>
-    </div>
+            // --- Profile photo (added) ---
+            $photoData = null;
+            $photoMime = 'image/jpeg';
 
-    <table class="meta-row-table meta-row">
-        <tr>
-            <td>
-                <strong>Nr dokumentu / Document Number:</strong>
-                {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
-            </td>
-            <td class="meta-right">
-                <strong>Data wydania / Date of Issue:</strong> {{ now()->format('d.m.Y') }}
-            </td>
-        </tr>
-    </table>
+            if ($student->profile_photo_path && Storage::exists($student->profile_photo_path)) {
+                try {
+                    $photoContent = Storage::get($student->profile_photo_path);
+                    if ($photoContent) {
+                        $photoData = base64_encode($photoContent);
+                        $extension = strtolower(pathinfo($student->profile_photo_path, PATHINFO_EXTENSION));
+                        $photoMime = match ($extension) {
+                            'jpg', 'jpeg' => 'image/jpeg',
+                            'png' => 'image/png',
+                            'gif' => 'image/gif',
+                            'webp' => 'image/webp',
+                            default => 'image/jpeg',
+                        };
+                    }
+                } catch (\Exception $e) {
+                    $photoData = null;
+                }
+            }
+        @endphp
 
-    <div class="section-banner">Dane studenta / Student Information</div>
-    <table class="data-table">
-        <tr>
-            <td>
-                <div class="field-label">Imię i nazwisko / Full Name:</div>
-                <div class="field-value">{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}</div>
-            </td>
-            <td>
-                <div class="field-label">Imię ojca / Father's Name:</div>
-                <div class="field-value">{{ tr_upper($student->father_name ?? 'N/A') }}</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Data urodzenia / Date of Birth:</div>
-                <div class="field-value">
-                    {{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</div>
-            </td>
-            <td>
-                <div class="field-label">Płeć / Gender:</div>
-                <div class="field-value">{{ $genderDisplay }}</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Miejsce urodzenia / Place of Birth:</div>
-                <div class="field-value">{{ $placeOfBirthDisplay }}</div>
-            </td>
-            <td>
-                <div class="field-label">Numer albumu / Student ID Number:</div>
-                <div class="field-value">{{ $student->student_number ?? 'N/A' }}</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Obywatelstwo / Nationality:</div>
-                <div class="field-value">{{ $nationalityDisplay }}</div>
-            </td>
-            <td>
-                <div class="field-label">Adres e-mail / E-mail Address:</div>
-                <div class="field-value">{{ $student->email ?? 'N/A' }}</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Numer dokumentu / Passport Number:</div>
-                <div class="field-value">{{ $student->passport_number ?? 'N/A' }}</div>
-            </td>
-            <td>
-                <div class="field-label">Numer telefonu / Phone Number:</div>
-                <div class="field-value">{{ $student->phone ?? 'N/A' }}</div>
-            </td>
-        </tr>
-    </table>
+        {{-- Header (Biuro Spraw Studenckich / Student Affairs Office) --}}
+        <table class="header-table">
+            <tr>
+                <td style="width: 48%;">
+                    <div class="uni-pl navy">UNIWERSYTET RADOMSKI</div>
+                    <div class="uni-en navy">RADOM UNIVERSITY</div>
+                    <p class="uni-sub">Biuro Spraw Studenckich / Student Affairs Office</p>
+                </td>
+                <td style="width: 30%;">
+                    <div class="contact-block">
+                        <div>Tel: +48 73 947 16 22</div>
+                        <div>Radom, Poland</div>
+                        <div>E-mail: admission@radomuniversity.pl</div>
+                    </div>
+                </td>
+                {{-- <td class="photo-cell">
+                    <div class="photo-box">
+                        @if ($photoData)
+                            <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="">
+                        @else
+                            <div class="photo-placeholder">Foto<br>N/A</div>
+                        @endif
+                    </div>
+                </td> --}}
+            </tr>
+        </table>
 
-    <div class="section-banner">Dane programu / Programme Information</div>
-    <table class="data-table">
-        <tr>
-            <td>
-                <div class="field-label">Kierunek studiów / Study Programme:</div>
-                <div class="field-value">{{ $programNamePl }} / {{ $programNameEn }}</div>
-            </td>
-            <td>
-                <div class="field-label">Wydział / Faculty:</div>
-                <div class="field-value">{{ $facultyNamePl }} / {{ $facultyNameEn }}</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Poziom studiów / Degree Level:</div>
-                <div class="field-value">{{ $degreeNamePl }} / {{ $degreeNameEn }}</div>
-            </td>
-            <td>
-                <div class="field-label">Rok studiów / Year of Study:</div>
-                <div class="field-value">{{ $classYear }}</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Forma studiów / Mode of Study:</div>
-                <div class="field-value">{{ $educationTypePl }} / {{ $educationTypeEn }}</div>
-            </td>
-            <td>
-                <div class="field-label">Przewidywany rok ukończenia studiów / Expected Graduation:</div>
-                <div class="field-value">{{ $startYear }}/{{ $endYear }}</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Język kształcenia / Language of Instruction:</div>
-                <div class="field-value">{{ $studyLangDisplay }}</div>
-            </td>
-            <td>
-                <div class="field-label">Status studenta / Student Status:</div>
-                <div class="field-value">Aktywny / Active</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="field-label">Forma studiów / Mode of Study:</div>
-                <div class="field-value">Studia stacjonarne
-                    Full-Time Study</div>
-            </td>
-            <td>
-                <div class="field-label">Status stypendium / Scholarship Status:</div>
-                <div class="field-value">{{ $scholarshipPl }} / {{ $scholarshipEn }}</div>
-            </td>
-        </tr>
-    </table>
+        <hr class="rule" />
 
-    @php
-        $duration = $degree?->duration ?? 4;
-        $durationPl = $duration === 1 ? 'rok' : ($duration < 5 ? 'lata' : 'lat');
-    @endphp
+        <div class="doc-title navy">
+            <p class="pl">Zaświadczenie o statusie studenta</p>
+            <p class="en">Certificate of Student Status</p>
+        </div>
 
-    {{-- Two-column body: PL | EN --}}
-    <table class="body-columns">
-        <tr>
-            <td>
-                <p>Osoba, której dane wskazano powyżej, jest zarejestrowanym studentem naszej uczelni. Przewidywany
-                    czas trwania programu wynosi {{ $duration }} {{ $durationPl }}. Zgodnie z odpowiednimi
-                    przepisami
-                    Regulaminu Studiów, student zobowiązany jest do spełniania wymogów programu. Niniejsze zaświadczenie
-                    wydano na wniosek osoby, której dotyczy. Oczekuje się osiągnięcia etapu ukończenia studiów w roku
-                    akademickim {{ $startYear }}-{{ $endYear }}.</p>
-            </td>
-            <td class="en-col">
-                <p>The person named above is a registered student of our university. The foreseen duration of the
-                    programme is {{ $duration }} years. In accordance with the Study Regulations, the
-                    student must fulfil programme requirements. This certificate is issued upon the request of the
-                    person concerned. Graduation is expected in the {{ $startYear }}-{{ $endYear }} academic
-                    year.</p>
-            </td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <td class="photo-cell">
+                    <div class="photo-box">
+                        @if ($photoData)
+                            <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="">
+                        @else
+                            <div class="photo-placeholder">Foto<br>N/A</div>
+                        @endif
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+        <table class="meta-row-table meta-row">
+            <tr>
+                <td>
+                    <strong>Nr dokumentu / Document Number:</strong>
+                    {{ $student->application_number ?? now()->format('d/m/Y') }}/{{ str_pad($student->id, 3, '0', STR_PAD_LEFT) }}
+                </td>
+                <td class="meta-right">
+                    <strong>Data wydania / Date of Issue:</strong> {{ now()->format('d.m.Y') }}
+                </td>
+            </tr>
+        </table>
+
+        <div class="section-banner">Dane studenta / Student Information</div>
+        <table class="data-table">
+            <tr>
+                <td>
+                    <div class="field-label">Imię i nazwisko / Full Name:</div>
+                    <div class="field-value">{{ tr_upper($student->first_name) }} {{ tr_upper($student->last_name) }}
+                    </div>
+                </td>
+                <td>
+                    <div class="field-label">Imię ojca / Father's Name:</div>
+                    <div class="field-value">{{ tr_upper($student->father_name ?? 'N/A') }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Data urodzenia / Date of Birth:</div>
+                    <div class="field-value">
+                        {{ $student->date_of_birth ? $student->date_of_birth->format('d.m.Y') : 'N/A' }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Płeć / Gender:</div>
+                    <div class="field-value">{{ $genderDisplay }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Miejsce urodzenia / Place of Birth:</div>
+                    <div class="field-value">{{ $placeOfBirthDisplay }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Numer albumu / Student ID Number:</div>
+                    <div class="field-value">{{ $student->student_number ?? 'N/A' }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Obywatelstwo / Nationality:</div>
+                    <div class="field-value">{{ $nationalityDisplay }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Adres e-mail / E-mail Address:</div>
+                    <div class="field-value">{{ $student->email ?? 'N/A' }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Numer dokumentu / Passport Number:</div>
+                    <div class="field-value">{{ $student->passport_number ?? 'N/A' }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Numer telefonu / Phone Number:</div>
+                    <div class="field-value">{{ $student->phone ?? 'N/A' }}</div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="section-banner">Dane programu / Programme Information</div>
+        <table class="data-table">
+            <tr>
+                <td>
+                    <div class="field-label">Kierunek studiów / Study Programme:</div>
+                    <div class="field-value">{{ $programNamePl }} / {{ $programNameEn }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Wydział / Faculty:</div>
+                    <div class="field-value">{{ $facultyNamePl }} / {{ $facultyNameEn }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Poziom studiów / Degree Level:</div>
+                    <div class="field-value">{{ $degreeNamePl }} / {{ $degreeNameEn }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Rok studiów / Year of Study:</div>
+                    <div class="field-value">{{ $classYear }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Forma studiów / Mode of Study:</div>
+                    <div class="field-value">{{ $educationTypePl }} / {{ $educationTypeEn }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Przewidywany rok ukończenia studiów / Expected Graduation:</div>
+                    <div class="field-value">{{ $startYear }}/{{ $endYear }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Język kształcenia / Language of Instruction:</div>
+                    <div class="field-value">{{ $studyLangDisplay }}</div>
+                </td>
+                <td>
+                    <div class="field-label">Status studenta / Student Status:</div>
+                    <div class="field-value">Aktywny / Active</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="field-label">Forma studiów / Mode of Study:</div>
+                    <div class="field-value">Studia stacjonarne
+                        Full-Time Study</div>
+                </td>
+                <td>
+                    <div class="field-label">Status stypendium / Scholarship Status:</div>
+                    <div class="field-value">{{ $scholarshipPl }} / {{ $scholarshipEn }}</div>
+                </td>
+            </tr>
+        </table>
+
+        @php
+            $duration = $degree?->duration ?? 4;
+            $durationPl = $duration === 1 ? 'rok' : ($duration < 5 ? 'lata' : 'lat');
+        @endphp
+
+        {{-- Two-column body: PL | EN --}}
+        <table class="body-columns">
+            <tr>
+                <td>
+                    <p>Osoba, której dane wskazano powyżej, jest zarejestrowanym studentem naszej uczelni. Przewidywany
+                        czas trwania programu wynosi {{ $duration }} {{ $durationPl }}. Zgodnie z odpowiednimi
+                        przepisami
+                        Regulaminu Studiów, student zobowiązany jest do spełniania wymogów programu. Niniejsze
+                        zaświadczenie
+                        wydano na wniosek osoby, której dotyczy. Oczekuje się osiągnięcia etapu ukończenia studiów w
+                        roku
+                        akademickim {{ $startYear }}-{{ $endYear }}.</p>
+                </td>
+                <td class="en-col">
+                    <p>The person named above is a registered student of our university. The foreseen duration of the
+                        programme is {{ $duration }} years. In accordance with the Study Regulations, the
+                        student must fulfil programme requirements. This certificate is issued upon the request of the
+                        person concerned. Graduation is expected in the {{ $startYear }}-{{ $endYear }}
+                        academic
+                        year.</p>
+                </td>
+            </tr>
+        </table>
 
     </div>{{-- .page-content --}}
 
@@ -710,7 +729,8 @@
                         <div class="e-sign-box">
                             <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
                             <div class="e-sign-name">Michał Kowalski</div>
-                            <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
+                            <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -727,7 +747,8 @@
                         <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt="" />
                     </td>
                     <td class="text-cell">
-                        Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego dokumentu.
+                        Zeskanuj kod QR lub otwórz link weryfikacyjny, aby potwierdzić autentyczność niniejszego
+                        dokumentu.
                         Po wyświetleniu monitu wpisz 4-cyfrowy kod: <strong>{{ $codeForEntry }}</strong><br />
                         Scan the QR code or open the verification link. Enter the 4-digit code:
                         <strong>{{ $codeForEntry }}</strong>
