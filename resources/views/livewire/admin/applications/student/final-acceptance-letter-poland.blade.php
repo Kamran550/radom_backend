@@ -534,14 +534,6 @@
         </div>
 
 
-                    <div class="photo-box">
-                        @if ($photoData)
-                            <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="">
-                        @else
-                            <div class="photo-placeholder">Foto<br>N/A</div>
-                        @endif
-                    </div>
-
         <table class="meta-row-table meta-row">
             <tr>
                 <td>
