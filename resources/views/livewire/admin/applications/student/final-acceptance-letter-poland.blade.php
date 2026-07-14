@@ -533,9 +533,7 @@
             <p class="en">Certificate of Student Status</p>
         </div>
 
-        <table>
-            <tr>
-                <td class="photo-cell">
+
                     <div class="photo-box">
                         @if ($photoData)
                             <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="">
@@ -543,10 +541,6 @@
                             <div class="photo-placeholder">Foto<br>N/A</div>
                         @endif
                     </div>
-                </td>
-
-            </tr>
-        </table>
 
         <table class="meta-row-table meta-row">
             <tr>
