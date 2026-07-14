@@ -377,6 +377,39 @@
             background: #fff;
         }
 
+        /* --- Profile photo (added) --- */
+        .header-table td.photo-cell {
+            width: 22mm;
+            text-align: right;
+            vertical-align: top;
+        }
+
+        .photo-box {
+            width: 22mm;
+            height: 28mm;
+            border: 1px solid #1a237e;
+            padding: 1px;
+            margin-left: auto;
+            background: #fff;
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 5.5pt;
+            color: #999;
+            border: 1px dashed #ccc;
+            padding-top: 10px;
+        }
+
         @media print {
             body {
                 margin: 0;
@@ -441,21 +474,53 @@
                     ? 'Kobieta / Female'
                     : ucfirst($student->gender)))
             : 'N/A';
+
+        // --- Profile photo (added) ---
+        $photoData = null;
+        $photoMime = 'image/jpeg';
+
+        if ($student->profile_photo_path && Storage::exists($student->profile_photo_path)) {
+            try {
+                $photoContent = Storage::get($student->profile_photo_path);
+                if ($photoContent) {
+                    $photoData = base64_encode($photoContent);
+                    $extension = strtolower(pathinfo($student->profile_photo_path, PATHINFO_EXTENSION));
+                    $photoMime = match ($extension) {
+                        'jpg', 'jpeg' => 'image/jpeg',
+                        'png' => 'image/png',
+                        'gif' => 'image/gif',
+                        'webp' => 'image/webp',
+                        default => 'image/jpeg',
+                    };
+                }
+            } catch (\Exception $e) {
+                $photoData = null;
+            }
+        }
     @endphp
 
     {{-- Header (Biuro Spraw Studenckich / Student Affairs Office) --}}
     <table class="header-table">
         <tr>
-            <td style="width: 55%;">
+            <td style="width: 48%;">
                 <div class="uni-pl navy">UNIWERSYTET RADOMSKI</div>
                 <div class="uni-en navy">RADOM UNIVERSITY</div>
                 <p class="uni-sub">Biuro Spraw Studenckich / Student Affairs Office</p>
             </td>
-            <td style="width: 45%;">
+            <td style="width: 30%;">
                 <div class="contact-block">
                     <div>Tel: +48 73 947 16 22</div>
                     <div>Radom, Poland</div>
                     <div>E-mail: admission@radomuniversity.pl</div>
+                </div>
+            </td>
+            <td class="photo-cell">
+                <div class="photo-box">
+                    @if ($photoData)
+                        <img src="data:{{ $photoMime }};base64,{{ $photoData }}" alt="">
+                    @else
+                        <div class="photo-placeholder">Foto<br>N/A</div>
+                    @endif
                 </div>
             </td>
         </tr>
