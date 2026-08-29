@@ -392,7 +392,7 @@
             <td style="width: 48%;">
                 <div class="contact-block">
                     <div>Tel: +48 73 947 16 22</div>
-                    <div>Jacka Malczewskiego 29, 26-600 Radom, Poland</div>
+                    <div>Jacka Malczewskiego 29, 26-600 Radom, Poland </div>
                     <div>E-mail: rectorate@radomuniversity.pl</div>
                 </div>
             </td>
@@ -418,11 +418,11 @@
 
     <p class="intro-pl">
         Z przyjemnością informujemy, że po rozpatrzeniu dokumentów rekrutacyjnych został(a) Pan(i) przyjęty(a)
-        warunkowo na Uniwersytecie Radomskim na program studiów określony poniżej.
+        warunkowo na RIU - Uniwersytecie Radomskim Internationalnym na program studiów określony poniżej.
     </p>
     <p class="intro-en">
         We are pleased to inform you that, based on the evaluation of your application documents, you have been
-        conditionally accepted to Radom International University for the programme detailed below.
+        conditionally accepted to RIU - Radom International University for the programme detailed below.
     </p>
 
     <div class="section-heading">Dane kandydata / Applicant Information</div>
@@ -507,9 +507,10 @@
     </table>
 
     <div class="highlight-box">
-        Po spełnieniu powyższych warunków uzyska Pan(i) pełny status studenta Uniwersytetu Radomskiego Internationalnego.<br />
-        Upon successful completion of all the above conditions, you will obtain full student status at Radom
-        University.
+        Po spełnieniu powyższych warunków uzyska Pan(i) pełny status studenta RIU - Uniwersytetu Radomskiego
+        Internationalnego.<br />
+        Upon successful completion of all the above conditions, you will obtain full student status at RIU - Radom
+        International University.
     </div>
 
     @php
@@ -545,7 +546,8 @@
                                         style="width: 48px; height: 48px; display: block;" />
                                 </td>
                                 <td>
-                                    <div><strong>Kod weryfikacyjny / Verification Code:</strong> {{ $codeForEntry }}</div>
+                                    <div><strong>Kod weryfikacyjny / Verification Code:</strong> {{ $codeForEntry }}
+                                    </div>
                                     <div class="verification-url"><strong>Weryfikacja / Verification:</strong>
                                         {{ $verificationUrl }}</div>
                                 </td>

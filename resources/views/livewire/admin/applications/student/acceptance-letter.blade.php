@@ -306,7 +306,7 @@
                 <div class="contact-block">
                     <div>Jacka Malczewskiego 29, 26-600 Radom, Poland</div>
                     <div>Tel: +48 73 947 16 22</div>
-                    <div>E-mail: admissions@radomuniversity.pl</div>
+                    <div>E-mail: rectorate@radomuniversity.pl</div>
                 </div>
             </td>
         </tr>
@@ -326,7 +326,7 @@
     <p class="greeting">Dear Applicant,</p>
     <p class="intro">
         We are pleased to inform you that, based on the evaluation of your application documents, you have been
-        conditionally accepted to Radom University for the programme detailed below.
+        conditionally accepted to RIU - Radom International University for the programme detailed below.
     </p>
 
     <div class="section-heading">Applicant Information</div>
@@ -397,8 +397,8 @@
     </ul>
 
     <div class="highlight-box">
-        Upon successful completion of all the above conditions, you will obtain full student status at Radom
-        University.
+        Upon successful completion of all the above conditions, you will obtain full student status at RIU - Radom
+        International University.
     </div>
 
     {{-- Footer: signature | seal | verification --}}

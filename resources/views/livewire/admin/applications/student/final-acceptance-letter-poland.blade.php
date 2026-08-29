@@ -531,7 +531,7 @@
                 <td style="width: 45%;">
                     <div class="contact-block">
                         <div>Tel: +48 73 947 16 22</div>
-                        <div>Radom, Poland</div>
+                        <div>Jacka Malczewskiego 29, 26-600 Radom, Poland</div>
                         <div>E-mail: rectorate@radomuniversity.pl</div>
                     </div>
                 </td>
@@ -658,7 +658,7 @@
                 </td>
                 <td>
                     <div class="field-label">Przewidywany rok ukończenia studiów / Expected Graduation:</div>
-                    <div class="field-value">{{ $startYear }}/{{ $endYear }}</div>
+                    <div class="field-value">{{ $startYear }}</div>
                 </td>
             </tr>
             <tr>
@@ -706,7 +706,7 @@
                         zaświadczenie
                         wydano na wniosek osoby, której dotyczy. Oczekuje się osiągnięcia etapu ukończenia studiów w
                         roku
-                        akademickim {{ $startYear }}-{{ $endYear }}.</p>
+                        akademickim {{ $startYear }}.</p>
                 </td>
                 <td class="en-col">
                     <p>The person named above is a registered student of our university. The foreseen duration of the
