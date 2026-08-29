@@ -8,7 +8,7 @@
         {{ $student->last_name }}</title>
     <style>
         @page {
-            margin: 9.5mm;
+            margin: 8mm;
             size: A4;
         }
 
@@ -33,7 +33,7 @@
         .header-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .header-table td {
@@ -75,7 +75,7 @@
         .rule {
             border: none;
             border-top: 1px solid #bbb;
-            margin: 6px 0 8px 0;
+            margin: 4px 0 6px 0;
         }
 
         .doc-title {
@@ -103,7 +103,7 @@
 
         .meta-row {
             width: 100%;
-            margin-bottom: 9px;
+            margin-bottom: 6px;
             font-size: 7.25pt;
         }
 
@@ -138,7 +138,7 @@
         }
 
         .intro-en {
-            margin: 0 0 10px 0;
+            margin: 0 0 6px 0;
             text-align: justify;
             font-style: italic;
             color: #222;
@@ -149,8 +149,8 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.02em;
-            margin: 9px 0 4px 0;
-            padding-bottom: 3px;
+            margin: 6px 0 3px 0;
+            padding-bottom: 2px;
             border-bottom: 1px solid #999;
             color: #000;
         }
@@ -187,7 +187,7 @@
         .conditions-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 3px 0 7px 0;
+            margin: 2px 0 4px 0;
             font-size: 7pt;
         }
 
@@ -210,18 +210,23 @@
 
         .highlight-box {
             border: 1px solid #999;
-            padding: 6px 8px;
+            padding: 5px 8px;
             text-align: center;
             font-size: 7pt;
-            margin: 8px 0 12px 0;
+            margin: 5px 0 6px 0;
             line-height: 1.32;
+        }
+
+        .page-end {
+            page-break-inside: avoid;
+            page-break-after: avoid;
         }
 
         .footer-three {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 4px;
-            margin-bottom: 6px;
+            margin-top: 2px;
+            margin-bottom: 3px;
         }
 
         .footer-three td {
@@ -233,10 +238,10 @@
 
         .e-sign-box {
             border: 1px solid #333;
-            padding: 8px 12px;
-            margin-top: 14px;
+            padding: 6px 10px;
+            margin-top: 4px;
             text-align: center;
-            line-height: 1.35;
+            line-height: 1.3;
             min-width: 168px;
             font-size: 6.75pt;
             background: #fafafa;
@@ -318,10 +323,12 @@
             text-align: center;
             font-size: 6.5pt;
             color: #444;
-            margin-top: 1px;
-            padding-top: 2px;
+            margin: 0;
+            padding-top: 3px;
             border-top: 1px solid #ddd;
             line-height: 1.2;
+            page-break-before: avoid;
+            page-break-inside: avoid;
         }
 
         @media print {
@@ -512,45 +519,47 @@
         $qrCodeBase64 = base64_encode($qrCode);
     @endphp
 
-    <table class="footer-three">
-        <tr>
-            <td>
-                <div class="e-sign-box">
-                    <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
-                    <div class="e-sign-name">Michał Kowalski</div>
-                    <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
-                </div>
-            </td>
-            {{-- <td style="text-align: center;">
-                <div style="display: inline-block;">
-                    <div class="seal-placeholder">Pieczęć uczelni<br />University Seal</div>
-                </div>
-            </td> --}}
-            <td>
-                <div class="verification-box">
-                    <h4>Weryfikacja dokumentu / Document Verification</h4>
-                    <table class="verification-inner">
-                        <tr>
-                            <td class="qr-cell">
-                                <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
-                                    style="width: 48px; height: 48px; display: block;" />
-                            </td>
-                            <td>
-                                <div><strong>Kod weryfikacyjny / Verification Code:</strong> {{ $codeForEntry }}</div>
-                                <div class="verification-url"><strong>Weryfikacja / Verification:</strong>
-                                    {{ $verificationUrl }}</div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
-    </table>
+    <div class="page-end">
+        <table class="footer-three">
+            <tr>
+                <td>
+                    <div class="e-sign-box">
+                        <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
+                        <div class="e-sign-name">Michał Kowalski</div>
+                        <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
+                    </div>
+                </td>
+                {{-- <td style="text-align: center;">
+                    <div style="display: inline-block;">
+                        <div class="seal-placeholder">Pieczęć uczelni<br />University Seal</div>
+                    </div>
+                </td> --}}
+                <td>
+                    <div class="verification-box">
+                        <h4>Weryfikacja dokumentu / Document Verification</h4>
+                        <table class="verification-inner">
+                            <tr>
+                                <td class="qr-cell">
+                                    <img src="data:image/svg+xml;base64,{{ $qrCodeBase64 }}" alt=""
+                                        style="width: 48px; height: 48px; display: block;" />
+                                </td>
+                                <td>
+                                    <div><strong>Kod weryfikacyjny / Verification Code:</strong> {{ $codeForEntry }}</div>
+                                    <div class="verification-url"><strong>Weryfikacja / Verification:</strong>
+                                        {{ $verificationUrl }}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-    <p class="doc-note">
-        Niniejszy dokument został wygenerowany elektronicznie i nie wymaga podpisu ani pieczęci.<br />
-        This document has been generated electronically and does not require a signature or stamp.
-    </p>
+        <p class="doc-note">
+            Niniejszy dokument został wygenerowany elektronicznie i nie wymaga podpisu ani pieczęci.<br />
+            This document has been generated electronically and does not require a signature or stamp.
+        </p>
+    </div>
 
 </body>
 
