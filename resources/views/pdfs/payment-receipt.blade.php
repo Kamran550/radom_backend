@@ -392,7 +392,8 @@
                         on {{ $payment->created_at->format('d/m/Y') }} with document number
                         <strong>{{ $verificationCode }}</strong>.
                         The validity of the document can be confirmed by scanning the QR code or by document number at
-                        <strong> {{ 'https://' . config('app.verify_domain', 'validate.radomuniversity.pl') }} </strong>
+                        <strong> {{ 'https://' . config('app.verify_domain', 'validate.radomuniversity.pl') }}
+                        </strong>
                     </div>
                 </td>
                 <td style="width: 70px; vertical-align: top;">

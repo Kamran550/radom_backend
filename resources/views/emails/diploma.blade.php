@@ -97,7 +97,7 @@
         <div style="text-align: center; padding: 20px; font-size: 12px; color: #888;">
             <p style="margin: 0;">
                 RADOM INTERNATIONAL UNIVERSITY<br>
-                Radom, Poland
+                Jacka Malczewskiego 29, 26-600 Radom, Poland
             </p>
             <p style="margin: 10px 0 0 0;">
                 <a href="https://radomuniversity.pl" style="color: #8B0000; text-decoration: none;">www.radomuniversity.pl</a>

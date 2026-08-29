@@ -449,9 +449,9 @@
                 <td style="width: 34%;">
                     <div class="office-block">
                         <div class="office-title navy">Biuro Spraw Studenckich / Student Affairs Office</div>
-                        Radom, Poland <br>
+                        Jacka Malczewskiego 29, 26-600 Radom, Poland <br>
                         Tel: +48 73 947 16 22<br>
-                        Email: admission@radomuniversity.pl<br>
+                        Email: rectorate@radomuniversity.pl<br>
                     </div>
                 </td>
                 <td class="header-verify-cell" style="width: 28%;">

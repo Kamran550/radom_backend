@@ -324,9 +324,9 @@
             font-size: 6.5pt;
             color: #444;
             margin: 0;
-            padding-top: 3px;
+            padding-top: 4px;
             border-top: 1px solid #ddd;
-            line-height: 1.2;
+            line-height: 1.3;
             page-break-before: avoid;
             page-break-inside: avoid;
         }
@@ -392,8 +392,8 @@
             <td style="width: 48%;">
                 <div class="contact-block">
                     <div>Tel: +48 73 947 16 22</div>
-                    <div>Radom, Poland</div>
-                    <div>E-mail: admissions@radomuniversity.pl</div>
+                    <div>Jacka Malczewskiego 29, 26-600 Radom, Poland</div>
+                    <div>E-mail: rectorate@radomuniversity.pl</div>
                 </div>
             </td>
         </tr>
@@ -472,13 +472,14 @@
             <td>{{ $intendedStartDate }}</td>
         </tr>
         <tr>
-            <td class="label">Planowany termin ukończenia / Expected Graduation Date</td>
-            <td>{{ $expectedGraduationDate }}</td>
-        </tr>
-        <tr>
             <td class="label">Status stypendium / Scholarship Status</td>
             <td>{{ $scholarshipStatusLabelPl }} / {{ $scholarshipStatusLabel }}</td>
         </tr>
+        <tr>
+            <td class="label">Czesne ze zniżką / Tuition Fee with Discount </td>
+            <td>1000 EUR</td>
+        </tr>
+
     </table>
 
     <div class="section-heading">Warunki przyjęcia / Conditions of Acceptance</div>
