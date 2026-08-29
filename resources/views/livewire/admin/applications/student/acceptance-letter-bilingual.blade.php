@@ -318,10 +318,10 @@
             text-align: center;
             font-size: 6.5pt;
             color: #444;
-            margin-top: 6px;
-            padding-top: 5px;
+            margin-top: 1px;
+            padding-top: 2px;
             border-top: 1px solid #ddd;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         @media print {
