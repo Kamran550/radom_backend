@@ -378,8 +378,8 @@
     <table class="header-table">
         <tr>
             <td style="width: 52%;">
-                <div class="uni-pl navy">UNIWERSYTET RADOMSKI</div>
-                <div class="uni-en navy">RADOM UNIVERSITY</div>
+                <div class="uni-pl navy">UNIWERSYTET RADOMSKI INTERNATIONALNY</div>
+                <div class="uni-en navy">RADOM INTERNATIONAL UNIVERSITY</div>
                 <p class="uni-sub">Biuro Rekrutacji Międzynarodowej / International Admissions Office</p>
             </td>
             <td style="width: 48%;">
@@ -415,7 +415,7 @@
     </p>
     <p class="intro-en">
         We are pleased to inform you that, based on the evaluation of your application documents, you have been
-        conditionally accepted to Radom University for the programme detailed below.
+        conditionally accepted to Radom International University for the programme detailed below.
     </p>
 
     <div class="section-heading">Dane kandydata / Applicant Information</div>
@@ -499,7 +499,7 @@
     </table>
 
     <div class="highlight-box">
-        Po spełnieniu powyższych warunków uzyska Pan(i) pełny status studenta Uniwersytetu Radomskiego.<br />
+        Po spełnieniu powyższych warunków uzyska Pan(i) pełny status studenta Uniwersytetu Radomskiego Internationalnego.<br />
         Upon successful completion of all the above conditions, you will obtain full student status at Radom
         University.
     </div>

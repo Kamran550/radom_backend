@@ -200,7 +200,7 @@
 <body>
     <!-- Background Watermark -->
     <div class="watermark" aria-hidden="true">
-        <span class="watermark-text-inner">Radom University</span>
+        <span class="watermark-text-inner">Radom International University</span>
     </div>
 
     <!-- Header with Logo and Address -->
@@ -243,7 +243,7 @@
     </div>
     <!-- Document Title -->
     <div class="document-title">
-        RADOM ÜNİVERSİTESİ<br>
+        RADOM ULUSLARARASI ÜNİVERSİTESİ<br>
         YATAY GEÇİŞ KABUL MEKTUBU
     </div>
 
@@ -306,7 +306,7 @@
         </div>
         <br>
         <div class="signature-line">
-            MAZOVYA BİLİM ve TEKNOLOJİ ÜNİVERSİTESİ
+            RADOM ULUSLARARASI ÜNİVERSİTESİ
         </div>
     </div>
 

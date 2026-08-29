@@ -370,7 +370,7 @@
             ->size(70)
             ->generate($verificationUrl);
         $qrCodeBase64 = base64_encode($qrCode);
-        $barcodeCode = trim($student->student_number ?? ($student->application_number ?? '')) ?: 'RADOM-' . $student->id . '-' . now()->format('Ymd');
+        $barcodeCode = trim($student->student_number ?? ($student->application_number ?? '')) ?: 'RADOM INTERNATIONAL UNIVERSITY-' . $student->id . '-' . now()->format('Ymd');
         $barcodeBase64 = '';
         try {
             $barcodePng = (new \Picqer\Barcode\BarcodeGeneratorPNG())->getBarcode(
@@ -391,7 +391,7 @@
 
         <div class="header">
             <div class="header-left">
-                <div class="brand-name">RADOM UNIVERSITY</div>
+                <div class="brand-name">RADOM INTERNATIONAL UNIVERSITY</div>
                 <div class="brand-sub">Biuro spraw studenckich</div>
             </div>
             <div class="header-right">
@@ -446,7 +446,7 @@
         </div>
 
         <div class="statement">
-            <p>Osoba wskazana w niniejszym dokumencie jest zarejestrowanym studentem RADOM UNIVERSITY i posiada aktywny status studenta.</p>
+            <p>Osoba wskazana w niniejszym dokumencie jest zarejestrowanym studentem RADOM INTERNATIONAL UNIVERSITY i posiada aktywny status studenta.</p>
             <p>Planowany laczny okres trwania programu wynosi {{ $duration }} {{ $durationPl }}. Aktualna rejestracja dotyczy okresu akademickiego {{ $startYear }}-{{ $endYear }}.</p>
             <p>Zgodnie z regulaminem studiow uczelni student ma obowiazek realizowac wymagania programowe, uczestniczyc w zajeciach oraz przystepowac do zaliczen i egzaminow zgodnie z harmonogramem.</p>
             <p>Niniejsze zaswiadczenie wydano na wniosek osoby zainteresowanej wyłącznie w celu potwierdzenia statusu studenta.</p>

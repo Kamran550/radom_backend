@@ -346,7 +346,7 @@
 
         <div class="header">
             <div class="header-left">
-                <div class="brand-name">RADOM UNIVERSITY</div>
+                <div class="brand-name">RADOM INTERNATIONAL UNIVERSITY</div>
                 <div class="brand-sub">Student Affairs Department</div>
             </div>
             <div class="header-right">
@@ -408,7 +408,7 @@
         </div>
 
         <div class="statement">
-            <p>The person identified in this document is a registered student of RADOM UNIVERSITY and currently holds
+            <p>The person identified in this document is a registered student of RADOM INTERNATIONAL UNIVERSITY and currently holds
                 active student status.</p>
             <p>The planned total duration of the program is {{ $duration }} years. Current registration applies for
                 the {{ $academicYear }} period.</p>

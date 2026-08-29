@@ -128,7 +128,7 @@ class ExportPriceList extends Component
         }
         
         return [
-            'university_name' => 'RADOM UNİVERSİTY',
+            'university_name' => 'RADOM INTERNATIONAL UNİVERSİTY',
             'scan_me' => 'SCAN ME',
             'programs' => 'PROGRAMS',
             'academic_year' => 'ACADEMIC YEAR 2025/2026',

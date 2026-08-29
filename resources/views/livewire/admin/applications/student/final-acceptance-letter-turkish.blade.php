@@ -379,13 +379,12 @@
             <tr>
                 <td class="logo-cell">
                     <div class="brand-wordmark-compact">
-                        <span class="brand-wordmark-primary">Radom</span>
-                        <span class="brand-wordmark-secondary">University</span>
-                    </div>
+                        <span class="brand-wordmark-primary">Radom International University</span>
+=                    </div>
                 </td>
                 <td class="title-cell">
                     <div class="university-name">
-                        RADOM UNIVERSITY
+                        RADOM INTERNATIONAL UNIVERSITY
                     </div>
                     <div class="department-name">
                         Öğrenci İşleri Daire Başkanlığı
@@ -595,7 +594,7 @@
 
         <!-- Address Block -->
         <div class="address-block">
-            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ RADOM ]</p>
+            <p>Aleja Józefa Piłsudskiego 35, 09-407 Płock / Poland [ RADOM INTERNATIONAL UNIVERSITY ]</p>
             <p style="margin-top: 3px;">
                 <strong>Tel:</strong>+48579277493
             </p>

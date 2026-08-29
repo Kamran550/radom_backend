@@ -299,7 +299,7 @@
     <table class="header-table">
         <tr>
             <td style="width: 52%;">
-                <div class="uni-serif navy">RADOM UNIVERSITY</div>
+                <div class="uni-serif navy">RADOM INTERNATIONAL UNIVERSITY</div>
                 <p class="uni-sub">International Admissions Office</p>
             </td>
             <td style="width: 48%;">

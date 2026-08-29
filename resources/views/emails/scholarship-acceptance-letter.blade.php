@@ -8,8 +8,7 @@
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #1a1a1a; margin-bottom: 10px;">RADOM</h1>
-            <h2 style="color: #1a1a1a; margin-top: 0;">RADOM UNIVERSITY</h2>
+            <h2 style="color: #1a1a1a; margin-top: 0;">RADOM INTERNATIONAL UNIVERSITY</h2>
         </div>
 
         <p>Dear <strong>{{ $student->first_name }} {{ $student->last_name }}</strong>,</p>

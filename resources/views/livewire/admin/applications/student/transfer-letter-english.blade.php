@@ -441,7 +441,7 @@
             <tr>
                 <td style="width: 38%;">
                     <p class="uni-name navy">UNIWERSYTET RADOMSKI</p>
-                    <p class="uni-name-sub navy">RADOM UNIVERSITY</p>
+                    <p class="uni-name-sub navy">RADOM INTERNATIONAL UNIVERSITY</p>
                 </td>
                 <td class="header-vdivider" style="width: 1%;">
                     <div class="header-vdivider-inner"></div>
@@ -509,7 +509,7 @@
                 <td class="arrow-cell">→</td>
                 <td class="to-cell">
                     <div class="transfer-label">TO / DO UCZELNI</div>
-                    <div class="transfer-value">Uniwersytet Radomski / Radom University</div>
+                    <div class="transfer-value">Uniwersytet Radomski / Radom International University</div>
                 </td>
             </tr>
         </table>
@@ -561,8 +561,8 @@
             </tr>
             <tr>
                 <td class="label-cell">
-                    Planowany semestr rozpoczęcia studiów w Radom University / Planned Semester of
-                    Enrollment at Radom University
+                    Planowany semestr rozpoczęcia studiów w Radom International University / Planned Semester of
+                    Enrollment at Radom International University
                 </td>
                 <td class="value-cell">Semestr zimowy {{ $startYear }}/{{ $endYear }} (październik
                     {{ $startYear }}) / Winter Semester {{ $startYear }}/{{ $endYear }} (October
@@ -573,7 +573,7 @@
         <table class="closing-columns">
             <tr>
                 <td>
-                    Zaświadczenie zostało wydane na prośbę studenta w celu przedłożenia w Radom University oraz do
+                    Zaświadczenie zostało wydane na prośbę studenta w celu przedłożenia w Radom International University oraz do
                     innych
                     instytucji wymagających potwierdzenia zamiaru przeniesienia.
                 </td>
@@ -598,7 +598,7 @@
                             <div class="e-sign-badge">Podpis elektroniczny / E-Signed</div>
                             <div class="e-sign-name">Michał Kowalski</div>
                             <div class="e-sign-title">Dyrektor Działu Spraw Studenckich / Director of Student Affairs</div>
-                            <div class="e-sign-title">Uniwersytet Radomski / Radom University</div>
+                            <div class="e-sign-title">Uniwersytet Radomski / Radom International University</div>
                         </div>
                     </td>
                 </tr>

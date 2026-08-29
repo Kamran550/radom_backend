@@ -524,8 +524,8 @@
     <table class="header-table">
         <tr>
             <td style="width: 55%;">
-                <div class="uni-pl navy">UNIWERSYTET RADOMSKI</div>
-                <div class="uni-en navy">RADOM UNIVERSITY</div>
+                <div class="uni-pl navy">UNIWERSYTET RADOMSKI INTERNATIONALNY</div>
+                <div class="uni-en navy">RADOM INTERNATIONAL UNIVERSITY</div>
                 <p class="uni-sub">Biuro Spraw Studenckich / Student Affairs Office</p>
             </td>
             <td style="width: 45%;">

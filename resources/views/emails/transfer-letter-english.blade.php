@@ -15,7 +15,7 @@
         </h1>
 
         <p style="font-size: 16px; margin-bottom: 15px;">
-            We would like to share an important update regarding your transfer application to RADOM UNIVERSITY.
+            We would like to share an important update regarding your transfer application to RADOM INTERNATIONAL UNIVERSITY.
         </p>
 
         <div
@@ -78,7 +78,7 @@
                 International Student Affairs Department
             </p>
             <p style="font-size: 14px; margin: 5px 0; color: #2c3e50; font-weight: bold;">
-                RADOM UNIVERSITY
+                RADOM INTERNATIONAL UNIVERSITY
             </p>
         </div>
     </div>
@@ -86,7 +86,7 @@
     <div
         style="text-align: center; font-size: 12px; color: #6c757d; margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6;">
         <p style="margin: 5px 0;">
-            © {{ date('Y') }} RADOM UNIVERSITY. All rights reserved.
+            © {{ date('Y') }} RADOM INTERNATIONAL UNIVERSITY. All rights reserved.
         </p>
         <p style="margin: 5px 0;">
             Aleja Józefa Piłsudskiego 35,

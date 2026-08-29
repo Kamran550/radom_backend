@@ -81,7 +81,7 @@
 
         <!-- Footer -->
         <div class="mt-8 text-center text-sm text-gray-500">
-            <p>RADOM UNIVERSITY</p>
+            <p>RADOM INTERNATIONAL UNIVERSITY</p>
             <p class="mt-1">Document Verification System</p>
         </div>
     </div>

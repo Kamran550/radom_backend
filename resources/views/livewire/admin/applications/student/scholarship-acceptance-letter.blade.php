@@ -429,9 +429,9 @@
             Congratulations!
         </p>
         <p>
-            Your application to RADOM UNIVERSITY for the
+            Your application to RADOM INTERNATIONAL UNIVERSITY for the
             {{ now()->format('Y') }}-{{ now()->addYear()->format('Y') }} academic year Fall semester has been
-            successfully approved. We are excited for you to be a member of the RADOM UNIVERSITY and to join a
+            successfully approved. We are excited for you to be a member of the RADOM INTERNATIONAL UNIVERSITY and to join a
             dynamic and diverse student community in a place of endless opportunities. This letter is to confirm
             your conditional acceptance into
             <strong>{{ strtoupper($student->application->program?->name ?? 'N/A') }}</strong>
