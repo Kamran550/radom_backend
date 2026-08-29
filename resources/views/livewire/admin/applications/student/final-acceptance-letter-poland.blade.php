@@ -683,10 +683,10 @@
                 </td>
 
             </tr>
-            <tr>
+            {{-- <tr>
                 <td class="label">Czesne ze zniżką / Tuition Fee with Discount </td>
                 <td>1000 EUR</td>
-            </tr>
+            </tr> --}}
 
         </table>
 
