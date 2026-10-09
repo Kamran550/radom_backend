@@ -280,7 +280,7 @@
                 $startYear = $applicationDate->format('Y');
                 $endYear = $startYear + 1;
             @endphp
-            {{ $startYear }}–{{ $endYear }} akademik yılı için Avrupa Uluslararası Barış Üniversitesi
+            {{ $startYear }}–{{ $endYear }} akademik yılı için Radom Üniversitesi
             bünyesinde
             {{ tr_upper($student->application->program?->degree?->getName('TR') ?? ($student->application->program?->degree?->name ?? 'N/A')) }}
             {{ tr_upper($student->application->program?->getName('TR') ?? ($student->application->program?->name ?? 'N/A')) }}
