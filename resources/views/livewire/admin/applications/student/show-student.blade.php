@@ -84,10 +84,12 @@
         [
             'label' => 'Identity Card / Passport',
             'path' => $student->photo_id_path,
+            'type' => 'photo_id',
         ],
         [
             'label' => 'Profile Picture',
             'path' => $student->profile_photo_path,
+            'type' => 'profile_photo',
         ],
     ];
 
@@ -97,48 +99,58 @@
         $documents[] = [
             'label' => 'High School Diploma',
             'path' => $student->high_school_diploma_path,
+            'type' => 'high_school_diploma',
         ];
         $documents[] = [
             'label' => 'High School Transcript',
             'path' => $student->high_school_transcript_path,
+            'type' => 'high_school_transcript',
         ];
     } elseif ($degreeName === "Master's") {
         // Master applicants provide bachelor documents
         $documents[] = [
             'label' => "Bachelor's Diploma",
             'path' => $student->bachelor_diploma_path,
+            'type' => 'bachelor_diploma',
         ];
         $documents[] = [
             'label' => "Bachelor's Transcript",
             'path' => $student->bachelor_transcript_path,
+            'type' => 'bachelor_transcript',
         ];
     } elseif ($degreeName === "Master's (Without Thesis)") {
         // Master applicants provide bachelor documents
         $documents[] = [
             'label' => "Bachelor's Diploma",
             'path' => $student->bachelor_diploma_path,
+            'type' => 'bachelor_diploma',
         ];
         $documents[] = [
             'label' => "Bachelor's Transcript",
             'path' => $student->bachelor_transcript_path,
+            'type' => 'bachelor_transcript',
         ];
     } elseif ($degreeName === 'PhD') {
         // PhD applicants provide BOTH bachelor and master documents
         $documents[] = [
             'label' => "Bachelor's Diploma",
             'path' => $student->bachelor_diploma_path,
+            'type' => 'master_diploma',
         ];
         $documents[] = [
             'label' => "Bachelor's Transcript",
             'path' => $student->bachelor_transcript_path,
+            'type' => 'bachelor_transcript',
         ];
         $documents[] = [
             'label' => "Master's Diploma",
             'path' => $student->master_diploma_path,
+            'type' => 'master_diploma',
         ];
         $documents[] = [
             'label' => "Master's Transcript",
             'path' => $student->master_transcript_path,
+            'type' => 'master_transcript',
         ];
     }
 
@@ -239,72 +251,73 @@
         <div
             class="flex flex-nowrap items-start sm:items-center justify-between gap-3 w-full pt-1 border-t border-gray-100">
             <div class="flex flex-wrap items-center gap-2 flex-1 min-w-0">
-            @if ($application && $application->applicant_type === \App\Enums\ApplicationTypeEnum::STUDENT->value)
-                <button type="button" wire:click="sendAcceptanceLetter" wire:loading.attr="disabled"
-                    wire:target="sendAcceptanceLetter"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#6E0C0C] hover:bg-[#8B2525] rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Send Conditional Acceptance Letter">
-                    <svg wire:loading.remove wire:target="sendAcceptanceLetter" class="w-3 h-3 mr-1.5" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <svg wire:loading wire:target="sendAcceptanceLetter" class="animate-spin w-3 h-3 mr-1.5"
-                        fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <span wire:loading.remove wire:target="sendAcceptanceLetter">75% CAL</span>
-                    <span wire:loading wire:target="sendAcceptanceLetter">Sending...</span>
-                </button>
+                @if ($application && $application->applicant_type === \App\Enums\ApplicationTypeEnum::STUDENT->value)
+                    <button type="button" wire:click="sendAcceptanceLetter" wire:loading.attr="disabled"
+                        wire:target="sendAcceptanceLetter"
+                        class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#6E0C0C] hover:bg-[#8B2525] rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Send Conditional Acceptance Letter">
+                        <svg wire:loading.remove wire:target="sendAcceptanceLetter" class="w-3 h-3 mr-1.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <svg wire:loading wire:target="sendAcceptanceLetter" class="animate-spin w-3 h-3 mr-1.5"
+                            fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span wire:loading.remove wire:target="sendAcceptanceLetter">75% CAL</span>
+                        <span wire:loading wire:target="sendAcceptanceLetter">Sending...</span>
+                    </button>
 
-                <button type="button" wire:click="sendAcceptanceLetterBilingualEnPl" wire:loading.attr="disabled"
-                    wire:target="sendAcceptanceLetterBilingualEnPl"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-rose-700 hover:bg-rose-800 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Send 75% Conditional Acceptance Letter (Polish + English)">
-                    <svg wire:loading.remove wire:target="sendAcceptanceLetterBilingualEnPl" class="w-3 h-3 mr-1.5"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <svg wire:loading wire:target="sendAcceptanceLetterBilingualEnPl"
-                        class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <span wire:loading.remove wire:target="sendAcceptanceLetterBilingualEnPl">75% CAL (EN+PL)</span>
-                    <span wire:loading wire:target="sendAcceptanceLetterBilingualEnPl">Sending...</span>
-                </button>
+                    <button type="button" wire:click="sendAcceptanceLetterBilingualEnPl" wire:loading.attr="disabled"
+                        wire:target="sendAcceptanceLetterBilingualEnPl"
+                        class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-rose-700 hover:bg-rose-800 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Send 75% Conditional Acceptance Letter (Polish + English)">
+                        <svg wire:loading.remove wire:target="sendAcceptanceLetterBilingualEnPl" class="w-3 h-3 mr-1.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <svg wire:loading wire:target="sendAcceptanceLetterBilingualEnPl"
+                            class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span wire:loading.remove wire:target="sendAcceptanceLetterBilingualEnPl">75% CAL
+                            (EN+PL)</span>
+                        <span wire:loading wire:target="sendAcceptanceLetterBilingualEnPl">Sending...</span>
+                    </button>
 
-                <button type="button" wire:click="sendScholarshipAcceptanceLetter" wire:loading.attr="disabled"
-                    wire:target="sendScholarshipAcceptanceLetter"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-amber-600 hover:bg-amber-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Send 100% Scholarship Conditional Acceptance Letter">
-                    <svg wire:loading.remove wire:target="sendScholarshipAcceptanceLetter" class="w-3 h-3 mr-1.5"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <svg wire:loading wire:target="sendScholarshipAcceptanceLetter" class="animate-spin w-3 h-3 mr-1.5"
-                        fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">100% CAL</span>
-                    <span wire:loading wire:target="sendScholarshipAcceptanceLetter">Sending...</span>
-                </button>
-            @endif
-            @if ($application && $application->applicant_type === \App\Enums\ApplicationTypeEnum::TRANSFER->value)
-                {{-- <button type="button" wire:click="sendTransferLetter" wire:loading.attr="disabled"
+                    <button type="button" wire:click="sendScholarshipAcceptanceLetter" wire:loading.attr="disabled"
+                        wire:target="sendScholarshipAcceptanceLetter"
+                        class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-amber-600 hover:bg-amber-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Send 100% Scholarship Conditional Acceptance Letter">
+                        <svg wire:loading.remove wire:target="sendScholarshipAcceptanceLetter" class="w-3 h-3 mr-1.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <svg wire:loading wire:target="sendScholarshipAcceptanceLetter"
+                            class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">100% CAL</span>
+                        <span wire:loading wire:target="sendScholarshipAcceptanceLetter">Sending...</span>
+                    </button>
+                @endif
+                @if ($application && $application->applicant_type === \App\Enums\ApplicationTypeEnum::TRANSFER->value)
+                    {{-- <button type="button" wire:click="sendTransferLetter" wire:loading.attr="disabled"
                     wire:target="sendTransferLetter"
                     class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-purple-600 hover:bg-purple-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Send Transfer Letter (Turkish)">
@@ -324,50 +337,51 @@
                     <span wire:loading.remove wire:target="sendTransferLetter">Transfer Letter (TR)</span>
                     <span wire:loading wire:target="sendTransferLetter">Sending...</span>
                 </button> --}}
-                <button type="button" wire:click="sendTransferLetterEnglish" wire:loading.attr="disabled"
-                    wire:target="sendTransferLetterEnglish"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Send Transfer Letter (English)">
-                    <svg wire:loading.remove wire:target="sendTransferLetterEnglish" class="w-3 h-3 mr-1.5"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <svg wire:loading wire:target="sendTransferLetterEnglish" class="animate-spin w-3 h-3 mr-1.5"
-                        fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <span wire:loading.remove wire:target="sendTransferLetterEnglish">Transfer Letter (EN + PL)</span>
-                    <span wire:loading wire:target="sendTransferLetterEnglish">Sending...</span>
-                </button>
+                    <button type="button" wire:click="sendTransferLetterEnglish" wire:loading.attr="disabled"
+                        wire:target="sendTransferLetterEnglish"
+                        class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Send Transfer Letter (English)">
+                        <svg wire:loading.remove wire:target="sendTransferLetterEnglish" class="w-3 h-3 mr-1.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <svg wire:loading wire:target="sendTransferLetterEnglish" class="animate-spin w-3 h-3 mr-1.5"
+                            fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span wire:loading.remove wire:target="sendTransferLetterEnglish">Transfer Letter (EN +
+                            PL)</span>
+                        <span wire:loading wire:target="sendTransferLetterEnglish">Sending...</span>
+                    </button>
 
-                <button type="button" wire:click="sendScholarshipAcceptanceLetter" wire:loading.attr="disabled"
-                    wire:target="sendScholarshipAcceptanceLetter"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Send 100% Scholarship Conditional Acceptance Letter">
-                    <svg wire:loading.remove wire:target="sendScholarshipAcceptanceLetter" class="w-3 h-3 mr-1.5"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <svg wire:loading wire:target="sendScholarshipAcceptanceLetter"
-                        class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">100% CAL</span>
-                    <span wire:loading wire:target="sendScholarshipAcceptanceLetter">Sending...</span>
-                </button>
-            @endif
-            @if ($application && $currentStatus === ApplicationStatusEnum::APPROVED->value)
-                {{-- <button type="button" wire:click="sendFinalAcceptanceLetter" wire:loading.attr="disabled"
+                    <button type="button" wire:click="sendScholarshipAcceptanceLetter" wire:loading.attr="disabled"
+                        wire:target="sendScholarshipAcceptanceLetter"
+                        class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Send 100% Scholarship Conditional Acceptance Letter">
+                        <svg wire:loading.remove wire:target="sendScholarshipAcceptanceLetter" class="w-3 h-3 mr-1.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <svg wire:loading wire:target="sendScholarshipAcceptanceLetter"
+                            class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span wire:loading.remove wire:target="sendScholarshipAcceptanceLetter">100% CAL</span>
+                        <span wire:loading wire:target="sendScholarshipAcceptanceLetter">Sending...</span>
+                    </button>
+                @endif
+                @if ($application && $currentStatus === ApplicationStatusEnum::APPROVED->value)
+                    {{-- <button type="button" wire:click="sendFinalAcceptanceLetter" wire:loading.attr="disabled"
                     wire:target="sendFinalAcceptanceLetter"
                     class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#C49F5F] hover:bg-[#B8860B] rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Send Certificate (English)">
@@ -387,47 +401,48 @@
                     <span wire:loading.remove wire:target="sendFinalAcceptanceLetter">Certificate (EN)</span>
                     <span wire:loading wire:target="sendFinalAcceptanceLetter">Sending...</span>
                 </button> --}}
-                <button type="button" wire:click="sendFinalAcceptanceLetterPoland" wire:loading.attr="disabled"
-                    wire:target="sendFinalAcceptanceLetterPoland"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Send Certificate (English + Polish)">
-                    <svg wire:loading.remove wire:target="sendFinalAcceptanceLetterPoland" class="w-3 h-3 mr-1.5"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <svg wire:loading wire:target="sendFinalAcceptanceLetterPoland"
-                        class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <span wire:loading.remove wire:target="sendFinalAcceptanceLetterPoland">Certificate (EN+PL)</span>
-                    <span wire:loading wire:target="sendFinalAcceptanceLetterPoland">Sending...</span>
-                </button>
-                <button type="button" wire:click="sendFinalAcceptanceLetterPolish" wire:loading.attr="disabled"
-                    wire:target="sendFinalAcceptanceLetterPolish"
-                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Send Certificate (Polish)">
-                    <svg wire:loading.remove wire:target="sendFinalAcceptanceLetterPolish" class="w-3 h-3 mr-1.5"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <svg wire:loading wire:target="sendFinalAcceptanceLetterPolish"
-                        class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    <span wire:loading.remove wire:target="sendFinalAcceptanceLetterPolish">Certificate (PL)</span>
-                    <span wire:loading wire:target="sendFinalAcceptanceLetterPolish">Sending...</span>
-                </button>
-            @endif
+                    <button type="button" wire:click="sendFinalAcceptanceLetterPoland" wire:loading.attr="disabled"
+                        wire:target="sendFinalAcceptanceLetterPoland"
+                        class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Send Certificate (English + Polish)">
+                        <svg wire:loading.remove wire:target="sendFinalAcceptanceLetterPoland" class="w-3 h-3 mr-1.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <svg wire:loading wire:target="sendFinalAcceptanceLetterPoland"
+                            class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span wire:loading.remove wire:target="sendFinalAcceptanceLetterPoland">Certificate
+                            (EN+PL)</span>
+                        <span wire:loading wire:target="sendFinalAcceptanceLetterPoland">Sending...</span>
+                    </button>
+                    <button type="button" wire:click="sendFinalAcceptanceLetterPolish" wire:loading.attr="disabled"
+                        wire:target="sendFinalAcceptanceLetterPolish"
+                        class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Send Certificate (Polish)">
+                        <svg wire:loading.remove wire:target="sendFinalAcceptanceLetterPolish" class="w-3 h-3 mr-1.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <svg wire:loading wire:target="sendFinalAcceptanceLetterPolish"
+                            class="animate-spin w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span wire:loading.remove wire:target="sendFinalAcceptanceLetterPolish">Certificate (PL)</span>
+                        <span wire:loading wire:target="sendFinalAcceptanceLetterPolish">Sending...</span>
+                    </button>
+                @endif
             </div>
             <a href="{{ route('admin.applications.student.index') }}"
                 class="inline-flex shrink-0 items-center justify-center px-3 py-1.5 text-xs font-medium text-[#6E0C0C] bg-[#fdf2f2] hover:bg-[#f5e6e6] rounded-md transition sm:self-center">
@@ -488,7 +503,13 @@
         <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2">
             @forelse($documents as $document)
                 @php
-                    $url = $document['path'] ? Storage::url($document['path']) : null;
+                    $url = $document['path']
+                        ? route('admin.applications.student.documents', [
+                            'studentApplication' => $student->id,
+                            'type' => $document['type'],
+                        ])
+                        : null;
+
                     $type = $previewType($document['path']);
                 @endphp
 
