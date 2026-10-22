@@ -7,6 +7,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Services\AdminTwoFactorService;
+
+
 
 class AdminMiddleware
 {
@@ -32,10 +35,34 @@ class AdminMiddleware
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            
+
             return redirect()->route('admin.login')
                 ->with('error', 'Bu səhifəyə giriş üçün admin hüququ lazımdır.');
         }
+
+
+
+        // Google Authenticator code must be verified in this session
+        $twoFactor = app(AdminTwoFactorService::class);
+        $user = Auth::user();
+
+        if (!$twoFactor->isVerified($user)) {
+            // Restored from a "remember me" cookie: skip the password, still require the OTP
+            $viaRemember = Auth::viaRemember();
+
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            if ($viaRemember) {
+                $twoFactor->startPendingLogin($user, true);
+
+                return redirect()->route('admin.two-factor');
+            }
+
+            return redirect()->route('admin.login');
+        }
+
 
         return $next($request);
     }
